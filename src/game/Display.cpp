@@ -10,6 +10,7 @@ Display::Display() {
 Display::~Display() {
     
 }
+
 void Display::intro() {
     std::cout << "Welcome to CityCraft!" << std::endl;
     std::cout << "Press Enter to start the game." << std::endl;
@@ -37,36 +38,45 @@ _________ .__  __           _________                _____  __
 
 )" << std::endl;
 }
+
 void Display::wait(int seconds) {
     std::this_thread::sleep_for(std::chrono::seconds(seconds));
 }
 
-
 int Display::MainMenu() {
     std::vector<std::string> options = {"New Game", "Load Game", "Exit"};
-    Menu menu(options, 0);
     bool running = true;
     while (running) {
         clear();
         logo();
-        menu.display();
+        displayMenu(options);
         std::cout << "Please select an option." << std::endl;
-        int input = cin.get();
-        switch (input)
-        {
-        case 1:
-            return 1;
-            break;
-        case 2:
-            return 2;
-            break;
-        case 3:
-            return 3;
-            break;
-        default:
-            break;
-        }
+        int input;
+        std::cin >> input;
+        return input;
+    }
+    return -1;
+}
 
+void Display::displayMenu(std::vector<std::string> options) {
+    for (std::vector<std::string>::size_type i = 0; i < options.size(); i++) {
+        std::cout << i + 1 << ". " << options[i] << std::endl;
     }
 }
 
+void Display::loadscreen() {
+    clear();
+    for (int i = 0; i < 5; i++)
+    {
+        clear();
+        logo();
+        std::cout << "Loading";
+        for (int j = 0; j < i; j++)
+        {
+            std::cout << ".";
+        }
+        
+        wait(1);
+    }
+    
+}

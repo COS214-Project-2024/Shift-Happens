@@ -4,19 +4,18 @@
 #include <string>
 
 using namespace std;
-namespace Building_State {
-	class MapComponent {
+class MapComponent
+{
 
-	private:
-		int id;
+private:
+	int id;
 
-	public:
-		virtual bool add(Building_State::MapComponent* component) = 0;
-
-		virtual bool remove(Building_State::MapComponent* component) = 0;
-
-		virtual void getComponent(int id) = 0;
-	};
-}
+public:
+	MapComponent(int id);
+	virtual bool add(MapComponent *component) = 0;
+	virtual bool remove(MapComponent *component) = 0;
+	virtual void getComponent(int id) = 0;
+	virtual ~MapComponent();
+};
 
 #endif

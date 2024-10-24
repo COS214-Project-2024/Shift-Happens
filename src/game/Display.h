@@ -4,7 +4,6 @@
 #include <vector>
 #include <string>
 #include <iostream>
-#include "Menu.h"
 
 
 using namespace std;
@@ -17,7 +16,10 @@ public:
     void logo();
     void clear();
     void wait(int seconds);
+    void loadscreen();
+
     int MainMenu();
+    void displayMenu(vector<string> options);
 
 
 private:

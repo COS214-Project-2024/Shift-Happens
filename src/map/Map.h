@@ -5,18 +5,22 @@
 #include "MapComponent.h"
 
 using namespace std;
-namespace Building_State {
-	class Map : Building_State::MapComponent {
+class Map : public MapComponent
+{
+	
+private:
+	vector<vector<MapComponent*>> tiles;
 
-	public:
-		vector<Building_State::MapComponent*> components;
+public:
+	Map(int id);
 
-		bool add(Building_State::MapComponent* component);
+	vector<MapComponent *> components;
 
-		bool remove(Building_State::MapComponent* component);
+	bool add(MapComponent *component);
 
-		void getComponent(int id);
-	};
-}
+	bool remove(MapComponent *component);
+
+	void getComponent(int id);
+};
 
 #endif
