@@ -1,11 +1,15 @@
 #ifndef GIRLBUILDER_H
 #define GIRLBUILDER_H
 
-namespace Building_State {
-	class GirlBuilder : Building_State::CitizenBuilder {
 
-	public:
+#include "CitizenBuilder.h"
+#include "Girl.h"
+
+namespace Building_State {
+	class GirlBuilder : public Building_State::CitizenBuilder {
+	private:
 		Girl* Girl;
+	public:
 
 		void addGender();
 

@@ -1,11 +1,14 @@
 #ifndef MANBUILDER_H
 #define MANBUILDER_H
 
-namespace Building_State {
-	class ManBuilder : Building_State::CitizenBuilder {
+#include "Man.h"
+#include "CitizenBuilder.h"
 
-	public:
+namespace Building_State {
+	class ManBuilder : public Building_State::CitizenBuilder {
+	private:
 		Man* Man;
+	public:
 
 		void addGender();
 

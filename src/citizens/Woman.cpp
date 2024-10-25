@@ -1,16 +1,13 @@
 #include "Woman.h"
 
-void Building_State::Woman::setType(string type) {
-	// TODO - implement Woman::setType
-	throw "Not yet implemented";
+void Building_State::Woman::setType(std::string type) {
+	this->Type = type;
 }
 
-void Building_State::Woman::setGender(string gender) {
-	// TODO - implement Woman::setGender
-	throw "Not yet implemented";
+void Building_State::Woman::setGender(std::string gender) {
+	this->Gender = gender;
 }
 
-void Building_State::Woman::setEmployment(boolean status) {
-	// TODO - implement Woman::setEmployment
-	throw "Not yet implemented";
+void Building_State::Woman::setEmployment(bool status) {
+	this->Employment = status;
 }

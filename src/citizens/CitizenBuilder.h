@@ -1,6 +1,8 @@
 #ifndef CITIZENBUILDER_H
 #define CITIZENBUILDER_H
 
+#include "Citizen.h"
+
 namespace Building_State {
 	class CitizenBuilder {
 
@@ -12,7 +14,7 @@ namespace Building_State {
 
 		virtual void addStatus() = 0;
 
-		virtual Building_State::Citizen getCitizen() = 0;
+		virtual Citizen* getCitizen() = 0;
 	};
 }
 

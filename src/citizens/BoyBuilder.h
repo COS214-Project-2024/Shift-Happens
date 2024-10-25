@@ -1,12 +1,14 @@
 #ifndef BOYBUILDER_H
-#define BOYBUILDER_H
+#define BOYBUILDER_H\
+
+#include "CitizenBuilder.h"
+#include "Boy.h"
 
 namespace Building_State {
-	class BoyBuilder : Building_State::CitizenBuilder {
-
-	public:
+	class BoyBuilder : public Building_State::CitizenBuilder {
+		private:
 		Boy* Boy;
-
+	public:
 		void addGender();
 
 		void addType();

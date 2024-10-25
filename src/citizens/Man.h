@@ -1,20 +1,23 @@
 #ifndef MAN_H
 #define MAN_H
 
+#include "Citizen.h"
+#include <iostream>
+
 namespace Building_State {
-	class Man : Building_State::Citizen {
+	class Man : public Building_State::Citizen {
 
 	private:
-		string Type;
-		string Gender;
-		boolean Employment;
+		std::string Type;
+		std::string Gender;
+		bool Employment;
 
 	public:
-		void setType(string type);
+		void setType(std::string type);
 
-		void setGender(string gender);
+		void setGender(std::string gender);
 
-		void setEmployment(boolean status);
+		void setEmployment(bool status);
 	};
 }
 

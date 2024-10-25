@@ -1,21 +1,40 @@
 #include "ManBuilder.h"
 
 void Building_State::ManBuilder::addGender() {
-	// TODO - implement ManBuilder::addGender
-	throw "Not yet implemented";
+	Man->setGender("Male");
 }
 
 void Building_State::ManBuilder::addType() {
-	// TODO - implement ManBuilder::addType
-	throw "Not yet implemented";
+	Man->setType("Man");
 }
 
 void Building_State::ManBuilder::addStatus() {
-	// TODO - implement ManBuilder::addStatus
-	throw "Not yet implemented";
+	std::string answer ;
+	std::cout << "Is the Man employed? (Yes/No)" << std::endl;
+	std::cin >> answer;
+	if(answer == "Yes" || answer == "yes"){
+		Man->setEmployment(true);
+	} else if(answer == "No" || answer == "no"){
+		Man->setEmployment(false);
+	} else {
+		bool done = false;
+		while (done != true)
+		{
+			std::cout << "Input did not match the expected Yes or No input. Try again." << std::endl;
+			std::cout << "Is the Man employed? (Yes/No)" << std::endl;
+			std::cin >> answer;
+			if(answer == "Yes" || answer == "yes"){
+				Man->setEmployment(true);
+				done = true;
+			} else if(answer == "No" || answer == "no"){
+				Man->setEmployment(false);
+				done = false;
+			}
+		}
+		
+	}	
 }
 
-Citizen* Building_State::ManBuilder::getCitizen() {
-	// TODO - implement ManBuilder::getCitizen
-	throw "Not yet implemented";
+Building_State::Citizen* Building_State::ManBuilder::getCitizen() {
+	return Man;
 }

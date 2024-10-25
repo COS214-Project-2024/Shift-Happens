@@ -2,19 +2,19 @@
 #define GIRL_H
 
 namespace Building_State {
-	class Girl : Building_State::Citizen {
+	class Girl : public Building_State::Citizen {
 
 	private:
-		string Type;
-		string Gender;
-		boolean School;
+		std::string Type;
+		std::string Gender;
+		bool School;
 
 	public:
-		void setType(string type);
+		void setType(std::string type);
 
-		void setGender(string gender);
+		void setGender(std::string gender);
 
-		void setSchool(boolean status);
+		void setSchool(bool status);
 	};
 }
 

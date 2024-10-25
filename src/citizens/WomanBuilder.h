@@ -1,10 +1,14 @@
 #ifndef WOMANBUILDER_H
 #define WOMANBUILDER_H
 
-	class WomanBuilder : CitizenBuilder {
+#include "CitizenBuilder.h"
+#include "Woman.h"
 
-	public:
+namespace Building_State {
+	class WomanBuilder : public Building_State::CitizenBuilder {
+	private:
 		Woman* Woman;
+	public:
 
 		void addGender();
 
@@ -14,6 +18,7 @@
 
 		Citizen* getCitizen();
 	};
-
+}
 
 #endif
+

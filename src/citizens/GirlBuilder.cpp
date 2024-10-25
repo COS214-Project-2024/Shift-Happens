@@ -1,21 +1,42 @@
 #include "GirlBuilder.h"
 
+#include <iostream>
+
 void Building_State::GirlBuilder::addGender() {
-	// TODO - implement GirlBuilder::addGender
-	throw "Not yet implemented";
+	Girl->setGender("Female");
 }
 
 void Building_State::GirlBuilder::addType() {
-	// TODO - implement GirlBuilder::addType
-	throw "Not yet implemented";
+	Girl->setType("Girl");
 }
 
 void Building_State::GirlBuilder::addStatus() {
-	// TODO - implement GirlBuilder::addStatus
-	throw "Not yet implemented";
+	std::string answer ;
+	std::cout << "Is the girl in school? (Yes/No)" << std::endl;
+	std::cin >> answer;
+	if(answer == "Yes" || answer == "yes"){
+		Girl->setSchool(true);
+	} else if(answer == "No" || answer == "no"){
+		Girl->setSchool(false);
+	} else {
+		bool done = false;
+		while (done != true)
+		{
+			std::cout << "Input did not match the expected Yes or No input. Try again." << std::endl;
+			std::cout << "Is the girl in school? (Yes/No)" << std::endl;
+			std::cin >> answer;
+			if(answer == "Yes" || answer == "yes"){
+				Girl->setSchool(true);
+				done = true;
+			} else if(answer == "No" || answer == "no"){
+				Girl->setSchool(false);
+				done = false;
+			}
+		}
+		
+	}
 }
 
-Citizen* Building_State::GirlBuilder::getCitizen() {
-	// TODO - implement GirlBuilder::getCitizen
-	throw "Not yet implemented";
+Building_State::Citizen* Building_State::GirlBuilder::getCitizen() {
+	return Girl;
 }
