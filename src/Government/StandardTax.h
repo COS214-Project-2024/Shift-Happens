@@ -1,8 +1,11 @@
 #ifndef STANDARDTAX_H
 #define STANDARDTAX_H
 
-namespace Building_State {
-	class StandardTax : Building_State::Tax {
+#include "Tax.h"
+#include "HighTax.h"
+#include "LowTax.h"
+
+	class StandardTax : public Tax {
 
 
 	public:
@@ -10,6 +13,5 @@ namespace Building_State {
 
 		void lower();
 	};
-}
 
 #endif

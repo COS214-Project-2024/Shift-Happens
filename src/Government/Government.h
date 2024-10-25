@@ -1,12 +1,15 @@
 #ifndef GOVERNMENT_H
 #define GOVERNMENT_H
 
-namespace Building_State {
-	class Government : Building_State::CitySubject {
+#include "Tax.h"
+#include "CitySubject.h"
+#include "Policy.h"
+
+	class Government : public CitySubject {
 
 	private:
 		Tax* TaxState;
-		vector<Building_State::Policy*> PolicyState;
+		std::vector<Policy*> PolicyState;
 
 	public:
 		void setTaxLower();
@@ -16,7 +19,8 @@ namespace Building_State {
 		void addPolicy(Policy* newPolicy);
 
 		void executePolicy();
+
+		void setTaxState(Tax* tax);
 	};
-}
 
 #endif

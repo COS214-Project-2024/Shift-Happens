@@ -1,15 +1,14 @@
 #ifndef HIGHTAX_H
 #define HIGHTAX_H
 
-namespace Building_State {
-	class HighTax : Building_State::Tax {
+#include "StandardTax.h"
 
+	class HighTax : public Tax {
 
 	public:
 		void higher();
 
 		void lower();
 	};
-}
 
 #endif

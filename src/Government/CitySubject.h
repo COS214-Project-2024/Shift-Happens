@@ -1,15 +1,18 @@
 #ifndef CITYSUBJECT_H
 #define CITYSUBJECT_H
 
-namespace Building_State {
+#include "../citizens/CitizenObserver.h"
+#include <vector>
+
 	class CitySubject {
 
 	private:
-		ClientObserver* observerList;
+		std::vector<CitizenObserver*> observerList;
 
 	public:
+		void attach(CitizenObserver* newObserver);
+		void detach(CitizenObserver* ObserverToRemove);
 		void notify();
 	};
-}
 
 #endif

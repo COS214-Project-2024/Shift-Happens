@@ -3,7 +3,6 @@
 
 #include "Citizen.h"
 
-namespace Building_State {
 	class CitizenBuilder {
 
 
@@ -16,6 +15,5 @@ namespace Building_State {
 
 		virtual Citizen* getCitizen() = 0;
 	};
-}
 
 #endif

@@ -1,14 +1,14 @@
 #include "ManBuilder.h"
 
-void Building_State::ManBuilder::addGender() {
+void ManBuilder::addGender() {
 	Man->setGender("Male");
 }
 
-void Building_State::ManBuilder::addType() {
+void ManBuilder::addType() {
 	Man->setType("Man");
 }
 
-void Building_State::ManBuilder::addStatus() {
+void ManBuilder::addStatus() {
 	std::string answer ;
 	std::cout << "Is the Man employed? (Yes/No)" << std::endl;
 	std::cin >> answer;
@@ -35,6 +35,6 @@ void Building_State::ManBuilder::addStatus() {
 	}	
 }
 
-Building_State::Citizen* Building_State::ManBuilder::getCitizen() {
+Citizen* ManBuilder::getCitizen() {
 	return Man;
 }

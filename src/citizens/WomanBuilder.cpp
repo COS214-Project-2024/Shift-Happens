@@ -1,15 +1,15 @@
 #include "WomanBuilder.h"
 #include <iostream>
 
-void Building_State::WomanBuilder::addGender() {
+void WomanBuilder::addGender() {
 	Woman->setGender("Female");
 }
 
-void Building_State::WomanBuilder::addType() {
+void WomanBuilder::addType() {
 	Woman->setType("Woman");
 }
 
-void Building_State::WomanBuilder::addStatus() {
+void WomanBuilder::addStatus() {
 	std::string answer ;
 	std::cout << "Is the Woman employed? (Yes/No)" << std::endl;
 	std::cin >> answer;
@@ -36,6 +36,6 @@ void Building_State::WomanBuilder::addStatus() {
 	}
 }
 
-Building_State::Citizen* Building_State::WomanBuilder::getCitizen() {
+Citizen* WomanBuilder::getCitizen() {
 	return Woman;
 }

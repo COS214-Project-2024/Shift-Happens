@@ -2,15 +2,15 @@
 
 #include <iostream>
 
-void Building_State::GirlBuilder::addGender() {
+void GirlBuilder::addGender() {
 	Girl->setGender("Female");
 }
 
-void Building_State::GirlBuilder::addType() {
+void GirlBuilder::addType() {
 	Girl->setType("Girl");
 }
 
-void Building_State::GirlBuilder::addStatus() {
+void GirlBuilder::addStatus() {
 	std::string answer ;
 	std::cout << "Is the girl in school? (Yes/No)" << std::endl;
 	std::cin >> answer;
@@ -37,6 +37,6 @@ void Building_State::GirlBuilder::addStatus() {
 	}
 }
 
-Building_State::Citizen* Building_State::GirlBuilder::getCitizen() {
+Citizen* GirlBuilder::getCitizen() {
 	return Girl;
 }

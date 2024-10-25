@@ -3,15 +3,14 @@
 
 #include "CitizenBuilder.h"
 
-namespace Building_State {
 	class Director {
 
 	private:
-		Building_State::CitizenBuilder* Builder;
+		CitizenBuilder* Builder;
 
 	public:
 		void construct();
 	};
-}
+
 
 #endif

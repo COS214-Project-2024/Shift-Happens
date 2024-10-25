@@ -1,11 +1,11 @@
 #include "StandardTax.h"
 
-void Building_State::StandardTax::higher() {
-	// TODO - implement StandardTax::higher
-	throw "Not yet implemented";
+void StandardTax::higher() {
+	Tax* newTax = new HighTax;
+	government->setTaxState(newTax);
 }
 
-void Building_State::StandardTax::lower() {
-	// TODO - implement StandardTax::lower
-	throw "Not yet implemented";
+void StandardTax::lower() {
+	Tax* newTax = new LowTax;
+	government->setTaxState(newTax);
 }

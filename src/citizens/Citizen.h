@@ -4,8 +4,7 @@
 #include "CitizenObserver.h"
 #include "Director.h"
 
-namespace Building_State {
-	class Citizen : public Building_State::CitizenObserver {
+class Citizen : public CitizenObserver {
 
 	private:
 		// director pointer
@@ -31,7 +30,6 @@ namespace Building_State {
 		std::string getType();
 		std::string getGender();
 		bool getStatus();
-	};
-}
+};
 
 #endif

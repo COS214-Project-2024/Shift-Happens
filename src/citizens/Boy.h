@@ -1,8 +1,7 @@
 #ifndef BOY_H
 #define BOY_H
 
-namespace Building_State {
-	class Boy : public Building_State::Citizen {
+	class Boy : public Citizen {
 
 	private:
 		std::string Type;
@@ -16,6 +15,5 @@ namespace Building_State {
 
 		void setSchool(bool status);
 	};
-}
 
 #endif

@@ -4,8 +4,7 @@
 #include "Citizen.h"
 #include <iostream>
 
-namespace Building_State {
-	class Woman : public Building_State::Citizen {
+	class Woman : public Citizen {
 
 	private:
 		std::string Type;
@@ -19,6 +18,5 @@ namespace Building_State {
 
 		void setEmployment(bool status);
 	};
-}
 
 #endif

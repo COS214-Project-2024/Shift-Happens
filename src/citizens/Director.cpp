@@ -6,7 +6,7 @@
 #include "GirlBuilder.h"
 
 #include <iostream>
-void Building_State::Director::construct() {
+void Director::construct() {
 	std::string answer;
 	std::cout << "Would you like to create a Man,Woman,Boy or Girl. Enter you choice below: " << std::endl;
 	std::cin >> answer;

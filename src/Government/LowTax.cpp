@@ -1,11 +1,12 @@
 #include "LowTax.h"
 
-void Building_State::LowTax::higher() {
-	// TODO - implement LowTax::higher
-	throw "Not yet implemented";
+#include <iostream>
+
+void LowTax::higher() {
+	Tax* newTax = new StandardTax;
+	government->setTaxState(newTax);
 }
 
-void Building_State::LowTax::lower() {
-	// TODO - implement LowTax::lower
-	throw "Not yet implemented";
+void LowTax::lower() {
+	std::cout << "Tax is already at its lowerst" << std::endl;
 }

@@ -5,8 +5,7 @@
 #include "CitizenBuilder.h"
 #include "Girl.h"
 
-namespace Building_State {
-	class GirlBuilder : public Building_State::CitizenBuilder {
+	class GirlBuilder : public CitizenBuilder {
 	private:
 		Girl* Girl;
 	public:
@@ -19,6 +18,6 @@ namespace Building_State {
 
 		Citizen* getCitizen();
 	};
-}
+
 
 #endif
