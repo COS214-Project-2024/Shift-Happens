@@ -4,10 +4,11 @@
 class BuildingFactory
 {
 private:
-	/* data */
+	Building* building;
 public:
-	BuildingFactory(/* args */);
+	BuildingFactory();
 	~BuildingFactory();
+	
 };
 
 #endif
