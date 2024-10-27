@@ -20,6 +20,13 @@ public:
 
     int MainMenu();
     void displayMenu(vector<string> options);
+    int GameMenu(); //for creation of buildings
+    int Utilitymenu();//options for specific creation
+    int Residentialmenu();
+    int Commercialmenu();
+    int Industrialmenu();
+    int LandMarkmenu();
+
 
 
 private:

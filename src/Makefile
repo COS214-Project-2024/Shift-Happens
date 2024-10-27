@@ -3,7 +3,7 @@ CXX = g++
 CXXFLAGS = -std=c++11 -Wall -g  # The -g flag is for generating debugging information
 
 # Target executable
-TARGET = main.exe
+TARGET = main
 
 # Source files
 SRCS = main.cpp game/Game.cpp game/Display.cpp map/MapComponent.cpp map/Map.cpp

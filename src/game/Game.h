@@ -18,11 +18,17 @@ public:
     void loadGame();
     void underConstruction();
     void render();
+    void createBuidling();
+    void upgradeBuilding();
+    void demolishbuilding();
+    void buldingmenu();
+    bool validatevariant(string& variant);
 
 private:
     Display display;
     string playerName;
     MapComponent * map;
+    string var;
 };
 
 #endif // GAME_H
