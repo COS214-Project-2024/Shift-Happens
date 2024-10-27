@@ -21,6 +21,7 @@ private:
 	int waterDemand;
 
 public:
+	Building(int width, int length, int xPos, int yPos, string variant, string type, int constructionPrice, int wasteProduced, int sewageProduced, int electricityDemand, int waterDemand);
 	int getWidth();
 
 	void setWidth(int width);
