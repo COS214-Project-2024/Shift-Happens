@@ -1,17 +1,15 @@
 #include "Railway.h"
 
-Building_State::Railway* Building_State::Railway::getNext() {
+Railway* Railway::getNext() {
 	return this->next;
 }
 
-void Building_State::Railway::setNext(Building_State::Railway* next) {
+void Railway::setNext(Railway* next) {
 	this->next = next;
 }
 
-Building_State::Railway* Building_State::Railway::getPrev() {
+Railway* Railway::getPrev() {
 	return this->prev;
 }
 
-void Building_State::Railway::setPrev(Building_State::Railway* prev) {
-	this->prev = prev;
-}
+

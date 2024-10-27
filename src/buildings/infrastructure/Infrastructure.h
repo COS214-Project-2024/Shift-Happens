@@ -1,37 +1,37 @@
 #ifndef INFRASTRUCTURE_H
 #define INFRASTRUCTURE_H
 
-namespace Building_State {
-	class Infrastructure : Building_State::MapComponent {
+#include "../../map/MapComponent.h"
+class Infrastructure : public MapComponent
+{
 
-	private:
-		int width;
-		int length;
-		int yPos;
-		int xPos;
-		int constructionCost;
+private:
+	int width;
+	int length;
+	int yPos;
+	int xPos;
+	int constructionCost;
 
-	public:
-		int getWidth();
+public:
+	int getWidth();
 
-		void setWidth(int width);
+	void setWidth(int width);
 
-		int getLength();
+	int getLength();
 
-		void setLength(int length);
+	void setLength(int length);
 
-		int getYPos();
+	int getYPos();
 
-		void setYPos(int yPos);
+	void setYPos(int yPos);
 
-		int getXPos();
+	int getXPos();
 
-		void setXPos(int xPos);
+	void setXPos(int xPos);
 
-		int getConstructionCost();
+	int getConstructionCost();
 
-		void setConstructionCost(int constructionCost);
-	};
-}
+	void setConstructionCost(int constructionCost);
+};
 
 #endif

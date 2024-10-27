@@ -1,22 +1,23 @@
 #ifndef RAILWAY_H
 #define RAILWAY_H
 
-namespace Building_State {
-	class Railway : Building_State::Infrastructure {
+#include "Infrastructure.h"
+
+	class Railway : public Infrastructure {
 
 	private:
-		Building_State::Railway* next;
-		Building_State::Railway* prev;
+		Railway* next;
+		Railway* prev;
 
 	public:
-		Building_State::Railway* getNext();
+		Railway* getNext();
 
-		void setNext(Building_State::Railway* next);
+		void setNext(Railway* next);
 
-		Building_State::Railway* getPrev();
+		Railway* getPrev();
 
-		void setPrev(Building_State::Railway* prev);
+		void setPrev(Railway* prev);
 	};
-}
+
 
 #endif
