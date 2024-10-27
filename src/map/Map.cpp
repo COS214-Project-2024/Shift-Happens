@@ -1,5 +1,5 @@
 #include "Map.h"
-
+#include <iostream>
 Map::Map(int id) : MapComponent(id) {
 	//standard map size is 25x25
 	for (size_t i = 0; i < 25; i++)
@@ -26,4 +26,39 @@ bool Map::remove(MapComponent* component) {
 void Map::getComponent(int id) {
 	// TODO - implement Map::getComponent
 	throw "Not yet implemented";
+}
+
+
+void Map::render() {
+	//genereate a 25x25 map grid
+	//if a tile is empty, print a space
+	
+	/*example 
+	
+	-------------------------
+	|  |  |  |  |  |  |  |  |
+	|  |  |  |  |  |  |  |  |
+	|  |  |  |  |  |  |  |  |
+	|  |  |  |  |  |  |  |  |
+	|  |  |  |  |  |  |  |  |
+	|  |  |  |  |  |  |  |  |
+	|  |  |  |  |  |  |  |  |
+	|  |  |  |  |  |  |  |  |
+	-------------------------
+	*/
+	for (size_t i = 0; i < 25; i++)
+	{
+		for (size_t j = 0; j < 25; j++)
+		{
+			if (tiles[i][j] == nullptr)
+			{
+				std::cout << "|  ";
+			}
+			else
+			{
+				std::cout << "|X ";
+			}
+		}
+		std::cout << "|" << std::endl;
+	}
 }
