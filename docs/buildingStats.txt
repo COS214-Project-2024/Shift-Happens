@@ -272,7 +272,7 @@ Utility:
         
         Unique to Landfill:
             int wasteRemovalRate = 500;
-            
+
 
     PowerPlant:
 
@@ -284,6 +284,9 @@ Utility:
             int electricityDemand = 0
             int waterDemand = 10
 
+        Unique to PowerPlant:
+	        int electricityProduction = 500
+
     SewagePlant:
 
         Inherited from Utility:
@@ -294,6 +297,9 @@ Utility:
             int electricityDemand = 10
             int waterDemand = 10
 
+        Unique to SewagePlant:
+            int sewageRemovalRate = 500
+
     WaterSupply:
 
         Inherited from Utility:
@@ -303,5 +309,8 @@ Utility:
             int sewageProduced = 10
             int electricityDemand = 10
             int waterDemand = 0
+        
+        Unique to waterSupply:
+	        int waterSupply = 500
 
 
