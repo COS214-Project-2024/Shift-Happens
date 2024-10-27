@@ -11,7 +11,7 @@ class CommercialBuilding : public Building {
 
 	public:
 		
-		CommercialBuilding(int id, string name, int incomePerHour,string variant, int satisfactionScore, int numberOfEmployees, int constructionPrice, int wasteProduced, int sewageProduced, int electricityDemand, int waterDemand);
+		CommercialBuilding(int id, int incomePerHour,string variant, int satisfactionScore, int numberOfEmployees, int constructionPrice, int wasteProduced, int sewageProduced, int electricityDemand, int waterDemand);
 		
 		int getIncomePerHour();
 
@@ -21,7 +21,7 @@ class CommercialBuilding : public Building {
 
 		void setSatisfactionScore(int satisfactionScore);
 
-		void getNumberOfEmployees();
+		int getNumberOfEmployees();
 
 		void setNumberOfEmployees(int numberOfEmployees);
 	};

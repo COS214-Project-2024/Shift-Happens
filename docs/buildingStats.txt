@@ -139,13 +139,10 @@ Residential:
         int xPos = -1
         int yPos = -1 
 
-   
-	int constructionPrice =
-	string variant =
-	int wasteProduced =
-	int sewageProduced =
-	int electricityDemand =
-	int waterDemand =
+	int capacity;
+	int satisfactionScore;
+	int incomePerHour;
+
 
     Apartment: 
 
@@ -157,6 +154,11 @@ Residential:
             int electricityDemand = 5
             int waterDemand = 5
 
+        Unique to Apartment:
+            int satisfactionScore = 75
+            int capacity = 10
+	        int incomePerHour = 20
+
     TownHouse:
 
         Inherited from ResidentialBuilding:
@@ -166,6 +168,11 @@ Residential:
             int sewageProduced = 10
             int electricityDemand = 10
             int waterDemand = 10
+        
+        Unique to TownHouse:
+            int satisfactionScore = 75
+            int capacity = 20
+	        int incomePerHour = 40
 
     House:
 
@@ -176,6 +183,11 @@ Residential:
             int sewageProduced = 20
             int electricityDemand = 20
             int waterDemand = 20
+        
+        Unique to House:
+            int satisfactionScore = 75
+            int capacity = 40
+	        int incomePerHour = 80
 
     Estate:
 
@@ -186,6 +198,11 @@ Residential:
             int sewageProduced = 40
             int electricityDemand = 40
             int waterDemand = 40
+        
+        Unique to Estate:
+            int satisfactionScore = 75
+            int capacity = 80
+	        int incomePerHour = 160
 
 
 Infrastructure:
@@ -193,21 +210,42 @@ Infrastructure:
     Road:
 
 Landmark:
-    int width =
-	int xPos =
-	int yPos =
-	int constructionPrice =
-	int length =
-	string variant =
-	string type =
-	int wasteProduced =
-	int sewageProduced =
-	int electricityDemand =
-	int waterDemand =
+    Standard For All Landmark Buildings:
+        int width = 1
+        int length = 1
+        string type = "Landmark"
+
+        Initial Position (Unplaced on map)
+        int xPos = -1
+        int yPos = -1 
+
+    Park:
+        Inherited from Landmark:
+            int constructionPrice = 200
+            string variant = "Park"
+            int wasteProduced = 10
+            int sewageProduced = 10
+            int electricityDemand = 10
+            int waterDemand = 10
+
+    CulturalCenter:
+        Inherited from Landmark:
+            int constructionPrice = 400
+            string variant = "CulturalCenter"
+            int wasteProduced = 20
+            int sewageProduced = 20
+            int electricityDemand = 20
+            int waterDemand = 20
 
     Monument:
-    Park:
-    CulturalCenter =
+        Inherited from Landmark:
+            int constructionPrice = 800
+            string variant = "Monument"
+            int wasteProduced = 40
+            int sewageProduced = 40
+            int electricityDemand = 40
+            int waterDemand = 40
+
 
 
 Utility:

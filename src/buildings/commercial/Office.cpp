@@ -1,7 +1,10 @@
 #include "Office.h"
 
-Office::Office(int id, string name, int incomePerHour, string variant, int satisfactionScore, int numberOfEmployees, int constructionPrice, int wasteProduced, int sewageProduced, int electricityDemand, int waterDemand)
-: CommercialBuilding(id, name, incomePerHour, variant, satisfactionScore, numberOfEmployees, constructionPrice, wasteProduced, sewageProduced, electricityDemand, waterDemand)
+Office::Office(int id)
+: CommercialBuilding(id, 100, "Office", 50, 50, 250, 40, 40, 40, 40)
 {
-    
+
+}
+Office::~Office()
+{
 }

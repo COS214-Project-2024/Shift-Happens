@@ -1,11 +1,12 @@
 #ifndef UPGRADE_H
 #define UPGRADE_H
 
-namespace Building_State {
-	class Upgrade : Building_State::Building {
+#include "Building.h"
+
+	class Upgrade : public Building {
 
 	public:
-		Building_State::Building* building;
+		Building* building;
 
 		virtual int getWasteProduced() = 0;
 
@@ -23,6 +24,6 @@ namespace Building_State {
 
 		virtual void setWaterDemand(int waterDemand) = 0;
 	};
-}
+
 
 #endif

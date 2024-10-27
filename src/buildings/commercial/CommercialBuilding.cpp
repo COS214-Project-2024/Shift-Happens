@@ -1,6 +1,6 @@
 #include "CommercialBuilding.h"
 
-CommercialBuilding::CommercialBuilding(int id, string name, int incomePerHour,string variant, int satisfactionScore, int numberOfEmployees, int constructionPrice, int wasteProduced, int sewageProduced, int electricityDemand, int waterDemand) 
+CommercialBuilding::CommercialBuilding(int id, int incomePerHour,string variant, int satisfactionScore, int numberOfEmployees, int constructionPrice, int wasteProduced, int sewageProduced, int electricityDemand, int waterDemand) 
 : 	Building(id,1, 1, -1, -1, variant, "Commercial",constructionPrice,wasteProduced,sewageProduced,electricityDemand,waterDemand)
 {
 	this->incomePerHour = incomePerHour;
@@ -23,9 +23,8 @@ void CommercialBuilding::setSatisfactionScore(int satisfactionScore) {
 	this->satisfactionScore = satisfactionScore;
 }
 
-void CommercialBuilding::getNumberOfEmployees() {
-	// TODO - implement CommercialBuilding::getNumberOfEmployees
-	throw "Not yet implemented";
+int CommercialBuilding::getNumberOfEmployees() {
+	return this->numberOfEmployees;
 }
 
 void CommercialBuilding::setNumberOfEmployees(int numberOfEmployees) {

@@ -5,6 +5,9 @@
 class Store : public CommercialBuilding
 {
 
+public:
+	Store(int id);
+	~Store();
 private:
 
 
