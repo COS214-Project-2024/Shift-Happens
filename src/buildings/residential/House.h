@@ -4,6 +4,9 @@
 #include "ResidentialBuilding.h"
 class House : public ResidentialBuilding
 {
+public:
+	House(int id);
+	~House();
 };
 
 #endif

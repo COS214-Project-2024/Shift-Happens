@@ -2,8 +2,11 @@
 #define ESTATE_H
 
 #include "ResidentialBuilding.h"
-	class Estate : public ResidentialBuilding {
-	};
-
+class Estate : public ResidentialBuilding
+{
+public:
+	Estate(int id);
+	~Estate();
+};
 
 #endif
