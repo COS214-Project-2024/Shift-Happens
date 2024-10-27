@@ -1,13 +1,16 @@
 #ifndef INDUSTRIALBUILDING_H
 #define INDUSTRIALBUILDING_H
+#include "Building.h"
+#include "Materials.h"
+#include <vector>
 
-namespace Building_State {
-	class IndustrialBuilding : Building_State::Building {
+using namespace std;
+	class IndustrialBuilding : Building {
 
 	private:
 		int numberOfEmployees;
 		int satisfactionScore;
-
+		vector<Materials*> availableMaterials; //THIS WOULD STORE THE materials in the warehouse that were produced by the factory
 	public:
 		int getNumberOfEmployees();
 
@@ -17,6 +20,5 @@ namespace Building_State {
 
 		void setSatisfactionScore(int satisfactionScore);
 	};
-}
 
 #endif

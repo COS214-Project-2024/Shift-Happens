@@ -1,12 +1,12 @@
 #ifndef STORE_H
 #define STORE_H
-
-namespace Building_State {
-	class Store : Building_State::CommercialBuilding {
+#include "CommercialBuilding.h"
+#include "Materials.h"
+	class Store :public CommercialBuilding {
 
 	private:
-		Building_State::Materials* materials;
+		Materials* materials;
 	};
-}
+
 
 #endif

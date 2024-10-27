@@ -1,8 +1,7 @@
 #ifndef INFRASTRUCTURE_H
 #define INFRASTRUCTURE_H
-
-namespace Building_State {
-	class Infrastructure : Building_State::MapComponent {
+#include "MapComponent.h"
+	class Infrastructure : public MapComponent {
 
 	private:
 		int width;
@@ -32,6 +31,6 @@ namespace Building_State {
 
 		void setConstructionCost(int constructionCost);
 	};
-}
+
 
 #endif

@@ -1,12 +1,9 @@
 #ifndef MALL_H
 #define MALL_H
+#include "CommercialBuilding.h"
+#include "Materials.h"	
+	class Mall : public CommercialBuilding {
 
-namespace Building_State {
-	class Mall : Building_State::CommercialBuilding {
-
-	private:
-		Building_State::Materials* materials;
 	};
-}
 
 #endif

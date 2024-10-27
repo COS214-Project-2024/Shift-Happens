@@ -1,13 +1,12 @@
 #ifndef INFRASTRUCTUREFACTORY_H
 #define INFRASTRUCTUREFACTORY_H
-
-namespace Building_State {
-	class InfrastructureFactory : Building_State::BuildingFactory {
+#include "BuildingFactory.h"
+#include "Infrastructure.h"
+	class InfrastructureFactory : public BuildingFactory {
 
 
 	public:
-		Building_State::Infrastructure* build(string variant);
+		Infrastructure* build(string variant);
 	};
-}
 
 #endif

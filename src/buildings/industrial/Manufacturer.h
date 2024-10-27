@@ -1,13 +1,14 @@
 #ifndef MANUFACTURER_H
 #define MANUFACTURER_H
+#include "IndustrialBuilding.h"
+#include "Materials.h"
 
-
-namespace Building_State {
-	class Manufacturer : Building_State::IndustrialBuilding {
+	class Manufacturer : public IndustrialBuilding
+	{
 
 	private:
-		Building_State::Materials* materials;
+		Materials *materials;
 	};
-}
+
 
 #endif
