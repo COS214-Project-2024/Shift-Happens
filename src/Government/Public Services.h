@@ -1,9 +1,16 @@
 #ifndef PUBLIC SERVICES_H
 #define PUBLIC SERVICES_H
 
-namespace Building_State {
-	class Public_Services : Building_State::CitySubject {
-	};
-}
+#include "CitySubject.h"
+#include "PublicServiceState.h"
+
+class Public_Services : public CitySubject {
+	private:
+		PublicServiceState* InfraStructureCondition;
+
+	public:
+		void DelegateFunds();
+
+};
 
 #endif
