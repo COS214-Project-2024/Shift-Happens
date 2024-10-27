@@ -68,3 +68,7 @@ void Public_Services::setPublicServiceState(PublicServiceState* newState){
   delete this->InfraStructureCondition;
   this->InfraStructureCondition = newState;
 }
+
+PublicServiceState* Public_Services::getState(){
+  return InfraStructureCondition;
+}

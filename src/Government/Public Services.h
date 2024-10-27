@@ -6,12 +6,16 @@
 
 #include <iostream>
 
+// Concrete subject in observer pattern
+// Context in state pattern
+
 class Public_Services : public CitySubject {
 	private:
 		PublicServiceState* InfraStructureCondition;
 	public:
 		void DelegateFunds();
 		void setPublicServiceState(PublicServiceState* newState);
+		PublicServiceState* getState();
 
 };
 

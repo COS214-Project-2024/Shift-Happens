@@ -1,25 +1,27 @@
 #include "Government.h"
 
 void Government::setTaxLower() {
-	// TODO - implement Government::setTaxLower
-	throw "Not yet implemented";
+	TaxState->lower();
 }
 
 void Government::setTaxHigher() {
-	// TODO - implement Government::setTaxHigher
-	throw "Not yet implemented";
+	TaxState->higher();
 }
 
 void Government::addPolicy(Policy* newPolicy) {
-	// TODO - implement Government::addPolicy
-	throw "Not yet implemented";
+	PolicyState.push_back(newPolicy);
 }
 
 void Government::executePolicy() {
-	// TODO - implement Government::executePolicy
-	throw "Not yet implemented";
+	for(Policy* temp: PolicyState){
+		temp->handle();
+	}
 }
 
 void Government::setTaxState(Tax* tax){
 	this->TaxState = tax;
+}
+
+Tax* Government::getTax(){
+	return TaxState;
 }
