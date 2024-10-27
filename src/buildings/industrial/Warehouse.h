@@ -9,6 +9,10 @@ private:
 	int storageCapacity;
 	int storageUsed;
 
+public:
+	Warehouse(int id);
+	~Warehouse();
+
 };
 
 #endif

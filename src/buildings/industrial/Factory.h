@@ -8,7 +8,9 @@ class Factory : public IndustrialBuilding
 private:
 	int partProductionPerHour;
 	int productionCostPerHour;
-
+public:
+	Factory(int id);
+	~Factory();
 
 };
 

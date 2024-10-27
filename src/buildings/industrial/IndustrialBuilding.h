@@ -11,6 +11,9 @@ private:
 	int satisfactionScore;
 
 public:
+
+	IndustrialBuilding(int id, int numberOfEmployees,string variant, int satisfactionScore, int constructionPrice, int wasteProduced, int sewageProduced, int electricityDemand, int waterDemand);
+	
 	int getNumberOfEmployees();
 
 	void setNumberOfEmployees(int numberOfEmployees);

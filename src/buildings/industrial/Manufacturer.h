@@ -10,6 +10,10 @@ private:
 	int productsPerHour;
 	int partsUsedPerProduct;
 	int profitPerProduct;
+
+public:
+	Manufacturer(int id);
+	~Manufacturer();
 };
 
 #endif
