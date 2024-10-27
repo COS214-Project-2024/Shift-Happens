@@ -1,9 +1,16 @@
 #ifndef OUTDATED_H
 #define OUTDATED_H
 
-namespace Building_State {
-	class Outdated : Building_State::PublicServiceState {
-	};
-}
+#include "PublicServiceState.h"
+#include "Standard.h"
+
+class Outdated : public PublicServiceState {
+	private:
+		double OutdatedHighCap = 100;
+	public:
+		void increaseBudget(double increase);
+		void descreaseBudget(double decrease);
+};
+
 
 #endif

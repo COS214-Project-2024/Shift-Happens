@@ -7,9 +7,9 @@
 class Public_Services : public CitySubject {
 	private:
 		PublicServiceState* InfraStructureCondition;
-
 	public:
 		void DelegateFunds();
+		void setPublicServiceState(PublicServiceState* newState);
 
 };
 
