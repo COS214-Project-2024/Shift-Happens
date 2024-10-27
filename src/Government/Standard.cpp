@@ -15,3 +15,7 @@ void Standard::descreaseBudget(double decrease){
     this->publicServices->setPublicServiceState(new Outdated);
   }
 }
+
+std::string Standard::getType(){
+  return "Standard Services";
+}

@@ -20,8 +20,13 @@ void Government::executePolicy() {
 
 void Government::setTaxState(Tax* tax){
 	this->TaxState = tax;
+	this->notify();
 }
 
 Tax* Government::getTax(){
 	return TaxState;
+}
+
+std::vector<Policy*> Government::getPolicies(){
+	return PolicyState;
 }

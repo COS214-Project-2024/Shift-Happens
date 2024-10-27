@@ -11,3 +11,7 @@ void OverPopulated::descreasePopulation(int decrease){
     this->economy->setPopulationState(new Normal);
   }
 }
+
+std::string OverPopulated::getType(){
+  return "Over Populated";
+}

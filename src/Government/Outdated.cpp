@@ -8,6 +8,10 @@ void Outdated::increaseBudget(double increase){
 
 }
 
-void Standard::descreaseBudget(double decrease){
+void Outdated::descreaseBudget(double decrease){
   this->RunningBudget -= decrease;
+}
+
+std::string Outdated::getType(){
+  return "Outdated Services";
 }

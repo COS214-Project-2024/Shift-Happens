@@ -7,5 +7,10 @@ void HighTax::higher() {
 
 void HighTax::lower() {
 	Tax* newTax = new StandardTax;
+	// make state change
 	government->setTaxState(newTax);
+}
+
+std::string HighTax::getType(){
+	return "High Tax";
 }

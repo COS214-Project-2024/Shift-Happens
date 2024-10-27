@@ -12,3 +12,7 @@ void UnderPopulated::descreasePopulation(int decrease){
   this->PopulationCount -= decrease;
 
 }
+
+std::string UnderPopulated::getType(){
+  return "Under Populated";
+}

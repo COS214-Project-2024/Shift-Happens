@@ -20,6 +20,7 @@ class Government : public CitySubject {
 		void executePolicy();
 		void setTaxState(Tax* tax);
 		Tax* getTax();
+		std::vector<Policy*> getPolicies();
 };
 
 #endif

@@ -17,3 +17,7 @@ void Normal::descreasePopulation(int decrease){
     this->economy->setPopulationState(new UnderPopulated);
   }
 }
+
+std::string Normal::getType(){
+  return "Normal Population";
+}

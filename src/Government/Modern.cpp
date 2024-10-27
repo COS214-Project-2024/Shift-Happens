@@ -12,3 +12,7 @@ void Modern::descreaseBudget(double decrease){
     this->publicServices->setPublicServiceState(new Standard);
   }
 }
+
+std::string Modern::getType(){
+  return "Modern Services";
+}

@@ -12,6 +12,7 @@ class Normal : public Population {
 	public:
 		void increasePopulation(int increase);
 		void descreasePopulation(int decrease);
+		std::string getType();
 };
 
 

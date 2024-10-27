@@ -5,6 +5,7 @@ void Economy::setPopulationState(Population* newState){
     delete PopulationState;
   }
   this->PopulationState = newState;
+  this->notify();
 }
 
 Population* Economy::getState(){
