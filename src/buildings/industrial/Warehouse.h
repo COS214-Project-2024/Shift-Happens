@@ -1,12 +1,13 @@
 #ifndef WAREHOUSE_H
 #define WAREHOUSE_H
 
-namespace Building_State {
-	class Warehouse : Building_State::IndustrialBuilding {
+#include "IndustrialBuilding.h"
+class Warehouse : public IndustrialBuilding
+{
 
-	private:
-		Building_State::Materials* materials;
-	};
-}
+private:
+
+
+};
 
 #endif

@@ -16,6 +16,7 @@ public:
 	virtual bool remove(MapComponent *component) = 0;
 	virtual void getComponent(int id) = 0;
 	virtual ~MapComponent();
+	virtual void render() = 0;
 };
 
 #endif

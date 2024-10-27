@@ -1,16 +1,16 @@
 #ifndef LANDMARK_H
 #define LANDMARK_H
 
-namespace Building_State {
-	class LandMark : Building_State::Building {
+#include "../Building.h"
+class LandMark : public Building
+{
 
-	public:
-		int satisfactionScore;
+public:
+	int satisfactionScore;
 
-		int getSatisfactionScore();
+	int getSatisfactionScore();
 
-		void setSatisfactionScore(int satisfactionScore);
-	};
-}
+	void setSatisfactionScore(int satisfactionScore);
+};
 
 #endif

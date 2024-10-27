@@ -1,22 +1,23 @@
 #ifndef ROAD_H
 #define ROAD_H
 
-namespace Building_State {
-	class Road : Building_State::Infrastructure {
+#include "Infrastructure.h"
 
-	private:
-		Building_State::Road* next;
-		Building_State::Road* prev;
+class Road : public Infrastructure
+{
 
-	public:
-		Building_State::Road* getNext();
+private:
+	Road *next;
+	Road *prev;
 
-		void setNext(Building_State::Road* next);
+public:
+	Road *getNext();
 
-		Building_State::Road* getPrev();
+	void setNext(Road *next);
 
-		void setPrev(Building_State::Road* prev);
-	};
-}
+	Road *getPrev();
+
+	void setPrev(Road *prev);
+};
 
 #endif

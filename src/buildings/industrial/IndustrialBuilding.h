@@ -1,22 +1,23 @@
 #ifndef INDUSTRIALBUILDING_H
 #define INDUSTRIALBUILDING_H
 
-namespace Building_State {
-	class IndustrialBuilding : Building_State::Building {
+#include "../Building.h"
 
-	private:
-		int numberOfEmployees;
-		int satisfactionScore;
+class IndustrialBuilding : public Building
+{
 
-	public:
-		int getNumberOfEmployees();
+private:
+	int numberOfEmployees;
+	int satisfactionScore;
 
-		void setNumberOfEmployees(int numberOfEmployees);
+public:
+	int getNumberOfEmployees();
 
-		int getSatisfactionScore();
+	void setNumberOfEmployees(int numberOfEmployees);
 
-		void setSatisfactionScore(int satisfactionScore);
-	};
-}
+	int getSatisfactionScore();
+
+	void setSatisfactionScore(int satisfactionScore);
+};
 
 #endif

@@ -74,6 +74,8 @@ void Game::newGame()
     std::cout<< "Establishing a government..." << std::endl;
 
     display.loadscreen();
+
+    render();
 }
 
 void Game::loadGame()
@@ -96,3 +98,13 @@ void Game::underConstruction()
     MainMenu();
 }
 
+void Game::render(){
+    display.clear();
+    display.logo();
+    map->render();
+    display.wait(5);
+    //MainMenu();
+    int input;
+    cin>>input;
+    
+}

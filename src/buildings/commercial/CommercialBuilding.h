@@ -1,8 +1,8 @@
 #ifndef COMMERCIALBUILDING_H
 #define COMMERCIALBUILDING_H
 
-namespace Building_State {
-	class CommercialBuilding : Building_State::Building {
+#include "../Building.h"
+class CommercialBuilding : public Building {
 
 	private:
 		int incomePerHour;
@@ -22,6 +22,6 @@ namespace Building_State {
 
 		void setNumberOfEmployees(int numberOfEmployees);
 	};
-}
+
 
 #endif
