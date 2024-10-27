@@ -38,11 +38,16 @@ class Citizen : public CitizenObserver {
 
 
 	public:
+		// observer function
 		void update();
 
-		std::string getType();
-		std::string getGender();
-		bool getStatus();
+		// basics
+		virtual std::string getType() =0;
+		virtual std::string getGender()=0;
+		virtual bool getStatus()=0;
+		virtual void setType(std::string type)=0;
+		virtual void setGender(std::string gender)=0;
+		virtual void setStatus(bool status)=0;
 };
 
 #endif
