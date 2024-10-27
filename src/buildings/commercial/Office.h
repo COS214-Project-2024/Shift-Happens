@@ -8,7 +8,7 @@ class Office : public CommercialBuilding
 private:
 	/* data */
 public:
-	Office(/* args */);
+	Office(int id, string name, int incomePerHour, string variant, int satisfactionScore, int numberOfEmployees, int constructionPrice, int wasteProduced, int sewageProduced, int electricityDemand, int waterDemand);
 	~Office();
 };
 

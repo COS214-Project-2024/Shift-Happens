@@ -10,6 +10,9 @@ class CommercialBuilding : public Building {
 		int numberOfEmployees;
 
 	public:
+		
+		CommercialBuilding(int id, string name, int incomePerHour,string variant, int satisfactionScore, int numberOfEmployees, int constructionPrice, int wasteProduced, int sewageProduced, int electricityDemand, int waterDemand);
+		
 		int getIncomePerHour();
 
 		void setIncomePerHour(int incomePerHour);

@@ -1,0 +1,13 @@
+Base Stats For the Buildings:
+
+Commercial:
+
+Industrial: 
+
+Residential:
+
+Infrastructure:
+
+Landmark:
+
+Utility:

@@ -2,9 +2,10 @@
 #define BUILDING_H
 
 #include <string>
+#include "../map/MapComponent.h"
 
 using namespace std;
-class Building 
+class Building : public MapComponent
 {
 
 private:
@@ -21,7 +22,7 @@ private:
 	int waterDemand;
 
 public:
-	Building(int width, int length, int xPos, int yPos, string variant, string type, int constructionPrice, int wasteProduced, int sewageProduced, int electricityDemand, int waterDemand);
+	Building(int id,int width, int length, int xPos, int yPos, string variant, string type, int constructionPrice, int wasteProduced, int sewageProduced, int electricityDemand, int waterDemand);
 	int getWidth();
 
 	void setWidth(int width);

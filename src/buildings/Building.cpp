@@ -2,7 +2,9 @@
 
 
 
-Building::Building(int width, int length, int xPos, int yPos, string variant, string type, int constructionPrice, int wasteProduced, int sewageProduced, int electricityDemand, int waterDemand) {
+Building::Building(int id,int width, int length, int xPos, int yPos, string variant, string type, int constructionPrice, int wasteProduced, int sewageProduced, int electricityDemand, int waterDemand) 
+: MapComponent(id)
+{
 	this->width = width;
 	this->length = length;
 	this->xPos = xPos;
