@@ -1,9 +1,17 @@
 #ifndef POPULATION_H
 #define POPULATION_H
 
-namespace Building_State {
-	class Population {
-	};
-}
+#include "Economy.h"
+
+class Population {
+	protected:
+		int PopulationCount;
+		Economy* economy;
+	
+	public:
+		virtual void increasePopulation(int increase) = 0;
+		virtual void descreasePopulation(int decrease) = 0;
+	
+};
 
 #endif

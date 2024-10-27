@@ -1,12 +1,16 @@
 #ifndef ECONOMY_H
 #define ECONOMY_H
 
-namespace Building_State {
-	class Economy : Building_State::CitySubject {
+#include "CitySubject.h"
+#include "Population.h"
 
+class Economy : public CitySubject {
 	private:
 		Population* PopulationState;
-	};
-}
+
+	public:
+		void setPopulationState(Population* newState);
+};
+
 
 #endif

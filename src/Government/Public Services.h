@@ -4,6 +4,8 @@
 #include "CitySubject.h"
 #include "PublicServiceState.h"
 
+#include <iostream>
+
 class Public_Services : public CitySubject {
 	private:
 		PublicServiceState* InfraStructureCondition;
