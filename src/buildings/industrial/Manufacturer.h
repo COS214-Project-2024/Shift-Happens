@@ -7,6 +7,9 @@ class Manufacturer : public IndustrialBuilding
 {
 
 private:
+	int productsPerHour;
+	int partsUsedPerProduct;
+	int profitPerProduct;
 };
 
 #endif

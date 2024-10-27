@@ -6,6 +6,10 @@ class Factory : public IndustrialBuilding
 {
 
 private:
+	int partProductionPerHour;
+	int productionCostPerHour;
+
+
 };
 
 #endif

@@ -6,7 +6,8 @@ class Warehouse : public IndustrialBuilding
 {
 
 private:
-
+	int storageCapacity;
+	int storageUsed;
 
 };
 
