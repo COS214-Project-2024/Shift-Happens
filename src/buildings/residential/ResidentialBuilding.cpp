@@ -1,25 +1,25 @@
 #include "ResidentialBuilding.h"
 
-int Building_State::ResidentialBuilding::getCapacity() {
+int ResidentialBuilding::getCapacity() {
 	return this->capacity;
 }
 
-void Building_State::ResidentialBuilding::setCapacity(int capacity) {
+void ResidentialBuilding::setCapacity(int capacity) {
 	this->capacity = capacity;
 }
 
-int Building_State::ResidentialBuilding::getSatisfactionScore() {
+int ResidentialBuilding::getSatisfactionScore() {
 	return this->satisfactionScore;
 }
 
-void Building_State::ResidentialBuilding::setSatisfactionScore(int satisfactionScore) {
+void ResidentialBuilding::setSatisfactionScore(int satisfactionScore) {
 	this->satisfactionScore = satisfactionScore;
 }
 
-int Building_State::ResidentialBuilding::getIncomePerHour() {
+int ResidentialBuilding::getIncomePerHour() {
 	return this->incomePerHour;
 }
 
-void Building_State::ResidentialBuilding::setIncomePerHour(int incomePerHour) {
+void ResidentialBuilding::setIncomePerHour(int incomePerHour) {
 	this->incomePerHour = incomePerHour;
 }

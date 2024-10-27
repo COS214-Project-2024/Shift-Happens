@@ -1,89 +1,108 @@
 #include "Building.h"
 
-int Building_State::Building::getWidth() {
+
+
+Building::Building(int id,int width, int length, int xPos, int yPos, string variant, string type, int constructionPrice, int wasteProduced, int sewageProduced, int electricityDemand, int waterDemand) 
+: MapComponent(id)
+{
+	this->width = width;
+	this->length = length;
+	this->xPos = xPos;
+	this->yPos = yPos;
+	this->variant = variant;
+	this->type = type;
+	this->constructionPrice = constructionPrice;
+	this->wasteProduced = wasteProduced;
+	this->sewageProduced = sewageProduced;
+	this->electricityDemand = electricityDemand;
+	this->waterDemand = waterDemand;
+}
+
+
+int Building::getWidth() {
 	return this->width;
 }
 
-void Building_State::Building::setWidth(int width) {
+void Building::setWidth(int width) {
 	this->width = width;
 }
 
-int Building_State::Building::getLength() {
+int Building::getLength() {
 	return this->length;
 }
 
-void Building_State::Building::setLength(int length) {
+void Building::setLength(int length) {
 	this->length = length;
 }
 
-int Building_State::Building::getXPos() {
+int Building::getXPos() {
 	return this->xPos;
 }
 
-void Building_State::Building::setXPos(int xPos) {
+void Building::setXPos(int xPos) {
 	this->xPos = xPos;
 }
 
-int Building_State::Building::getYPos() {
+int Building::getYPos() {
 	return this->yPos;
 }
 
-void Building_State::Building::setYPos(int yPos) {
+void Building::setYPos(int yPos) {
 	this->yPos = yPos;
 }
 
-string Building_State::Building::getVariant() {
+string Building::getVariant() {
 	return this->variant;
 }
 
-void Building_State::Building::setVariant(string variant) {
+void Building::setVariant(string variant) {
 	this->variant = variant;
 }
 
-string Building_State::Building::getType() {
+string Building::getType() {
 	return this->type;
 }
 
-void Building_State::Building::setType(string type) {
+void Building::setType(string type) {
 	this->type = type;
 }
 
-int Building_State::Building::getConstructionPrice() {
+int Building::getConstructionPrice() {
 	return this->constructionPrice;
 }
 
-void Building_State::Building::setConstructionPrice(int constructionPrice) {
+void Building::setConstructionPrice(int constructionPrice) {
 	this->constructionPrice = constructionPrice;
 }
 
-int Building_State::Building::getWasteProduced() {
+int Building::getWasteProduced() {
 	return this->wasteProduced;
 }
 
-void Building_State::Building::setWasteProduced(int wasteProduced) {
+void Building::setWasteProduced(int wasteProduced) {
 	this->wasteProduced = wasteProduced;
 }
 
-int Building_State::Building::getSewageProduced() {
+int Building::getSewageProduced() {
 	return this->sewageProduced;
 }
 
-void Building_State::Building::setSewageProduced(int sewageProduced) {
+void Building::setSewageProduced(int sewageProduced) {
 	this->sewageProduced = sewageProduced;
 }
 
-int Building_State::Building::getElectricityDemand() {
+int Building::getElectricityDemand() {
 	return this->electricityDemand;
 }
 
-void Building_State::Building::setElectricityDemand(int electricityDemand) {
+void Building::setElectricityDemand(int electricityDemand) {
 	this->electricityDemand = electricityDemand;
 }
 
-int Building_State::Building::getWaterDemand() {
+int Building::getWaterDemand() {
 	return this->waterDemand;
 }
 
-void Building_State::Building::setWaterDemand(int waterDemand) {
+void Building::setWaterDemand(int waterDemand) {
 	this->waterDemand = waterDemand;
 }

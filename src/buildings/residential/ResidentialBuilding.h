@@ -1,27 +1,27 @@
 #ifndef RESIDENTIALBUILDING_H
 #define RESIDENTIALBUILDING_H
 
-namespace Building_State {
-	class ResidentialBuilding : Building_State::Building {
+#include "../Building.h"
+class ResidentialBuilding : public Building
+{
 
-	private:
-		int capacity;
-		int satisfactionScore;
-		int incomePerHour;
+private:
+	int capacity;
+	int satisfactionScore;
+	int incomePerHour;
 
-	public:
-		int getCapacity();
+public:
+	int getCapacity();
 
-		void setCapacity(int capacity);
+	void setCapacity(int capacity);
 
-		int getSatisfactionScore();
+	int getSatisfactionScore();
 
-		void setSatisfactionScore(int satisfactionScore);
+	void setSatisfactionScore(int satisfactionScore);
 
-		int getIncomePerHour();
+	int getIncomePerHour();
 
-		void setIncomePerHour(int incomePerHour);
-	};
-}
+	void setIncomePerHour(int incomePerHour);
+};
 
 #endif

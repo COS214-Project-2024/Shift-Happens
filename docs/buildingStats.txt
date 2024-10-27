@@ -1,0 +1,34 @@
+Base Stats For the Buildings:
+
+Commercial:
+    Mall:
+    Office:
+    Store:
+
+Industrial:
+    Factory:
+    Manufacturer:
+    Warehouse:
+
+
+Residential:
+    Apartment: 
+    TownHouse:
+    House:
+    Estate:
+
+
+Infrastructure:
+
+Landmark:
+    Monument:
+    Park:
+    CulturalCenter;
+    
+
+Utility:
+    Landfill:
+    PowerPlant:
+    SewagePlant:
+    WaterSupply:
+

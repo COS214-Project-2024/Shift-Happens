@@ -1,5 +1,12 @@
 #include "CommercialBuilding.h"
 
+CommercialBuilding::CommercialBuilding(int id, string name, int incomePerHour,string variant, int satisfactionScore, int numberOfEmployees, int constructionPrice, int wasteProduced, int sewageProduced, int electricityDemand, int waterDemand) 
+: 	Building(id,1, 1, -1, -1, variant, "Commercial",constructionPrice,wasteProduced,sewageProduced,electricityDemand,waterDemand)
+{
+	this->incomePerHour = incomePerHour;
+	this->satisfactionScore = satisfactionScore;
+	this->numberOfEmployees = numberOfEmployees;
+}
 int CommercialBuilding::getIncomePerHour() {
 	return this->incomePerHour;
 }
