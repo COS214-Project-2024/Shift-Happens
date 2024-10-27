@@ -249,20 +249,59 @@ Landmark:
 
 
 Utility:
-	int width =
-	int xPos =
-	int yPos =
-	int constructionPrice =
-	int length =
-	string variant =
-	string type =
-	int wasteProduced =
-	int sewageProduced =
-	int electricityDemand =
-	int waterDemand =
+
+    Standard For All Landmark Buildings:
+        int width = 1
+        int length = 1
+        string type = "Utility"
+
+        Initial Position (Unplaced on map)
+        int xPos = -1
+        int yPos = -1 
+
 
     Landfill:
+
+        Inherited from Utility:
+            int constructionPrice = 500
+            string variant = "Landfill"
+            int wasteProduced = 0
+            int sewageProduced = 10
+            int electricityDemand = 10
+            int waterDemand = 10
+        
+        Unique to Landfill:
+            int wasteRemovalRate = 500;
+            
+
     PowerPlant:
+
+        Inherited from Utility:
+            int constructionPrice = 500
+            string variant = "PowerPlant"
+            int wasteProduced = 10
+            int sewageProduced = 10
+            int electricityDemand = 0
+            int waterDemand = 10
+
     SewagePlant:
+
+        Inherited from Utility:
+            int constructionPrice = 500
+            string variant = "SewagePlant"
+            int wasteProduced = 10
+            int sewageProduced = 0
+            int electricityDemand = 10
+            int waterDemand = 10
+
     WaterSupply:
+
+        Inherited from Utility:
+            int constructionPrice = 500
+            string variant = "WaterSupply"
+            int wasteProduced = 10
+            int sewageProduced = 10
+            int electricityDemand = 10
+            int waterDemand = 0
+
 

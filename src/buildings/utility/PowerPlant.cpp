@@ -1,10 +1,10 @@
 #include "PowerPlant.h"
 
-void Building_State::PowerPlant::getElectricityProduction() {
+void PowerPlant::getElectricityProduction() {
 	// TODO - implement PowerPlant::getElectricityProduction
 	throw "Not yet implemented";
 }
 
-void Building_State::PowerPlant::setElectricityProduction(int electricityProduction) {
+void PowerPlant::setElectricityProduction(int electricityProduction) {
 	this->electricityProduction = electricityProduction;
 }

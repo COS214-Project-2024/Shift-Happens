@@ -1,9 +1,9 @@
 #include "LandFill.h"
 
-int Building_State::LandFill::getWasteRemovalRate() {
+int LandFill::getWasteRemovalRate() {
 	return this->wasteRemovalRate;
 }
 
-void Building_State::LandFill::setWasteRemovalRate(int wasteRemovalRate) {
+void LandFill::setWasteRemovalRate(int wasteRemovalRate) {
 	this->wasteRemovalRate = wasteRemovalRate;
 }

@@ -1,8 +1,8 @@
 #ifndef UTILITYBUILDING_H
 #define UTILITYBUILDING_H
 
-namespace Building_State {
-	class UtilityBuilding : Building_State::Building {
+#include "../Building.h"
+class UtilityBuilding : public Building {
 
 	public:
 		int runningCostPerHour;
@@ -10,7 +10,7 @@ namespace Building_State {
 		int getRunningCostPerHour();
 
 		void setRunningCostPerHour(int runningCostPerHour);
-	};
-}
+};
+
 
 #endif

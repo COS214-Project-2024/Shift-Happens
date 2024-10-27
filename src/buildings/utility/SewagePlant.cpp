@@ -1,9 +1,9 @@
 #include "SewagePlant.h"
 
-int Building_State::SewagePlant::getSewageRemovalRate() {
+int SewagePlant::getSewageRemovalRate() {
 	return this->sewageRemovalRate;
 }
 
-void Building_State::SewagePlant::setSewageRemovalRate(int sewageRemovalRate) {
+void SewagePlant::setSewageRemovalRate(int sewageRemovalRate) {
 	this->sewageRemovalRate = sewageRemovalRate;
 }
