@@ -9,9 +9,10 @@ class BuildingFactory
 {
 protected:
 	int id;
+	int buildingId;
 public:
 	BuildingFactory(int id);
-
+	virtual void createBuilding(string variant) = 0;
 	~BuildingFactory();
 
 };

@@ -8,7 +8,7 @@ class UtilityBuildingFactory : public BuildingFactory
 private:
 	/* data */
 public:
-	UtilityBuildingFactory(/* args */);
+	UtilityBuildingFactory(int id);
 	~UtilityBuildingFactory();
 };
 

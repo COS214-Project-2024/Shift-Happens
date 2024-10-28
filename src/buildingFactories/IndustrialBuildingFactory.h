@@ -3,10 +3,10 @@
 
 #include "BuildingFactory.h"
 
-class IndustrialBuildingFactory
+class IndustrialBuildingFactory : public BuildingFactory
 {
 private:
-	int id;
+	
 public:
 	IndustrialBuildingFactory(int id);
 	~IndustrialBuildingFactory();

@@ -8,10 +8,9 @@
 class CommercialBuildingFactory : public BuildingFactory
 {
 private:
-	int id;
 public:
 	CommercialBuildingFactory(int id);
-	
+
 	~CommercialBuildingFactory();
 };
 

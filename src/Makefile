@@ -1,44 +1,69 @@
 # Compiler
 CXX = g++
-CXXFLAGS = -std=c++11 -Wall -g  # The -g flag is for generating debugging information
+CXXFLAGS = -Wall -Wextra -std=c++11
 
-# Target executable
-TARGET = main.exe
+# Executable name
+TARGET = main
+
+# Directories
+SRC_DIR = .
+OBJ_DIR = obj
 
 # Source files
-SRCS = main.cpp game/Game.cpp game/Display.cpp map/MapComponent.cpp map/Map.cpp \
-		buildings/Building.cpp \
-		buildings/residential/Apartment.cpp buildings/residential/Estate.cpp buildings/residential/TownHouse.cpp buildings/residential/House.cpp \
-		buildings/commercial/Store.cpp buildings/commercial/Office.cpp buildings/commercial/Mall.cpp \
-		buildings/industrial/Factory.cpp buildings/industrial/Manufacturer.cpp buildings/industrial/Warehouse.cpp \
-		
-       
+SRCS = $(SRC_DIR)/main.cpp \
+       $(SRC_DIR)/game/Game.cpp \
+       $(SRC_DIR)/game/Display.cpp \
+       $(SRC_DIR)/map/MapComponent.cpp \
+       $(SRC_DIR)/map/Map.cpp \
+       $(SRC_DIR)/buildings/Building.cpp \
+       $(SRC_DIR)/buildings/residential/ResidentialBuilding.cpp \
+       $(SRC_DIR)/buildings/commercial/CommercialBuilding.cpp \
+       $(SRC_DIR)/buildings/industrial/IndustrialBuilding.cpp \
+       $(SRC_DIR)/buildings/utility/UtilityBuilding.cpp \
+       $(SRC_DIR)/buildings/landmark/LandMark.cpp \
+       $(SRC_DIR)/buildings/infrastructure/Infrastructure.cpp \
+       $(SRC_DIR)/buildings/residential/Apartment.cpp \
+       $(SRC_DIR)/buildings/residential/Estate.cpp \
+       $(SRC_DIR)/buildings/residential/TownHouse.cpp \
+       $(SRC_DIR)/buildings/residential/House.cpp \
+       $(SRC_DIR)/buildings/commercial/Store.cpp \
+       $(SRC_DIR)/buildings/commercial/Office.cpp \
+       $(SRC_DIR)/buildings/commercial/Mall.cpp \
+       $(SRC_DIR)/buildings/industrial/Factory.cpp \
+       $(SRC_DIR)/buildings/industrial/Manufacturer.cpp \
+       $(SRC_DIR)/buildings/industrial/Warehouse.cpp \
+       $(SRC_DIR)/buildings/utility/PowerPlant.cpp \
+       $(SRC_DIR)/buildings/utility/SewagePlant.cpp \
+       $(SRC_DIR)/buildings/utility/WaterSupply.cpp \
+       $(SRC_DIR)/buildings/utility/LandFill.cpp \
+       $(SRC_DIR)/buildings/landmark/Monument.cpp \
+       $(SRC_DIR)/buildings/landmark/CulturalCenter.cpp \
+       $(SRC_DIR)/buildings/landmark/Park.cpp \
+       $(SRC_DIR)/buildingFactories/BuildingFactory.cpp \
+       $(SRC_DIR)/buildingFactories/CommercialBuildingFactory.cpp \
+       $(SRC_DIR)/buildingFactories/IndustrialBuildingFactory.cpp \
+       $(SRC_DIR)/buildingFactories/InfrastructureFactory.cpp \
+       $(SRC_DIR)/buildingFactories/LandmarkBuildingFactory.cpp \
+       $(SRC_DIR)/buildingFactories/ResidentialBuildingFactory.cpp \
+       $(SRC_DIR)/buildingFactories/UtilityBuildingFactory.cpp
+
 # Object files
-OBJS = $(SRCS:.cpp=.o)
+OBJS = $(SRCS:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
 
-# Default rule
-all: $(TARGET)
+# Create directories if not exist
+$(shell mkdir -p $(OBJ_DIR))
 
-# Link the object files to create the executable
+# Build target
 $(TARGET): $(OBJS)
-	$(CXX) $(CXXFLAGS) -o $@ $(OBJS)
+	$(CXX) $(CXXFLAGS) -o $@ $^
 
-# Rule to compile .cpp files to .o files
-%.o: %.cpp
-	$(CXX) $(CXXFLAGS) -c $< -o $@
+# Build object files
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
+	mkdir -p $(dir $@)
+	$(CXX) $(CXXFLAGS) -c -o $@ $<
 
 # Clean up
 clean:
-	rm -f $(OBJS) $(TARGET)
+	rm -rf $(OBJ_DIR) $(TARGET)
 
-# Run the executable
-run: $(TARGET)
-	./$(TARGET)
-
-# Run with Valgrind for memory leak detection
-valgrind: $(TARGET)
-	valgrind --leak-check=full --track-origins=yes ./$(TARGET)
-
-# Run with gdb for debugging
-gdb: $(TARGET)
-	gdb ./$(TARGET)
+.PHONY: clean

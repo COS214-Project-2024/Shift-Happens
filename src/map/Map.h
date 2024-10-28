@@ -18,9 +18,7 @@ private:
 public:
 	Map(int id);
 	std::vector<std::shared_ptr<MapComponent>> components;
-
-	vector<MapComponent *> components;
-
+	
 	bool add(MapComponent *component);
 
 	bool remove(MapComponent *component);

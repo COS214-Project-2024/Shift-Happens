@@ -1,11 +1,10 @@
 #include "UtilityBuildingFactory.h"
 
-UtilityBuildingFactory::UtilityBuildingFactory(/* args */)
+UtilityBuildingFactory::UtilityBuildingFactory(int id)
+: BuildingFactory(id)
 {
-	throw "UtilityBuildingFactory::UtilityBuildingFactory() not implemented";
 }
 UtilityBuildingFactory::~UtilityBuildingFactory()
 {
-	throw "UtilityBuildingFactory::~UtilityBuildingFactory() not implemented";
 	
 }

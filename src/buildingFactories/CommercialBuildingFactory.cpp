@@ -1,11 +1,11 @@
 #include "CommercialBuildingFactory.h"
 
 CommercialBuildingFactory::CommercialBuildingFactory(int id)
+
+: BuildingFactory(id)
 {
-	this->id = id;
 }
 CommercialBuildingFactory::~CommercialBuildingFactory()
 {
-	throw "CommercialBuildingFactory::~CommercialBuildingFactory() not implemented";
 	
 }

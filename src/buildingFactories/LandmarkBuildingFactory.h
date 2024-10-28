@@ -6,9 +6,8 @@
 class LandmarkBuildingFactory : public BuildingFactory
 {
 private:
-	/* data */
 public:
-	LandmarkBuildingFactory(/* args */);
+	LandmarkBuildingFactory(int id);
 	~LandmarkBuildingFactory();
 };
 

@@ -1,11 +1,11 @@
 #include "LandmarkBuildingFactory.h"
 
-LandmarkBuildingFactory::LandmarkBuildingFactory(/* args */)
+LandmarkBuildingFactory::LandmarkBuildingFactory(int id)
+: BuildingFactory(id)
 {
-	throw "LandmarkBuildingFactory::LandmarkBuildingFactory() not implemented";
+	
 }	
 LandmarkBuildingFactory::~LandmarkBuildingFactory()
 {
-	throw "LandmarkBuildingFactory::~LandmarkBuildingFactory() not implemented";
 	
 }

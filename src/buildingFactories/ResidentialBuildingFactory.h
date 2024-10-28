@@ -13,10 +13,8 @@
 class ResidentialBuildingFactory : public BuildingFactory
 {
 private:
-	int buildingId;
 public:
 	ResidentialBuildingFactory(int id);
-	shared_ptr<ResidentialBuilding> createBuilding(string variant);
 	~ResidentialBuildingFactory();
 };
 #endif

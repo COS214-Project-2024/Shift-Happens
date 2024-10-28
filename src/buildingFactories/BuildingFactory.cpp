@@ -3,9 +3,9 @@
 BuildingFactory::BuildingFactory(int id)
 {
     this->id = id;
+    buildingId = 0;
 }
 BuildingFactory::~BuildingFactory()
 {
-    throw "BuildingFactory::~BuildingFactory() not implemented";
     
 }

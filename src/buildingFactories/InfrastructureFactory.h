@@ -6,7 +6,6 @@
 class InfrastructureFactory : public BuildingFactory
 {
 private:
-	int id;
 
 public:
 	InfrastructureFactory(int id);
