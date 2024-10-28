@@ -290,37 +290,138 @@ void Game::createBuidling()
 
     }
     }
-    
+    void Game::demolishvariant(const int& op)
+    {
+         bool valid2 = false;
+    while(!valid2)
+    {
+        switch(op){
+            case 1:
+            cout << "Now demolishing " << getVar() <<" building: " << display.getvariant() <<endl;
+            valid2 = true;
+            break;
+            case 2:
+            cout <<"Now demolishing" << getVar() << " buidling: " << display.getvariant() << endl;
+            valid2 = true;
+            break;
+            case 3:
+            cout <<"Now demolishing " << getVar() <<"building: " << display.getvariant() << endl;
+            valid2 = true;
+            break;
+            case 4 :
+            cout <<"Now demolishing"<<getVar() << " building: " << display.getvariant() << endl;
+            valid2 = true;
+            break;
+            default:
+            std::cout << "Invalid choice. taking you to back." << std::endl;
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            createBuidling();
+            break;
+            
 
 
-           /* std::cin >> var;
-             bool val = validatevariant(var);
-            if(val == false){
-                cout << var <<" is not a  valid variant ,try again!\n";
-                createBuidling();
-                
-            }else {
-                 std::cout << "Now creating building of type " << var << endl;
-            //TO-DO ATTACH CREATION LOGIC
 
-            } */
-    
-           
+    }
 
+    }
+
+    }
+    void Game::upgradevariant(const int& op)
+    {
+         bool valid2 = false;
+    while(!valid2)
+    {
+        switch(op){
+            case 1:
+            cout << "Now upgrading " << getVar() <<" building: " << display.getvariant() <<endl;
+            valid2 = true;
+            break;
+            case 2:
+            cout <<"Now uograding" << getVar() << " buidling: " << display.getvariant() << endl;
+            valid2 = true;
+            break;
+            case 3:
+            cout <<"Now uograding" << getVar() <<"building: " << display.getvariant() << endl;
+            valid2 = true;
+            break;
+            case 4 :
+            cout <<"Now upgrading"<<getVar() << " building: " << display.getvariant() << endl;
+            valid2 = true;
+            break;
+            default:
+            std::cout << "Invalid choice. taking you to back." << std::endl;
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            createBuidling();
+            break;
+            
+
+
+
+    }
+
+    }
+    }
 
 void Game::demolishbuilding()
 {
     std::cout <<"You have chosen to demolish a building.\n";
             std::cout <<"What type variant do you wish to demolish? ";
-            std::cin >> var ;
-             bool val = validatevariant(var);
-            if(val == false){
-                cout << var << " is not a valid variant ,try again!\n";
-                demolishbuilding();
-                
-            }else {
-                 std::cout <<"Now demolishing building of type" << var << endl;
+           int choice = display.buildingtypemenu();
+            int choice2;
+            bool valid = false;
+            while (!valid){
+        switch (choice)
+        {
+        case 1:
+            choice2 =display.Utilitymenu();
+            setvariantop(choice2);
+            setvar("Utility");
+            
+            createVariant(getvariantop() );
 
+            valid = true;
+            break;
+        case 2:
+        
+            choice2=display.Industrialmenu();
+            
+            setvariantop(choice2);
+            setvar("Industrial");
+            demolishvariant(getvariantop());
+            valid = true;
+            break;
+        case 3:
+            choice2=display.Residentialmenu();
+            
+            setvariantop(choice2);
+            setvar("Residential");
+            demolishvariant(getvariantop() );
+            
+            valid = true;
+            break;
+        case 4:
+        choice2=display.Commercialmenu();
+        setvariantop(choice2);
+         setvar("Commercial");
+        demolishvariant(getvariantop() );
+       
+        valid = true;
+       
+        break;
+        
+
+        default:
+            std::cout << "Invalid choice. taking you to back." << std::endl;
+            std::cin.clear();
+            display.wait(1);
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            //choice = display.MainMenu();
+            //createBuidling();
+            display.buildingtypemenu();
+            break;
+        }
             }
            
 }
@@ -328,15 +429,62 @@ void Game::upgradeBuilding()
 {
     std::cout <<"You have chosen to upgrade a building.\n";
             std::cout <<"What type variant do you wish to upgrade? ";
-            std::cin >> var ;
-            bool val = validatevariant(var);
-            if(val == false){
-                cout << var << "is not a valid variant ,try again!\n";
-                upgradeBuilding();
-                
-            }else{
-            std::cout <<"Now upgrading building of type" << var << endl;}
-            //DISPLAY CURRENT BUILDINGS AND CHOOSE UPGRADE?}
+            int choice = display.buildingtypemenu();
+            int choice2;
+            bool valid = false;
+            while (!valid){
+        switch (choice)
+        {
+        case 1:
+            choice2 =display.Utilitymenu();
+            setvariantop(choice2);
+            setvar("Utility");
+            
+            upgradevariant(getvariantop() );
+
+            valid = true;
+            break;
+        case 2:
+        
+            choice2=display.Industrialmenu();
+            
+            setvariantop(choice2);
+            setvar("Industrial");
+            upgradevariant(getvariantop());
+            valid = true;
+            break;
+        case 3:
+            choice2=display.Residentialmenu();
+            
+            setvariantop(choice2);
+            setvar("Residential");
+            upgradevariant(getvariantop() );
+            
+            valid = true;
+            break;
+        case 4:
+        choice2=display.Commercialmenu();
+        setvariantop(choice2);
+         setvar("Commercial");
+        upgradevariant(getvariantop() );
+       
+        valid = true;
+       
+        break;
+        
+
+        default:
+            std::cout << "Invalid choice. taking you to back." << std::endl;
+            std::cin.clear();
+            display.wait(1);
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            //choice = display.MainMenu();
+            //createBuidling();
+            display.buildingtypemenu();
+            break;
+        }
+            
+}
 }
 bool Game::validatevariant(string& variant)
 {

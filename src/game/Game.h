@@ -23,11 +23,14 @@ public:
     void demolishbuilding();
     void buldingmenu();
     bool validatevariant(string& variant);
-    void createVariant(const int& option);
-    int getvariantop();
+    void createVariant(const int& option);//use option to create specific variant
+    void demolishvariant(const int& option);
+    void upgradevariant(const int& option);
+    int getvariantop();//option for variant menu
     void setvariantop(const int& op);
-    void setvar(const string& var);
+    void setvar(const string& var); //varaint name eg. Utility
     string getVar();
+    
 
 private:
     Display display;
