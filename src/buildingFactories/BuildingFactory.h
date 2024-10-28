@@ -7,10 +7,10 @@
 #include "../buildings/Building.h"
 class BuildingFactory
 {
-private:
-	
+protected:
+	int id;
 public:
-	BuildingFactory();
+	BuildingFactory(int id);
 
 	~BuildingFactory();
 
