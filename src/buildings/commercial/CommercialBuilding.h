@@ -1,14 +1,17 @@
 #ifndef COMMERCIALBUILDING_H
 #define COMMERCIALBUILDING_H
+#include "Building.h"
+#include "Materials.h"
+#include <vector>
 
-#include "../Building.h"
-class CommercialBuilding : public Building {
+using namespace std;
+	class CommercialBuilding : public Building {
 
 	private:
 		int incomePerHour;
 		int satisfactionScore;
 		int numberOfEmployees;
-
+		vector<Materials*> soldMaterials; //this is how the shop keeps track of the materials it has sold
 	public:
 		
 		CommercialBuilding(int id, int incomePerHour,string variant, int satisfactionScore, int numberOfEmployees, int constructionPrice, int wasteProduced, int sewageProduced, int electricityDemand, int waterDemand);

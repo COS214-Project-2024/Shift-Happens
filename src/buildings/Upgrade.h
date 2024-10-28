@@ -1,8 +1,6 @@
 #ifndef UPGRADE_H
 #define UPGRADE_H
-
 #include "Building.h"
-
 	class Upgrade : public Building {
 
 	public:
@@ -24,6 +22,5 @@
 
 		virtual void setWaterDemand(int waterDemand) = 0;
 	};
-
 
 #endif

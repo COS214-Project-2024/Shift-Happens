@@ -12,4 +12,6 @@ Railway* Railway::getPrev() {
 	return this->prev;
 }
 
-
+void Railway::setPrev(Railway* prev) {
+	this->prev = prev;
+}

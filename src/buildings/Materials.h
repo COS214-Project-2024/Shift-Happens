@@ -1,20 +1,18 @@
+#include <iostream>
+#include <string>
+#include <vector>
 #ifndef MATERIALS_H
 #define MATERIALS_H
 
-namespace Building_State {
 	class Materials {
-
-	private:
-		string description;
+		std::string description;
 		double cost;
 		int quantity;
-		vector<Building_State::Materials*> components[];
+		std::vector<Materials*> components;
+		int quantity;
+		static double salesMade;
 
 	public:
-		void getAvailableMaterials();
-
-		void getMaterialSaleRecords();
-	};
-}
+		Materials(std::string description, double cost, int quantity);};
 
 #endif

@@ -1,13 +1,14 @@
 #ifndef FACTORY_H
 #define FACTORY_H
-
 #include "IndustrialBuilding.h"
-class Factory : public IndustrialBuilding
-{
+#include "Materials.h"
+
+	class Factory : IndustrialBuilding {
 
 private:
 	int partProductionPerHour;
 	int productionCostPerHour;
+	Materials *materials;
 public:
 	Factory(int id);
 	~Factory();

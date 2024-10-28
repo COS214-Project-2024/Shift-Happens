@@ -8,6 +8,7 @@ class Warehouse : public IndustrialBuilding
 private:
 	int storageCapacity;
 	int storageUsed;
+	Materials* materials;
 
 public:
 	Warehouse(int id);

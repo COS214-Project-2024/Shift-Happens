@@ -1,23 +1,20 @@
 #ifndef ROAD_H
 #define ROAD_H
-
 #include "Infrastructure.h"
+	class Road :public Infrastructure {
 
-class Road : public Infrastructure
-{
+	private:
+		Road* next;
+		Road* prev;
 
-private:
-	Road *next;
-	Road *prev;
+	public:
+		Road* getNext();
 
-public:
-	Road *getNext();
+		void setNext(Road* next);
 
-	void setNext(Road *next);
+		Road* getPrev();
 
-	Road *getPrev();
-
-	void setPrev(Road *prev);
-};
+		void setPrev(Road* prev);
+	};
 
 #endif

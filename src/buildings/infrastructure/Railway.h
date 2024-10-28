@@ -1,6 +1,5 @@
 #ifndef RAILWAY_H
 #define RAILWAY_H
-
 #include "Infrastructure.h"
 
 	class Railway : public Infrastructure {
@@ -18,6 +17,5 @@
 
 		void setPrev(Railway* prev);
 	};
-
 
 #endif
