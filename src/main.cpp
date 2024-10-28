@@ -65,42 +65,34 @@ void testBuildingFactory() {
     shared_ptr<BuildingFactory> landFactory = make_shared<LandmarkBuildingFactory>(5);
     shared_ptr<BuildingFactory> infraFactory = make_shared<InfrastructureFactory>(6);
 
+    cout<<"Creating Buildings"<<endl;
+    resFactory->createBuilding("House");
+    resFactory->createBuilding("TownHouse");
+    resFactory->createBuilding("Estate");
+    resFactory->createBuilding("Apartment");
 
-    cout<<"Creating Buildings using the factories"<<endl;
+    comFactory->createBuilding("Store");
+    comFactory->createBuilding("Office");
+    comFactory->createBuilding("Mall");
 
-    cout<<"Creating Residential Buildings"<<endl;
-    shared_ptr<Building> house = resFactory->createBuilding("House");
-    shared_ptr<Building> townHouse = resFactory->createBuilding("TownHouse");
-    shared_ptr<Building> estate = resFactory->createBuilding("Estate");
-    shared_ptr<Building> apartment = resFactory->createBuilding("Apartment");
+    indFactory->createBuilding("Factory");
+    indFactory->createBuilding("Warehouse");
+    indFactory->createBuilding("Manufacturer");
 
-    cout<<"Creating Commercial Buildings"<<endl;
-    shared_ptr<Building> store = comFactory->createBuilding("Store");
-    shared_ptr<Building> office = comFactory->createBuilding("Office");
-    shared_ptr<Building> mall = comFactory->createBuilding("Mall");
+    utiFactory->createBuilding("PowerPlant");
+    utiFactory->createBuilding("WaterSupply");
+    utiFactory->createBuilding("SewagePlant");
+    utiFactory->createBuilding("LandFill");
 
-    cout<<"Creating Industrial Buildings"<<endl;
-    shared_ptr<Building> factory = indFactory->createBuilding("Factory");
-    shared_ptr<Building> warehouse = indFactory->createBuilding("Warehouse");
-    shared_ptr<Building> manufacturer = indFactory->createBuilding("Manufacturer");
+    landFactory->createBuilding("Park");
+    landFactory->createBuilding("Monument");
+    landFactory->createBuilding("CulturalCenter");
 
-    cout<<"Creating Utility Buildings"<<endl;
-    shared_ptr<Building> powerPlant = utiFactory->createBuilding("PowerPlant");
-    shared_ptr<Building> waterSupply = utiFactory->createBuilding("WaterSupply");
-    shared_ptr<Building> sewagePlant = utiFactory->createBuilding("SewagePlant");
-    shared_ptr<Building> landFill = utiFactory->createBuilding("LandFill");
-
-    cout<<"Creating Landmark Buildings"<<endl;
-    shared_ptr<BuildingFactory> landFactory = make_shared<LandmarkBuildingFactory>(5);
-    shared_ptr<Building> landmark = landFactory->createBuilding("Landmark");
-    shared_ptr<Building> park = landFactory->createBuilding("Park");
-    shared_ptr<Building> culturalCenter = landFactory->createBuilding("CulturalCenter");
-
-    cout<<"Creating Infrastructure Buildings"<<endl;
-    shared_ptr<Infrastructure> road = infraFactory->createBuilding("Road");
-    shared_ptr<Infrastructure> railway = infraFactory->createBuilding("Railway");
+    infraFactory->createBuilding("Road");
+    infraFactory->createBuilding("Railway");
 
     
+
 
 
 
