@@ -150,7 +150,79 @@ void Game::createBuidling()
 {
     std::cout << "You have chosen to create a building.\n";
             std::cout << "What type variant do you wish to create? ";
-            std::cin >> var;
+            int choice = display.buildingtypemenu();
+            int choice2;
+            bool valid = false;
+            while (!valid){
+        switch (choice)
+        {
+        case 1:
+            choice2 =display.Utilitymenu();
+            valid = true;
+            break;
+        case 2:
+        
+            choice2=display.Industrialmenu();
+            valid = true;
+            break;
+        case 3:
+            choice2=display.Residentialmenu();
+            valid = true;
+            break;
+        case 4:
+        choice2=display.Commercialmenu();
+        valid = true;
+        break;
+        
+
+        default:
+            std::cout << "Invalid choice. taking you to back." << std::endl;
+            std::cin.clear();
+            display.wait(1);
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            //choice = display.MainMenu();
+            createBuidling();
+            break;
+        }
+
+
+    }
+    //choice for choice 2 now
+    bool valid2 = false;
+    while(!valid2)
+    {
+        switch(choice2){
+            case 1:
+            cout << "Now building Utility building: " << display.getvariant() <<endl;
+            valid2 = true;
+            break;
+            case 2:
+            cout <<"Now building Industrial buidling: " << display.getvariant() << endl;
+            valid2 = true;
+            break;
+            case 3:
+            cout <<"Now building Residential building: " << display.getvariant() << endl;
+            valid2 = true;
+            break;
+            case 4 :
+            cout <<"Now building Commercial buidling: " << display.getvariant() << endl;
+            valid2 = true;
+            break;
+            default:
+            std::cout << "Invalid choice. taking you to back." << std::endl;
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            createBuidling();
+            break;
+        }
+
+
+        }
+    }
+    
+
+
+           /* std::cin >> var;
              bool val = validatevariant(var);
             if(val == false){
                 cout << var <<" is not a  valid variant ,try again!\n";
@@ -160,11 +232,11 @@ void Game::createBuidling()
                  std::cout << "Now creating building of type " << var << endl;
             //TO-DO ATTACH CREATION LOGIC
 
-            }
+            } */
 
            
 
-}
+
 void Game::demolishbuilding()
 {
     std::cout <<"You have chosen to demolish a building.\n";

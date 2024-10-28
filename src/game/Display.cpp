@@ -10,6 +10,14 @@ Display::Display() {
 Display::~Display() {
     
 }
+string Display::getvariant()
+{
+    return variant;
+}
+void Display::settype(const string& variant)
+{
+    this->variant = variant;
+}
 
 void Display::intro() {
     std::cout << "Welcome to CityCraft!" << std::endl;
@@ -57,6 +65,24 @@ int Display::MainMenu() {
     }
     return -1;
 }
+int Display::buildingtypemenu()
+{
+    
+    std::vector<std::string> options = {"Utility", "Industrial","Residential","Commercial"};
+    bool running = true;
+    while (running) {
+        clear();
+        logo();
+        displayMenu(options);
+        std::cout << "Please select an option." << std::endl;
+        int input;
+        std::cin >> input;
+        return input;
+    }
+    return -1;
+
+
+}
 
 void Display::displayMenu(std::vector<std::string> options) {
     for (std::vector<std::string>::size_type i = 0; i < options.size(); i++) {
@@ -92,6 +118,19 @@ int Display::Utilitymenu()
         std::cout << "Please select an action." << std::endl;
         int input;
         std::cin >> input;
+        if(input == 1){
+            settype("PowerPlant");
+        }else if(input == 2){
+            settype("LandFill");
+
+        }else if(input == 3){
+            settype("SewagePlant");
+        }else if(input == 4){
+            settype("WaterSupply");
+        }else {
+            cout <<"Invalid entry" << endl;
+            displayMenu(options);
+        }
         return input;
     }
     return -1;
@@ -109,6 +148,19 @@ int Display::Residentialmenu()
         std::cout << "Please select an action." << std::endl;
         int input;
         std::cin >> input;
+        if(input == 1){
+            settype("Apartment");
+        }else if(input == 2){
+            settype("Estate");
+
+        }else if(input == 3){
+            settype("House");
+        }else if(input == 4){
+            settype("TownHouse");
+        }else {
+            cout <<"Invalid entry" << endl;
+            displayMenu(options);
+        }
         return input;
     }
     return -1;
@@ -126,6 +178,18 @@ int Display::Commercialmenu()
         std::cout << "Please select an action." << std::endl;
         int input;
         std::cin >> input;
+        
+        if(input == 1){
+            settype("Store");
+        }else if(input == 2){
+            settype("Mall");
+
+        }else if(input == 3){
+            settype("Office");
+        }else {
+            cout <<"Invalid entry" << endl;
+            displayMenu(options);
+        }
         return input;
     }
     return -1;
@@ -142,6 +206,17 @@ int Display::Industrialmenu()
         std::cout << "Please select an action." << std::endl;
         int input;
         std::cin >> input;
+        if(input == 1){
+            settype("Warehouse");
+        }else if(input == 2){
+            settype("Factory");
+
+        }else if(input == 3){
+            settype("Manufacturer");
+        }else {
+            cout <<"Invalid entry" << endl;
+            displayMenu(options);
+        }
         return input;
     }
     return -1;
@@ -158,6 +233,17 @@ int Display::LandMarkmenu()
         std::cout << "Please select an action." << std::endl;
         int input;
         std::cin >> input;
+        if(input == 1){
+            settype("Monument");
+        }else if(input == 2){
+            settype("Park");
+
+        }else if(input == 3){
+            settype("Cultural Centre");
+        }else {
+            cout <<"Invalid entry" << endl;
+            displayMenu(options);
+        }
         return input;
     }
     return -1;

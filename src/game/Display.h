@@ -26,11 +26,15 @@ public:
     int Commercialmenu();
     int Industrialmenu();
     int LandMarkmenu();
+    int buildingtypemenu();
+    string getvariant();
+    void settype(const string& variant);
 
 
 
 private:
     // Add private members and methods as needed
+    string variant;
 };
 
 #endif // DISPLAY_H
