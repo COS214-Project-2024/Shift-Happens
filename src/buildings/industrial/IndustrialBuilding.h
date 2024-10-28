@@ -1,7 +1,6 @@
 #ifndef INDUSTRIALBUILDING_H
 #define INDUSTRIALBUILDING_H
-#include "Building.h"
-#include "Materials.h"
+#include "../Building.h"
 #include <vector>
 #include "../Building.h"
 #include <iostream>

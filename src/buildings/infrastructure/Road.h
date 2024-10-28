@@ -1,7 +1,6 @@
 #ifndef ROAD_H
 #define ROAD_H
 #include "Infrastructure.h"
-	class Road :public Infrastructure {
 
 class Road : public Infrastructure
 {

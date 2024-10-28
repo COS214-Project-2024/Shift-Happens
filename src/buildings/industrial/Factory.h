@@ -7,7 +7,6 @@ private:
     int numberOfEmployees;
 	int partProductionPerHour;
 	int productionCostPerHour;
-	Materials *materials;
 public:
 	Factory(int id);
 	~Factory();
