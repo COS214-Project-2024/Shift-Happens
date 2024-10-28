@@ -4,10 +4,24 @@
 
 Game::Game()
 {
+    variantop = 0;
+    var= "";
 }
-
+string Game::getVar(){return var;}
+void Game::setvar(const string& var)
+{
+    this->var = var;
+}
 Game::~Game()
 {
+}
+int Game::getvariantop()
+{
+    return variantop;
+}
+void Game::setvariantop(const int& op)
+{
+    this->variantop = op;
 }
 
 void Game::run()
@@ -139,7 +153,8 @@ void Game::buldingmenu(){
             std::cout << "Invalid choice. Please enter a number." << std::endl;
             std::cin.clear();
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            choice = display.MainMenu();
+            //choice = display.MainMenu();
+            choice = display.GameMenu();
             break;
         }
 
@@ -158,20 +173,39 @@ void Game::createBuidling()
         {
         case 1:
             choice2 =display.Utilitymenu();
+            setvariantop(choice2);
+            setvar("Utility");
+            
+            createVariant(getvariantop() );
+
             valid = true;
             break;
         case 2:
         
             choice2=display.Industrialmenu();
+            
+            setvariantop(choice2);
+            setvar("Industrial");
+            createVariant(getvariantop());
             valid = true;
             break;
         case 3:
             choice2=display.Residentialmenu();
+            
+            setvariantop(choice2);
+            setvar("Residential");
+            createVariant(getvariantop() );
+            
             valid = true;
             break;
         case 4:
         choice2=display.Commercialmenu();
+        setvariantop(choice2);
+         setvar("Commercial");
+        createVariant(getvariantop() );
+       
         valid = true;
+       
         break;
         
 
@@ -181,14 +215,15 @@ void Game::createBuidling()
             display.wait(1);
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             //choice = display.MainMenu();
-            createBuidling();
+            //createBuidling();
+            display.buildingtypemenu();
             break;
         }
 
 
     }
     //choice for choice 2 now
-    bool valid2 = false;
+    /*bool valid2 = false;
     while(!valid2)
     {
         switch(choice2){
@@ -214,10 +249,46 @@ void Game::createBuidling()
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             createBuidling();
             break;
-        }
+        }*/
 
 
         }
+    void Game::createVariant(const int& op)
+    {
+
+        bool valid2 = false;
+    while(!valid2)
+    {
+        switch(op){
+            case 1:
+            cout << "Now building " << getVar() <<" building: " << display.getvariant() <<endl;
+            valid2 = true;
+            break;
+            case 2:
+            cout <<"Now building" << getVar() << " buidling: " << display.getvariant() << endl;
+            valid2 = true;
+            break;
+            case 3:
+            cout <<"Now building " << getVar() <<"building: " << display.getvariant() << endl;
+            valid2 = true;
+            break;
+            case 4 :
+            cout <<"Now building"<<getVar() << " building: " << display.getvariant() << endl;
+            valid2 = true;
+            break;
+            default:
+            std::cout << "Invalid choice. taking you to back." << std::endl;
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            createBuidling();
+            break;
+            
+
+
+
+    }
+
+    }
     }
     
 
@@ -233,7 +304,7 @@ void Game::createBuidling()
             //TO-DO ATTACH CREATION LOGIC
 
             } */
-
+    
            
 
 

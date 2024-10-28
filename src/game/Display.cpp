@@ -4,6 +4,7 @@
 //#include <curses.h>
 
 Display::Display() {
+    
 
 }
 
@@ -109,6 +110,7 @@ void Display::loadscreen() {
 int Display::Utilitymenu()
 {
     cout <<"Please select the utility you wish to build.\n";
+    variant = "Utility";
      std::vector<std::string> options = {"PowerPlant", "LandFill", "SewagePlant","WaterSupply"};
     bool running = true;
     while (running) {
@@ -139,6 +141,7 @@ int Display::Utilitymenu()
 int Display::Residentialmenu()
 {
       cout <<"Please select the residential property you wish to build.\n";
+      variant = "Residential";
      std::vector<std::string> options = {"Apartment", "Estate", "House","TownHouse"};
     bool running = true;
     while (running) {
@@ -169,6 +172,7 @@ int Display::Residentialmenu()
 int Display::Commercialmenu()
 {
       cout <<"Please select the Commercial property you wish to build.\n";
+      variant = "Commercial";
      std::vector<std::string> options = {"Store", "Mall", "Office"};
     bool running = true;
     while (running) {
@@ -197,6 +201,7 @@ int Display::Commercialmenu()
 int Display::Industrialmenu()
 {
       cout <<"Please select the industrial property you wish to build.\n";
+      variant = "Industrial";
      std::vector<std::string> options = {"Warehouse", "Factory", "Manufacturer"};
     bool running = true;
     while (running) {

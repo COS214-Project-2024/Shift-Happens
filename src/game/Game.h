@@ -23,12 +23,18 @@ public:
     void demolishbuilding();
     void buldingmenu();
     bool validatevariant(string& variant);
+    void createVariant(const int& option);
+    int getvariantop();
+    void setvariantop(const int& op);
+    void setvar(const string& var);
+    string getVar();
 
 private:
     Display display;
     string playerName;
     MapComponent * map;
     string var;
+    int variantop;
 };
 
 #endif // GAME_H
