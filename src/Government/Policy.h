@@ -3,7 +3,7 @@
 
 class Policy {
 	public:
-		virtual void handle() = 0;
+		virtual void executePolicy() = 0;
 };
 
 #endif
