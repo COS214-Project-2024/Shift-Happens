@@ -3,15 +3,15 @@
 
 #include "UtilityBuilding.h"
 
-class LandFill : public UtilityBuilding
-{
+class LandFill : public UtilityBuilding{
 
-public:
+private:
 	int wasteRemovalRate;
-
+public:
+	LandFill(int id);
 	int getWasteRemovalRate();
-
 	void setWasteRemovalRate(int wasteRemovalRate);
+	virtual void print() const override; 
 };
 
 #endif

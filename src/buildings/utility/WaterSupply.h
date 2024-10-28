@@ -3,15 +3,14 @@
 
 #include "UtilityBuilding.h"
 
-class WaterSupply : public UtilityBuilding
-{
-
-public:
+class WaterSupply : public UtilityBuilding{
+private:
 	int waterSupply;
-
+public:	
+	WaterSupply(int id);
 	int getWaterSupply();
-
 	void setWaterSupply(int waterSupply);
+	virtual void print() const override;
 };
 
 #endif

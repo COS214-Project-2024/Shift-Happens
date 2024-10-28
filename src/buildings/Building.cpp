@@ -125,8 +125,6 @@ void Building::render() {
 	throw "Building::render() not implemented";
 }
 
-
-
 //print function
 void Building::print() const {
     cout << "Building Attributes:" << endl;
