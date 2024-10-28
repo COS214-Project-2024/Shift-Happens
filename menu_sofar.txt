@@ -1,0 +1,37 @@
+-------------FRONT END SO FAR--------------------
+consists of Game class and Display class.
+Game 'has a ' display and uses it to display options that return integer values as those options.
+After map generation
+player chooses between new game,load game, exit
+case 1 . chooses new game
+Player is then prompted to create/upgrade/demolish or return to main menu
+a function createbuildmenu is used and an integer is returned within it to make decisions
+
+case 1.1 chooses create building
+player is promted to select to create: utilities,commercial,residential,industrial
+again a function to get the option is used , and returned as an int. a function buildingmenu is used to display the options you can build.
+
+case 1.1.1 chooses utilities
+
+player is then prompted to choose utility options. a utilitymenu from display is used within Game 
+and game uses the integer returned to make a decision. getters and setters are used to display specific creation detail.
+
+----OTHER CREATION CASES SIMILAR--------------------------------
+
+case 1.2 chooses upgrade building.
+player is then promped to select which type variant to upgrade.
+a similar display and return function as creating is used. It follows the same logic of using getters and setters for 
+specific upgrading information.
+--------MAYBE FIND A WAY TO SHOW A LIST OF ALREADY MADE BUILDINGS AND SELECT WHICH TO UPGRADE-------------------
+ 
+
+case 1.3 chooses demolish building
+similar to upgrade, follows same logic for now. 
+Maybe have a way to show already built/upgraded buildings and select which to demolish
+
+-------------------------------------------------------------------------------------------
+ TO-DO?
+Make creation options for Government?
+
+runthrough draft:
+*prompts new game* ->1.Create buildings-> (which type) 1. Utility->(which type of utility)->1.PowerPlant->creating Powerplant utility building
