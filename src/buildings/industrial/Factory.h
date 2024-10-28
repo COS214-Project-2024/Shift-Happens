@@ -5,8 +5,14 @@
 
 	class Factory : IndustrialBuilding {
 
-	private:
-		Materials* materials;
-	};
+private:
+	int partProductionPerHour;
+	int productionCostPerHour;
+	Materials *materials;
+public:
+	Factory(int id);
+	~Factory();
+
+};
 
 #endif

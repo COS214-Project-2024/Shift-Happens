@@ -1,12 +1,20 @@
 #ifndef ECONOMY_H
 #define ECONOMY_H
 
-namespace Building_State {
-	class Economy : Building_State::CitySubject {
+#include "CitySubject.h"
+#include "Population.h"
 
+// Concrete subject in observer pattern
+// Context in state pattern
+
+class Economy : public CitySubject {
 	private:
 		Population* PopulationState;
-	};
-}
+
+	public:
+		void setPopulationState(Population* newState);
+		Population* getState();
+};
+
 
 #endif

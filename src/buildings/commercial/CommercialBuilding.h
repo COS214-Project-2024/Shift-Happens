@@ -13,6 +13,9 @@ using namespace std;
 		int numberOfEmployees;
 		vector<Materials*> soldMaterials; //this is how the shop keeps track of the materials it has sold
 	public:
+		
+		CommercialBuilding(int id, int incomePerHour,string variant, int satisfactionScore, int numberOfEmployees, int constructionPrice, int wasteProduced, int sewageProduced, int electricityDemand, int waterDemand);
+		
 		int getIncomePerHour();
 
 		void setIncomePerHour(int incomePerHour);
@@ -21,7 +24,7 @@ using namespace std;
 
 		void setSatisfactionScore(int satisfactionScore);
 
-		void getNumberOfEmployees();
+		int getNumberOfEmployees();
 
 		void setNumberOfEmployees(int numberOfEmployees);
 	};

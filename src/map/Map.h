@@ -21,6 +21,8 @@ public:
 	bool remove(MapComponent *component);
 
 	void getComponent(int id);
+
+	void render();
 };
 
 #endif

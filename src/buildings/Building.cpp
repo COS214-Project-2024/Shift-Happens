@@ -1,6 +1,25 @@
 #include "Building.h"
 
-int Building::Building::getWidth() {
+
+
+Building::Building(int id,int width, int length, int xPos, int yPos, string variant, string type, int constructionPrice, int wasteProduced, int sewageProduced, int electricityDemand, int waterDemand) 
+: MapComponent(id)
+{
+	this->width = width;
+	this->length = length;
+	this->xPos = xPos;
+	this->yPos = yPos;
+	this->variant = variant;
+	this->type = type;
+	this->constructionPrice = constructionPrice;
+	this->wasteProduced = wasteProduced;
+	this->sewageProduced = sewageProduced;
+	this->electricityDemand = electricityDemand;
+	this->waterDemand = waterDemand;
+}
+
+
+int Building::getWidth() {
 	return this->width;
 }
 

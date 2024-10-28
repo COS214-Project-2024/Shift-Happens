@@ -1,9 +1,19 @@
 #ifndef STANDARD_H
 #define STANDARD_H
 
-namespace Building_State {
-	class Standard : Building_State::PublicServiceState {
-	};
-}
+#include "PublicServiceState.h"
+#include "Modern.h"
+#include "Outdated.h"
+
+class Standard : public PublicServiceState {
+	private:
+		double StandardHighCap = 1000;
+		double StandardLowerCap = 100;
+	public:
+		void increaseBudget(double increase);
+		void descreaseBudget(double decrease);
+		std::string getType();
+};
+
 
 #endif

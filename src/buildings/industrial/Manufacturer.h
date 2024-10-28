@@ -3,12 +3,18 @@
 #include "IndustrialBuilding.h"
 #include "Materials.h"
 
-	class Manufacturer : public IndustrialBuilding
-	{
+class Manufacturer : public IndustrialBuilding
+{
 
-	private:
-		Materials *materials;
-	};
+private:
+	int productsPerHour;
+	int partsUsedPerProduct;
+	int profitPerProduct;
+	Materials *materials;
 
+public:
+	Manufacturer(int id);
+	~Manufacturer();
+};
 
 #endif

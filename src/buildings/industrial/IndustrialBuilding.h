@@ -11,14 +11,18 @@ using namespace std;
 		int numberOfEmployees;
 		int satisfactionScore;
 		vector<Materials*> availableMaterials; //THIS WOULD STORE THE materials in the warehouse that were produced by the factory
-	public:
-		int getNumberOfEmployees();
 
-		void setNumberOfEmployees(int numberOfEmployees);
+public:
 
-		int getSatisfactionScore();
+	IndustrialBuilding(int id, int numberOfEmployees,string variant, int satisfactionScore, int constructionPrice, int wasteProduced, int sewageProduced, int electricityDemand, int waterDemand);
+	
+	int getNumberOfEmployees();
 
-		void setSatisfactionScore(int satisfactionScore);
-	};
+	void setNumberOfEmployees(int numberOfEmployees);
+
+	int getSatisfactionScore();
+
+	void setSatisfactionScore(int satisfactionScore);
+};
 
 #endif

@@ -1,0 +1,268 @@
+//This document shows what the base stats for each building is upon creation.
+
+
+Base Stats For the Buildings:
+
+Commercial:
+
+    Standard For All Commercial Buildings:
+        int width = 1
+        int length = 1
+        string type = "Commercial"
+
+        Initial Position (Unplaced on map)
+        int xPos = -1
+        int yPos = -1 
+	
+
+
+	
+
+    Mall:
+
+        Inherited from CommercialBuilding:
+            int constructionPrice = 500
+            string variant = "Mall"
+            int wasteProduced = 40
+            int sewageProduced = 40
+            int electricityDemand = 40
+            int waterDemand = 40
+
+        Unique to Mall:
+            int incomePerHour =  200
+            int satisfactionScore = 50
+            int numberOfEmployees = 100
+
+    Office:
+
+        Inherited from CommercialBuilding:
+            int constructionPrice = 250
+            string variant = "Office"
+            int wasteProduced = 20
+            int sewageProduced = 20
+            int electricityDemand = 20
+            int waterDemand = 20
+
+        Unique to Office:
+            int incomePerHour =  100
+            int satisfactionScore = 50
+            int numberOfEmployees = 50
+
+
+    Store:
+
+        Inherited from CommercialBuilding:
+            int constructionPrice = 125
+            string variant = "Store"
+            int wasteProduced = 10
+            int sewageProduced = 10
+            int electricityDemand = 10
+            int waterDemand = 10
+
+        Unique to Store:
+            int incomePerHour =  50
+            int satisfactionScore = 50
+            int numberOfEmployees = 25
+
+Industrial:
+    Standard For All Industrial Buildings:
+        int width = 1
+        int length = 2
+        string type = "Industrial"
+
+        Initial Position (Unplaced on map)
+        int xPos = -1
+        int yPos = -1 
+
+
+    Factory:
+        
+        Inherited from CommercialBuilding:
+            int constructionPrice = 250
+            string variant = "Factory"
+            int wasteProduced = 50
+            int sewageProduced = 50
+            int electricityDemand = 50
+            int waterDemand = 50
+
+        Unique to Factory:
+            int satisfactionScore = 25
+            int numberOfEmployees = 100
+            int partProductionPerHour = 300
+	        int productionCostPerHour = 100
+
+
+
+    Manufacturer:
+
+        Inherited from CommercialBuilding:
+            int constructionPrice = 250
+            string variant = "Factory"
+            int wasteProduced = 0
+            int sewageProduced = 0
+            int electricityDemand = 100
+            int waterDemand = 100
+
+        Unique to Manufacturer:
+            int satisfactionScore = 25
+            int numberOfEmployees = 100
+            int productsPerHour = 100
+            int partsUsedPerProduct = 3
+            int profitPerProduct = 5
+
+
+    Warehouse:
+
+        Inherited from CommercialBuilding:
+            int constructionPrice = 250
+            string variant = "Warehouse"
+            int wasteProduced = 10
+            int sewageProduced = 10
+            int electricityDemand = 10
+            int waterDemand = 10
+
+        Unique to Warehouse:
+            int satisfactionScore = 25
+            int numberOfEmployees = 50
+            int storageCapacity = 600
+	        int storageUsed = 0
+
+
+
+Residential:
+    Standard For All Residential Buildings:
+        int width = 1
+        int length = 1
+        string type = "Residential"
+
+        Initial Position (Unplaced on map)
+        int xPos = -1
+        int yPos = -1 
+
+	int capacity;
+	int satisfactionScore;
+	int incomePerHour;
+
+
+    Apartment: 
+
+        Inherited from ResidentialBuilding:
+            int constructionPrice = 100
+            string variant = "Apartment"
+            int wasteProduced = 5
+            int sewageProduced = 5
+            int electricityDemand = 5
+            int waterDemand = 5
+
+        Unique to Apartment:
+            int satisfactionScore = 75
+            int capacity = 10
+	        int incomePerHour = 20
+
+    TownHouse:
+
+        Inherited from ResidentialBuilding:
+            int constructionPrice = 200
+            string variant = "TownHouse"
+            int wasteProduced = 10
+            int sewageProduced = 10
+            int electricityDemand = 10
+            int waterDemand = 10
+        
+        Unique to TownHouse:
+            int satisfactionScore = 75
+            int capacity = 20
+	        int incomePerHour = 40
+
+    House:
+
+        Inherited from ResidentialBuilding:
+            int constructionPrice = 400
+            string variant = "House"
+            int wasteProduced = 20
+            int sewageProduced = 20
+            int electricityDemand = 20
+            int waterDemand = 20
+        
+        Unique to House:
+            int satisfactionScore = 75
+            int capacity = 40
+	        int incomePerHour = 80
+
+    Estate:
+
+        Inherited from ResidentialBuilding:
+            int constructionPrice = 800
+            string variant = "Estate"
+            int wasteProduced = 40
+            int sewageProduced = 40
+            int electricityDemand = 40
+            int waterDemand = 40
+        
+        Unique to Estate:
+            int satisfactionScore = 75
+            int capacity = 80
+	        int incomePerHour = 160
+
+
+Infrastructure:
+    Railway:
+    Road:
+
+Landmark:
+    Standard For All Landmark Buildings:
+        int width = 1
+        int length = 1
+        string type = "Landmark"
+
+        Initial Position (Unplaced on map)
+        int xPos = -1
+        int yPos = -1 
+
+    Park:
+        Inherited from Landmark:
+            int constructionPrice = 200
+            string variant = "Park"
+            int wasteProduced = 10
+            int sewageProduced = 10
+            int electricityDemand = 10
+            int waterDemand = 10
+
+    CulturalCenter:
+        Inherited from Landmark:
+            int constructionPrice = 400
+            string variant = "CulturalCenter"
+            int wasteProduced = 20
+            int sewageProduced = 20
+            int electricityDemand = 20
+            int waterDemand = 20
+
+    Monument:
+        Inherited from Landmark:
+            int constructionPrice = 800
+            string variant = "Monument"
+            int wasteProduced = 40
+            int sewageProduced = 40
+            int electricityDemand = 40
+            int waterDemand = 40
+
+
+
+Utility:
+	int width =
+	int xPos =
+	int yPos =
+	int constructionPrice =
+	int length =
+	string variant =
+	string type =
+	int wasteProduced =
+	int sewageProduced =
+	int electricityDemand =
+	int waterDemand =
+
+    Landfill:
+    PowerPlant:
+    SewagePlant:
+    WaterSupply:
+

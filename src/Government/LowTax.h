@@ -7,8 +7,8 @@
 
 	public:
 		void higher();
-
 		void lower();
+		std::string getType();
 	};
 
 #endif

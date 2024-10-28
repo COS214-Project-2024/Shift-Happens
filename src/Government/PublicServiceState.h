@@ -1,9 +1,17 @@
 #ifndef PUBLICSERVICESTATE_H
 #define PUBLICSERVICESTATE_H
 
-namespace Building_State {
-	class PublicServiceState {
-	};
-}
+#include "Public Services.h"
+
+class PublicServiceState {
+	protected:
+		Public_Services* publicServices;
+		double RunningBudget;
+	public:
+		virtual void increaseBudget(double increase) = 0;
+		virtual void descreaseBudget(double decrease) = 0;
+		virtual std::string getType() = 0;
+};
+
 
 #endif

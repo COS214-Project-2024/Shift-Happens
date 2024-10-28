@@ -17,6 +17,7 @@ public:
     void newGame();
     void loadGame();
     void underConstruction();
+    void render();
 
 private:
     Display display;

@@ -5,7 +5,7 @@
 
 #include <iostream>
 
-	class Tax {
+class Tax {
 	private:
 	
 	protected:
@@ -13,8 +13,8 @@
 
 	public:
 		virtual void higher() = 0;
-
 		virtual void lower() = 0;
-	};
+		virtual std::string getType()=0;
+};
 
 #endif

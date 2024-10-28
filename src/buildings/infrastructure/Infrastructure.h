@@ -1,36 +1,37 @@
 #ifndef INFRASTRUCTURE_H
 #define INFRASTRUCTURE_H
-#include "MapComponent.h"
-	class Infrastructure : public MapComponent {
 
-	private:
-		int width;
-		int length;
-		int yPos;
-		int xPos;
-		int constructionCost;
+#include "../../map/MapComponent.h"
+class Infrastructure : public MapComponent
+{
 
-	public:
-		int getWidth();
+private:
+	int width;
+	int length;
+	int yPos;
+	int xPos;
+	int constructionCost;
 
-		void setWidth(int width);
+public:
+	int getWidth();
 
-		int getLength();
+	void setWidth(int width);
 
-		void setLength(int length);
+	int getLength();
 
-		int getYPos();
+	void setLength(int length);
 
-		void setYPos(int yPos);
+	int getYPos();
 
-		int getXPos();
+	void setYPos(int yPos);
 
-		void setXPos(int xPos);
+	int getXPos();
 
-		int getConstructionCost();
+	void setXPos(int xPos);
 
-		void setConstructionCost(int constructionCost);
-	};
+	int getConstructionCost();
 
+	void setConstructionCost(int constructionCost);
+};
 
 #endif
