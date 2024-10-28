@@ -1,13 +1,13 @@
 #ifndef HEALTHCAREPOLICY_H
 #define HEALTHCAREPOLICY_H
 
-namespace Building_State {
-	class HealthCarePolicy : Building_State::Policy {
+#include "Policy.h"
+
+class HealthCarePolicy : public Policy {
 
 
 	public:
 		void handle();
 	};
-}
 
 #endif
