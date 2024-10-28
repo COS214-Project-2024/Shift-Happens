@@ -6,9 +6,9 @@
 class IndustrialBuildingFactory
 {
 private:
-	/* data */
+	int id;
 public:
-	IndustrialBuildingFactory(/* args */);
+	IndustrialBuildingFactory(int id);
 	~IndustrialBuildingFactory();
 };
 

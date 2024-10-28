@@ -5,9 +5,10 @@
 #include "UtilityBuilding.h"
 class PowerPlant : public UtilityBuilding
 {
+private:
+	int electricityProduction;
 
 public:
-	int electricityProduction;
 
 	void getElectricityProduction();
 

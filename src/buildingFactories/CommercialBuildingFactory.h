@@ -8,9 +8,10 @@
 class CommercialBuildingFactory : public BuildingFactory
 {
 private:
-	/* data */
+	int id;
 public:
-	CommercialBuildingFactory(/* args */);
+	CommercialBuildingFactory(int id);
+	
 	~CommercialBuildingFactory();
 };
 

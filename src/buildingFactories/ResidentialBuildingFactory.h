@@ -6,9 +6,9 @@
 class ResidentialBuildingFactory : public BuildingFactory
 {
 private:
-	/* data */
+	int id;
 public:
-	ResidentialBuildingFactory(/* args */);
+	ResidentialBuildingFactory(int id);
 	~ResidentialBuildingFactory();
 };
 #endif

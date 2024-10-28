@@ -1,11 +1,10 @@
 #include "IndustrialBuildingFactory.h"
 
-IndustrialBuildingFactory::IndustrialBuildingFactory(/* args */)
+IndustrialBuildingFactory::IndustrialBuildingFactory(int id)
 {
-	throw "IndustrialBuildingFactory::IndustrialBuildingFactory() not implemented";
+	this->id = id;
 }
 IndustrialBuildingFactory::~IndustrialBuildingFactory()
 {
-	throw "IndustrialBuildingFactory::~IndustrialBuildingFactory() not implemented";
 	
 }

@@ -5,11 +5,13 @@
 
 class UtilityBuilding : public Building {
 
+	private:
+
+		int runningCostPerHour;
+
 	public:
 
 		UtilityBuilding(int id,string variant, int constructionPrice, int wasteProduced, int sewageProduced, int electricityDemand, int waterDemand);
-
-		int runningCostPerHour;
 
 		int getRunningCostPerHour();
 

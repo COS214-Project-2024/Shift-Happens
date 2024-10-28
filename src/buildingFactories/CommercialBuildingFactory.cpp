@@ -1,8 +1,8 @@
 #include "CommercialBuildingFactory.h"
 
-CommercialBuildingFactory::CommercialBuildingFactory(/* args */)
+CommercialBuildingFactory::CommercialBuildingFactory(int id)
 {
-	throw "CommercialBuildingFactory::CommercialBuildingFactory() not implemented";
+	this->id = id;
 }
 CommercialBuildingFactory::~CommercialBuildingFactory()
 {

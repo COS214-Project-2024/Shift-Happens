@@ -1,8 +1,8 @@
 #include "ResidentialBuildingFactory.h"
 
-ResidentialBuildingFactory::ResidentialBuildingFactory(/* args */)
+ResidentialBuildingFactory::ResidentialBuildingFactory(int id)
 {
-	throw "ResidentialBuildingFactory::ResidentialBuildingFactory() not implemented";
+	this->id = id;
 }
 ResidentialBuildingFactory::~ResidentialBuildingFactory()
 {
