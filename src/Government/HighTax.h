@@ -3,12 +3,13 @@
 
 #include "StandardTax.h"
 
-	class HighTax : public Tax {
-
+class HighTax : public Tax {
+	private:
+		int HighTLowCap = 35;
 	public:
-		void higher();
-
-		void lower();
-	};
+		void higher(double increase);
+		void lower(double decrease);
+		std::string getType();
+};
 
 #endif

@@ -5,16 +5,18 @@
 
 #include <iostream>
 
-	class Tax {
+class Tax {
 	private:
 	
 	protected:
 		Government* government;
+		double RunningRate;
 
 	public:
-		virtual void higher() = 0;
-
-		virtual void lower() = 0;
-	};
+		virtual void higher(double increase) = 0;
+		virtual void lower(double decrease) = 0;
+		virtual std::string getType()=0;
+		double getRate();
+};
 
 #endif

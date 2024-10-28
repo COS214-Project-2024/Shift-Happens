@@ -1,16 +1,31 @@
 #include "Boy.h"
 
-void Building_State::Boy::setType(string type) {
-	// TODO - implement Boy::setType
-	throw "Not yet implemented";
+#include <iostream>
+
+void Boy::setType(std::string type) {
+	this->Type = type;
 }
 
-void Building_State::Boy::setGender(string gender) {
-	// TODO - implement Boy::setGender
-	throw "Not yet implemented";
+void Boy::setGender(std::string gender) {
+	this->Gender = gender;
 }
 
-void Building_State::Boy::setSchool(boolean status) {
-	// TODO - implement Boy::setSchool
-	throw "Not yet implemented";
+void Boy::setStatus(bool status){
+	this->setSchool(status);
+}
+
+void Boy::setSchool(bool status) {
+	this->School = status;
+}
+
+std::string Boy::getGender(){
+	return Gender;
+}
+
+bool Boy::getStatus(){
+	return School;
+}
+
+std::string Boy::getType(){
+	return Type;
 }

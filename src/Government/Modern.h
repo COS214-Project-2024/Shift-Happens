@@ -10,6 +10,7 @@ class Modern : public PublicServiceState {
 	public:
 		void increaseBudget(double increase);
 		void descreaseBudget(double decrease);
+		std::string getType();
 };
 
 

@@ -1,6 +1,7 @@
 #ifndef BUILDINGFACTORY_H
 #define BUILDINGFACTORY_H
 
+
 #include <iostream>
 #include <memory>
 #include <string>
@@ -19,6 +20,7 @@
  * @section author Author
  * Morne van Heerden (u21482153)
  */
+
 class BuildingFactory
 {
 protected:

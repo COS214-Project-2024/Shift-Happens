@@ -10,6 +10,7 @@ class PublicServiceState {
 	public:
 		virtual void increaseBudget(double increase) = 0;
 		virtual void descreaseBudget(double decrease) = 0;
+		virtual std::string getType() = 0;
 };
 
 

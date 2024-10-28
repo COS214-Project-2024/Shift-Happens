@@ -4,32 +4,55 @@
 #include "CitizenObserver.h"
 #include "Director.h"
 
+#include "../Government/Economy.h"
+#include "../Government/Government.h"
+#include "../Government/Public Services.h"
+#include "../Government/Population.h"
+#include "../Government/PublicServiceState.h"
+#include "../Government/Tax.h"
+#include "../Government/Policy.h"
+
+// This is the concrete observe, but because it is an abstract class for 
+// Citizens can be influenced by tax changes, population changes, public service
+
 class Citizen : public CitizenObserver {
 
-	private:
+	protected:
 		// director pointer
 		Director* director;
 		// attributes
+		double SatisfactionScore; // highest satisfaction score is a 100
 		std::string Type;
 		std::string Gender;
 		bool Status;
-		//
+
+		// Observer parts
+		// Pointers to concrete subjects
 		Economy* economy;
-		Infrastructural* infrastructure;
+		Public_Services* infrastructure;
 		Government* government;
+		// States of the concrete subjects
+		Population* observerPopulation;
+		PublicServiceState* observerPublicServiceState;
+		Tax* observerTax;
+		std::vector<Policy*> observerPolicy;
+
+
 
 	public:
-		Citizen(){
-			director = new Director;
-			director->construct();
+		// observer function
+		void update();
 
-			Citizen* temp = ((CitizenBuilder*) director)->getCitizen();
+		// basics
+		virtual std::string getType() =0;
+		virtual std::string getGender()=0;
+		virtual bool getStatus()=0;
+		virtual void setType(std::string type)=0;
+		virtual void setGender(std::string gender)=0;
+		virtual void setStatus(bool status)=0;
 
-		}
-
-		std::string getType();
-		std::string getGender();
-		bool getStatus();
+		// 
+		void CalculateSatisfaction();
 };
 
 #endif

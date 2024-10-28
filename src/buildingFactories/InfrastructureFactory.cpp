@@ -3,6 +3,7 @@
 InfrastructureFactory::InfrastructureFactory(int id)
 : BuildingFactory(id)
 {
+
 }
 
 void InfrastructureFactory::createBuilding(string variant)

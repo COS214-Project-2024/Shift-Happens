@@ -1,7 +1,7 @@
 #include "Display.h"
 #include <iostream>
 #include <thread>
-#include <curses.h>
+// #include <curses.h>
 
 Display::Display() {
 

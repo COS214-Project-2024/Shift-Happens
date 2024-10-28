@@ -1,6 +1,8 @@
 #ifndef INDUSTRIALBUILDING_H
 #define INDUSTRIALBUILDING_H
-
+#include "Building.h"
+#include "Materials.h"
+#include <vector>
 #include "../Building.h"
 #include <iostream>
 
@@ -9,6 +11,7 @@ class IndustrialBuilding : public Building{
 private:
 	int numberOfEmployees;
 	int satisfactionScore;
+
 
 public:
 

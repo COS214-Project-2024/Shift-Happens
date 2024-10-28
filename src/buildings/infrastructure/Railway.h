@@ -1,6 +1,5 @@
 #ifndef RAILWAY_H
 #define RAILWAY_H
-
 #include "Infrastructure.h"
 
 
@@ -13,7 +12,9 @@ public:
 	Railway(int id);
 	~Railway();
 
+
 	void print();
 };
+
 
 #endif

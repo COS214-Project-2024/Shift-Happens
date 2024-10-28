@@ -1,12 +1,14 @@
 #ifndef INFRASTRUCTUREFACTORY_H
 #define INFRASTRUCTUREFACTORY_H
 
+
 #include "BuildingFactory.h"
 #include "../buildings/infrastructure/Road.h"
 #include "../buildings/infrastructure/Railway.h"
 #include <vector>
 #include <memory>
 #include <string>
+
 
 using namespace std;
 
@@ -49,5 +51,6 @@ public:
      */
     ~InfrastructureFactory();
 };
+
 
 #endif

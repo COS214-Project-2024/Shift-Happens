@@ -16,4 +16,6 @@ void Railway::print()
 	cout << "Railway" << endl;
 }
 
-
+void Railway::setPrev(Railway* prev) {
+	this->prev = prev;
+}

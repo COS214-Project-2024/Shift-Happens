@@ -1,6 +1,7 @@
 #include "CitySubject.h"
 
 #include <algorithm>
+#include <iostream>
 
 void CitySubject::notify() {
 	for(int i=0; i<observerList.size(); i++){
