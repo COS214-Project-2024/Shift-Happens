@@ -14,6 +14,10 @@ void LowTax::higher(double increase) {
 
 void LowTax::lower(double decrease) {
 	this->RunningRate -= decrease;
+	if(this->RunningRate < 0)
+	{
+		this->RunningRate = 0;
+	}
 }
 
 std::string LowTax::getType(){
