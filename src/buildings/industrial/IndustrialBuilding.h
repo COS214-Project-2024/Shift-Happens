@@ -2,9 +2,9 @@
 #define INDUSTRIALBUILDING_H
 
 #include "../Building.h"
+#include <iostream>
 
-class IndustrialBuilding : public Building
-{
+class IndustrialBuilding : public Building{
 
 private:
 	int numberOfEmployees;
@@ -21,6 +21,7 @@ public:
 	int getSatisfactionScore();
 
 	void setSatisfactionScore(int satisfactionScore);
+	virtual void print() const override;
 };
 
 #endif
