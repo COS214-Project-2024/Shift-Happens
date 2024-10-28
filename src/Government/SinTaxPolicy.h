@@ -1,13 +1,15 @@
 #ifndef SINTAXPOLICY_H
 #define SINTAXPOLICY_H
 
-namespace Building_State {
-	class SinTaxPolicy : Building_State::Policy {
+#include "Policy.h"
+// receivers are : Men and women
+// 
 
+class SinTaxPolicy : public Policy {
+	private:
 
 	public:
 		void handle();
-	};
-}
+};
 
 #endif

@@ -36,12 +36,15 @@ class Government : public CitySubject {
 		std::vector<Policy*> PolicyState;
 
 	public:
+		// Taxes
 		void setPersonalTaxLower(double decrease);
 		void setPersonalTaxHigher(double increase);
-		void addPolicy(Policy* newPolicy);
-		void executePolicy();
 		void setTaxState(Tax* tax);
 		Tax* getTax();
+
+		// Policies
+		void addPolicy(Policy* newPolicy);
+		void executePolicy();
 		std::vector<Policy*> getPolicies();
 };
 
