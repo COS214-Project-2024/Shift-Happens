@@ -106,3 +106,21 @@ int Building::getWaterDemand() {
 void Building::setWaterDemand(int waterDemand) {
 	this->waterDemand = waterDemand;
 }
+
+bool Building::add(MapComponent *component) {
+	throw "Building::add(MapComponent *component) not implemented";
+}
+
+bool Building::remove(MapComponent *component) {
+	throw "Building::remove(MapComponent *component) not implemented";
+}
+
+void Building::getComponent(int id) {
+	throw "Building::getComponent(int id) not implemented";
+}
+
+void Building::render() {
+	throw "Building::render() not implemented";
+}
+
+

@@ -23,10 +23,7 @@ void demo() {
 }
 
 void testBuildingFactory() {
-    BuildingFactory *factory = new ResidentialBuildingFactory(1);
-    
-
-
+    shared_ptr<BuildingFactory> commercialFactory = make_shared<ResidentialBuildingFactory>(1);
 }
 int main() {
     //demo();
