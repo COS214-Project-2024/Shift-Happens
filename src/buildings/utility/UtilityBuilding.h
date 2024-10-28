@@ -5,17 +5,18 @@
 
 class UtilityBuilding : public Building {
 
-	private:
+private:
+	int runningCostPerHour;
+	
+public:
 
-		int runningCostPerHour;
+	UtilityBuilding(int id,string variant, int constructionPrice, int wasteProduced, int sewageProduced, int electricityDemand, int waterDemand);
 
-	public:
+	int getRunningCostPerHour();
 
-		UtilityBuilding(int id,string variant, int constructionPrice, int wasteProduced, int sewageProduced, int electricityDemand, int waterDemand);
+	void setRunningCostPerHour(int runningCostPerHour);
 
-		int getRunningCostPerHour();
-
-		void setRunningCostPerHour(int runningCostPerHour);
+	virtual void print() const override;
 };
 
 

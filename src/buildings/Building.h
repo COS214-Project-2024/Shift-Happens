@@ -66,6 +66,9 @@ public:
 	int getWaterDemand();
 
 	void setWaterDemand(int waterDemand);
+
+	//print function:
+	virtual void print() const;
 };
 
 #endif

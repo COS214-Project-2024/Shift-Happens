@@ -1,27 +1,27 @@
 #ifndef AIRSTRATEGY_H
 #define AIRSTRATEGY_H
 
-#include <string>
 #include "TransportationStrategy.h"
 #include "Map.h"
+#include <memory>
+#include <string>
 
 using namespace std;
-namespace Building_State {
-	class AirStrategy : public Building_State::TransporttionStrategy {
 
-	private:
-		int capacity;
-		double baseFare;
-		double aveSpeed;
-		double costPerKm;
+class AirStrategy : public TransportationStrategy {
 
-	public:
-		double calculateCost(Building_State::Map start, Building_State::Map end);
+private:
+    int capacity;
+    double fare;
+    double speed;
+    double costPerKm;
 
-		double calcDuration(Building_State::Map start, Building_State::Map end);
-
-		string getDescription();
-	};
-}
-
+public:
+	AirStrategy(int cap, double fare, double speed, double baseCost);
+    double calculateCost(shared_ptr<Map> start, shared_ptr<Map> end) override;
+    double calculateDuration(shared_ptr<Map> start, shared_ptr<Map> end) override;
+    string getDescription() override;
+};
 #endif
+
+    
