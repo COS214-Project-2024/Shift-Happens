@@ -1,11 +1,13 @@
 #include "Government.h"
 
-void Government::setTaxLower() {
-	TaxState->lower();
+void Government::setPersonalTaxLower(double decrease) {
+	TaxState->lower(decrease);
+	this->PersonalTaxRate = TaxState->getRate();
 }
 
-void Government::setTaxHigher() {
-	TaxState->higher();
+void Government::setPersonalTaxHigher(double increase) {
+	TaxState->higher(increase);
+	this->PersonalTaxRate = TaxState->getRate();
 }
 
 void Government::addPolicy(Policy* newPolicy) {

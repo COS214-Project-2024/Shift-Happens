@@ -2,12 +2,12 @@
 #define LOWTAX_H
 
 #include "StandardTax.h"
-	class LowTax : public Tax {
-
-
+class LowTax : public Tax {
+	private:
+		int LowTHighCap = 20;
 	public:
-		void higher();
-		void lower();
+		void higher(double increase);
+		void lower(double decrease);
 		std::string getType();
 	};
 

@@ -5,12 +5,13 @@
 #include "HighTax.h"
 #include "LowTax.h"
 
-	class StandardTax : public Tax {
-
-
+class StandardTax : public Tax {
+	private:
+		int StandardTHighCap = 35;
+		int StandardTLowCap = 20;
 	public:
-		void higher();
-		void lower();
+		void higher(double increase);
+		void lower(double decrease);
 		std::string getType();
 	};
 

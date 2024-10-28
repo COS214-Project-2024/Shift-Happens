@@ -2,15 +2,18 @@
 
 #include <iostream>
 
-void LowTax::higher() {
-	Tax* newTax = new StandardTax;
-	// make tax state change
-	government->setTaxState(newTax);
+void LowTax::higher(double increase) {
+	this->RunningRate += increase;
+	if(this->RunningRate > LowTHighCap){
+		Tax* newTax = new StandardTax;
+		// make tax state change
+		government->setTaxState(newTax);
+	}
 
 }
 
-void LowTax::lower() {
-	std::cout << "Tax is already at its lowerst" << std::endl;
+void LowTax::lower(double decrease) {
+	this->RunningRate -= decrease;
 }
 
 std::string LowTax::getType(){
