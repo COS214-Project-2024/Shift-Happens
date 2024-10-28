@@ -1,5 +1,15 @@
 #include "Infrastructure.h"
 
+Infrastructure::Infrastructure(string variant, int id) 
+:MapComponent(id)
+{
+	this->variant = variant;
+	this->type = "Infrastructure";
+	this->width = 1;
+	this->length = 1;
+	this->yPos = -1;
+	this->xPos = -1;
+}
 int Infrastructure::getWidth() {
 	return this->width;
 }
@@ -39,3 +49,26 @@ int Infrastructure::getConstructionCost() {
 void Infrastructure::setConstructionCost(int constructionCost) {
 	this->constructionCost = constructionCost;
 }
+
+void Infrastructure::render() {
+	throw "Infrastructure::render() not yet implemented";
+}
+
+bool Infrastructure::add(MapComponent *component) {
+	throw "Infrastructure::add() not yet implemented";
+}
+
+bool Infrastructure::remove(MapComponent *component) {
+	throw "Infrastructure::remove() not yet implemented";
+}
+
+void Infrastructure::getComponent(int id) {
+	throw "Infrastructure::getComponent() not yet implemented";
+}
+
+Infrastructure::~Infrastructure() {
+	
+}
+
+
+

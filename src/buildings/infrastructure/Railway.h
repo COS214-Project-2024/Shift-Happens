@@ -3,21 +3,13 @@
 
 #include "Infrastructure.h"
 
-	class Railway : public Infrastructure {
+class Railway : public Infrastructure
+{
 
-	private:
-		Railway* next;
-		Railway* prev;
-
-	public:
-		Railway* getNext();
-
-		void setNext(Railway* next);
-
-		Railway* getPrev();
-
-		void setPrev(Railway* prev);
-	};
-
+private:
+public:
+	Railway(int id);
+	~Railway();
+};
 
 #endif

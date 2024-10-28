@@ -7,17 +7,11 @@ class Road : public Infrastructure
 {
 
 private:
-	Road *next;
-	Road *prev;
+	
 
 public:
-	Road *getNext();
-
-	void setNext(Road *next);
-
-	Road *getPrev();
-
-	void setPrev(Road *prev);
+	Road(int id);
+	~Road();
 };
 
 #endif
