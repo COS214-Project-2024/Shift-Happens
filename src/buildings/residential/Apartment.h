@@ -2,11 +2,14 @@
 #define APARTMENT_H
 
 #include "ResidentialBuilding.h"
-class Apartment : public ResidentialBuilding
-{
-public:
-	Apartment(int id);
-	~Apartment();
+class Apartment : public ResidentialBuilding{
+	private:
+		int satisfactionScore;
+        int capacity;
+	    int incomePerHour;
+	public:
+		Apartment(int id);
+		~Apartment();
 };
 
 #endif
