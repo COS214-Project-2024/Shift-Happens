@@ -8,6 +8,11 @@
 // Concrete subject in observer pattern
 // Context in state pattern
 
+/*
+Government has tax rates and policies
+
+*/ 
+
 class Government : public CitySubject {
 	private:
 		Tax* TaxState;

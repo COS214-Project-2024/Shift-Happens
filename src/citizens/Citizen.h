@@ -21,6 +21,7 @@ class Citizen : public CitizenObserver {
 		// director pointer
 		Director* director;
 		// attributes
+		double SatisfactionScore; // highest satisfaction score is a 100
 		std::string Type;
 		std::string Gender;
 		bool Status;
@@ -37,6 +38,7 @@ class Citizen : public CitizenObserver {
 		std::vector<Policy*> observerPolicy;
 
 
+
 	public:
 		// observer function
 		void update();
@@ -48,6 +50,9 @@ class Citizen : public CitizenObserver {
 		virtual void setType(std::string type)=0;
 		virtual void setGender(std::string gender)=0;
 		virtual void setStatus(bool status)=0;
+
+		// 
+		void CalculateSatisfaction();
 };
 
 #endif
