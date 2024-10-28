@@ -3,14 +3,15 @@
 #include "Building.h"
 #include "Materials.h"
 #include <vector>
+#include "../Building.h"
+#include <iostream>
 
-using namespace std;
-	class IndustrialBuilding : Building {
+class IndustrialBuilding : public Building{
 
-	private:
-		int numberOfEmployees;
-		int satisfactionScore;
-		vector<Materials*> availableMaterials; //THIS WOULD STORE THE materials in the warehouse that were produced by the factory
+private:
+	int numberOfEmployees;
+	int satisfactionScore;
+
 
 public:
 
@@ -23,6 +24,7 @@ public:
 	int getSatisfactionScore();
 
 	void setSatisfactionScore(int satisfactionScore);
+	virtual void print() const override;
 };
 
 #endif

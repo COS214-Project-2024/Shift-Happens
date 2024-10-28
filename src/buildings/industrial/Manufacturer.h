@@ -3,10 +3,11 @@
 #include "IndustrialBuilding.h"
 #include "Materials.h"
 
-class Manufacturer : public IndustrialBuilding
-{
+class Manufacturer : public IndustrialBuilding{
 
 private:
+	int satisfactionScore;
+    int numberOfEmployees;
 	int productsPerHour;
 	int partsUsedPerProduct;
 	int profitPerProduct;
@@ -15,6 +16,7 @@ private:
 public:
 	Manufacturer(int id);
 	~Manufacturer();
+	virtual void print() const override;
 };
 
 #endif

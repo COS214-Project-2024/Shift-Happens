@@ -1,16 +1,16 @@
 #ifndef WATERSUPPLY_H
 #define WATERSUPPLY_H
 
-namespace Building_State {
-	class WaterSupply : Building_State::UtilityBuilding {
+#include "UtilityBuilding.h"
 
-	public:
-		int waterSupply;
-
-		int getWaterSupply();
-
-		void setWaterSupply(int waterSupply);
-	};
-}
+class WaterSupply : public UtilityBuilding{
+private:
+	int waterSupply;
+public:	
+	WaterSupply(int id);
+	int getWaterSupply();
+	void setWaterSupply(int waterSupply);
+	virtual void print() const override;
+};
 
 #endif

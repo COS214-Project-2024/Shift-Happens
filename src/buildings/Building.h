@@ -25,6 +25,11 @@ public:
 	Building(int id,int width, int length, int xPos, int yPos, string variant, string type, int constructionPrice, int wasteProduced, int sewageProduced, int electricityDemand, int waterDemand);
 	int getWidth();
 
+	bool add(MapComponent *component);
+	bool remove(MapComponent *component);
+	void getComponent(int id);
+	void render();
+
 	void setWidth(int width);
 
 	int getLength();
@@ -66,6 +71,9 @@ public:
 	int getWaterDemand();
 
 	void setWaterDemand(int waterDemand);
+
+	//print function:
+	virtual void print() const;
 };
 
 #endif

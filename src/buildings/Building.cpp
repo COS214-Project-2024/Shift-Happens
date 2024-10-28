@@ -1,6 +1,8 @@
 #include "Building.h"
+#include <string> 
+#include <iostream> 
 
-
+using namespace std;
 
 Building::Building(int id,int width, int length, int xPos, int yPos, string variant, string type, int constructionPrice, int wasteProduced, int sewageProduced, int electricityDemand, int waterDemand) 
 : MapComponent(id)
@@ -105,4 +107,31 @@ int Building::Building::getWaterDemand() {
 
 void Building::Building::setWaterDemand(int waterDemand) {
 	this->waterDemand = waterDemand;
+}
+
+bool Building::add(MapComponent *component) {
+	throw "Building::add(MapComponent *component) not implemented";
+}
+
+bool Building::remove(MapComponent *component) {
+	throw "Building::remove(MapComponent *component) not implemented";
+}
+
+void Building::getComponent(int id) {
+	throw "Building::getComponent(int id) not implemented";
+}
+
+void Building::render() {
+	throw "Building::render() not implemented";
+}
+
+//print function
+void Building::print() const {
+    cout << "Building Attributes:" << endl;
+    cout << "Width: " << width << ", Length: " << length << endl;
+    cout << "Position: (" << xPos << ", " << yPos << ")" << endl;
+    cout << "Type: " << type << ", Variant: " << variant << endl;
+    cout << "Construction Price: " << constructionPrice << endl;
+    cout << "Waste Produced: " << wasteProduced << ", Sewage Produced: " << sewageProduced << endl;
+    cout << "Electricity Demand: " << electricityDemand << ", Water Demand: " << waterDemand << endl;
 }

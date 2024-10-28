@@ -1,17 +1,18 @@
 #include "Road.h"
+#include <iostream>
 
-Road* Road::getNext() {
-	return this->next;
+Road::Road(int id)
+:Infrastructure("Road", id)
+{
+	
 }
 
-void Road::setNext(Road* next) {
-	this->next = next;
+Road::~Road()
+{
+	
 }
 
-Road* Road::getPrev() {
-	return this->prev;
-}
-
-void Road::setPrev(Road* prev) {
-	this->prev = prev;
+void Road::print()
+{
+	cout << "Road" << endl;
 }

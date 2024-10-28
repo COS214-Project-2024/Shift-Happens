@@ -1,16 +1,7 @@
 #include "Map.h"
 #include <iostream>
 Map::Map(int id) : MapComponent(id) {
-	//standard map size is 25x25
-	for (size_t i = 0; i < 25; i++)
-	{
-		vector<MapComponent*> row;
-		for (size_t j = 0; j < 25; j++)
-		{
-			row.push_back(nullptr);
-		}
-		tiles.push_back(row);
-	}
+	throw "Map::Map(int id) not implemented";
 }
 
 bool Map::add(MapComponent* component) {

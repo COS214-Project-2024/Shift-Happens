@@ -1,15 +1,19 @@
 #include "Railway.h"
-
-Railway* Railway::getNext() {
-	return this->next;
+#include <iostream>
+Railway::Railway(int id)
+:Infrastructure("Railway", id)
+{
+	
 }
 
-void Railway::setNext(Railway* next) {
-	this->next = next;
+Railway::~Railway()
+{
+	
 }
 
-Railway* Railway::getPrev() {
-	return this->prev;
+void Railway::print()
+{
+	cout << "Railway" << endl;
 }
 
 void Railway::setPrev(Railway* prev) {

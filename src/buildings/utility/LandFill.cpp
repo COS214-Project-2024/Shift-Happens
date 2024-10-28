@@ -1,9 +1,19 @@
 #include "LandFill.h"
+#include <iostream>
 
-int Building_State::LandFill::getWasteRemovalRate() {
+LandFill::LandFill(int id)
+    : UtilityBuilding(id, "Landfill", 500, 0, 10, 10, 10), wasteRemovalRate(500) {}
+
+int LandFill::getWasteRemovalRate() {
 	return this->wasteRemovalRate;
 }
 
-void Building_State::LandFill::setWasteRemovalRate(int wasteRemovalRate) {
+void LandFill::setWasteRemovalRate(int wasteRemovalRate) {
 	this->wasteRemovalRate = wasteRemovalRate;
+}
+
+void LandFill::print() const {
+    std::cout << "LandFill Attributes:" << std::endl;
+    std::cout << "Waste Removal Rate: " << wasteRemovalRate << std::endl;
+    UtilityBuilding::print(); 
 }

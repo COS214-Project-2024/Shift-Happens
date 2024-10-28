@@ -3,18 +3,18 @@
 #include "Infrastructure.h"
 	class Road :public Infrastructure {
 
-	private:
-		Road* next;
-		Road* prev;
+class Road : public Infrastructure
+{
 
-	public:
-		Road* getNext();
+private:
+	
 
-		void setNext(Road* next);
+public:
+	Road(int id);
+	~Road();
 
-		Road* getPrev();
+	void print();
+};
 
-		void setPrev(Road* prev);
-	};
 
 #endif

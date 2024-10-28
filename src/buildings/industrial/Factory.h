@@ -1,18 +1,17 @@
 #ifndef FACTORY_H
 #define FACTORY_H
 #include "IndustrialBuilding.h"
-#include "Materials.h"
-
-	class Factory : IndustrialBuilding {
-
+class Factory : public IndustrialBuilding{
 private:
+	int satisfactionScore;
+    int numberOfEmployees;
 	int partProductionPerHour;
 	int productionCostPerHour;
 	Materials *materials;
 public:
 	Factory(int id);
 	~Factory();
-
+	virtual void print() const override;
 };
 
 #endif

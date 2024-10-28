@@ -11,6 +11,9 @@ private:
 	int incomePerHour;
 
 public:
+
+	ResidentialBuilding(int id, int capacity, string variant, int satisfactionScore, int incomePerHour, int constructionPrice, int wasteProduced, int sewageProduced, int electricityDemand, int waterDemand);
+
 	int getCapacity();
 
 	void setCapacity(int capacity);
@@ -22,6 +25,11 @@ public:
 	int getIncomePerHour();
 
 	void setIncomePerHour(int incomePerHour);
+
+	~ResidentialBuilding();
+
+	//print function
+	virtual void print() const override;
 };
 
 #endif

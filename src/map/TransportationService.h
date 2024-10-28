@@ -1,23 +1,27 @@
 #ifndef TRANSPORTATIONSERVICE_H
 #define TRANSPORTATIONSERVICE_H
 
-namespace Building_State {
-	class TransportationService {
+#include <memory>
+#include "TransportationStrategy.h"
+#include "Map.h"
 
-	private:
-		Building_State::TransporttionStrategy* strategy;
-		Building_State::Map currLocation;
-		Building_State::Map destination;
+using namespace std;
 
-	public:
-		void setStrategy(strategy TransportationStrategy);
+class TransportationService {
 
-		double getCost();
+private:
+    shared_ptr<TransportationStrategy> strategy;
+    shared_ptr<Map> currentLocation;
+    shared_ptr<Map> destination;
 
-		double getDuration();
+public:
+	TransportationService(shared_ptr<TransportationStrategy> strat, 
+                          shared_ptr<Map> start, shared_ptr<Map> end);
 
-		void displayOption();
-	};
-}
+    void setStrategy(shared_ptr<TransportationStrategy> strat);
+    double getCost();
+    double getDuration();
+    void displayOption();
+};
 
 #endif
