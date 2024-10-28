@@ -2,11 +2,17 @@
 #define HOUSE_H
 
 #include "ResidentialBuilding.h"
-class House : public ResidentialBuilding
-{
-public:
-	House(int id);
-	~House();
+#include <iostream>
+
+class House : public ResidentialBuilding{
+	private:
+		int satisfactionScore;
+        int capacity;
+	    int incomePerHour;
+	public:
+		House(int id);
+		~House();
+		virtual void print() const override;
 };
 
 #endif

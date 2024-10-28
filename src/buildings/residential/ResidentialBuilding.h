@@ -27,6 +27,9 @@ public:
 	void setIncomePerHour(int incomePerHour);
 
 	~ResidentialBuilding();
+
+	//print function
+	virtual void print() const override;
 };
 
 #endif

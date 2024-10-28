@@ -10,6 +10,8 @@ class Apartment : public ResidentialBuilding{
 	public:
 		Apartment(int id);
 		~Apartment();
+		//print 
+		virtual void print() const override;
 };
 
 #endif

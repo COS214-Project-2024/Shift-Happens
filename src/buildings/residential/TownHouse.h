@@ -2,6 +2,8 @@
 #define TOWNHOUSE_H
 
 #include "ResidentialBuilding.h"
+#include <iostream>
+
 class TownHouse : public ResidentialBuilding{
 	private:
 		int satisfactionScore;
@@ -10,6 +12,7 @@ class TownHouse : public ResidentialBuilding{
 public:
 	TownHouse(int id);
 	~TownHouse();
+	virtual void print() const override;
 
 };
 
