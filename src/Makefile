@@ -41,6 +41,10 @@ SRCS = $(SRC_DIR)/main.cpp \
        $(SRC_DIR)/buildings/landmark/Park.cpp \
        $(SRC_DIR)/buildings/infrastructure/Road.cpp \
        $(SRC_DIR)/buildings/infrastructure/Railway.cpp \
+       $(SRC_DIR)/buildings/transport/TransportBuilding.cpp \
+       $(SRC_DIR)/buildings/transport/Airport.cpp \
+       $(SRC_DIR)/buildings/transport/BusStation.cpp \
+       $(SRC_DIR)/buildings/transport/TrainStation.cpp \
        $(SRC_DIR)/buildingFactories/BuildingFactory.cpp \
        $(SRC_DIR)/buildingFactories/CommercialBuildingFactory.cpp \
        $(SRC_DIR)/buildingFactories/IndustrialBuildingFactory.cpp \
@@ -48,6 +52,8 @@ SRCS = $(SRC_DIR)/main.cpp \
        $(SRC_DIR)/buildingFactories/LandmarkBuildingFactory.cpp \
        $(SRC_DIR)/buildingFactories/ResidentialBuildingFactory.cpp \
        $(SRC_DIR)/buildingFactories/UtilityBuildingFactory.cpp \
+       $(SRC_DIR)/buildingFactories/TransportBuildingFactory.cpp \
+
 
 # Object files
 OBJS = $(SRCS:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)

@@ -12,6 +12,7 @@
 #include "buildingFactories/UtilityBuildingFactory.h"
 #include "buildingFactories/LandmarkBuildingFactory.h"
 #include "buildingFactories/InfrastructureFactory.h"
+#include "buildingFactories/TransportBuildingFactory.h" // Include TransportBuildingFactory
 
 #include "buildingFactories/BuildingFactory.h"
 
@@ -43,10 +44,9 @@
 #include "buildings/infrastructure/Road.h"
 #include "buildings/infrastructure/Railway.h"
 
-
-
-
-
+#include "buildings/transport/Airport.h"
+#include "buildings/transport/BusStation.h"
+#include "buildings/transport/TrainStation.h"
 
 using namespace std;
 
@@ -56,16 +56,17 @@ void demo() {
 }
 
 void testBuildingFactory() {
-    cout<<"Testing Building Factory"<<endl;
-    cout<<"Creating Building Factories of each type"<<endl;
+    cout << "Testing Building Factory" << endl;
+    cout << "Creating Building Factories of each type" << endl;
     shared_ptr<BuildingFactory> resFactory = make_shared<ResidentialBuildingFactory>(1);
     shared_ptr<BuildingFactory> comFactory = make_shared<CommercialBuildingFactory>(2);
     shared_ptr<BuildingFactory> indFactory = make_shared<IndustrialBuildingFactory>(3);
     shared_ptr<BuildingFactory> utiFactory = make_shared<UtilityBuildingFactory>(4);
     shared_ptr<BuildingFactory> landFactory = make_shared<LandmarkBuildingFactory>(5);
     shared_ptr<BuildingFactory> infraFactory = make_shared<InfrastructureFactory>(6);
+    shared_ptr<BuildingFactory> transFactory = make_shared<TransportBuildingFactory>(7); // Create TransportBuildingFactory
 
-    cout<<"Creating Buildings"<<endl;
+    cout << "Creating Buildings" << endl;
     resFactory->createBuilding("House");
     resFactory->createBuilding("TownHouse");
     resFactory->createBuilding("Estate");
@@ -91,22 +92,21 @@ void testBuildingFactory() {
     infraFactory->createBuilding("Road");
     infraFactory->createBuilding("Railway");
 
-    //print buildings
+    transFactory->createBuilding("Airport"); // Create transport buildings
+    transFactory->createBuilding("BusStation");
+    transFactory->createBuilding("TrainStation");
 
-    cout<<"Printing Buildings"<<endl;
+    // Print buildings
+    cout << "Printing Buildings" << endl;
     resFactory->print();
     comFactory->print();
     indFactory->print();
     utiFactory->print();
     landFactory->print();
     infraFactory->print();
-
-    
-
-
-
-
+    transFactory->print(); // Print transport buildings
 }
+
 int main() {
     //demo();
     testBuildingFactory();
