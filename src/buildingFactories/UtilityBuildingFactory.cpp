@@ -42,3 +42,12 @@ UtilityBuildingFactory::~UtilityBuildingFactory()
 {
 	
 }
+
+void UtilityBuildingFactory::print()
+{
+	cout << "Printing Utility Buildings" << endl;
+	for (auto building : buildings)
+	{
+		building->print();
+	}
+}

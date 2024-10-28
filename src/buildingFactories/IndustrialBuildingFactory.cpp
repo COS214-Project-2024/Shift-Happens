@@ -36,3 +36,12 @@ IndustrialBuildingFactory::~IndustrialBuildingFactory()
 {
 	
 }
+
+void IndustrialBuildingFactory::print()
+{
+	cout << "Printing Industrial Buildings" << endl;
+	for (auto building : buildings)
+	{
+		building->print();
+	}
+}

@@ -13,6 +13,8 @@ protected:
 public:
 	BuildingFactory(int id);
 	virtual void createBuilding(string variant) = 0;
+
+	virtual void print() = 0;
 	~BuildingFactory();
 
 };

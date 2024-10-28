@@ -34,3 +34,12 @@ InfrastructureFactory::~InfrastructureFactory()
 {
 	
 }
+
+void InfrastructureFactory::print()
+{
+	cout << "Printing Infrastructure Buildings" << endl;
+	for (auto building : buildings)
+	{
+		building->print();
+	}
+}

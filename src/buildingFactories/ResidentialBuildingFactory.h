@@ -20,5 +20,7 @@ public:
 	ResidentialBuildingFactory(int id);
 	void createBuilding(string variant);
 	~ResidentialBuildingFactory();
+
+	void print();
 };
 #endif

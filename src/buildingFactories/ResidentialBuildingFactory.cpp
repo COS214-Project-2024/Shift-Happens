@@ -42,3 +42,12 @@ ResidentialBuildingFactory::~ResidentialBuildingFactory()
 {
 
 }
+
+void ResidentialBuildingFactory::print()
+{
+	cout << "Printing Residential Buildings" << endl;
+	for (auto building : buildings)
+	{
+		building->print();
+	}
+}

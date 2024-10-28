@@ -19,6 +19,8 @@ public:
 	InfrastructureFactory(int id);
 	void createBuilding(string variant);
 	~InfrastructureFactory();
+
+	void print();
 };
 
 #endif

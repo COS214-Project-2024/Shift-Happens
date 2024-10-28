@@ -20,6 +20,7 @@ public:
 	CommercialBuildingFactory(int id);
 	void createBuilding(string variant);
 	~CommercialBuildingFactory();
+	void print();
 };
 
 

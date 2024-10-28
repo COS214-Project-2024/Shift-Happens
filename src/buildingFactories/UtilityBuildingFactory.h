@@ -21,6 +21,8 @@ public:
 	UtilityBuildingFactory(int id);
 	void createBuilding(string variant);
 	~UtilityBuildingFactory();
+
+	void print();
 };
 
 #endif

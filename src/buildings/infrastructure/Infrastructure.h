@@ -20,7 +20,7 @@ protected:
 public:
 	Infrastructure(string variant, int id);
 
-	~Infrastructure();
+	virtual ~Infrastructure();
 
 	int getWidth();
 
@@ -49,6 +49,8 @@ public:
 	bool remove(MapComponent *component);
 
 	void getComponent(int id);
+
+	virtual void print() = 0;
 
 
 };

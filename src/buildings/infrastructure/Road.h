@@ -12,6 +12,8 @@ private:
 public:
 	Road(int id);
 	~Road();
+
+	void print();
 };
 
 #endif

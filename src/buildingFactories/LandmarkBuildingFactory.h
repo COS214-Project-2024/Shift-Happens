@@ -20,6 +20,8 @@ public:
 	LandmarkBuildingFactory(int id);
 	void createBuilding(string variant);
 	~LandmarkBuildingFactory();
+
+	void print();
 };
 
 #endif

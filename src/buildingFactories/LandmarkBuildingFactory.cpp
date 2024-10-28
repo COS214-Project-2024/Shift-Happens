@@ -40,3 +40,12 @@ LandmarkBuildingFactory::~LandmarkBuildingFactory()
 {
 	
 }
+
+void LandmarkBuildingFactory::print()
+{
+	cout << "Printing Landmark Buildings" << endl;
+	for (auto building : buildings)
+	{
+		building->print();
+	}
+}

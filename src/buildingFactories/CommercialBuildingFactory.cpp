@@ -38,3 +38,12 @@ CommercialBuildingFactory::~CommercialBuildingFactory()
 {
 	
 }
+
+void CommercialBuildingFactory::print()
+{
+	cout << "Printing Commercial Buildings" << endl;
+	for (auto building : buildings)
+	{
+		building->print();
+	}
+}

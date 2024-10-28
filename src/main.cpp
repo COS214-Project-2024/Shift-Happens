@@ -91,6 +91,16 @@ void testBuildingFactory() {
     infraFactory->createBuilding("Road");
     infraFactory->createBuilding("Railway");
 
+    //print buildings
+
+    cout<<"Printing Buildings"<<endl;
+    resFactory->print();
+    comFactory->print();
+    indFactory->print();
+    utiFactory->print();
+    landFactory->print();
+    infraFactory->print();
+
     
 
 
