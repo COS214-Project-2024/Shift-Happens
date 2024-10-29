@@ -17,6 +17,7 @@ class BoostHealthCarePolicy : public Policy {
   public:
     void executePolicy(double AvailableBudget);
     BoostHealthCarePolicy(std::shared_ptr<HealthCare> healthcare);
+    std::string getPolicyType();
 };
 
 #endif

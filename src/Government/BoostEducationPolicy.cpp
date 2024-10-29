@@ -1,6 +1,8 @@
 #include "BoostEducationPolicy.h"
 
 #include <iostream>
+#include <memory>
+
 #include "Modern.h"
 #include "Standard.h"
 
@@ -16,13 +18,17 @@ void BoostEducationPolicy::executePolicy(double AvailableBudget){
     if(this->education->getState()->getType() == "Modern Services"){
       // build another education centre
     } else if("Standard Services"){
-      this->education->setPublicServiceState(new Modern);
+      this->education->setPublicServiceState(std::make_shared<Modern>());
       std::cout << "Your education services was upgraded from standard to modern" << std::endl;
       // build another education centre
     } else if("Outdated Services"){
-      this->education->setPublicServiceState(new Standard);
+      this->education->setPublicServiceState(std::make_shared<Standard>());
       std::cout << "Your education services was upgraded from outdated to standard" << std::endl;
       // build another education centre
     }
   }
+}
+
+std::string BoostEducationPolicy::getPolicyType(){
+  return "Boost Education Policy";
 }

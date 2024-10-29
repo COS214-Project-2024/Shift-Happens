@@ -17,6 +17,7 @@ class BoostEducationPolicy : public Policy {
   public:
     BoostEducationPolicy(std::shared_ptr<Education> edu);
     void executePolicy(double AvailableBudget);
+    std::string getPolicyType();
 };
 
 #endif

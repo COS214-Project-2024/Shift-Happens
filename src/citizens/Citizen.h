@@ -8,7 +8,9 @@
 
 #include "../Government/Economy.h"
 #include "../Government/Government.h"
-#include "../Government/Public Services.h"
+#include "../Government/Police.h"
+#include "../Government/HealthCare.h"
+#include "../Government/Education.h"
 #include "../Government/Population.h"
 #include "../Government/PublicServiceState.h"
 #include "../Government/Tax.h"
@@ -32,13 +34,18 @@ class Citizen : public CitizenObserver {
 		// Observer parts
 		// Pointers to concrete subjects
 		std::shared_ptr<Economy> economy;
-		std::shared_ptr<Public_Services> infrastructure;
+		// have more than one type of public service
+		std::shared_ptr<Public_Services> police;
+		std::shared_ptr<Public_Services> education;
+		std::shared_ptr<Public_Services> healthcare;
 		std::shared_ptr<Government> government;
 		// States of the concrete subjects
 		std::shared_ptr<Population> observerPopulation;
-		std::shared_ptr<PublicServiceState> observerPublicServiceState;
+		std::shared_ptr<PublicServiceState> observerPolice;
+		std::shared_ptr<PublicServiceState> observerEducation;
+		std::shared_ptr<PublicServiceState> observerHealthcare;
 		std::shared_ptr<Tax> observerTax;
-		std::vector<std::shared_ptr<Policy>> observerPolicy;
+		
 		std::shared_ptr<Statistics> observerStatistics;
 
 

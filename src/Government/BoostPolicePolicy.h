@@ -17,6 +17,7 @@ class BoostPolicePolicy : public Policy {
   public:
     void executePolicy(double AvailableBudget);
     BoostPolicePolicy(std::shared_ptr<Police> police);
+    std::string getPolicyType();
 };
 
 #endif

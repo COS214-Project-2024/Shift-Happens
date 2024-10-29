@@ -26,6 +26,7 @@
 class Policy {
 	public:
 		virtual void executePolicy(double AvailableBudget) = 0;
+		virtual std::string getPolicyType() =0;
 };
 
 #endif
