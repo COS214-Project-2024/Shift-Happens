@@ -56,6 +56,8 @@ class Citizen : public CitizenObserver {
 		// 
 		void CalculateSatisfaction();
 		double getSatisfactionScore();
+		void increaseSatisfaction(double increase);
+		void decreaseSatisfaction(double decrease);
 };
 
 #endif

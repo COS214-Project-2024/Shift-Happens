@@ -52,3 +52,11 @@ void Citizen::CalculateSatisfaction(){
 double Citizen::getSatisfactionScore(){
   return this->SatisfactionScore;
 }
+
+void Citizen::increaseSatisfaction(double increase){
+  this->SatisfactionScore += increase;
+}
+
+void Citizen::decreaseSatisfaction(double decrease){
+  this->SatisfactionScore -= decrease;
+}
