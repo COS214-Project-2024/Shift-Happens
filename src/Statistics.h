@@ -7,13 +7,21 @@
 #include "Building.h"
 #include "Citizen.h"
 #include "Government.h"
-
+#include "buildings/utility/PowerPlant.h"
+#include "buildings/utility/WaterSupply.h"
 
 
 	class Statistics {
 	private:
 		std::vector<Building*> buildings; //track all buildings in the game
 		std::vector<Citizen*> citizens; //track all citizens in the game
+		std::vector<Materials*> materials; //track all materials in the game
+	
+		double powerConsumption; //75% of supply
+		double waterConsumption; //60% of supply
+		double waterSupply; //this score will be assigned by the getWaterSupply function
+		double electricitySupply; //this score will be assigned by the getElectricitySupply function
+
 		double citySatisfactionScore; //this score will be assigned by the getAverageCitizenSatisfaction function
 		double employmentRate; //this score will be assigned by the getEmploymentRates function
 		int numberOfBuildings;
@@ -60,13 +68,31 @@
 
 		}; //should calculate the employment rates for the city and assign to employment rate
 		
+		void getUtilityStatistics(PowerPlant *powerPlant, WaterSupply *waterSupply)
+		{
+			// get the power consumption, water consumption, water supply, and electricity supply from the government object
+			// assign these values to the powerConsumption, waterConsumption, waterSupply, and electricitySupply variables in the statistics object
+			electricitySupply = powerPlant->getElectricityProduction();
+			this->waterSupply = waterSupply->getWaterSupply();
+			waterConsumption = 0.6 * this->waterSupply;
+			powerConsumption = 0.75 * electricitySupply;
+		};
+
 		void displayStatistics(){
 			std::cout << "City Satisfaction Score: " << citySatisfactionScore << std::endl;
 			std::cout << "Employment Rate: " << employmentRate << std::endl;
 			std::cout << "Number of Buildings: " << buildings.size() << std::endl;
+			std::cout << "Number of Citizens: " << citizens.size() << std::endl;
+			std::cout << "Power Consumption: " << powerConsumption << std::endl;
+			std::cout << "Water Consumption: " << waterConsumption << std::endl;
+			std::cout << "Water Supply: " << waterSupply << std::endl;
+			std::cout << "Electricity Supply: " << electricitySupply << std::endl;
+
 		}; //should call the displays for all buildings in the model
-		// void getBuilding(int id); // function necessity to be determined
+
 	};
+
+	
 
 
 #endif

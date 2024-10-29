@@ -8,9 +8,6 @@
 		std::string description;
 		double cost;
 		int quantity;
-		std::vector<Materials*> components;
-		int quantity;
-		static double salesMade;
 
 	public:
 		Materials(std::string description, double cost, int quantity);};

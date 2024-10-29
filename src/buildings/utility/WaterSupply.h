@@ -8,7 +8,7 @@ private:
 	int waterSupply;
 public:	
 	WaterSupply(int id);
-	int getWaterSupply();
+	double getWaterSupply();
 	void setWaterSupply(int waterSupply);
 	virtual void print() const override;
 };

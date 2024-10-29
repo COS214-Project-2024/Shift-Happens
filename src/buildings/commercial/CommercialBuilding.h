@@ -27,6 +27,8 @@ using namespace std;
 		int getNumberOfEmployees();
 
 		void setNumberOfEmployees(int numberOfEmployees);
+
+		
 	};
 
 

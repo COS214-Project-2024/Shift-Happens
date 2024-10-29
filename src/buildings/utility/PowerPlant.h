@@ -10,7 +10,7 @@ private:
 
 public:
 	PowerPlant(int id);
-	void getElectricityProduction();
+	double getElectricityProduction();
 	void setElectricityProduction(int electricityProduction);
 	virtual void print() const override;
 };
