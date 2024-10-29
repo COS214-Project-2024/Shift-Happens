@@ -25,7 +25,7 @@
 
 class Policy {
 	public:
-		virtual void executePolicy() = 0;
+		virtual void executePolicy(double AvailableBudget) = 0;
 };
 
 #endif

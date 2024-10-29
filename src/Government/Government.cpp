@@ -16,7 +16,7 @@ void Government::addPolicy(Policy* newPolicy) {
 
 void Government::executePolicy() {
 	for(Policy* temp: PolicyState){
-		temp->executePolicy();
+		temp->executePolicy(this->AvailableSpendingBudget);
 	}
 }
 
@@ -51,4 +51,8 @@ void Government::setBusinessTaxHigher(double increase){
 void Government::setBusinessTaxLower(double decrease){
 	BusinessTaxState->lowerBusiness(decrease);
 	this->BusinessTaxRate = BusinessTaxState->getBusinessRate();
+}
+
+double Government::getAvailableSpendingBudget(){
+	return AvailableSpendingBudget;
 }

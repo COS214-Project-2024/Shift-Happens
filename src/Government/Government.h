@@ -33,7 +33,6 @@ class Government : public CitySubject {
 	private:
 		// Budget	
 		double AvailableSpendingBudget;
-		double PublicServicesBudget;
 		// person tax
 		double PersonalTaxRate;
 		Tax* PersonalTaxState;
@@ -60,6 +59,9 @@ class Government : public CitySubject {
 		void addPolicy(Policy* newPolicy);
 		void executePolicy();
 		std::vector<Policy*> getPolicies();
+
+		// basics
+		double getAvailableSpendingBudget();
 };
 
 #endif
