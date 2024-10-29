@@ -48,3 +48,7 @@ void Citizen::CalculateSatisfaction(){
     Total -= 5;
   }
 }
+
+double Citizen::getSatisfactionScore(){
+  return this->SatisfactionScore;
+}
