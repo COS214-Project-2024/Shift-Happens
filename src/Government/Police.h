@@ -1,7 +1,7 @@
 #ifndef POLICE_H
 #define POLICE_H
 
-#include "Public Services.h"
+#include "PublicServices.h"
 
 class Police : public Public_Services {
 	private:

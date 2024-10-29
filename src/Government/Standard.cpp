@@ -1,5 +1,9 @@
 #include "Standard.h"
 
+Standard::Standard(){
+  
+}
+
 void Standard::increaseBudget(double increase){
   this->RunningBudget += increase;
   if(this->RunningBudget > StandardHighCap){

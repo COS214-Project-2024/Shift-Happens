@@ -1,5 +1,8 @@
 #include "Outdated.h"
 
+
+Outdated::Outdated(){
+}
 void Outdated::increaseBudget(double increase){
   this->RunningBudget += increase;
   if(this->RunningBudget > OutdatedHighCap){

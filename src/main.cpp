@@ -49,7 +49,20 @@
 #include "buildings/transport/TrainStation.h"
 
 //Policies
-#include "Government/Public Services.h"
+#include "Government/PublicServiceState.h"
+#include "Government/Standard.h"
+#include "Government/Outdated.h"
+#include "Government/Modern.h"
+#include "Government/PublicServices.h"
+#include "Government/CitySubject.h"
+#include "citizens/CitizenObserver.h"
+#include "Government/Education.h"
+#include "Government/HealthCare.h"
+#include "Government/Police.h"
+#include "Government/BoostEducationPolicy.h"
+#include "Government/BoostHealthCarePolicy.h"
+#include "Government/BoostPolicePolicy.h"
+#include "Government/Policy.h"
 
 using namespace std;
 
@@ -112,6 +125,16 @@ void testBuildingFactory() {
 
 void testPolicies(){
     cout<<"Testing Policies..."<<endl;
+
+    cout<<"Creating Public Services..."<<endl;
+    shared_ptr<Public_Services> education = make_shared<Education>();
+    cout<<"Education successfully created..."<<endl;
+    shared_ptr<Public_Services> healthcare = make_shared<HealthCare>();
+    cout<<"Healthcare successfully created..."<<endl;
+    shared_ptr<Public_Services> police = make_shared<Police>();
+    cout<<"Police successfully created..."<<endl;
+
+
 }
 
 int main() {

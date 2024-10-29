@@ -1,6 +1,10 @@
 #include "Education.h"
 #include <limits>
 
+Education::Education(){
+  InfraStructureCondition = nullptr;  // Initital Standard budget for education
+}
+
 void Education::increaseBudget(){
   std::string answer;
   double amount;

@@ -1,7 +1,8 @@
 #ifndef PUBLICSERVICESTATE_H
 #define PUBLICSERVICESTATE_H
 
-#include "Public Services.h"
+#include <string>
+#include "PublicServices.h"
 
 
 class Public_Services; // forward declaration because of circular dependency

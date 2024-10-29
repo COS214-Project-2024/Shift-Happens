@@ -4,10 +4,12 @@
 #include "PublicServiceState.h"
 #include "Standard.h"
 
+class Standard;
 class Modern : public PublicServiceState {
 	private:
 		double ModernLowerCap = 1000;
 	public:
+		Modern();
 		void increaseBudget(double increase);
 		void descreaseBudget(double decrease);
 		std::string getType();
