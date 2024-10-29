@@ -1,6 +1,6 @@
 #ifndef BOY_H
 #define BOY_H
-
+#include "Citizen.h"
 	class Boy : public Citizen {
 
 	private:
