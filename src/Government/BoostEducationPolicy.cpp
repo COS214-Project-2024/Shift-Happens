@@ -4,9 +4,14 @@
 #include "Modern.h"
 #include "Standard.h"
 
+BoostEducationPolicy::BoostEducationPolicy(Education* edu){
+  this->education = edu;
+}
+
 void BoostEducationPolicy::executePolicy(double AvailableBudget){
   if(this->Cost > AvailableBudget){
     std::cout << "You currently do not have the funds to fully implements this policy" << std::endl;
+    return; //Not enough funds to implement policy
   } else {
     if(this->education->getState()->getType() == "Modern Services"){
       // build another education centre

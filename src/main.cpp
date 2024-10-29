@@ -107,8 +107,13 @@ void testBuildingFactory() {
     transFactory->print(); // Print transport buildings
 }
 
+void testPolicies(){
+    cout<<"Testing Policies..."<<endl;
+}
+
 int main() {
     //demo();
-    testBuildingFactory();
+    //testBuildingFactory();
+    testPolicies();
     return 0;
 }

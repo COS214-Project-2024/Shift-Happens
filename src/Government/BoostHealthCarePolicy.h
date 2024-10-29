@@ -14,6 +14,7 @@ class BoostHealthCarePolicy : public Policy {
     HealthCare* healthcare;
   public:
     void executePolicy(double AvailableBudget);
+    BoostHealthCarePolicy(HealthCare* healthcare);
 };
 
 #endif

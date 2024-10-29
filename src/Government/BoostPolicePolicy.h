@@ -14,6 +14,7 @@ class BoostPolicePolicy : public Policy {
     Police* police;
   public:
     void executePolicy(double AvailableBudget);
+    BoostPolicePolicy(Police* police);
 };
 
 #endif

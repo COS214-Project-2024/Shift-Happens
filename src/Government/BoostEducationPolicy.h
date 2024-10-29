@@ -13,6 +13,7 @@ class BoostEducationPolicy : public Policy {
     double Cost = 1000;
     Education* education;
   public:
+    BoostEducationPolicy(Education* edu);
     void executePolicy(double AvailableBudget);
 };
 
