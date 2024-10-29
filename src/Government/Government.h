@@ -26,13 +26,14 @@
 
 /*
 Government has tax rates and policies
-Government has a city budget: can be used for public services, 
+Government has a city budget: can be used for public services, boosting ecocmic growth
 */ 
 
 class Government : public CitySubject {
 	private:
 		// Budget	
-		double TotalSpendingBudget;
+		double AvailableSpendingBudget;
+		double PublicServicesBudget;
 		// person tax
 		double PersonalTaxRate;
 		Tax* PersonalTaxState;

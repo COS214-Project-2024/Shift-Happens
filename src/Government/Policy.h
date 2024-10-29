@@ -12,11 +12,18 @@
 	1. Over population command:
 	- It should decrease the population growth
 	- Receiver: 
-	2. Oudated
+	2. Boost Education
+	- Receiver: Education
+	- Education can handle it by increasing their budget
+	3. Boost Police
+	- Receiver: Police
+	- Police handles it by increasing their budget
+	4. Boost Healthcare
+	- Receiver: Heathcare
+	- Healthcare can hanlde it by increasing their budget
 */
 
 class Policy {
-		std::string PolicyName;
 	public:
 		virtual void executePolicy() = 0;
 };
