@@ -31,14 +31,14 @@ void Education::decreaseBudget(){
   InfraStructureCondition->descreaseBudget(amount);
 }
 
-void Education::setPublicServiceState(PublicServiceState* newState){
-  delete this->InfraStructureCondition;
+void Education::setPublicServiceState(std::shared_ptr<PublicServiceState> newState){
+  this->InfraStructureCondition.reset();
   this->InfraStructureCondition = newState;
 
   this->notify();
 }
 
-PublicServiceState* Education::getState(){
+std::shared_ptr<PublicServiceState> Education::getState(){
   return InfraStructureCondition;
 }
 

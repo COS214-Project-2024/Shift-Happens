@@ -7,11 +7,11 @@
 	class CitySubject {
 
 	private:
-		std::vector<CitizenObserver*> observerList;
+		std::vector<std::shared_ptr<CitizenObserver>> observerList;
 
 	public:
-		void attach(CitizenObserver* newObserver);
-		void detach(CitizenObserver* ObserverToRemove);
+		void attach(std::shared_ptr<CitizenObserver> newObserver);
+		void detach(std::shared_ptr<CitizenObserver> ObserverToRemove);
 		void notify();
 	};
 

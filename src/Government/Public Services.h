@@ -15,8 +15,8 @@ class Public_Services : public CitySubject {
 		// template method
 		void DelegateFunds();
 
-		virtual void setPublicServiceState(PublicServiceState* newState)=0;
-		virtual PublicServiceState* getState()=0;
+		virtual void setPublicServiceState(std::shared_ptr<PublicServiceState> newState)=0;
+		virtual std::shared_ptr<PublicServiceState> getState()=0;
 		virtual std::string getTypeOfPublicService() =0;
 		virtual void increaseBudget() =0;
 		virtual void decreaseBudget()=0;

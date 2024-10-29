@@ -4,7 +4,7 @@
 #include "Modern.h"
 #include "Standard.h"
 
-BoostEducationPolicy::BoostEducationPolicy(Education* edu){
+BoostEducationPolicy::BoostEducationPolicy(std::shared_ptr<Education> edu){
   this->education = edu;
 }
 

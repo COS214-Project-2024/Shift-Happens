@@ -9,11 +9,11 @@
 
 class Economy : public CitySubject {
 	private:
-		Population* PopulationState;
+		std::shared_ptr<Population> PopulationState;
 
 	public:
-		void setPopulationState(Population* newState);
-		Population* getState();
+		void setPopulationState(std::shared_ptr<Population> newState);
+		std::shared_ptr<Population> getState();
 };
 
 

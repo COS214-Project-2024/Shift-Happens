@@ -35,30 +35,30 @@ class Government : public CitySubject {
 		double AvailableSpendingBudget;
 		// person tax
 		double PersonalTaxRate;
-		Tax* PersonalTaxState;
+		std::shared_ptr<Tax> PersonalTaxState;
 		// busines tax
 		double BusinessTaxRate;
-		Tax* BusinessTaxState;
+		std::shared_ptr<Tax> BusinessTaxState;
 		// Policies
-		std::vector<Policy*> PolicyState;
+		std::vector<std::shared_ptr<Policy>> PolicyState;
 		// Stats
-		Statistics* statistics; // for keeping track of stats via the statistics object and sending the correct data to the statistics object
+		std::shared_ptr<Statistics> statistics; // for keeping track of stats via the statistics object and sending the correct data to the statistics object
 
 	public:
 		// Taxes
 		void setPersonalTaxLower(double decrease);
 		void setPersonalTaxHigher(double increase);
-		void setTaxState(Tax* tax);
-		Tax* getTax();
+		void setTaxState(std::shared_ptr<Tax> tax);
+		std::shared_ptr<Tax> getTax();
 
 		void setBusinessTaxLower(double decrease);
 		void setBusinessTaxHigher(double increase);
-		void setBusinessTaxState(Tax* tax);
-		Tax* getBusinessTax();
+		void setBusinessTaxState(std::shared_ptr<Tax> tax);
+		std::shared_ptr<Tax> getBusinessTax();
 		// Policies
-		void addPolicy(Policy* newPolicy);
+		void addPolicy(std::shared_ptr<Policy> newPolicy);
 		void executePolicy();
-		std::vector<Policy*> getPolicies();
+		std::vector<std::shared_ptr<Policy>> getPolicies();
 
 		// basics
 		double getAvailableSpendingBudget();

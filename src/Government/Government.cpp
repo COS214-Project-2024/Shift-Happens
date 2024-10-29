@@ -10,34 +10,34 @@ void Government::setPersonalTaxHigher(double increase) {
 	this->PersonalTaxRate = PersonalTaxState->getRate();
 }
 
-void Government::addPolicy(Policy* newPolicy) {
+void Government::addPolicy(std::shared_ptr<Policy> newPolicy) {
 	PolicyState.push_back(newPolicy);
 }
 
 void Government::executePolicy() {
-	for(Policy* temp: PolicyState){
+	for(std::shared_ptr<Policy> temp: PolicyState){
 		temp->executePolicy(this->AvailableSpendingBudget);
 	}
 }
 
-void Government::setTaxState(Tax* tax){
+void Government::setTaxState(std::shared_ptr<Tax> tax){
 	this->PersonalTaxState = tax;
 	this->notify();
 }
 
-Tax* Government::getTax(){
+std::shared_ptr<Tax> Government::getTax(){
 	return PersonalTaxState;
 }
 
-std::vector<Policy*> Government::getPolicies(){
+std::vector<std::shared_ptr<Policy>> Government::getPolicies(){
 	return PolicyState;
 }
 
-Tax* Government::getBusinessTax(){
+std::shared_ptr<Tax> Government::getBusinessTax(){
 	return BusinessTaxState;
 }
 
-void Government::setBusinessTaxState(Tax* tax){
+void Government::setBusinessTaxState(std::shared_ptr<Tax> tax){
 	this->BusinessTaxState = tax;
 	// notify businesses
 	// still needs to be added

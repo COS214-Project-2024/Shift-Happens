@@ -1,5 +1,6 @@
 #include "HealthCare.h"
 #include <limits>
+#include <memory>
 
 void HealthCare::increaseBudget(){
   std::string answer;
@@ -31,14 +32,14 @@ void HealthCare::decreaseBudget(){
   InfraStructureCondition->descreaseBudget(amount);
 }
 
-void HealthCare::setPublicServiceState(PublicServiceState* newState){
-  delete this->InfraStructureCondition;
+void HealthCare::setPublicServiceState(std::shared_ptr<PublicServiceState> newState){
+  this->InfraStructureCondition.reset();
   this->InfraStructureCondition = newState;
 
   this->notify();
 }
 
-PublicServiceState* HealthCare::getState(){
+std::shared_ptr<PublicServiceState> HealthCare::getState(){
   return InfraStructureCondition;
 }
 

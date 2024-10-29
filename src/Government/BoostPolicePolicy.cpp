@@ -4,6 +4,10 @@
 #include "Modern.h"
 #include "Standard.h"
 
+BoostPolicePolicy::BoostPolicePolicy(std::shared_ptr<Police> police){
+  this->police = police;
+}
+
 void BoostPolicePolicy::executePolicy(double AvailableBudget){
   if(this->Cost > AvailableBudget){
     std::cout << "You currently do not have the funds to fully implements this policy" << std::endl;

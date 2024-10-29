@@ -7,7 +7,7 @@
 class Public_Services; // forward declaration because of circular dependency
 class PublicServiceState {
 	protected:
-		Public_Services* publicServices;
+		std::shared_ptr<Public_Services> publicServices;
 		double RunningBudget;
 	public:
 		virtual void increaseBudget(double increase) = 0;

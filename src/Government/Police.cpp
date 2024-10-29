@@ -1,5 +1,6 @@
 #include "Police.h"
 #include <limits>
+#include <memory>
 
 void Police::increaseBudget(){
   std::string answer;
@@ -31,14 +32,14 @@ void Police::decreaseBudget(){
   InfraStructureCondition->descreaseBudget(amount);
 }
 
-void Police::setPublicServiceState(PublicServiceState* newState){
-  delete this->InfraStructureCondition;
+void Police::setPublicServiceState(std::shared_ptr<PublicServiceState> newState){
+  this->InfraStructureCondition.reset();
   this->InfraStructureCondition = newState;
 
   this->notify();
 }
 
-PublicServiceState* Police::getState(){
+std::shared_ptr<PublicServiceState> Police::getState(){
   return InfraStructureCondition;
 }
 

@@ -4,7 +4,7 @@
 #include "Modern.h"
 #include "Standard.h"
 
-BoostHealthCarePolicy::BoostHealthCarePolicy(HealthCare* healthcare){
+BoostHealthCarePolicy::BoostHealthCarePolicy(std::shared_ptr<HealthCare> healthcare){
   this->healthcare = healthcare;
 }
 
