@@ -3,14 +3,15 @@
 
 #include "CitizenBuilder.h"
 
-	class Director {
+#include <memory>
 
+class Director {
 	private:
-		CitizenBuilder* Builder;
+		std::shared_ptr<CitizenBuilder> Builder;
 
 	public:
 		void construct();
-	};
+};
 
 
 #endif

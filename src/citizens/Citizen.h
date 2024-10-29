@@ -4,6 +4,8 @@
 #include "CitizenObserver.h"
 #include "Director.h"
 
+#include <memory>
+
 #include "../Government/Economy.h"
 #include "../Government/Government.h"
 #include "../Government/Public Services.h"
@@ -20,7 +22,7 @@ class Citizen : public CitizenObserver {
 
 	protected:
 		// director pointer
-		Director* director;
+		std::shared_ptr<Director> director;
 		// attributes
 		double SatisfactionScore; // highest satisfaction score is a 100
 		std::string Type;
@@ -29,15 +31,15 @@ class Citizen : public CitizenObserver {
 
 		// Observer parts
 		// Pointers to concrete subjects
-		Economy* economy;
-		Public_Services* infrastructure;
-		Government* government;
+		std::shared_ptr<Economy> economy;
+		std::shared_ptr<Public_Services> infrastructure;
+		std::shared_ptr<Government> government;
 		// States of the concrete subjects
-		Population* observerPopulation;
-		PublicServiceState* observerPublicServiceState;
-		Tax* observerTax;
-		std::vector<Policy*> observerPolicy;
-		Statistics* observerStatistics;
+		std::shared_ptr<Population> observerPopulation;
+		std::shared_ptr<PublicServiceState> observerPublicServiceState;
+		std::shared_ptr<Tax> observerTax;
+		std::vector<std::shared_ptr<Policy>> observerPolicy;
+		std::shared_ptr<Statistics> observerStatistics;
 
 
 

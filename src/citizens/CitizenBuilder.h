@@ -13,7 +13,7 @@
 
 		virtual void addStatus() = 0;
 
-		virtual Citizen* getCitizen() = 0;
+		virtual std::shared_ptr<Citizen> getCitizen() = 0;
 	};
 
 #endif

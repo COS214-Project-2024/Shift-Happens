@@ -4,17 +4,16 @@
 #include "CitizenBuilder.h"
 #include "Boy.h"
 
-	class BoyBuilder : public CitizenBuilder {
-		private:
-		Boy* Boy;
+#include <memory>
+
+class BoyBuilder : public CitizenBuilder {
+	private:
+		std::shared_ptr<Boy> Boy;
 	public:
 		void addGender();
-
 		void addType();
-
 		void addStatus();
-
-		Citizen* getCitizen();
-	};
+		std::shared_ptr<Citizen> getCitizen();
+};
 
 #endif
