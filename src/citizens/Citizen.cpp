@@ -6,7 +6,6 @@ void Citizen::update(){
   observerEducation = education->getState();
   observerHealthcare = healthcare->getState();
   observerTax = government->getTax();
-  observerPolicy = government->getPolicies();
 
   CalculateSatisfaction();
 } 
