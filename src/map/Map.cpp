@@ -16,29 +16,11 @@ Map::Map(int id) : MapComponent(id) {
 }
 
 bool Map::add(MapComponent* component) {
-    // Find an empty spot in the grid and add the component
-    for (size_t i = 0; i < 25; i++) {
-        for (size_t j = 0; j < 25; j++) {
-            if (tiles[i][j] == nullptr) {
-                tiles[i][j] = shared_ptr<MapComponent>(component);
-                return true;
-            }
-        }
-    }
-    return false; // No empty spot found
+    throw "Map::add(MapComponent* component) not implemented";
 }
 
 bool Map::remove(MapComponent* component) {
-    // Find the component in the grid and remove it
-    for (size_t i = 0; i < 25; i++) {
-        for (size_t j = 0; j < 25; j++) {
-            if (tiles[i][j].get() == component) {
-                tiles[i][j] = nullptr;
-                return true;
-            }
-        }
-    }
-    return false; // Component not found
+    throw "Map::remove(MapComponent* component) not implemented";
 }
 
 void Map::getComponent(int id) {
@@ -64,27 +46,53 @@ void Map::build(string variant, string type, int xPos, int yPos){
 	if(tiles[xPos][yPos] != nullptr){
 		throw "There is already a building in this position";
 	}
-
-
 	if(type == "Commercial"){
 		commercialBuildingFactory->createBuilding(variant);
+        shared_ptr<CommercialBuilding> building = commercialBuildingFactory->getBuilding();
+        building->setXPos(xPos);
+        building->setYPos(yPos);
+        tiles[xPos][yPos] = building;
 	}
 	else if(type == "Residential"){
 		residentialBuildingFactory->createBuilding(variant);
+        shared_ptr<ResidentialBuilding> building = residentialBuildingFactory->getBuilding();
+        building->setXPos(xPos);
+        building->setYPos(yPos);
+        tiles[xPos][yPos] = building;
 	}
 	else if(type == "Industrial"){
 		industrialBuildingFactory->createBuilding(variant);
+        shared_ptr<IndustrialBuilding> building = industrialBuildingFactory->getBuilding();
+        building->setXPos(xPos);
+        building->setYPos(yPos);
+        tiles[xPos][yPos] = building;
 	}
 	else if(type == "Utility"){
 		utilityBuildingFactory->createBuilding(variant);
+        shared_ptr<UtilityBuilding> building = utilityBuildingFactory->getBuilding();
+        building->setXPos(xPos);
+        building->setYPos(yPos);
+        tiles[xPos][yPos] = building;
 	}
 	else if(type == "Landmark"){
 		landmarkBuildingFactory->createBuilding(variant);
+        shared_ptr<LandMark> building = landmarkBuildingFactory->getBuilding();
+        building->setXPos(xPos);
+        building->setYPos(yPos);
+        tiles[xPos][yPos] = building;
 	}
 	else if(type == "Infrastructure"){
 		infrastructureFactory->createBuilding(variant);
+        shared_ptr<Infrastructure> building = infrastructureFactory->getBuilding();
+        building->setXPos(xPos);
+        building->setYPos(yPos);
+        tiles[xPos][yPos] = building;
 	}
 	else if(type == "Transport"){
 		transportBuildingFactory->createBuilding(variant);
+        shared_ptr<TransportBuilding> building = transportBuildingFactory->getBuilding();
+        building->setXPos(xPos);
+        building->setYPos(yPos);
+        tiles[xPos][yPos] = building;
 	}
 }

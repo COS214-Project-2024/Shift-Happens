@@ -24,13 +24,19 @@ private:
 	vector<vector<shared_ptr<MapComponent>>> tiles;
 
 	//Factories
-	shared_ptr<BuildingFactory> commercialBuildingFactory;
-	shared_ptr<BuildingFactory> residentialBuildingFactory;
-	shared_ptr<BuildingFactory> industrialBuildingFactory;
-	shared_ptr<BuildingFactory> utilityBuildingFactory;
-	shared_ptr<BuildingFactory> landmarkBuildingFactory;
-	shared_ptr<BuildingFactory> infrastructureFactory;
-	shared_ptr<BuildingFactory> transportBuildingFactory;
+	shared_ptr<CommercialBuildingFactory> commercialBuildingFactory;
+	shared_ptr<ResidentialBuildingFactory> residentialBuildingFactory;
+	shared_ptr<IndustrialBuildingFactory> industrialBuildingFactory;
+	shared_ptr<UtilityBuildingFactory> utilityBuildingFactory;
+	shared_ptr<LandmarkBuildingFactory> landmarkBuildingFactory;
+	shared_ptr<InfrastructureFactory> infrastructureFactory;
+	shared_ptr<TransportBuildingFactory> transportBuildingFactory;
+
+	
+
+
+
+	
 	
 
 public:
