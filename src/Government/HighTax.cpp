@@ -3,6 +3,9 @@
 #include <iostream>
 void HighTax::higher(double increase) {
 	this->RunningRate += increase;
+	if(RunningRateBusiness > 100){
+		RunningRateBusiness = 100;
+	}
 }
 
 void HighTax::lower(double decrease) {
@@ -16,4 +19,19 @@ void HighTax::lower(double decrease) {
 
 std::string HighTax::getType(){
 	return "High Tax";
+}
+
+void HighTax::higherBusiness(double increase){
+	this->RunningRateBusiness += increase;
+	if(RunningRateBusiness > 100){
+		RunningRateBusiness = 100;
+	}
+}
+
+void HighTax::lowerBusiness(double decrease){
+	this->RunningRateBusiness -= decrease;
+	if(this->RunningRateBusiness < HighTLowCap){
+		Tax* newTax = new StandardTax;
+		government->setBusinessTaxState(newTax);
+	}
 }

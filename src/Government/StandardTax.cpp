@@ -20,3 +20,19 @@ void StandardTax::lower(double decrease) {
 std::string StandardTax::getType(){
 	return "Standard Tax";
 }
+
+void StandardTax::lowerBusiness(double decrease){
+	this->RunningRateBusiness -= decrease;
+	if(this->RunningRateBusiness < StandardTLowCap){
+		Tax* newTax = new LowTax;
+		government->setBusinessTaxState(newTax);
+	}
+}
+
+void StandardTax::higherBusiness(double increase){
+	this->RunningRateBusiness += increase;
+	if(this->RunningRateBusiness > StandardTHighCap){
+		Tax* newTax = new HighTax;
+		government->setBusinessTaxState(newTax);
+	}
+}

@@ -10,6 +10,9 @@ class HighTax : public Tax {
 		void higher(double increase);
 		void lower(double decrease);
 		std::string getType();
+
+		void higherBusiness(double increase);
+		void lowerBusiness(double decrease);
 };
 
 #endif
