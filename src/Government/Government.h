@@ -55,9 +55,11 @@ class Government : public CitySubject {
 		void setBusinessTaxHigher(double increase);
 		void setBusinessTaxState(std::shared_ptr<Tax> tax);
 		std::shared_ptr<Tax> getBusinessTax();
+
 		// Policies
 		void addPolicy(std::shared_ptr<Policy> newPolicy);
 		void executePolicy();
+		void removePolicy(std::shared_ptr<Policy> removePolicy);
 		std::vector<std::shared_ptr<Policy>> getPolicies();
 
 		// basics

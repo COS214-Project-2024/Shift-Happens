@@ -1,5 +1,7 @@
 #include "Government.h"
 
+#include <algorithm>
+
 void Government::setPersonalTaxLower(double decrease) {
 	PersonalTaxState->lower(decrease);
 	this->PersonalTaxRate = PersonalTaxState->getRate();
@@ -55,4 +57,15 @@ void Government::setBusinessTaxLower(double decrease){
 
 double Government::getAvailableSpendingBudget(){
 	return AvailableSpendingBudget;
+}
+
+void Government::removePolicy(std::shared_ptr<Policy> removePolicy) {
+    auto it = std::remove_if(PolicyState.begin(), PolicyState.end(),
+                             [&removePolicy](const std::shared_ptr<Policy>& policy) {
+                                 return policy == removePolicy;
+                             });
+    
+    if (it != PolicyState.end()) {
+        PolicyState.erase(it, PolicyState.end());
+    }
 }
