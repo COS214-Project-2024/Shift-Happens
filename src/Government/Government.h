@@ -31,8 +31,8 @@ Government has a city budget: can be used for public services,
 
 class Government : public CitySubject {
 	private:
-		// Budget
-
+		// Budget	
+		double TotalSpendingBudget;
 		// person tax
 		double PersonalTaxRate;
 		Tax* PersonalTaxState;

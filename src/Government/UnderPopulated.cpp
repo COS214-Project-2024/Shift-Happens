@@ -10,7 +10,9 @@ void UnderPopulated::increasePopulation(int increase){
 
 void UnderPopulated::descreasePopulation(int decrease){
   this->PopulationCount -= decrease;
-
+  if(this->PopulationCount < 0){
+    this->PopulationCount = 0;
+  }
 }
 
 std::string UnderPopulated::getType(){

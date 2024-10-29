@@ -1,6 +1,19 @@
 #ifndef POLICY_H
 #define POLICY_H
 
+/*
+	policies will solve goverment problems and use them according to current situations
+	situations include:
+	- over population
+	- under population
+	- unemployment
+	- outdated public services
+
+	1. Over population command:
+	- It should decrease the population growth
+	- 
+*/
+
 class Policy {
 		std::string PolicyName;
 	public:
