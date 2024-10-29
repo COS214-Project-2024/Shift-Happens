@@ -11,7 +11,7 @@ void Modern::descreaseBudget(double decrease){
   this->RunningBudget -= decrease;
 
   if(this->RunningBudget < ModernLowerCap){
-    this->publicServices->setPublicServiceState(new Standard);
+    this->publicServices->setPublicServiceState(std::make_shared<Standard>());
   }
 }
 

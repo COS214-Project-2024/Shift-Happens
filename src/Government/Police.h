@@ -2,6 +2,8 @@
 #define POLICE_H
 
 #include "PublicServices.h"
+#include <string>
+#include <memory>
 
 class Police : public Public_Services {
 	private:

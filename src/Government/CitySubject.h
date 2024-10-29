@@ -3,6 +3,7 @@
 
 #include "../citizens/CitizenObserver.h"
 #include <vector>
+#include <memory>
 
 	class CitySubject {
 

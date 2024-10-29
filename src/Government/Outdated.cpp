@@ -6,7 +6,7 @@ Outdated::Outdated(){
 void Outdated::increaseBudget(double increase){
   this->RunningBudget += increase;
   if(this->RunningBudget > OutdatedHighCap){
-    this->publicServices->setPublicServiceState(new Standard);
+    this->publicServices->setPublicServiceState(std::make_shared<Standard>());
   }
 
 }
