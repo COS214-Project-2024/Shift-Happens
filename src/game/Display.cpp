@@ -3,11 +3,13 @@
 #include <thread>
 //#include <curses.h>
 
+
+///constructor for display purposes
 Display::Display() {
     
 
 }
-
+/// 
 Display::~Display() {
     
 }
