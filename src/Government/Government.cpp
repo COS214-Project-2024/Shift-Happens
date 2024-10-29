@@ -41,3 +41,13 @@ void Government::setBusinessTaxState(Tax* tax){
 	this->BusinessTaxState = tax;
 	// notify businesses
 }
+
+void Government::setBusinessTaxHigher(double increase){
+	BusinessTaxState->higherBusiness(increase);
+	this->BusinessTaxRate = BusinessTaxState->getBusinessRate();
+}
+
+void Government::setBusinessTaxLower(double decrease){
+	BusinessTaxState->lowerBusiness(decrease);
+	this->BusinessTaxRate = BusinessTaxState->getBusinessRate();
+}
