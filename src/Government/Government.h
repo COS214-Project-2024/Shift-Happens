@@ -4,7 +4,7 @@
 #include "Tax.h"
 #include "CitySubject.h"
 #include "Policy.h"
-
+#include "Statistics.h" // for keeping track of stats via the statistics object and sending the correct data to the statistics object
 // Concrete subject in observer pattern
 // Context in state pattern
 
@@ -34,6 +34,7 @@ class Government : public CitySubject {
 		double PersonalTaxRate;
 		Tax* PersonalTaxState;
 		std::vector<Policy*> PolicyState;
+		Statistics* statistics; // for keeping track of stats via the statistics object and sending the correct data to the statistics object
 
 	public:
 		// Taxes

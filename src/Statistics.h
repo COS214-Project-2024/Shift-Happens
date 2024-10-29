@@ -28,3 +28,5 @@
 
 
 #endif
+
+//add a statistics pointer in every building and citizen object

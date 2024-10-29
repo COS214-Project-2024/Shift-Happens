@@ -11,6 +11,7 @@
 #include "../Government/PublicServiceState.h"
 #include "../Government/Tax.h"
 #include "../Government/Policy.h"
+#include "Statistics.h" // for keeping track of stats via the statistics object and sending the correct data to the statistics object
 
 // This is the concrete observe, but because it is an abstract class for 
 // Citizens can be influenced by tax changes, population changes, public service
@@ -36,6 +37,7 @@ class Citizen : public CitizenObserver {
 		PublicServiceState* observerPublicServiceState;
 		Tax* observerTax;
 		std::vector<Policy*> observerPolicy;
+		Statistics* observerStatistics;
 
 
 

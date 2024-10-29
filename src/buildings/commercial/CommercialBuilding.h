@@ -3,6 +3,7 @@
 #include "../Building.h"
 #include <vector>
 
+
 using namespace std;
 	class CommercialBuilding : public Building {
 
