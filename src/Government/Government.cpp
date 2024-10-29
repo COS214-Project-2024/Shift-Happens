@@ -40,6 +40,7 @@ Tax* Government::getBusinessTax(){
 void Government::setBusinessTaxState(Tax* tax){
 	this->BusinessTaxState = tax;
 	// notify businesses
+	// still needs to be added
 }
 
 void Government::setBusinessTaxHigher(double increase){

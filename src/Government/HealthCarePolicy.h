@@ -6,7 +6,7 @@
 
 class HealthCarePolicy : public Policy {
 	private:
-
+		
 	public:
 		void executePolicy();
 	};

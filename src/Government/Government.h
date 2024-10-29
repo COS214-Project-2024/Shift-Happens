@@ -20,25 +20,28 @@
 
 /*
 	Done:
-	 - set taxes
-	 - budget allocation for public services
+	 - set taxes for citizens and businesses
+	 - 
 */
 
 /*
 Government has tax rates and policies
-Government has a city budget
+Government has a city budget: can be used for public services, 
 */ 
 
 class Government : public CitySubject {
 	private:
+		// Budget
+
 		// person tax
 		double PersonalTaxRate;
 		Tax* PersonalTaxState;
 		// busines tax
 		double BusinessTaxRate;
 		Tax* BusinessTaxState;
-
+		// Policies
 		std::vector<Policy*> PolicyState;
+		// Stats
 		Statistics* statistics; // for keeping track of stats via the statistics object and sending the correct data to the statistics object
 
 	public:
