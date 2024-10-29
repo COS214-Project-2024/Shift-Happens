@@ -7,7 +7,7 @@ ResidentialBuildingFactory::ResidentialBuildingFactory(int id)
 }
 
 void ResidentialBuildingFactory::createBuilding(string variant){
-	if (buildingId >= 100) // 99 max buildings
+	if (buildingId >= 100) // 100 max buildings
 	{
 		cout << "You have reached the maximum number of Residential buildings" << endl;
 		return;
