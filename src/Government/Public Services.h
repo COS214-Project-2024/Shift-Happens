@@ -1,5 +1,5 @@
-#ifndef PUBLIC SERVICES_H
-#define PUBLIC SERVICES_H
+#ifndef PUBLICSERVICES_H
+#define PUBLICSERVICES_H
 
 #include "CitySubject.h"
 #include "PublicServiceState.h"
@@ -9,6 +9,7 @@
 // Concrete subject in observer pattern
 // Context in state pattern
 
+class PublicServiceState; // forward declaration because of circular dependency
 class Public_Services : public CitySubject {
 	public:
 		// template method

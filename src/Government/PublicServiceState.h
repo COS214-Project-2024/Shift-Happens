@@ -3,6 +3,8 @@
 
 #include "Public Services.h"
 
+
+class Public_Services; // forward declaration because of circular dependency
 class PublicServiceState {
 	protected:
 		Public_Services* publicServices;
