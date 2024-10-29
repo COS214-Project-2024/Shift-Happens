@@ -1,16 +1,18 @@
 #include "TrainStrategy.h"
 
-double Building_State::TrainStrategy::calculateCost(Building_State::Map start, Building_State::Map end) {
+double TrainStrategy::calculateCost(shared_ptr<Map> start, shared_ptr<Map> end) {
 	// TODO - implement TrainStrategy::calculateCost
 	throw "Not yet implemented";
 }
 
-double Building_State::TrainStrategy::calcDuration(Building_State::Map start, Building_State::Map end) {
-	// TODO - implement TrainStrategy::calcDuration
+double TrainStrategy::calculateDuration(shared_ptr<Map> start, shared_ptr<Map> end) {
+	// TODO - implement TrainStrategy::calculateDuration
 	throw "Not yet implemented";
 }
 
-string Building_State::TrainStrategy::getDescription() {
+string TrainStrategy::getDescription() {
 	// TODO - implement TrainStrategy::getDescription
 	throw "Not yet implemented";
 }
+
+
