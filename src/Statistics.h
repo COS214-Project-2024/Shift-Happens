@@ -16,7 +16,7 @@
 		std::vector<Citizen*> citizens; //track all citizens in the game
 		double citySatisfactionScore; //this score will be assigned by the getAverageCitizenSatisfaction function
 		double employmentRate; //this score will be assigned by the getEmploymentRates function
-	
+		int numberOfBuildings;
 	public:
 		Statistics(){
 			citySatisfactionScore = 0;
@@ -63,6 +63,7 @@
 		void displayStatistics(){
 			std::cout << "City Satisfaction Score: " << citySatisfactionScore << std::endl;
 			std::cout << "Employment Rate: " << employmentRate << std::endl;
+			std::cout << "Number of Buildings: " << buildings.size() << std::endl;
 		}; //should call the displays for all buildings in the model
 		// void getBuilding(int id); // function necessity to be determined
 	};
