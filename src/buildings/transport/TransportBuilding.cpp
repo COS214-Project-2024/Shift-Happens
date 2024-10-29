@@ -1,7 +1,7 @@
 #include "TransportBuilding.h"
 
-TransportBuilding::TransportBuilding(int id, int capacity, std::string variant, int maintenanceCost, int constructionCost, int wasteProduced, int sewageProduced, int electricityDemand, int waterDemand, Statistics* statistics)
-    : Building(id, 1, 1, -1, -1, variant, "Transport", constructionCost, wasteProduced, sewageProduced, electricityDemand, waterDemand, statistics)
+TransportBuilding::TransportBuilding(int id, int capacity, std::string variant, int maintenanceCost, int constructionCost, int wasteProduced, int sewageProduced, int electricityDemand, int waterDemand)
+    : Building(id, 1, 1, -1, -1, variant, "Transport", constructionCost, wasteProduced, sewageProduced, electricityDemand, waterDemand)
 {
     this->capacity = capacity;
     this->maintenanceCost = maintenanceCost;

@@ -1,7 +1,7 @@
 #ifndef POPULATION_H
 #define POPULATION_H
 
-#include "Economy.h"
+#include "../Government/Economy.h"
 #include <iostream>	
 
 class Population {

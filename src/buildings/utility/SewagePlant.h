@@ -11,7 +11,7 @@ public:
 	SewagePlant(int id);
 	int getSewageRemovalRate();
 	void setSewageRemovalRate(int sewageRemovalRate);
-	virtual void print() const override;
+	virtual void print();
 };
 
 #endif

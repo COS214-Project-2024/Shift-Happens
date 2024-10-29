@@ -1,8 +1,8 @@
 #include "UtilityBuilding.h"
 #include <iostream>
 
-UtilityBuilding::UtilityBuilding(int id, string variant, int constructionPrice, int wasteProduced, int sewageProduced, int electricityDemand, int waterDemand, Statistics* statistics)
-    : Building(id, 1, 1, -1, -1, variant, "Utility", constructionPrice, wasteProduced, sewageProduced, electricityDemand, waterDemand, statistics), runningCostPerHour(100) {}
+UtilityBuilding::UtilityBuilding(int id,string variant, int constructionPrice, int wasteProduced, int sewageProduced, int electricityDemand, int waterDemand)
+    : Building(id, 1, 1, -1, -1, variant, "Utility", constructionPrice, wasteProduced, sewageProduced, electricityDemand, waterDemand), runningCostPerHour(100) {}
 // {
 // 	this->runningCostPerHour = 0;
 // }
@@ -15,7 +15,7 @@ void UtilityBuilding::setRunningCostPerHour(int runningCostPerHour) {
 	this->runningCostPerHour = runningCostPerHour;
 }
 
-void UtilityBuilding::print() const {
+void UtilityBuilding::print() {
     cout << "UtilityBuilding Attributes:" << endl;
     cout << "Running Cost per Hour: " << runningCostPerHour << endl;
     Building::print(); // Building print called

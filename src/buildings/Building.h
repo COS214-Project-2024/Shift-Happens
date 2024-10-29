@@ -3,7 +3,6 @@
 
 #include <string>
 #include "../map/MapComponent.h"
-#include "Statistics.h"	//add a statistics pointer in every building object
 
 using namespace std;
 class Building : public MapComponent
@@ -23,10 +22,9 @@ private:
 	int waterDemand;
 
 protected:
-	Statistics* statistics; //add a statistics pointer in every building object
 
 public:
-	Building(int id,int width, int length, int xPos, int yPos, string variant, string type, int constructionPrice, int wasteProduced, int sewageProduced, int electricityDemand, int waterDemand, Statistics* statistics);
+	Building(int id,int width, int length, int xPos, int yPos, string variant, string type, int constructionPrice, int wasteProduced, int sewageProduced, int electricityDemand, int waterDemand);
 	int getWidth();
 
 	bool add(MapComponent *component);

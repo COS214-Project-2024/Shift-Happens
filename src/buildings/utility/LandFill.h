@@ -11,7 +11,7 @@ public:
 	LandFill(int id);
 	int getWasteRemovalRate();
 	void setWasteRemovalRate(int wasteRemovalRate);
-	virtual void print() const override; 
+	virtual void print(); 
 };
 
 #endif

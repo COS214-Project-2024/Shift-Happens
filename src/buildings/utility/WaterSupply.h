@@ -10,7 +10,7 @@ public:
 	WaterSupply(int id);
 	double getWaterSupply();
 	void setWaterSupply(int waterSupply);
-	virtual void print() const override;
+	virtual void print();
 };
 
 #endif

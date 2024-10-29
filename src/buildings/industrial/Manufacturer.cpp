@@ -9,7 +9,7 @@
 //     this->profitPerProduct = 5;
 // }
 Manufacturer::Manufacturer(int id)
-    : IndustrialBuilding(id, 100, "Manufacturer", 25, 250, 0, 0, 100, 100, statistics), satisfactionScore(25), numberOfEmployees(100), productsPerHour(100), partsUsedPerProduct(3), profitPerProduct(5) {}
+    : IndustrialBuilding(id, 100, "Manufacturer", 25, 250, 0, 0, 100, 100), satisfactionScore(25), numberOfEmployees(100), productsPerHour(100), partsUsedPerProduct(3), profitPerProduct(5) {}
 
 
 Manufacturer::~Manufacturer()

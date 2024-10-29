@@ -4,7 +4,7 @@
 #include "Tax.h"
 #include "CitySubject.h"
 #include "Policy.h"
-#include "Statistics.h" // for keeping track of stats via the statistics object and sending the correct data to the statistics object
+#include "../Statistics.h" // for keeping track of stats via the statistics object and sending the correct data to the statistics object
 // Concrete subject in observer pattern
 // Context in state pattern
 

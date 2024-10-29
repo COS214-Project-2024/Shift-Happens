@@ -10,7 +10,7 @@ protected:
 	int satisfactionScore;
 
 public:
-	LandMark(int id, string variant, int constructionPrice, int wasteProduced, int sewageProduced, int electricityDemand, int waterDemand, int satisfactionScore,Statistics* statistics);
+	LandMark(int id, string variant, int constructionPrice, int wasteProduced, int sewageProduced, int electricityDemand, int waterDemand, int satisfactionScore);
 
 	int getSatisfactionScore();
 

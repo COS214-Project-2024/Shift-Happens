@@ -12,7 +12,7 @@ private:
 
 public:
 
-	ResidentialBuilding(int id, int capacity, string variant, int satisfactionScore, int incomePerHour, int constructionPrice, int wasteProduced, int sewageProduced, int electricityDemand, int waterDemand, Statistics* statistics);
+	ResidentialBuilding(int id, int capacity, string variant, int satisfactionScore, int incomePerHour, int constructionPrice, int wasteProduced, int sewageProduced, int electricityDemand, int waterDemand);
 
 	int getCapacity();
 

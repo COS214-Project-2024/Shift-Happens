@@ -2,7 +2,7 @@
 #include <iostream>
 
 PowerPlant::PowerPlant(int id)
-    : UtilityBuilding(id, "PowerPlant", 500, 10, 10, 0, 10, statistics), electricityProduction(500) {}
+    : UtilityBuilding(id, "PowerPlant", 500, 10, 10, 0, 10), electricityProduction(500) {}
 
 double PowerPlant::getElectricityProduction() {
 
@@ -14,7 +14,7 @@ void PowerPlant::setElectricityProduction(int electricityProduction) {
 }
 
 //print function
-void PowerPlant::print() const {
+void PowerPlant::print() {
     cout << "PowerPlant Attributes:" << endl;
     cout << "Electricity Production: " << electricityProduction << endl;
     UtilityBuilding::print(); //UB print function called here

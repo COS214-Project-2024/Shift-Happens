@@ -1,7 +1,7 @@
 #ifndef TAX_H
 #define TAX_H
 
-#include "Government.h"
+#include "../Government/Government.h"
 
 #include <iostream>
 

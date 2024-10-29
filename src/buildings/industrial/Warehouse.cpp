@@ -8,7 +8,7 @@
 //     this->storageUsed = 0;
 // }
 Warehouse::Warehouse(int id)
-    : IndustrialBuilding(id, 50, "Warehouse", 25, 250, 10, 10, 10, 10, statistics), satisfactionScore(25), numberOfEmployees(50), storageCapacity(600), storageUsed(0) {}
+    : IndustrialBuilding(id, 50, "Warehouse", 25, 250, 10, 10, 10, 10), satisfactionScore(25), numberOfEmployees(50), storageCapacity(600), storageUsed(0) {}
 
 Warehouse::~Warehouse()
 {

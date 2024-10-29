@@ -1,7 +1,7 @@
 #ifndef CITIZENBUILDER_H
 #define CITIZENBUILDER_H
 
-#include "Citizen.h"
+#include "../citizens/Citizen.h"
 
 	class CitizenBuilder {
 
