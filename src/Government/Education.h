@@ -1,7 +1,9 @@
 #ifndef EDUCATION_H
 #define EDUCATION_H
 
+#include <memory>	
 #include "PublicServices.h"
+
 
 class Education : public Public_Services {
 	private:
