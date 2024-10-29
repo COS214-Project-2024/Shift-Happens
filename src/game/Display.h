@@ -91,6 +91,12 @@ public:
      * @brief Displays the menu options for creating a landmark.
      * @return int User's selection as an integer.
      */
+    int Infrastructuremenu();///
+    /**
+     * @brief Displays the menu options for creating an infrastructure.
+     * @return int User's selection as an integer.
+     */
+
 
     int buildingtypemenu();///
     /**

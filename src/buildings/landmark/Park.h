@@ -5,6 +5,8 @@
 
 class Park : public LandMark
 {
+public:
+    Park(int id);
 };
 
 #endif

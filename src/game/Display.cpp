@@ -71,7 +71,7 @@ int Display::MainMenu() {
 int Display::buildingtypemenu()
 {
     
-    std::vector<std::string> options = {"Utility", "Industrial","Residential","Commercial"};
+    std::vector<std::string> options = {"Utility", "Industrial","Residential","Commercial","Infrastructure"};
     bool running = true;
     while (running) {
         clear();
@@ -131,6 +131,33 @@ int Display::Utilitymenu()
             settype("SewagePlant");
         }else if(input == 4){
             settype("WaterSupply");
+        }else {
+            cout <<"Invalid entry" << endl;
+            displayMenu(options);
+        }
+        return input;
+    }
+    return -1;
+
+}
+int Display::Infrastructuremenu()
+{
+    cout <<"Please select the utility you wish to build.\n";
+    variant = "Infrastructure";
+     std::vector<std::string> options = {"Road", "Railway"};
+    bool running = true;
+    while (running) {
+        clear();
+        logo();
+        displayMenu(options);
+        std::cout << "Please select an action." << std::endl;
+        int input;
+        std::cin >> input;
+        if(input == 1){
+            settype("Road");
+        }else if(input == 2){
+            settype("Railway");
+
         }else {
             cout <<"Invalid entry" << endl;
             displayMenu(options);
@@ -268,50 +295,6 @@ int Display::GameMenu(){
         return input;
     }
     return -1;
-     /*std::vector<std::string> options = {"Create a Building", "Upgrade a Building", "Demolish a Building", "Return to Main Menu"};
-     bool running = true;
-     std::string var;
-     while(running){
-        clear();
-        logo();
-        displayMenu(options);
-        std::cout << "Please select an action:";
-        int input ;
-        std::cin >> input;
-        switch(input){
-            case 1:
-            std::cout << "You have chosen to create a building.\n";
-            std::cout << "What type variant do you wish to create? ";
-            std::cin >> var;
-
-            std::cout << "Now creating building of type " << var << endl;
-            //TO-DO ATTACH CREATION LOGIC
-            break;
-            case 2:
-            std::cout <<"You have chosen to upgrade a building.\n";
-            std::cout <<"What type variant do you wish to upgrade? ";
-            std::cin >> var ;
-            std::cout <<"Now upgrading building of type" << var << endl;
-            //DISPLAY CURRENT BUILDINGS AND CHOOSE UPGRADE?
-            break;
-            case 3:
-            std::cout <<"You have chosen to demolish a building.\n";
-            std::cout <<"What type variant do you wish to demolish? ";
-            std::cin >> var ;
-            std::cout <<"Now upgrading building of type" << var << endl;
-            break;
-            case 4:
-            std::cout <<"You have chosen to return to main menu.\n";
-            running= false;
-            break;
-            std::cout << "Invalid choice. Please enter a number between 1 and 4." << std::endl;
-                std::cin.clear();
-                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                break;
-
-            
-            
-        }
-        return input ;*/
+     
         
      }

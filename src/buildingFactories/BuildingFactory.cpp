@@ -1,11 +1,11 @@
 #include "BuildingFactory.h"
 
-BuildingFactory::BuildingFactory(/* args */)
+BuildingFactory::BuildingFactory(int id)
 {
-    throw "BuildingFactory::BuildingFactory() not implemented";
+    this->id = id;
+    buildingId = 0;
 }
 BuildingFactory::~BuildingFactory()
 {
-    throw "BuildingFactory::~BuildingFactory() not implemented";
     
 }

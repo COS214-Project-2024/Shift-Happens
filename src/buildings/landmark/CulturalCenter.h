@@ -4,6 +4,10 @@
 #include "LandMark.h"
 class CulturalCenter : public LandMark
 {
+private:
+    public:
+        CulturalCenter(int id);
+        
 };
 
 #endif

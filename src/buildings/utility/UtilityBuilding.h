@@ -1,16 +1,19 @@
 #ifndef UTILITYBUILDING_H
 #define UTILITYBUILDING_H
 
-namespace Building_State {
-	class UtilityBuilding : Building_State::Building {
+#include "../Building.h"
 
-	public:
-		int runningCostPerHour;
+class UtilityBuilding : public Building {
 
-		int getRunningCostPerHour();
+private:
+	int runningCostPerHour;
+	
+public:
+	UtilityBuilding(int id,string variant, int constructionPrice, int wasteProduced, int sewageProduced, int electricityDemand, int waterDemand);
+	int getRunningCostPerHour();
+	void setRunningCostPerHour(int runningCostPerHour);
+	virtual void print();
+};
 
-		void setRunningCostPerHour(int runningCostPerHour);
-	};
-}
 
 #endif

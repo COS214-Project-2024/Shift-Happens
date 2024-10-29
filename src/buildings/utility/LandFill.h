@@ -1,16 +1,17 @@
 #ifndef LANDFILL_H
 #define LANDFILL_H
 
-namespace Building_State {
-	class LandFill : Building_State::UtilityBuilding {
+#include "UtilityBuilding.h"
 
-	public:
-		int wasteRemovalRate;
+class LandFill : public UtilityBuilding{
 
-		int getWasteRemovalRate();
-
-		void setWasteRemovalRate(int wasteRemovalRate);
-	};
-}
+private:
+	int wasteRemovalRate;
+public:
+	LandFill(int id);
+	int getWasteRemovalRate();
+	void setWasteRemovalRate(int wasteRemovalRate);
+	virtual void print(); 
+};
 
 #endif

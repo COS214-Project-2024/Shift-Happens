@@ -5,6 +5,7 @@
 #include "../map/MapComponent.h"
 #include "../map/Map.h"
 #include <string>
+//#include"Building.h"
 /**
  * @class Game
  * @brief Manages the main game operations including menus, player actions, and map interactions.
@@ -27,11 +28,22 @@ public:
     /**
      * @brief Destructor for the Game class.
      */
+    void createUtilityBuilding(const std::string& variant);  // Building creation
+    void createResidentialBuilding(const std::string& variant);  // Building creation
+    void createCommercialBuilding(const std::string& variant);  // Building creation
+    void createInfrastructureBuilding(const std::string& variant);  // Building creation
+    void createLandMarkBuilding(const std::string& variant);  // Building creation
+    void createIndustrialBuilding(const std::string& variant);  // Building creation
+
+    void printAllBuildings() const;  // Print all buildings
+    
 
     void run();
     /**
      * @brief Runs the main game loop, starting with the intro and main menu.
      */
+    private: //client only has access to above
+
 
     void MainMenu();
     /**
@@ -123,12 +135,13 @@ public:
      */
     
 
-private:
+//private:
     Display display;///< Display object for handling user interface elements
     string playerName;///<Stores the players name and uses it in intro.
     MapComponent * map; ///>Pointer to the map
     string var;///< Stores the variant name for a building type
     int variantop;///< Stores the option selected for a building variant
+    std::vector<std::string> buildings; //store created buildings
 };
 
 #endif // GAME_H

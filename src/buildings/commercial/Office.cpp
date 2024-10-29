@@ -5,6 +5,7 @@ Office::Office(int id)
 {
 
 }
+
 Office::~Office()
 {
 }

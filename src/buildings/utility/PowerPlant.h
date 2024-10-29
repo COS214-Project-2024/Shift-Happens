@@ -1,16 +1,18 @@
 #ifndef POWERPLANT_H
 #define POWERPLANT_H
 
-namespace Building_State {
-	class PowerPlant : Building_State::UtilityBuilding {
+#include "UtilityBuilding.h"
 
-	public:
-		int electricityProduction;
+class PowerPlant : public UtilityBuilding
+{
+private:
+	int electricityProduction;
 
-		void getElectricityProduction();
-
-		void setElectricityProduction(int electricityProduction);
-	};
-}
+public:
+	PowerPlant(int id);
+	double getElectricityProduction();
+	void setElectricityProduction(int electricityProduction);
+	virtual void print();
+};
 
 #endif

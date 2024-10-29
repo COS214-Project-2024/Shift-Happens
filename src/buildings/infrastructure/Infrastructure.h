@@ -2,10 +2,15 @@
 #define INFRASTRUCTURE_H
 
 #include "../../map/MapComponent.h"
+#include <string>
+
+using namespace std;
 class Infrastructure : public MapComponent
 {
 
-private:
+protected:
+	string variant; 
+	string type;
 	int width;
 	int length;
 	int yPos;
@@ -13,6 +18,10 @@ private:
 	int constructionCost;
 
 public:
+	Infrastructure(string variant, int id);
+
+	virtual ~Infrastructure();
+
 	int getWidth();
 
 	void setWidth(int width);
@@ -32,6 +41,18 @@ public:
 	int getConstructionCost();
 
 	void setConstructionCost(int constructionCost);
+	
+	void render();
+
+	bool add(MapComponent *component);
+
+	bool remove(MapComponent *component);
+
+	void getComponent(int id);
+
+	virtual void print() = 0;
+
+
 };
 
 #endif

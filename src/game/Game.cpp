@@ -176,7 +176,10 @@ void Game::createBuidling()
             setvariantop(choice2);
             setvar("Utility");
             
-            createVariant(getvariantop() );
+            //createVariant(getvariantop() );
+            createUtilityBuilding("Utility");
+            cout <<"displaying buildings.\n";
+        printAllBuildings();
 
             valid = true;
             break;
@@ -186,7 +189,10 @@ void Game::createBuidling()
             
             setvariantop(choice2);
             setvar("Industrial");
-            createVariant(getvariantop());
+            //createVariant(getvariantop() );
+            createUtilityBuilding("Industrial");
+            cout <<"displaying buildings.\n";
+        printAllBuildings();
             valid = true;
             break;
         case 3:
@@ -194,7 +200,10 @@ void Game::createBuidling()
             
             setvariantop(choice2);
             setvar("Residential");
-            createVariant(getvariantop() );
+            //createVariant(getvariantop() );
+            createUtilityBuilding("Residential");
+            cout <<"displaying buildings.\n";
+        printAllBuildings();
             
             valid = true;
             break;
@@ -202,12 +211,25 @@ void Game::createBuidling()
         choice2=display.Commercialmenu();
         setvariantop(choice2);
          setvar("Commercial");
-        createVariant(getvariantop() );
+       //createVariant(getvariantop() );
+            createUtilityBuilding("Commercial");
+            cout <<"displaying buildings.\n";
+        printAllBuildings();
+        
        
         valid = true;
        
         break;
-        
+        case 5:
+        choice2=display.Infrastructuremenu();
+        setvariantop(choice2);
+         setvar("Infrastructure");
+       //createVariant(getvariantop() );
+            createInfrastructureBuilding("Infrastructure");
+            cout <<"displaying buildings.\n";
+        printAllBuildings();
+        valid = true;
+        break;
 
         default:
             std::cout << "Invalid choice. taking you to back." << std::endl;
@@ -216,40 +238,13 @@ void Game::createBuidling()
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             //choice = display.MainMenu();
             //createBuidling();
-            display.buildingtypemenu();
+           choice =  display.buildingtypemenu();
             break;
         }
 
 
     }
-    //choice for choice 2 now
-    /*bool valid2 = false;
-    while(!valid2)
-    {
-        switch(choice2){
-            case 1:
-            cout << "Now building Utility building: " << display.getvariant() <<endl;
-            valid2 = true;
-            break;
-            case 2:
-            cout <<"Now building Industrial buidling: " << display.getvariant() << endl;
-            valid2 = true;
-            break;
-            case 3:
-            cout <<"Now building Residential building: " << display.getvariant() << endl;
-            valid2 = true;
-            break;
-            case 4 :
-            cout <<"Now building Commercial buidling: " << display.getvariant() << endl;
-            valid2 = true;
-            break;
-            default:
-            std::cout << "Invalid choice. taking you to back." << std::endl;
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            createBuidling();
-            break;
-        }*/
+   
 
 
         }
@@ -290,6 +285,42 @@ void Game::createBuidling()
 
     }
     }
+    //
+    void Game::createUtilityBuilding(const std::string& variant) {
+    buildings.push_back(variant);  // Store building
+    std::cout << "Created " <<  getVar() << " building: " << display.getvariant() << std::endl;
+}
+void Game::createResidentialBuilding(const std::string& variant) {
+    buildings.push_back(variant);  // Store building
+    std::cout << "Created " <<  getVar() << " building: " << display.getvariant() << std::endl;
+}
+void Game::createLandMarkBuilding(const std::string& variant) {
+    buildings.push_back(variant);  // Store building
+    std::cout << "Created " <<  getVar() << " building: " << display.getvariant() << std::endl;
+}
+void Game::createCommercialBuilding(const std::string& variant) {
+    buildings.push_back(variant);  // Store building
+    std::cout << "Created " <<  getVar() << " building: " << display.getvariant() << std::endl;
+}
+void Game::createIndustrialBuilding(const std::string& variant) {
+    buildings.push_back(variant);  // Store building
+    std::cout << "Created " <<  getVar() << " building: " << display.getvariant() << std::endl;
+}
+void Game::createInfrastructureBuilding(const std::string& variant) {
+    buildings.push_back(variant);  // Store building
+    std::cout << "Created " <<  getVar() << " building: " << display.getvariant() << std::endl;
+}
+
+
+void Game::printAllBuildings() const {
+    std::cout << "All buildings created so far:" << std::endl;
+    for (const auto& building : buildings) {
+        //std::cout << "- " << building->getType() <<"- " << building->getVariant()  << std::endl;
+        std::cout << "- " << building  << std::endl;
+    }
+}
+
+    //
     void Game::demolishvariant(const int& op)
     {
          bool valid2 = false;
@@ -419,7 +450,7 @@ void Game::demolishbuilding()
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             //choice = display.MainMenu();
             //createBuidling();
-            display.buildingtypemenu();
+           choice =  display.buildingtypemenu();
             break;
         }
             }

@@ -1,9 +1,12 @@
 #ifndef MONUMENT_H
 #define MONUMENT_H
 
-namespace Building_State {
-	class Monument : Building_State::LandMark {
-	};
-}
+#include "LandMark.h"
+class Monument : public LandMark {
+	
+public:
+    Monument(int id);
+};
+
 
 #endif

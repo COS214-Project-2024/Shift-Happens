@@ -1,16 +1,17 @@
 #ifndef SEWAGEPLANT_H
 #define SEWAGEPLANT_H
 
-namespace Building_State {
-	class SewagePlant : Building_State::UtilityBuilding {
+#include "UtilityBuilding.h"
 
-	public:
-		int sewageRemovalRate;
+class SewagePlant : public UtilityBuilding{
 
-		int getSewageRemovalRate();
-
-		void setSewageRemovalRate(int sewageRemovalRate);
-	};
-}
+private:
+	int sewageRemovalRate;
+public:
+	SewagePlant(int id);
+	int getSewageRemovalRate();
+	void setSewageRemovalRate(int sewageRemovalRate);
+	virtual void print();
+};
 
 #endif

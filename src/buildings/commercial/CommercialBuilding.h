@@ -1,8 +1,11 @@
 #ifndef COMMERCIALBUILDING_H
 #define COMMERCIALBUILDING_H
-
 #include "../Building.h"
-class CommercialBuilding : public Building {
+#include <vector>
+
+
+using namespace std;
+	class CommercialBuilding : public Building {
 
 	private:
 		int incomePerHour;
@@ -24,6 +27,8 @@ class CommercialBuilding : public Building {
 		int getNumberOfEmployees();
 
 		void setNumberOfEmployees(int numberOfEmployees);
+
+		
 	};
 
 
