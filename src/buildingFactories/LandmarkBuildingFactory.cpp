@@ -49,3 +49,13 @@ void LandmarkBuildingFactory::print()
 		building->print();
 	}
 }
+
+shared_ptr<LandMark> LandmarkBuildingFactory::getBuilding()
+{
+	//check if the vector is empty
+	if (buildings.empty())
+	{
+		throw "No Landmark buildings created";
+	}
+	return buildings.back();
+}

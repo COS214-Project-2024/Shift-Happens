@@ -3,12 +3,18 @@
 
 #include <string>
 
+#include <iostream>
+
 using namespace std;
 class MapComponent
 {
 
 private:
 	int id;
+
+protected:
+	
+
 
 public:
 	MapComponent(int id);

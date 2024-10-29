@@ -25,7 +25,7 @@ using namespace std;
 class IndustrialBuildingFactory : public BuildingFactory
 {
 private:
-    vector<shared_ptr<Building>> buildings; ///< List of created buildings
+    vector<shared_ptr<IndustrialBuilding>> buildings; ///< List of created buildings
 
 public:
     /**
@@ -45,6 +45,11 @@ public:
      */
     void print() override;
 
+    /**
+     * @brief Returns the created building.
+     * @return shared_ptr<IndustrialBuilding> The created building.
+     */
+    shared_ptr<IndustrialBuilding> getBuilding();
     /**
      * @brief Destructor for IndustrialBuildingFactory.
      */

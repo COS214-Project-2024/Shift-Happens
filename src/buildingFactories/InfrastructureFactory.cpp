@@ -44,3 +44,13 @@ void InfrastructureFactory::print()
 		building->print();
 	}
 }
+
+shared_ptr<Infrastructure> InfrastructureFactory::getBuilding()
+{
+	//check if the vector is empty
+	if (buildings.empty())
+	{
+		throw "No Infrastructure buildings created";
+	}
+	return buildings.back();
+}
