@@ -11,7 +11,8 @@
 
 	1. Over population command:
 	- It should decrease the population growth
-	- 
+	- Receiver: 
+	2. Oudated
 */
 
 class Policy {

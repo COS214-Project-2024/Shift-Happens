@@ -10,13 +10,15 @@
 // Context in state pattern
 
 class Public_Services : public CitySubject {
-	private:
-		PublicServiceState* InfraStructureCondition;
 	public:
+		// template method
 		void DelegateFunds();
-		void setPublicServiceState(PublicServiceState* newState);
-		PublicServiceState* getState();
 
+		virtual void setPublicServiceState(PublicServiceState* newState)=0;
+		virtual PublicServiceState* getState()=0;
+		virtual std::string getTypeOfPublicService() =0;
+		virtual void increaseBudget() =0;
+		virtual void decreaseBudget()=0;
 };
 
 #endif
