@@ -31,8 +31,13 @@ Government has a city budget
 
 class Government : public CitySubject {
 	private:
+		// person tax
 		double PersonalTaxRate;
 		Tax* PersonalTaxState;
+		// busines tax
+		double BusinessTaxRate;
+		Tax* BusinessTaxState;
+
 		std::vector<Policy*> PolicyState;
 		Statistics* statistics; // for keeping track of stats via the statistics object and sending the correct data to the statistics object
 
@@ -43,6 +48,10 @@ class Government : public CitySubject {
 		void setTaxState(Tax* tax);
 		Tax* getTax();
 
+		void setBusinessTaxLower(double decrease);
+		void setBusinessTaxHigher(double increase);
+		void setBusinessTaxState(Tax* tax);
+		Tax* getBusinessTax();
 		// Policies
 		void addPolicy(Policy* newPolicy);
 		void executePolicy();

@@ -1,13 +1,13 @@
 #include "Government.h"
 
 void Government::setPersonalTaxLower(double decrease) {
-	TaxState->lower(decrease);
-	this->PersonalTaxRate = TaxState->getRate();
+	PersonalTaxState->lower(decrease);
+	this->PersonalTaxRate = PersonalTaxState->getRate();
 }
 
 void Government::setPersonalTaxHigher(double increase) {
-	TaxState->higher(increase);
-	this->PersonalTaxRate = TaxState->getRate();
+	PersonalTaxState->higher(increase);
+	this->PersonalTaxRate = PersonalTaxState->getRate();
 }
 
 void Government::addPolicy(Policy* newPolicy) {
@@ -16,19 +16,28 @@ void Government::addPolicy(Policy* newPolicy) {
 
 void Government::executePolicy() {
 	for(Policy* temp: PolicyState){
-		temp->handle();
+		temp->executePolicy();
 	}
 }
 
 void Government::setTaxState(Tax* tax){
-	this->TaxState = tax;
+	this->PersonalTaxState = tax;
 	this->notify();
 }
 
 Tax* Government::getTax(){
-	return TaxState;
+	return PersonalTaxState;
 }
 
 std::vector<Policy*> Government::getPolicies(){
 	return PolicyState;
+}
+
+Tax* Government::getBusinessTax(){
+	return BusinessTaxState;
+}
+
+void Government::setBusinessTaxState(Tax* tax){
+	this->BusinessTaxState = tax;
+	// notify businesses
 }

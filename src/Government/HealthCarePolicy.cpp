@@ -1,6 +1,6 @@
 #include "HealthCarePolicy.h"
 
-void Building_State::HealthCarePolicy::handle() {
+void HealthCarePolicy::executePolicy() {
 	// TODO - implement HealthCarePolicy::handle
 	throw "Not yet implemented";
 }
