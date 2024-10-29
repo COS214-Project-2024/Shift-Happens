@@ -2,8 +2,7 @@
 #include <iostream>
 
 PowerPlant::PowerPlant(int id)
-    : UtilityBuilding(id, "PowerPlant", 500, 10, 10, 0, 10), electricityProduction(500) {}
-
+    : UtilityBuilding(id, "PowerPlant", 500, 10, 10, 0, 10, statistics), electricityProduction(500) {}
 
 void PowerPlant::getElectricityProduction() {
 	// TODO - implement PowerPlant::getElectricityProduction

@@ -1,8 +1,7 @@
 #ifndef RECYCLING_H
 #define RECYCLING_H
-
-namespace Building_State {
-	class Recycling : Building_State::Upgrade {
+#include "Upgrade.h"
+	class Recycling : public Upgrade {
 
 
 	public:
@@ -22,6 +21,6 @@ namespace Building_State {
 
 		virtual void setWaterDemand(int waterDemand) = 0;
 	};
-}
+
 
 #endif

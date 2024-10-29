@@ -1,8 +1,7 @@
 #ifndef RAINCATCHER_H
 #define RAINCATCHER_H
-
-namespace Building_State {
-	class RainCatcher : Building_State::Upgrade {
+#include "Upgrade.h"
+	class RainCatcher : public Upgrade {
 
 
 	public:
@@ -22,6 +21,5 @@ namespace Building_State {
 
 		virtual void setWaterDemand(int waterDemand) = 0;
 	};
-}
 
 #endif

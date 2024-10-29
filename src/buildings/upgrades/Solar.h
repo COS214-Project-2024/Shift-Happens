@@ -1,8 +1,7 @@
 #ifndef SOLAR_H
 #define SOLAR_H
-
-namespace Building_State {
-	class Solar : Building_State::Upgrade {
+#include "Upgrade.h"
+	class Solar : public Upgrade {
 
 
 	public:
@@ -22,6 +21,5 @@ namespace Building_State {
 
 		virtual void setWaterDemand(int waterDemand) = 0;
 	};
-}
 
 #endif

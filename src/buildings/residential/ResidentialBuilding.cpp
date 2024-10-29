@@ -3,8 +3,8 @@
 
 using namespace std;
 
-ResidentialBuilding::ResidentialBuilding(int id, int capacity, string variant, int satisfactionScore, int incomePerHour, int constructionPrice, int wasteProduced, int sewageProduced, int electricityDemand, int waterDemand)
-	: Building(id, 1, 1, -1, -1, variant, "Residential", constructionPrice, wasteProduced, sewageProduced, electricityDemand, waterDemand)
+ResidentialBuilding::ResidentialBuilding(int id, int capacity, string variant, int satisfactionScore, int incomePerHour, int constructionPrice, int wasteProduced, int sewageProduced, int electricityDemand, int waterDemand, Statistics* statistics)
+	: Building(id, 1, 1, -1, -1, variant, "Residential", constructionPrice, wasteProduced, sewageProduced, electricityDemand, waterDemand, statistics)
 {
 	this->capacity = capacity;
 	this->satisfactionScore = satisfactionScore;

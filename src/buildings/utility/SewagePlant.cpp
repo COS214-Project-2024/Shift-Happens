@@ -2,7 +2,7 @@
 #include <iostream>
 
 SewagePlant::SewagePlant(int id)
-    : UtilityBuilding(id, "SewagePlant", 500, 0, 10, 10, 10), sewageRemovalRate(500) {}
+    : UtilityBuilding(id, "SewagePlant", 500, 0, 10, 10, 10, statistics), sewageRemovalRate(500) {}
 
 int SewagePlant::getSewageRemovalRate() {
 	return this->sewageRemovalRate;

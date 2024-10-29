@@ -12,7 +12,7 @@ private:
     int constructionCost;
 
 public:
-    TransportBuilding(int id, int capacity, std::string variant, int maintenanceCost, int constructionCost, int wasteProduced, int sewageProduced, int electricityDemand, int waterDemand);
+    TransportBuilding(int id, int capacity, std::string variant, int maintenanceCost, int constructionCost, int wasteProduced, int sewageProduced, int electricityDemand, int waterDemand, Statistics* statistics);
 
     int getCapacity() const;
     void setCapacity(int capacity);

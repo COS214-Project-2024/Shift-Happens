@@ -4,7 +4,7 @@
 
 using namespace std;
 
-Building::Building(int id,int width, int length, int xPos, int yPos, string variant, string type, int constructionPrice, int wasteProduced, int sewageProduced, int electricityDemand, int waterDemand) 
+Building::Building(int id,int width, int length, int xPos, int yPos, string variant, string type, int constructionPrice, int wasteProduced, int sewageProduced, int electricityDemand, int waterDemand, Statistics* statistics) 
 : MapComponent(id)
 {
 	this->width = width;
@@ -18,6 +18,8 @@ Building::Building(int id,int width, int length, int xPos, int yPos, string vari
 	this->sewageProduced = sewageProduced;
 	this->electricityDemand = electricityDemand;
 	this->waterDemand = waterDemand;
+	this->statistics = statistics;
+	statistics->addBuilding(this); //add recently created building to the statistics object vector which tracks all buildings
 }
 
 
@@ -135,3 +137,4 @@ void Building::print() const {
     cout << "Waste Produced: " << wasteProduced << ", Sewage Produced: " << sewageProduced << endl;
     cout << "Electricity Demand: " << electricityDemand << ", Water Demand: " << waterDemand << endl;
 }
+

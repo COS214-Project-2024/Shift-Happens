@@ -1,7 +1,7 @@
 #include "LandMark.h"
 
-LandMark::LandMark(int id,string variant, int constructionPrice, int wasteProduced, int sewageProduced, int electricityDemand, int waterDemand, int satisfactionScore)
-:Building(id,1,1,-1,-1,variant,"LandMark",constructionPrice,wasteProduced,sewageProduced,electricityDemand,waterDemand)
+LandMark::LandMark(int id,string variant, int constructionPrice, int wasteProduced, int sewageProduced, int electricityDemand, int waterDemand, int satisfactionScore,Statistics* statistics)
+:Building(id,1,1,-1,-1,variant,"LandMark",constructionPrice,wasteProduced,sewageProduced,electricityDemand,waterDemand,statistics)
 {
 	this->variant = variant;
 	this->satisfactionScore = satisfactionScore;

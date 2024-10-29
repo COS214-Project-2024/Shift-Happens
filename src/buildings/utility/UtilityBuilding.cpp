@@ -1,8 +1,8 @@
 #include "UtilityBuilding.h"
 #include <iostream>
 
-UtilityBuilding::UtilityBuilding(int id,string variant, int constructionPrice, int wasteProduced, int sewageProduced, int electricityDemand, int waterDemand)
-: Building(id,1, 1, -1, -1, variant, "Utility",constructionPrice,wasteProduced,sewageProduced,electricityDemand,waterDemand), runningCostPerHour(100) {}
+UtilityBuilding::UtilityBuilding(int id, string variant, int constructionPrice, int wasteProduced, int sewageProduced, int electricityDemand, int waterDemand, Statistics* statistics)
+    : Building(id, 1, 1, -1, -1, variant, "Utility", constructionPrice, wasteProduced, sewageProduced, electricityDemand, waterDemand, statistics), runningCostPerHour(100) {}
 // {
 // 	this->runningCostPerHour = 0;
 // }
