@@ -1,16 +1,14 @@
 #include "AirStrategy.h"
 
-double Building_State::AirStrategy::calculateCost(Building_State::Map start, Building_State::Map end) {
-	// TODO - implement AirStrategy::calculateCost
-	throw "Not yet implemented";
+AirStrategy::AirStrategy(int cap, double fare, double speed, double baseCost) {
 }
 
-double Building_State::AirStrategy::calcDuration(Building_State::Map start, Building_State::Map end) {
-	// TODO - implement AirStrategy::calcDuration
-	throw "Not yet implemented";
+double AirStrategy::calculateCost(shared_ptr<Map> start, shared_ptr<Map> end) {
 }
 
-string Building_State::AirStrategy::getDescription() {
-	// TODO - implement AirStrategy::getDescription
-	throw "Not yet implemented";
+double AirStrategy::calculateDuration(shared_ptr<Map> start, shared_ptr<Map> end) {
 }
+
+string AirStrategy::getDescription() {
+}
+

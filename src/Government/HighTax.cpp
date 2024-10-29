@@ -1,6 +1,8 @@
 #include "HighTax.h"
 
 #include <iostream>
+#include <memory>
+
 void HighTax::higher(double increase) {
 	this->RunningRate += increase;
 	if(RunningRateBusiness > 100){
@@ -11,7 +13,7 @@ void HighTax::higher(double increase) {
 void HighTax::lower(double decrease) {
 	this->RunningRate -= decrease;
 	if(this->RunningRate < HighTLowCap){
-		Tax* newTax = new StandardTax;
+		std::shared_ptr<Tax> newTax = std::make_shared<StandardTax>();
 		// make state change
 		government->setTaxState(newTax);
 	}
@@ -31,7 +33,7 @@ void HighTax::higherBusiness(double increase){
 void HighTax::lowerBusiness(double decrease){
 	this->RunningRateBusiness -= decrease;
 	if(this->RunningRateBusiness < HighTLowCap){
-		Tax* newTax = new StandardTax;
+		std::shared_ptr<Tax> newTax = std::make_shared<StandardTax>();
 		government->setBusinessTaxState(newTax);
 	}
 }

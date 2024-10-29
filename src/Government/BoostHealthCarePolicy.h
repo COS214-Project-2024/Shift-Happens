@@ -3,6 +3,8 @@
 
 #include "Policy.h"
 #include "HealthCare.h"
+
+#include <memory>
 // this policy has a cost, if the budget is enough then it will take education to the next level and build one more education centre or upgrade and existing one
 // invoker is the government
 // this policy 
@@ -11,10 +13,11 @@
 class BoostHealthCarePolicy : public Policy {
   private:
     double Cost = 1000;
-    HealthCare* healthcare;
+    std::shared_ptr<HealthCare> healthcare;
   public:
     void executePolicy(double AvailableBudget);
-    BoostHealthCarePolicy(HealthCare* healthcare);
+    BoostHealthCarePolicy(std::shared_ptr<HealthCare> healthcare);
+    std::string getPolicyType();
 };
 
 #endif

@@ -9,7 +9,7 @@ class Tax {
 	private:
 	
 	protected:
-		Government* government;
+		std::shared_ptr<Government> government;
 		double RunningRate;
 		double RunningRateBusiness;
 

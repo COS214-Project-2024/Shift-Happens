@@ -1,10 +1,12 @@
 #include "BoostHealthCarePolicy.h"
 
 #include <iostream>
+#include <memory>
+
 #include "Modern.h"
 #include "Standard.h"
 
-BoostHealthCarePolicy::BoostHealthCarePolicy(HealthCare* healthcare){
+BoostHealthCarePolicy::BoostHealthCarePolicy(std::shared_ptr<HealthCare> healthcare){
   this->healthcare = healthcare;
 }
 
@@ -16,13 +18,17 @@ void BoostHealthCarePolicy::executePolicy(double AvailableBudget){
     if(this->healthcare->getState()->getType() == "Modern Services"){
       // build another healthcare centre?
     } else if("Standard Services"){
-      this->healthcare->setPublicServiceState(new Modern);
+      this->healthcare->setPublicServiceState(std::make_shared<Modern>());
       std::cout << "Your healthcare services was upgraded from standard to modern" << std::endl;
       // build another healthcare centre?
     } else if("Outdated Services"){
-      this->healthcare->setPublicServiceState(new Standard);
+      this->healthcare->setPublicServiceState(std::make_shared<Standard>());
       std::cout << "Your healthcare services was upgraded from outdated to standard" << std::endl;
       // build another healthcare centre?
     }
   }
+}
+
+std::string BoostHealthCarePolicy::getPolicyType(){
+  return "Boost Healthcare Policy";
 }

@@ -6,7 +6,7 @@
 
 	class WomanBuilder : public CitizenBuilder {
 	private:
-		Woman* Woman;
+		std::shared_ptr<Woman> Woman;
 	public:
 
 		void addGender();
@@ -15,7 +15,7 @@
 
 		void addStatus();
 
-		Citizen* getCitizen();
+		std::shared_ptr<Citizen> getCitizen();
 	};
 
 #endif
