@@ -47,6 +47,11 @@ public:
     void print() override;
 
     /**
+     * @brief Returns the created building.
+     * @return shared_ptr<ResidentialBuilding> The created building.
+     */
+    shared_ptr<ResidentialBuilding> getBuilding();
+    /**
      * @brief Destructor for ResidentialBuildingFactory.
      */
     ~ResidentialBuildingFactory();

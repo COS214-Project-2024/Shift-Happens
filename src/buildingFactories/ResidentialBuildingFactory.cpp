@@ -51,3 +51,13 @@ void ResidentialBuildingFactory::print()
 		building->print();
 	}
 }
+
+shared_ptr<ResidentialBuilding> ResidentialBuildingFactory::getBuilding()
+{
+	//check if the vector is empty
+	if (buildings.empty())
+	{
+		throw "No Residential buildings created";
+	}
+	return buildings.back();
+}
