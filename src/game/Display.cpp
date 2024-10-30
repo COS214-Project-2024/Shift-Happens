@@ -283,7 +283,7 @@ int Display::LandMarkmenu()
     return -1;
 }
 int Display::GameMenu(){
-     std::vector<std::string> options = {"Create a building", "Upgrade a building", "Demolish a building","Return to main menu"};
+     std::vector<std::string> options = {"Create a building", "Upgrade a building", "Demolish a building","Create Government","Return to main menu"};
     bool running = true;
     while (running) {
         clear();
@@ -298,3 +298,74 @@ int Display::GameMenu(){
      
         
      }
+int Display::Governmentmenu()
+{
+  std::vector<std::string> options = {"Implement Tax policy","Implementing a new Policy","Return to main menu"};
+    bool running = true;
+    while (running) {
+        clear();
+        logo();
+        displayMenu(options);
+        std::cout << "Please select an action." << std::endl;
+        int input;
+        std::cin >> input;
+        return input;
+    }
+    return -1;
+}     
+int Display::taxMenu()
+{
+     cout <<"what would you like to do with tax?.\n";
+     std::vector<std::string> options = {"Increase", "Standard","Lower"}; //high tax/standard tax/low tax
+    bool running = true;
+    while (running) {
+        clear();
+        logo();
+        displayMenu(options);
+        std::cout << "Please select an action." << std::endl;
+        int input;
+        std::cin >> input;
+        if(input == 1){
+         cout << "You have chosen to increase tax\n" ; 
+        }else if(input == 2){
+            cout <<"You have chosen to issue standard tax\n";
+
+        }else if(input == 3){
+            cout << "You have chosen to lower tax\n";
+        }else {
+            cout <<"Invalid entry" << endl;
+            displayMenu(options);
+        }
+        return input;
+    }
+    return -1;
+}
+int Display::Policymenu()
+{
+     cout <<"what Policy do you feel like implementing?.\n";
+     std::vector<std::string> options = {"SinTaxPolicy", "Imigration Policy","HealthCarePolicy"}; //high tax/standard tax/low tax
+    bool running = true;
+    while (running) {
+        clear();
+        logo();
+        displayMenu(options);
+        std::cout << "Please select an action." << std::endl;
+        int input;
+        std::cin >> input;
+        if(input == 1){
+         cout << "You have chosen to implement SinTax Policy\n" ; 
+        }else if(input == 2){
+            cout <<"You have chosen to implement Immigration policy\n";
+
+        }else if(input == 3){
+            cout << "You have chosen to implement Healthcare\n";
+        }else {
+            cout <<"Invalid entry" << endl;
+            displayMenu(options);
+        }
+        return input;
+    }
+    return -1;
+
+
+}

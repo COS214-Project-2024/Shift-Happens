@@ -7,7 +7,10 @@ Game::Game()
     variantop = 0;
     var= "";
 }
-string Game::getVar(){return var;}
+string Game::getVar()
+{
+    return var;
+}
 void Game::setvar(const string& var)
 {
     this->var = var;
@@ -147,6 +150,10 @@ void Game::buldingmenu(){
             valid = true;
             break;
         case 4:
+        createGovernment();
+        valid = true;
+        break;
+        case 5: 
         MainMenu();
 
         default:
@@ -163,6 +170,7 @@ void Game::buldingmenu(){
 }
 void Game::createBuidling()
 {
+    int count =0;
     std::cout << "You have chosen to create a building.\n";
             std::cout << "What type variant do you wish to create? ";
             int choice = display.buildingtypemenu();
@@ -235,14 +243,21 @@ void Game::createBuidling()
         break;
 
         default:
+        count++;
             std::cout << "Invalid choice. taking you to back." << std::endl;
+             if(count>=2){cout <<"You are clearly doing it on purpose.\n";
+             std:cin.clear();
+             display.wait(1);
+            MainMenu();}else{
+
             std::cin.clear();
             display.wait(1);
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
             //choice = display.MainMenu();
             //createBuidling();
+           
            choice =  display.buildingtypemenu();
-            break;
+            break;}
         }
 
 
@@ -251,43 +266,7 @@ void Game::createBuidling()
 
 
         }
-    void Game::createVariant(const int& op)
-    {
-
-        bool valid2 = false;
-    while(!valid2)
-    {
-        switch(op){
-            case 1:
-            cout << "Now building " << getVar() <<" building: " << display.getvariant() <<endl;
-            valid2 = true;
-            break;
-            case 2:
-            cout <<"Now building" << getVar() << " buidling: " << display.getvariant() << endl;
-            valid2 = true;
-            break;
-            case 3:
-            cout <<"Now building " << getVar() <<"building: " << display.getvariant() << endl;
-            valid2 = true;
-            break;
-            case 4 :
-            cout <<"Now building"<<getVar() << " building: " << display.getvariant() << endl;
-            valid2 = true;
-            break;
-            default:
-            std::cout << "Invalid choice. taking you to back." << std::endl;
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            createBuidling();
-            break;
-            
-
-
-
-    }
-
-    }
-    }
+   
     //
     void Game::createUtilityBuilding(const std::string& variant) {
     cout <<"utility starting.\n";// for debugging
@@ -479,7 +458,7 @@ void Game::demolishbuilding()
             setvariantop(choice2);
             setvar("Utility");
             
-            createVariant(getvariantop() );
+            demolishvariant(getvariantop() );
 
             valid = true;
             break;
@@ -586,14 +565,60 @@ void Game::upgradeBuilding()
             
 }
 }
-bool Game::validatevariant(string& variant)
-{
-    bool valid = false;
-    if(variant == "Utility" || variant == "Industrial" || variant == "Commercial" || variant== "Residential")
-    {
-        valid = true;
 
-    } else {valid == false;}
-    return valid;
+void Game::createGovernment()
+{
+     std::cout << "You have chosen to create a Government.\n";
+            std::cout << "What do you wish to implement? ";
+            int choice = display.Governmentmenu();
+            int choice2;
+            bool valid = false;
+            while (!valid){
+        switch (choice)
+        {
+        case 1:
+          //  choice2 =display.Utilitymenu(); // tax
+          choice2 =display.taxMenu();
+            setvariantop(choice2);
+           //TO -DO LOGIC FOR TAX
+           //createTax()
+            
+    
+        //buildings->print(); //htis was making my error all long
+
+
+            valid = true;
+            break;
+        case 2:
+        
+            choice2=display.Policymenu();
+           //TO DO COMMAND LOGIC FOR POLICY
+        //createPolicy("");
+            //policy
+            
+        //buildings->print();
+            valid = true;
+            break;
+        case 3:
+          MainMenu();
+        //buildings->print();
+            
+            valid = true;
+            break;
+
+        default:
+            std::cout << "COME BACK WHEN YOU ARE SERIOUS." << std::endl;
+            std::cin.clear();
+            display.wait(1);
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            //choice = display.MainMenu();
+            //createBuidling();
+           choice =  display.MainMenu();
+            break;
+        }
+
+
+    }
+   
 
 }

@@ -104,6 +104,23 @@ public:
      * @brief Displays the menu options for selecting a building type.
      * @return int User's selection as an integer.
      */
+    int taxMenu();
+    /**
+     * @brief Displays the menu options for implementing tax.
+     * @return int User's selection as an integer.
+     */
+
+
+    int Policymenu();
+    /**
+     * @brief Displays the menu options for implementing a new policy
+     * @return int User's selection as an integer.
+     */
+    int Governmentmenu();
+    /**
+     * @brief Displays the menu options for what government can do
+     * @return int User's selection as an integer.
+     */
 
     string getvariant();///
     

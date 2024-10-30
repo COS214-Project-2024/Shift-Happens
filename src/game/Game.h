@@ -34,12 +34,22 @@ public:
     /**
      * @brief Destructor for the Game class.
      */
+    //
+    /**
+     * @brief Prompts the user to select a building variant and initiates creation.
+     */
     void createUtilityBuilding(const std::string& variant);  // Building creation
     void createResidentialBuilding(const std::string& variant);  // Building creation
     void createCommercialBuilding(const std::string& variant);  // Building creation
     void createInfrastructureBuilding(const std::string& variant);  // Building creation
     void createLandMarkBuilding(const std::string& variant);  // Building creation
     void createIndustrialBuilding(const std::string& variant);  // Building creation
+    //
+    //
+    void createTax(const string& variant);
+    void createPolicy(const string& variant);
+
+    //
 
    
     
@@ -139,6 +149,13 @@ public:
      * @brief Retrieves the current variant name.
      * @return std::string The current variant name.
      */
+
+    void createGovernment();
+    /**
+     * @brief Creates a government
+     * 
+     */
+
     
 
 //private:
@@ -147,6 +164,8 @@ public:
     MapComponent * map; ///>Pointer to the map
     string var;///< Stores the variant name for a building type
     int variantop;///< Stores the option selected for a building variant
+    int TaxOption;//capture tax option
+    int PolicyOption;//capture policy option
 
     //std::unique_ptr<MapComponent> map;
     std::vector<std::shared_ptr<Building>> buildings2;  // Container for created buildings
