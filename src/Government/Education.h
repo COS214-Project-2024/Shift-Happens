@@ -3,6 +3,10 @@
 
 #include <memory>	
 #include "PublicServices.h"
+#include "PublicServiceState.h"
+#include "Outdated.h"
+#include "Standard.h"
+#include "Modern.h"
 
 /**
  * @class Education

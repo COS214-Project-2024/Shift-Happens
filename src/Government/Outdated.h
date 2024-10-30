@@ -13,6 +13,8 @@
  * that operates at a minimum level, often struggling to meet citizen needs effectively.
  * The service can transition to a higher quality state, such as "Standard," if the budget increases.
  */
+
+class Standard;
 class Outdated : public PublicServiceState {
 	private:
 		/**

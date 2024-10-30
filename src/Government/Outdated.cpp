@@ -2,6 +2,7 @@
 
 
 Outdated::Outdated(){
+  this->RunningBudget = 0;
 }
 void Outdated::increaseBudget(double increase){
   this->RunningBudget += increase;
@@ -11,7 +12,7 @@ void Outdated::increaseBudget(double increase){
 
 }
 
-void Outdated::descreaseBudget(double decrease){
+void Outdated::decreaseBudget(double decrease){
   this->RunningBudget -= decrease;
 }
 

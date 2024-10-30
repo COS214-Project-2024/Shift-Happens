@@ -4,7 +4,10 @@
 #include "PublicServices.h"
 #include <string>
 #include <memory>
-
+#include "PublicServiceState.h"
+#include "Outdated.h"
+#include "Standard.h"
+#include "Modern.h"
 /**
  * @class Police
  * @brief Represents the police services provided to citizens as part of public services.
@@ -19,6 +22,11 @@ class Police : public Public_Services {
 		std::shared_ptr<PublicServiceState> InfraStructureCondition;
 
 	public:
+		/**
+		 * @brief Constructor for the Police class.
+		 */
+		Police();
+
 		/**
 		 * @brief Returns the type of public service.
 		 * @return A string representing the type of public service, e.g., "Police".

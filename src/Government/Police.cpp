@@ -2,6 +2,11 @@
 #include <limits>
 #include <memory>
 
+
+Police::Police(){
+  InfraStructureCondition = std::make_shared<Outdated>();  // Initial Standard state for police
+}
+
 void Police::increaseBudget(){
   std::string answer;
   double amount;
@@ -29,7 +34,7 @@ void Police::decreaseBudget(){
     std::cout << "Invalid input. Please enter a valid number (integer or decimal): ";
   }
 
-  InfraStructureCondition->descreaseBudget(amount);
+  InfraStructureCondition->decreaseBudget(amount);
 }
 
 void Police::setPublicServiceState(std::shared_ptr<PublicServiceState> newState){

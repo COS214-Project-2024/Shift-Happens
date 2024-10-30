@@ -13,6 +13,8 @@
  * budget exceeds a specified threshold, it enters this "Modern" state. The state is downgraded
  * if the running budget falls below a specified cap.
  */
+
+class Standard;
 class Modern : public PublicServiceState {
 	private:
 		/**

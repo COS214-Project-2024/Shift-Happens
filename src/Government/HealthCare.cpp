@@ -2,6 +2,10 @@
 #include <limits>
 #include <memory>
 
+HealthCare::HealthCare(){
+  InfraStructureCondition = std::make_shared<Outdated>();  // Initial Standard state for health care
+}
+
 void HealthCare::increaseBudget(){
   std::string answer;
   double amount;
@@ -29,7 +33,7 @@ void HealthCare::decreaseBudget(){
     std::cout << "Invalid input. Please enter a valid number (integer or decimal): ";
   }
 
-  InfraStructureCondition->descreaseBudget(amount);
+  InfraStructureCondition->decreaseBudget(amount);
 }
 
 void HealthCare::setPublicServiceState(std::shared_ptr<PublicServiceState> newState){

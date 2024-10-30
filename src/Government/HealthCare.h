@@ -3,7 +3,10 @@
 
 #include "PublicServices.h"
 #include <memory>
-
+#include "PublicServiceState.h"
+#include "Outdated.h"
+#include "Standard.h"
+#include "Modern.h"
 /**
  * @class HealthCare
  * @brief Represents the healthcare services provided to citizens as part of public services.
@@ -18,6 +21,13 @@ class HealthCare : public Public_Services {
 		std::shared_ptr<PublicServiceState> InfraStructureCondition;
 
 	public:
+
+		/**
+		 * @brief Constructor for the HealthCare class.
+		 */
+		HealthCare();
+
+
 		/**
 		 * @brief Returns the type of public service.
 		 * @return A string representing the type of public service, e.g., "HealthCare".

@@ -2,7 +2,8 @@
 #include <limits>
 
 Education::Education(){
-  InfraStructureCondition = nullptr;  // Initital Standard budget for education
+  InfraStructureCondition = std::make_shared<Outdated>();  // Initial Standard state for education
+
 }
 
 void Education::increaseBudget(){
@@ -32,7 +33,7 @@ void Education::decreaseBudget(){
     std::cout << "Invalid input. Please enter a valid number (integer or decimal): ";
   }
 
-  InfraStructureCondition->descreaseBudget(amount);
+  InfraStructureCondition->decreaseBudget(amount);
 }
 
 void Education::setPublicServiceState(std::shared_ptr<PublicServiceState> newState){

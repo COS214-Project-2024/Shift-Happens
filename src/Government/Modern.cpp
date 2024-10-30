@@ -1,13 +1,14 @@
 #include "Modern.h"
 
 Modern::Modern(){
+  this->RunningBudget = 1000;
 }
 void Modern::increaseBudget(double increase){
   this->RunningBudget += increase;
 
 }
 
-void Modern::descreaseBudget(double decrease){
+void Modern::decreaseBudget(double decrease){
   this->RunningBudget -= decrease;
 
   if(this->RunningBudget < ModernLowerCap){

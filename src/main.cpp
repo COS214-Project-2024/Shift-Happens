@@ -138,11 +138,20 @@ void testPolicies(){
 
     cout<<"Creating Policies..."<<endl;
     shared_ptr<Policy> boostEducation = make_shared<BoostEducationPolicy>(education);
+    cout<<"Current state of education: "<<education->getState()->getType()<<endl;
+
+    shared_ptr<Policy> boostHealthcare = make_shared<BoostHealthCarePolicy>(healthcare);
+    cout<<"Current state of healthcare: "<<healthcare->getState()->getType()<<endl;
+
+    shared_ptr<Policy> boostPolice = make_shared<BoostPolicePolicy>(police);
+    cout<<"Current state of police: "<<police->getState()->getType()<<endl;
+    /*
     cout<<"Boost Education Policy successfully created..."<<endl;
     shared_ptr<Policy> boostHealthcare = make_shared<BoostHealthCarePolicy>(healthcare);
     cout<<"Boost Healthcare Policy successfully created..."<<endl;
     shared_ptr<Policy> boostPolice = make_shared<BoostPolicePolicy>(police);
     cout<<"Boost Police Policy successfully created..."<<endl;
+    */
 
 
 }

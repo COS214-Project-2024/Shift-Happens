@@ -15,6 +15,9 @@
  * or the deficiencies of the "Outdated" state. The service can transition to a different state 
  * based on budget changes.
  */
+
+class Modern;
+class Outdated;
 class Standard : public PublicServiceState {
 	private:
 		/**
