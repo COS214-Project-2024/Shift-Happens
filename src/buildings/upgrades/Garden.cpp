@@ -1,6 +1,7 @@
 #include "Garden.h"
 
-void Building_State::Garden::setConstructionPrice(int constructionPrice) {
-	// TODO - implement Garden::setConstructionPrice
-	throw "Not yet implemented";
+Garden::Garden(Building* building) : Upgrade(building) {}
+
+int Garden::getSewageProduced() {
+    return 0; // Set sewage produced to 0
 }

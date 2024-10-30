@@ -1,26 +1,26 @@
 #ifndef UPGRADE_H
 #define UPGRADE_H
+
 #include "Building.h"
-	class Upgrade : public Building {
 
-	public:
-		Building* building;
+class Upgrade : public Building {
+protected:
+    Building* building;
+public:
+    Upgrade(Building* building);
+    virtual ~Upgrade();
 
-		virtual int getWasteProduced() = 0;
+    virtual int getWasteProduced() ;
+    virtual void setWasteProduced(int wasteProduced) ;
 
-		virtual void setWasteProduced(int wasteProduced) = 0;
+    virtual int getSewageProduced() ;
+    virtual void setSewageProduced(int sewageProduced) ;
 
-		virtual int getSewageProduced() = 0;
+    virtual int getElectricityDemand() ;
+    virtual void setElectricityDemand(int electricityDemand) ;
 
-		virtual void setSewageProduced(int sewageProduced) = 0;
-
-		virtual int getElectricityDemand() = 0;
-
-		virtual void setElectricityDemand(int electricityDemand) = 0;
-
-		virtual int getWaterDemand() = 0;
-
-		virtual void setWaterDemand(int waterDemand) = 0;
-	};
+    virtual int getWaterDemand() ;
+    virtual void setWaterDemand(int waterDemand) ;
+};
 
 #endif
