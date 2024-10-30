@@ -6,6 +6,12 @@
 
 // Concrete subject in observer pattern
 // Context in state pattern
+/**
+ * @class Economy
+ * @brief 
+ */
+
+
 
 class Economy : public CitySubject {
 	private:
