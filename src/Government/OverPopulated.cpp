@@ -8,7 +8,7 @@ void OverPopulated::descreasePopulation(int decrease){
   this->PopulationCount -= decrease;
 
   if(this->PopulationCount < PopOverLowCap){
-    this->economy->setPopulationState(new Normal);
+    this->economy->setPopulationState(std::make_shared<Normal>()); //smart pointer expects make_shared instead of new
   }
 }
 

@@ -1,8 +1,7 @@
 #ifndef TAXISTRATEGY_H
 #define TAXISTRATEGY_H
-
-namespace Building_State {
-	class TaxiStrategy : Building_State::TransporttionStrategy {
+#include "TransportationStrategy.h"
+	class TaxiStrategy : public TransportationStrategy {
 
 	private:
 		int capacity;
@@ -11,12 +10,11 @@ namespace Building_State {
 		double costPerKm;
 
 	public:
-		double calculateCost(Building_State::Map start, Building_State::Map end);
+		double calculateCost(Map start, Map end);
 
-		double calcDuration(Building_State::Map start, Building_State::Map end);
+		double calcDuration(Map start, Map end);
 
 		string getDescription();
 	};
-}
 
 #endif
