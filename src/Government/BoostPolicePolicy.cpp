@@ -14,13 +14,14 @@ void BoostPolicePolicy::executePolicy(double AvailableBudget){
   if(this->Cost > AvailableBudget){
     std::cout << "You currently do not have the funds to fully implements this policy" << std::endl;
   } else {
-    if(this->police->getState()->getType() == "Modern Services"){
+    std::string currentState = this->police->getState()->getType();
+    if(currentState ==  "Modern Services"){
       // build another police centre?
-    } else if("Standard Services"){
+    } else if(currentState ==  "Standard Services"){
       this->police->setPublicServiceState(std::make_shared<Modern>());
       std::cout << "Your police services was upgraded from standard to modern" << std::endl;
       // build another police centre?
-    } else if("Outdated Services"){
+    } else if(currentState ==  "Outdated Services"){
       this->police->setPublicServiceState(std::make_shared<Standard>());
       std::cout << "Your police services was upgraded from outdated to standard" << std::endl;
       // build another police centre?

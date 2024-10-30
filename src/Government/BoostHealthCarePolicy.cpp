@@ -15,13 +15,14 @@ void BoostHealthCarePolicy::executePolicy(double AvailableBudget){
     std::cout << "You currently do not have the funds to fully implements this policy" << std::endl;
     return; //Not enough funds to implement policy
   } else {
-    if(this->healthcare->getState()->getType() == "Modern Services"){
+    std::string currentState = this->healthcare->getState()->getType();
+    if(currentState ==  "Modern Services"){
       // build another healthcare centre?
-    } else if("Standard Services"){
+    } else if(currentState == "Standard Services"){
       this->healthcare->setPublicServiceState(std::make_shared<Modern>());
       std::cout << "Your healthcare services was upgraded from standard to modern" << std::endl;
       // build another healthcare centre?
-    } else if("Outdated Services"){
+    } else if(currentState == "Outdated Services"){
       this->healthcare->setPublicServiceState(std::make_shared<Standard>());
       std::cout << "Your healthcare services was upgraded from outdated to standard" << std::endl;
       // build another healthcare centre?

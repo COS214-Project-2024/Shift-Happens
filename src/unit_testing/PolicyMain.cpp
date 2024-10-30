@@ -76,17 +76,63 @@ TEST(ExampleTest, SimpleTest) { //mock test to check if Gtest is working
 */
 
 
-TEST(PolicyTest, PublicServicesCreation) {
-    // Test the creation of Public Services
+TEST(PolicyTest, CanCreateEducationService) {
+    // Test the creation of Education service
     shared_ptr<Education> education = make_shared<Education>();
-    EXPECT_EQ(education->getTypeOfPublicService(), "Education");
-
-    shared_ptr<HealthCare> healthcare = make_shared<HealthCare>();
-    EXPECT_EQ(healthcare->getTypeOfPublicService(), "Health Care");
-
-    shared_ptr<Police> police = make_shared<Police>();
-    EXPECT_EQ(police->getTypeOfPublicService(), "Police");
+    EXPECT_EQ(education->getTypeOfPublicService(), "Education")
+        << "Expected the type of public service to be 'Education'.";
 }
+
+TEST(PolicyTest, CanCreateHealthCareService) {
+    // Test the creation of HealthCare service
+    shared_ptr<HealthCare> healthcare = make_shared<HealthCare>();
+    EXPECT_EQ(healthcare->getTypeOfPublicService(), "Health Care")
+        << "Expected the type of public service to be 'Health Care'.";
+}
+
+TEST(PolicyTest, CanCreatePoliceService) {
+    // Test the creation of Police service
+    shared_ptr<Police> police = make_shared<Police>();
+    EXPECT_EQ(police->getTypeOfPublicService(), "Police")
+        << "Expected the type of public service to be 'Police'.";
+}
+
+TEST(PolicyTest, CanCreateBoostEducationPolicy) {
+    // Test creation of Boost Education Policy
+    shared_ptr<Education> education = make_shared<Education>();
+    shared_ptr<Policy> boostEducation = make_shared<BoostEducationPolicy>(education);
+    EXPECT_EQ(boostEducation->getPolicyType(), "Boost Education Policy")
+        << "Expected the policy type to be 'Boost Education Policy'.";
+    
+    // Test the current states of education
+    EXPECT_EQ(education->getState()->getType(), "Outdated Services")
+        << "Expected the education state to be 'Outdated Services'.";
+}
+
+TEST(PolicyTest, CanCreateBoostHealthCarePolicy) {
+    // Test creation of Boost HealthCare Policy
+    shared_ptr<HealthCare> healthcare = make_shared<HealthCare>();
+    shared_ptr<Policy> boostHealthCare = make_shared<BoostHealthCarePolicy>(healthcare);
+    EXPECT_EQ(boostHealthCare->getPolicyType(), "Boost Healthcare Policy")
+        << "Expected the policy type to be 'Boost Healthcare Policy'.";
+    
+    // Test the current states of healthcare
+    EXPECT_EQ(healthcare->getState()->getType(), "Outdated Services")
+        << "Expected the healthcare state to be 'Outdated Services'.";
+}
+
+TEST(PolicyTest, CanCreateBoostPolicePolicy) {
+    // Test creation of Boost Police Policy
+    shared_ptr<Police> police = make_shared<Police>();
+    shared_ptr<Policy> boostPolice = make_shared<BoostPolicePolicy>(police);
+    EXPECT_EQ(boostPolice->getPolicyType(), "Boost Police Policy")
+        << "Expected the policy type to be 'Boost Police Policy'.";
+    
+    // Test the current states of police
+    EXPECT_EQ(police->getState()->getType(), "Outdated Services")
+        << "Expected the police state to be 'Outdated Services'.";
+}
+
 
 
 int main(int argc, char **argv) {

@@ -138,22 +138,80 @@ void testPolicies(){
 
     cout<<"Creating Policies..."<<endl;
     shared_ptr<Policy> boostEducation = make_shared<BoostEducationPolicy>(education);
+    cout<<"Current policy type: "<<boostEducation->getPolicyType()<<endl;
     cout<<"Current state of education: "<<education->getState()->getType()<<endl;
 
-    shared_ptr<Policy> boostHealthcare = make_shared<BoostHealthCarePolicy>(healthcare);
+    cout<<"Executing Boost Education Policy..."<<endl;
+    //start with insuficient funds
+    boostEducation->executePolicy(500);
+    cout<<"Current state of education: "<<education->getState()->getType()<<endl;
+    boostEducation->executePolicy(1000);
+    cout<<"Current state of education: "<<education->getState()->getType()<<endl;
+
+        //start with insuficient funds
+    boostEducation->executePolicy(500);
+    cout<<"Current state of education: "<<education->getState()->getType()<<endl;
+    boostEducation->executePolicy(1000);
+    cout<<"Current state of education: "<<education->getState()->getType()<<endl;
+
+        //start with insuficient funds
+    boostEducation->executePolicy(500);
+    cout<<"Current state of education: "<<education->getState()->getType()<<endl;
+    boostEducation->executePolicy(1000);
+    cout<<"Current state of education: "<<education->getState()->getType()<<endl;
+
+
+    shared_ptr<Policy> boostHealthCare = make_shared<BoostHealthCarePolicy>(healthcare);
+    cout<<"Current policy type: "<<boostHealthCare->getPolicyType()<<endl;
+    cout<<"Current state of healthcare: "<<healthcare->getState()->getType()<<endl;
+
+    cout<<"Executing Boost HealthCare Policy..."<<endl;
+    //start with insuficient funds
+    boostHealthCare->executePolicy(500);
+    cout<<"Current state of healthcare: "<<healthcare->getState()->getType()<<endl;
+    boostHealthCare->executePolicy(1000);
+    cout<<"Current state of healthcare: "<<healthcare->getState()->getType()<<endl;
+
+    //start with insuficient funds
+    boostHealthCare->executePolicy(500);
+    cout<<"Current state of healthcare: "<<healthcare->getState()->getType()<<endl;
+    boostHealthCare->executePolicy(1000);
+    cout<<"Current state of healthcare: "<<healthcare->getState()->getType()<<endl;
+
+        //start with insuficient funds
+    boostHealthCare->executePolicy(500);
+    cout<<"Current state of healthcare: "<<healthcare->getState()->getType()<<endl;
+    boostHealthCare->executePolicy(1000);
     cout<<"Current state of healthcare: "<<healthcare->getState()->getType()<<endl;
 
     shared_ptr<Policy> boostPolice = make_shared<BoostPolicePolicy>(police);
+    cout<<"Current policy type: "<<boostPolice->getPolicyType()<<endl;
     cout<<"Current state of police: "<<police->getState()->getType()<<endl;
-    /*
-    cout<<"Boost Education Policy successfully created..."<<endl;
-    shared_ptr<Policy> boostHealthcare = make_shared<BoostHealthCarePolicy>(healthcare);
-    cout<<"Boost Healthcare Policy successfully created..."<<endl;
-    shared_ptr<Policy> boostPolice = make_shared<BoostPolicePolicy>(police);
-    cout<<"Boost Police Policy successfully created..."<<endl;
-    */
 
+    cout<<"Executing Boost Police Policy..."<<endl;
+    //start with insuficient funds
+    boostPolice->executePolicy(500);
+    cout<<"Current state of police: "<<police->getState()->getType()<<endl;
+    boostPolice->executePolicy(1000);
+    cout<<"Current state of police: "<<police->getState()->getType()<<endl;
 
+        //start with insuficient funds
+    boostPolice->executePolicy(500);
+    cout<<"Current state of police: "<<police->getState()->getType()<<endl;
+    boostPolice->executePolicy(1000);
+    cout<<"Current state of police: "<<police->getState()->getType()<<endl;
+
+        //start with insuficient funds
+    boostPolice->executePolicy(500);
+    cout<<"Current state of police: "<<police->getState()->getType()<<endl;
+    boostPolice->executePolicy(1000);
+    cout<<"Current state of police: "<<police->getState()->getType()<<endl;
+
+        //start with insuficient funds
+    boostPolice->executePolicy(500);
+    cout<<"Current state of police: "<<police->getState()->getType()<<endl;
+    boostPolice->executePolicy(1000);
+    cout<<"Current state of police: "<<police->getState()->getType()<<endl;
 }
 
 int main() {
