@@ -35,6 +35,6 @@ void ManBuilder::addStatus() {
 	}	
 }
 
-Citizen* ManBuilder::getCitizen() {
+shared_ptr<Citizen> ManBuilder::getCitizen() {
 	return Man;
 }

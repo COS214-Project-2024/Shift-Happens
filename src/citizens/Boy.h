@@ -17,6 +17,7 @@
 		void setGender(std::string gender);
 		void setStatus(bool status);
 		void setSchool(bool status);
+		
 	};
 
 #endif

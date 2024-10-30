@@ -1,8 +1,7 @@
 #ifndef GARDEN_H
 #define GARDEN_H
-
-namespace Building_State {
-	class Garden : Building_State::Upgrade {
+#include "../Upgrade.h"
+	class Garden : public Upgrade {
 
 
 	public:
@@ -24,6 +23,5 @@ namespace Building_State {
 
 		void setConstructionPrice(int constructionPrice);
 	};
-}
 
 #endif

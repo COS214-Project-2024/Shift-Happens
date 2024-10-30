@@ -37,6 +37,6 @@ void GirlBuilder::addStatus() {
 	}
 }
 
-Citizen* GirlBuilder::getCitizen() {
+shared_ptr<Citizen> GirlBuilder::getCitizen() {
 	return Girl;
 }
