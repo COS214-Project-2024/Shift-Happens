@@ -34,7 +34,7 @@ void LowTax::lowerBusiness(double decrease){
 
 void LowTax::higherBusiness(double increase){
 	this->RunningRateBusiness += increase;
-	if(this->RunningRateBusiness > LowTHighCap){
+	if(this->RunningRateBusiness > LowTHighCapBusiness){
 		std::shared_ptr<Tax> newTax = make_shared<StandardTax>();
 		government->setBusinessTaxState(newTax);
 	}

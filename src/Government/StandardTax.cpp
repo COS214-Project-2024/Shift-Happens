@@ -25,7 +25,7 @@ std::string StandardTax::getType(){
 
 void StandardTax::lowerBusiness(double decrease){
 	this->RunningRateBusiness -= decrease;
-	if(this->RunningRateBusiness < StandardTLowCap){
+	if(this->RunningRateBusiness < StandardTLowCapBusiness){
 		std::shared_ptr<Tax> newTax = std::make_shared<LowTax>();
 		government->setBusinessTaxState(newTax);
 	}
@@ -33,7 +33,7 @@ void StandardTax::lowerBusiness(double decrease){
 
 void StandardTax::higherBusiness(double increase){
 	this->RunningRateBusiness += increase;
-	if(this->RunningRateBusiness > StandardTHighCap){
+	if(this->RunningRateBusiness > StandardTHighCapBusiness){
 		std::shared_ptr<Tax> newTax = std::make_shared<HighTax>();
 		government->setBusinessTaxState(newTax);
 	}

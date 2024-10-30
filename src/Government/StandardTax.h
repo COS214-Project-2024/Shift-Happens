@@ -9,6 +9,8 @@ class StandardTax : public Tax {
 	private:
 		int StandardTHighCap = 35;
 		int StandardTLowCap = 20;
+		int StandardTHighCapBusiness = 27;
+		int StandardTLowCapBusiness = 7;
 	public:
 		void higher(double increase);
 		void lower(double decrease);

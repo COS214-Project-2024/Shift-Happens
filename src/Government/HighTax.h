@@ -6,6 +6,7 @@
 class HighTax : public Tax {
 	private:
 		int HighTLowCap = 35;
+		int HighTLowCapBusiness = 27;
 	public:
 		void higher(double increase);
 		void lower(double decrease);
