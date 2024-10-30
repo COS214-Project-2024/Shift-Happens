@@ -37,6 +37,6 @@ void BoyBuilder::addStatus() {
 	}
 }
 
-Citizen* BoyBuilder::getCitizen() {
+std::shared_ptr<Citizen> BoyBuilder::getCitizen() {
 	return Boy;
 }
