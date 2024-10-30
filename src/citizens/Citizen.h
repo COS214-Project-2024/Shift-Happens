@@ -15,58 +15,95 @@
 #include "../Government/PublicServiceState.h"
 #include "../Government/Tax.h"
 #include "../Government/Policy.h"
-#include "../Statistics.h" // for keeping track of stats via the statistics object and sending the correct data to the statistics object
+#include "../Statistics.h" // For tracking statistics and sending data to the statistics object
 
-// This is the concrete observe, but because it is an abstract class for 
-// Citizens can be influenced by tax changes, population changes, public service
-
+/**
+ * @class Citizen
+ * @brief Represents a citizen in the city.
+ * 
+ * The `Citizen` class is a concrete implementation of the observer abstract class. 
+ * It observes changes in government policies, public service states, and population changes. 
+ * Each citizen has a satisfaction score (out of 100) indicating their contentment with the current state of the city.
+ */
 class Citizen : public CitizenObserver {
+protected:
+    std::shared_ptr<Director> director; ///< Pointer to the director managing the citizens.
+    double SatisfactionScore; ///< The highest satisfaction score is 100.
+    
+    /**
+     * @brief The type of citizen (e.g., "Man", "Woman", "Boy", "Girl").
+     */
+    std::string Type;
+    
+    std::string Gender; ///< The gender of the citizen.
 
-	protected:
-		// director pointer
-		std::shared_ptr<Director> director;
-		// attributes
-		double SatisfactionScore; // highest satisfaction score is a 100
-		std::string Type;
-		std::string Gender;
-		bool Status;
+    /**
+     * @brief Status variable indicating employment for adults and school enrollment for minors.
+     */
+    bool Status;
 
-		// Observer parts
-		// Pointers to concrete subjects
-		std::shared_ptr<Economy> economy;
-		// have more than one type of public service
-		std::shared_ptr<Public_Services> police;
-		std::shared_ptr<Public_Services> education;
-		std::shared_ptr<Public_Services> healthcare;
-		std::shared_ptr<Government> government;
-		// States of the concrete subjects
-		std::shared_ptr<Population> observerPopulation;
-		std::shared_ptr<PublicServiceState> observerPolice;
-		std::shared_ptr<PublicServiceState> observerEducation;
-		std::shared_ptr<PublicServiceState> observerHealthcare;
-		std::shared_ptr<Tax> observerTax;
-		
-		std::shared_ptr<Statistics> observerStatistics;
+    // Observer parts
+    std::shared_ptr<Economy> economy; ///< Pointer to the economy subject being observed.
+    
+    /// Pointers to various public services.
+    std::shared_ptr<Public_Services> police; ///< Pointer to the police public service.
+    std::shared_ptr<Public_Services> education; ///< Pointer to the education public service.
+    std::shared_ptr<Public_Services> healthcare; ///< Pointer to the healthcare public service.
+    std::shared_ptr<Government> government; ///< Pointer to the government object.
 
+    // States of the concrete subjects being observed.
+    std::shared_ptr<Population> observerPopulation; ///< Pointer to the population state.
+    std::shared_ptr<PublicServiceState> observerPolice; ///< Pointer to the police service state.
+    std::shared_ptr<PublicServiceState> observerEducation; ///< Pointer to the education service state.
+    std::shared_ptr<PublicServiceState> observerHealthcare; ///< Pointer to the healthcare service state.
+    std::shared_ptr<Tax> observerTax; ///< Pointer to the tax subject being observed.
 
+    std::shared_ptr<Statistics> observerStatistics; ///< Pointer to the statistics object for tracking data.
 
-	public:
-		// observer function
-		void update();
+public:
+    /**
+     * @brief Updates the citizen based on changes in the states of the subjects being observed.
+     * 
+     * This observer function is called when there are changes in the states of subjects that the citizen observes.
+     */
+    void update();
 
-		// basics
-		virtual std::string getType() =0;
-		virtual std::string getGender()=0;
-		virtual bool getStatus()=0;
-		virtual void setType(std::string type)=0;
-		virtual void setGender(std::string gender)=0;
-		virtual void setStatus(bool status)=0;
+    // Basic attribute accessors
+    virtual std::string getType() = 0; ///< Returns the type of the citizen.
+    virtual std::string getGender() = 0; ///< Returns the gender of the citizen.
+    virtual bool getStatus() = 0; ///< Returns the employment/school status of the citizen.
+    virtual void setType(std::string type) = 0; ///< Sets the type of the citizen.
+    virtual void setGender(std::string gender) = 0; ///< Sets the gender of the citizen.
+    virtual void setStatus(bool status) = 0; ///< Sets the employment/school status of the citizen.
 
-		// 
-		void CalculateSatisfaction();
-		double getSatisfactionScore();
-		void increaseSatisfaction(double increase);
-		void decreaseSatisfaction(double decrease);
+    /**
+     * @brief Calculates the satisfaction score of the citizen.
+     * 
+     * This method considers various factors such as public services, school/work status,
+     * and government policies to determine the citizen's satisfaction score out of 100.
+     */
+    void CalculateSatisfaction();
+
+    /**
+     * @brief Retrieves the current satisfaction score of the citizen.
+     * 
+     * @return The current satisfaction score.
+     */
+    double getSatisfactionScore();
+
+    /**
+     * @brief Increases the satisfaction score by a specified amount.
+     * 
+     * @param increase The amount to increase the satisfaction score by.
+     */
+    void increaseSatisfaction(double increase);
+
+    /**
+     * @brief Decreases the satisfaction score by a specified amount.
+     * 
+     * @param decrease The amount to decrease the satisfaction score by.
+     */
+    void decreaseSatisfaction(double decrease);
 };
 
 #endif
