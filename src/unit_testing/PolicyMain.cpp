@@ -67,9 +67,28 @@
 #include "../Government/BoostPolicePolicy.h"
 #include "../Government/Policy.h"
 
-TEST(ExampleTest, SimpleTest) {
+using namespace std;
+
+/*
+TEST(ExampleTest, SimpleTest) { //mock test to check if Gtest is working
     EXPECT_EQ(1 + 1, 2);
 }
+*/
+
+
+TEST(PolicyTest, PublicServicesCreation) {
+    // Test the creation of Public Services
+    shared_ptr<Education> education = make_shared<Education>();
+    EXPECT_EQ(education->getTypeOfPublicService(), "Education");
+
+    shared_ptr<HealthCare> healthcare = make_shared<HealthCare>();
+    EXPECT_EQ(healthcare->getTypeOfPublicService(), "Health Care");
+
+    shared_ptr<Police> police = make_shared<Police>();
+    EXPECT_EQ(police->getTypeOfPublicService(), "Police");
+}
+
+
 
 int main(int argc, char **argv) {
     testing::InitGoogleTest(&argc, argv);
