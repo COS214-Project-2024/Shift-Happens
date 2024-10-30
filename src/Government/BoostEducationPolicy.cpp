@@ -18,6 +18,7 @@ void BoostEducationPolicy::executePolicy(double AvailableBudget){
      std::string currentState = this->education->getState()->getType();
     if(currentState == "Modern Services"){
       // build another education centre
+      std::cout << "Your education services are already at the highest level" << std::endl;
     } else if(currentState ==  "Standard Services"){
       this->education->setPublicServiceState(std::make_shared<Modern>());
       std::cout << "Your education services was upgraded from standard to modern" << std::endl;

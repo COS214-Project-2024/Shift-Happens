@@ -18,6 +18,7 @@ void BoostHealthCarePolicy::executePolicy(double AvailableBudget){
     std::string currentState = this->healthcare->getState()->getType();
     if(currentState ==  "Modern Services"){
       // build another healthcare centre?
+      std::cout << "Your healthcare services are already at the highest level" << std::endl;
     } else if(currentState == "Standard Services"){
       this->healthcare->setPublicServiceState(std::make_shared<Modern>());
       std::cout << "Your healthcare services was upgraded from standard to modern" << std::endl;

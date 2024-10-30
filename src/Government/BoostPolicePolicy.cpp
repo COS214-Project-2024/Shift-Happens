@@ -17,6 +17,7 @@ void BoostPolicePolicy::executePolicy(double AvailableBudget){
     std::string currentState = this->police->getState()->getType();
     if(currentState ==  "Modern Services"){
       // build another police centre?
+      std::cout << "Your police services are already at the highest level" << std::endl;
     } else if(currentState ==  "Standard Services"){
       this->police->setPublicServiceState(std::make_shared<Modern>());
       std::cout << "Your police services was upgraded from standard to modern" << std::endl;
