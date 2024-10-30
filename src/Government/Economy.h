@@ -15,6 +15,7 @@
 
 class Economy : public CitySubject {
 	private:
+	
 		std::shared_ptr<Population> PopulationState;
 
 	public:
