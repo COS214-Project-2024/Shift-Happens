@@ -4,113 +4,135 @@
 #include "Tax.h"
 #include "CitySubject.h"
 #include "Policy.h"
-#include "../Statistics.h" // for keeping track of stats via the statistics object and sending the correct data to the statistics object
-// Concrete subject in observer pattern
-// Context in state pattern
-
-/*
-	Spec wants us to :
-	- Set and collect taxes from citizens and businesses, Taxation
-	- Budget allocation for various city services and projects, Budget
-	- Implementing laws and regulations that impact city dynamics, Policies
-	- Managing healthcare, education, law enforcement, and more, Public services
-	- Government decisions should influence citizen satisfaction, economic growth, and overall
- 		city development
-*/
-
-/*
-	Done:
-	 - set taxes for citizens and businesses
-	 - 
-*/
-
-/*
-Government has tax rates and policies
-Government has a city budget: can be used for public services, boosting ecocmic growth
-*/ 
+#include "../Statistics.h"
+#include <memory>
+#include <vector>
 
 /**
  * @class Government
- * @brief This is the government class, it is also a concrete subject being observerd by the citizens. This class manages taxes, it changes tax rates for businesses and citizens and collects it from them. The government also implements different polcies. It can add and remove policies. It manages public services like police, education and healthcare
-*/
-
+ * @brief Represents the governing body of a city, managing taxation, budget allocation, policies, and public services.
+ *
+ * This class implements the observer pattern as a concrete subject observed by citizens. It manages tax collection, 
+ * policy implementation, and allocation of the budget across various city services, such as healthcare, education, and law enforcement.
+ * Government actions impact citizen satisfaction, economic growth, and overall city development.
+ */
 class Government : public CitySubject {
 	private:
-		// Budget	
 		/**
-		 * @brief Keep track of the current Budget of the government
-		*/
+		 * @brief Current available spending budget for government-funded services and projects.
+		 */
 		double AvailableSpendingBudget;
-		// person tax
+
 		/**
-		 * Keeps track of the tax rate for people
-		*/
+		 * @brief Tax rate applied to citizens.
+		 */
 		double PersonalTaxRate;
+
 		/**
-		 * Keeps a shared pointer to a tax state for people
-		*/
+		 * @brief Tax state for citizens, representing current tax-related policies or adjustments.
+		 */
 		std::shared_ptr<Tax> PersonalTaxState;
-		// busines tax
+
 		/**
-		 * Keeps the current rate of the Busniess tax
-		*/
+		 * @brief Tax rate applied to businesses.
+		 */
 		double BusinessTaxRate;
+
 		/**
-		 * Keeps a shared pointer to a tax state for business
-		*/
+		 * @brief Tax state for businesses, representing current tax-related policies or adjustments.
+		 */
 		std::shared_ptr<Tax> BusinessTaxState;
-		// Policies
+
 		/**
-		 * vector of shared pointers to Policy objects. This vector stores the current implemented policies
-		*/
+		 * @brief A list of currently implemented policies affecting city services and dynamics.
+		 */
 		std::vector<std::shared_ptr<Policy>> PolicyState;
-		// Stats
-		std::shared_ptr<Statistics> statistics; // for keeping track of stats via the statistics object and sending the correct data to the statistics object
+
+		/**
+		 * @brief Shared pointer to a Statistics object for tracking and reporting city metrics.
+		 */
+		std::shared_ptr<Statistics> statistics;
 
 	public:
-		// Taxes
+		// Tax Management
 		/**
-		 * @brief for method to decrease the personal tax
-		*/
+		 * @brief Lowers the personal tax rate by a specified amount.
+		 * @param decrease The amount to lower the personal tax rate.
+		 */
 		void setPersonalTaxLower(double decrease);
+
 		/**
-		 * @brief for method to increase the personal Tax
-		*/
+		 * @brief Increases the personal tax rate by a specified amount.
+		 * @param increase The amount to increase the personal tax rate.
+		 */
 		void setPersonalTaxHigher(double increase);
+
 		/**
-		 * Method to set the tax state of the personal tax
-		*/
+		 * @brief Sets the current state for personal tax.
+		 * @param tax Shared pointer to a Tax object representing the new personal tax state.
+		 */
 		void setTaxState(std::shared_ptr<Tax> tax);
+
 		/**
-		 * Returns the current state of the personal tax
-		*/
+		 * @brief Retrieves the current state of personal tax.
+		 * @return A shared pointer to the current Tax state for personal taxation.
+		 */
 		std::shared_ptr<Tax> getTax();
 
 		/**
-		 * method to decrease the business tax as the government sees fit
-		*/
+		 * @brief Lowers the business tax rate by a specified amount.
+		 * @param decrease The amount to lower the business tax rate.
+		 */
 		void setBusinessTaxLower(double decrease);
+
 		/**
-		 * method to increase the business tax as
-		*/
+		 * @brief Increases the business tax rate by a specified amount.
+		 * @param increase The amount to increase the business tax rate.
+		 */
 		void setBusinessTaxHigher(double increase);
+
 		/**
-		 * method to set the state of the business tax
-		*/
+		 * @brief Sets the current state for business tax.
+		 * @param tax Shared pointer to a Tax object representing the new business tax state.
+		 */
 		void setBusinessTaxState(std::shared_ptr<Tax> tax);
+
 		/**
-		 * method that returns the state of the business tax (High, standard , low)
-		*/
+		 * @brief Retrieves the current state of business tax.
+		 * @return A shared pointer to the current Tax state for business taxation.
+		 */
 		std::shared_ptr<Tax> getBusinessTax();
 
-		// Policies
+		// Policy Management
+		/**
+		 * @brief Adds a new policy to the list of implemented policies.
+		 * @param newPolicy A shared pointer to the Policy object to be added.
+		 */
 		void addPolicy(std::shared_ptr<Policy> newPolicy);
+
+		/**
+		 * @brief Executes all current policies, applying their effects on the city's infrastructure.
+		 */
 		void executePolicy();
+
+		/**
+		 * @brief Removes an existing policy from the list of implemented policies.
+		 * @param removePolicy A shared pointer to the Policy object to be removed.
+		 */
 		void removePolicy(std::shared_ptr<Policy> removePolicy);
+
+		/**
+		 * @brief Retrieves all currently implemented policies.
+		 * @return A vector of shared pointers to Policy objects representing active policies.
+		 */
 		std::vector<std::shared_ptr<Policy>> getPolicies();
 
-		// basics
+		// Budget Management
+		/**
+		 * @brief Retrieves the current available spending budget.
+		 * @return The amount of available budget for city projects and services.
+		 */
 		double getAvailableSpendingBudget();
 };
 
-#endif
+#endif // GOVERNMENT_H
