@@ -3,17 +3,49 @@
 
 #include "CitizenBuilder.h"
 #include "Boy.h"
-
 #include <memory>
 
+/**
+ * @class BoyBuilder
+ * @brief Concrete implementation of the Builder pattern for creating `Boy` objects.
+ * 
+ * The `BoyBuilder` class inherits from `CitizenBuilder` and implements the methods required 
+ * to construct a `Boy` object. It encapsulates the construction logic and provides a 
+ * method to retrieve the final `Boy` instance.
+ */
 class BoyBuilder : public CitizenBuilder {
-	private:
-		std::shared_ptr<Boy> Boy;
-	public:
-		void addGender();
-		void addType();
-		void addStatus();
-		std::shared_ptr<Citizen> getCitizen();
+private:
+    std::shared_ptr<Boy> Boy; ///< Shared pointer to the `Boy` object being constructed.
+
+public:
+    /**
+     * @brief Adds the gender attribute to the `Boy` object.
+     * 
+     * This method sets the gender of the `Boy` based on specific criteria or user input.
+     */
+    void addGender();
+
+    /**
+     * @brief Adds the type attribute to the `Boy` object.
+     * 
+     * This method sets the type of the `Boy`, which is typically a constant value representing 
+     * that the citizen is a boy.
+     */
+    void addType();
+
+    /**
+     * @brief Adds the status attribute to the `Boy` object.
+     * 
+     * This method determines and sets the employment or school status of the `Boy`.
+     */
+    void addStatus();
+
+    /**
+     * @brief Retrieves the constructed `Boy` object as a `Citizen`.
+     * 
+     * @return A shared pointer to the constructed `Boy` object, cast to the `Citizen` type.
+     */
+    std::shared_ptr<Citizen> getCitizen();
 };
 
 #endif
