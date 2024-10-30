@@ -128,11 +128,13 @@ void testPolicies(){
 
     cout<<"Creating Public Services..."<<endl;
     shared_ptr<Education> education = make_shared<Education>();
-    cout<<"Education successfully created..."<<endl;
+    cout<<education->getTypeOfPublicService()<<" successfully created..."<<endl;
+    
     shared_ptr<HealthCare> healthcare = make_shared<HealthCare>();
-    cout<<"Healthcare successfully created..."<<endl;
+    cout<<healthcare->getTypeOfPublicService()<<" successfully created..."<<endl;
+    
     shared_ptr<Police> police = make_shared<Police>();
-    cout<<"Police successfully created..."<<endl;
+    cout<<police->getTypeOfPublicService()<<" successfully created..."<<endl;
 
     cout<<"Creating Policies..."<<endl;
     shared_ptr<Policy> boostEducation = make_shared<BoostEducationPolicy>(education);
