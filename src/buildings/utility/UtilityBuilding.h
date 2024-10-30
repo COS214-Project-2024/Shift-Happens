@@ -13,6 +13,7 @@ public:
 	int getRunningCostPerHour();
 	void setRunningCostPerHour(int runningCostPerHour);
 	virtual void print();
+	virtual ~UtilityBuilding() = default;
 };
 
 

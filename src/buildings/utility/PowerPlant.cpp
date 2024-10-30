@@ -2,7 +2,7 @@
 #include <iostream>
 
 PowerPlant::PowerPlant(int id)
-    : UtilityBuilding(id, "PowerPlant", 500, 10, 10, 0, 10), electricityProduction(500) { cout <<"constructor passed\n";}//debugging}
+    : UtilityBuilding(id, "PowerPlant", 500, 10, 10, 0, 10), electricityProduction(500) {}//debugging}
 
 double PowerPlant::getElectricityProduction() {
 

@@ -178,9 +178,11 @@ void Game::createBuidling()
             
             //createVariant(getvariantop() );
             createUtilityBuilding("Utility");
+            //cout <<"NO\n";//
             
-        //printAllBuildings();
-        buildings->print();
+    
+        //buildings->print(); //htis was making my error all long
+
 
             valid = true;
             break;
@@ -193,7 +195,7 @@ void Game::createBuidling()
             //createVariant(getvariantop() );
             createIndustrialBuilding("Industrial");
             
-        buildings->print();
+        //buildings->print();
             valid = true;
             break;
         case 3:
@@ -204,7 +206,7 @@ void Game::createBuidling()
             //createVariant(getvariantop() );
             createResidentialBuilding("Residential");
             
-        buildings->print();
+        //buildings->print();
             
             valid = true;
             break;
@@ -215,7 +217,7 @@ void Game::createBuidling()
        //createVariant(getvariantop() );
             createCommercialBuilding("Commercial");
             
-        buildings->print();
+        //buildings->print();
         
        
         valid = true;
@@ -228,7 +230,7 @@ void Game::createBuidling()
        //createVariant(getvariantop() );
             createInfrastructureBuilding("Infrastructure");
             
-        buildings->print();
+       // buildings->print();
         valid = true;
         break;
 
@@ -297,13 +299,17 @@ cout <<display.getvariant() <<endl; // for debugging
 
 
  std::shared_ptr<Building> building = utilityfactory->createBuilding2(display.getvariant()   );
+ cout <<"I returned " << endl;
    if (building)
     {
+        cout <<"Building is there\n";
       //buildings.push_back(building);
-      cout <<"Created a "<< getVar() <<" building: " << display.getvariant(); 
+      cout <<"Created a "<< getVar() <<" building: " << display.getvariant() << endl; // <-- doing this creates memory leaks
+      
     }else {
         cout <<"Invalid building variant:  " << display.getvariant();
     }
+   
 
     
     /*buildings.push_back(variant);  // Store building
@@ -319,10 +325,11 @@ void Game::createResidentialBuilding(const std::string& variant) {
    if (building)
     {
       //buildings.push_back(building);
-      cout <<"Created a "<< getVar() <<" building: " << display.getvariant(); 
+      cout <<"Created a "<< getVar() <<" building: " << display.getvariant() << endl; 
     }else {
         cout <<"Invalid building variant:  " << display.getvariant();
     }
+
 }
 void Game::createLandMarkBuilding(const std::string& variant) {
     if(!LandMarkfactory){
@@ -333,7 +340,7 @@ void Game::createLandMarkBuilding(const std::string& variant) {
    if (building)
     {
      // buildings.push_back(building); already done on factory side
-      cout <<"Created a "<< getVar() <<" building: " << display.getvariant(); 
+      cout <<"Created a "<< getVar() <<" building: " << display.getvariant() << endl; 
     }else {
         cout <<"Invalid building variant:  " << display.getvariant();
     }
@@ -347,7 +354,7 @@ void Game::createCommercialBuilding(const std::string& variant) {
    if (building)
     {
       //buildings.push_back(building); already done on factory side
-      cout <<"Created a "<< getVar() <<" building: " << display.getvariant(); 
+      cout <<"Created a "<< getVar() <<" building: " << display.getvariant() << endl; 
     }else {
         cout <<"Invalid building variant:  " << display.getvariant();
     }
@@ -362,7 +369,7 @@ void Game::createIndustrialBuilding(const std::string& variant) {
    if (building)
     {
 //      buildings.push_back(building);
-      cout <<"Created a "<< getVar() <<" building: " << display.getvariant(); 
+      cout <<"Created a "<< getVar() <<" building: " << display.getvariant() << endl; 
     }else {
         cout <<"Invalid building variant:  " << display.getvariant();
     }
@@ -376,7 +383,7 @@ void Game::createInfrastructureBuilding(const std::string& variant) {
    if (building)
     {
       //buildings.push_back(building);
-      cout <<"Created a "<< getVar() <<" building: " << display.getvariant(); 
+      cout <<"Created a "<< getVar() <<" building: " << display.getvariant() << endl; 
     }else {
         cout <<"Invalid building variant:  " << display.getvariant();
     }

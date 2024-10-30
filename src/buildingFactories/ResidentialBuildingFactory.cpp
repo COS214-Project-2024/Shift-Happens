@@ -47,20 +47,26 @@ std::shared_ptr<Building> ResidentialBuildingFactory::createBuilding2(const stri
 	
 	int idForBuilding = buildingId + 100 * id;
 	buildingId++;
+	std::shared_ptr<Building> newBuilding;
+
 	if (variant == "House")
 	{
+		newBuilding = std::make_shared<House>(idForBuilding);
 		buildings.push_back(make_shared<House>(idForBuilding));
 	}
 	else if (variant == "TownHouse")
 	{
+		newBuilding = std::make_shared<TownHouse>(idForBuilding);
 		buildings.push_back(make_shared<TownHouse>(idForBuilding));
 	}
 	else if (variant == "Estate")
 	{
+		newBuilding = std::make_shared<Estate>(idForBuilding);
 		buildings.push_back(make_shared<Estate>(idForBuilding));
 	}
 	else if (variant == "Apartment")
 	{
+		newBuilding = std::make_shared<Apartment>(idForBuilding);
 		buildings.push_back(make_shared<Apartment>(idForBuilding));
 	}
 	else
@@ -68,6 +74,8 @@ std::shared_ptr<Building> ResidentialBuildingFactory::createBuilding2(const stri
 		cout << "Invalid building type" << endl;
 		buildingId--;
 	}
+	newBuilding->print();
+	return newBuilding;
 }
 
 

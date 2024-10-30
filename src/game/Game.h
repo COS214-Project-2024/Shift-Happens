@@ -149,6 +149,7 @@ public:
     int variantop;///< Stores the option selected for a building variant
 
     //std::unique_ptr<MapComponent> map;
+    std::vector<std::shared_ptr<Building>> buildings2;  // Container for created buildings
     std::shared_ptr<Building> buildings;  // Container for created buildings
     //factories
     std::shared_ptr<UtilityBuildingFactory> utilityfactory;
@@ -157,6 +158,7 @@ public:
     std::shared_ptr<LandmarkBuildingFactory> LandMarkfactory;
     std::shared_ptr<ResidentialBuildingFactory> Residentialfactory;
     std::shared_ptr<InfrastructureFactory> Infrastructurefactory;
+ 
 
     //
 };

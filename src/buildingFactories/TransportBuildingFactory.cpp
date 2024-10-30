@@ -42,16 +42,20 @@ std::shared_ptr<Building> TransportBuildingFactory::createBuilding2(const string
 
     int idForBuilding = buildingId + 100 * id;
     buildingId++;
+    std::shared_ptr<Building> newBuilding;
     if (variant == "Airport")
     {
+        newBuilding = std::make_shared<Airport>(idForBuilding);
         buildings.push_back(make_shared<Airport>(idForBuilding));
     }
     else if (variant == "BusStation")
     {
+        newBuilding = std::make_shared<BusStation>(idForBuilding);
         buildings.push_back(make_shared<BusStation>(idForBuilding));
     }
     else if (variant == "TrainStation")
     {
+        newBuilding = std::make_shared<TrainStation>(idForBuilding);
         buildings.push_back(make_shared<TrainStation>(idForBuilding));
     }
     else
@@ -59,6 +63,8 @@ std::shared_ptr<Building> TransportBuildingFactory::createBuilding2(const string
         cout << "Invalid building type" << endl;
         buildingId--;
     }
+    newBuilding->print();
+    return newBuilding;
 }
 
 //

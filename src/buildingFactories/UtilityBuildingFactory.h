@@ -27,6 +27,8 @@ class UtilityBuildingFactory : public BuildingFactory
 {
 private:
     vector<shared_ptr<UtilityBuilding>> buildings; ///< List of created buildings
+    
+
 
 public:
     /**
@@ -51,6 +53,9 @@ public:
      * @brief Destructor for UtilityBuildingFactory.
      */
     ~UtilityBuildingFactory();
+    void clearBuildings(){
+        buildings.clear();
+    }
 };
 
 #endif

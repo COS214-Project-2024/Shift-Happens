@@ -45,16 +45,20 @@ std::shared_ptr<Building> LandmarkBuildingFactory::createBuilding2(const string&
 	
 	int idForBuilding = buildingId + 100 * id;
 	buildingId++;
+	std::shared_ptr<Building> newBuilding;
 	if (variant == "Park")
 	{
+		newBuilding = std::make_shared<Park>(idForBuilding);
 		buildings.push_back(make_shared<Park>(idForBuilding));
 	}
 	else if (variant == "Monument")
 	{
+		newBuilding = std::make_shared<Monument>(idForBuilding);
 		buildings.push_back(make_shared<Monument>(idForBuilding));
 	}
 	else if (variant == "CulturalCenter")
 	{
+		newBuilding = std::make_shared<CulturalCenter>(idForBuilding);
 		buildings.push_back(make_shared<CulturalCenter>(idForBuilding));
 	}
 	else
@@ -62,6 +66,8 @@ std::shared_ptr<Building> LandmarkBuildingFactory::createBuilding2(const string&
 		cout << "Invalid building type" << endl;
 		buildingId--;
 	}
+	newBuilding->print();
+	return newBuilding;
 }
 
 //

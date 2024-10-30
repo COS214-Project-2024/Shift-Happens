@@ -42,8 +42,10 @@ std::shared_ptr<Building> IndustrialBuildingFactory::createBuilding2(const strin
 	
 	int idForBuilding = buildingId + 100 * id;
 	buildingId++;
+	std::shared_ptr<Building> newBuilding;
 	if (variant == "Factory")
 	{
+		newBuilding = std::make_shared<Factory>(idForBuilding);
 		buildings.push_back(make_shared<Factory>(idForBuilding));
 	}
 	else if (variant == "Warehouse")

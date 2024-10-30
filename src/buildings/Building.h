@@ -76,6 +76,7 @@ public:
 
 	//print function:
 	virtual void print() const;
+	virtual ~Building() = default;
 };
 
 #endif

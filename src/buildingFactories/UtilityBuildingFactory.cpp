@@ -52,34 +52,39 @@ std::shared_ptr<Building> UtilityBuildingFactory::createBuilding2(const string& 
 	cout <<"Create  building p1\n" ; //for debugging
 	if (variant == "PowerPlant")
 	{
+		
 		cout <<"Variant matched\n"; //debuggig
-	/*	std::shared_ptr<PowerPlant> pw= std::shared_ptr<PowerPlant>(new PowerPlant(idForBuilding));
-		newBuilding = pw;*/
+		newBuilding = std::make_shared<PowerPlant>(idForBuilding);
 		buildings.push_back(make_shared<PowerPlant>(idForBuilding));
-		//newBuilding = std::make_shared<PowerPlant>(idForBuilding);*/
+	
 		cout << "just about to retrun asf" << endl;
-		//return std::make_shared<PowerPlant>(idForBuilding);
-		newBuilding = buildings.back();
-		return newBuilding;
+		
+		
+		cout <<"IS it empty? b4 return\n";
+		cout << newBuilding->getVariant() << endl;
+		newBuilding->print(); 
+		//Need a way to display ALL CREATED BUILDINGS without seg faults
+		
 		
 	}
 	else if (variant == "WaterSupply")
 	{
+		newBuilding = std::make_shared<WaterSupply>(idForBuilding);
 		buildings.push_back(make_shared<WaterSupply>(idForBuilding));
-		//newBuilding = std::make_shared<WaterSupply>(idForBuilding);
-		return std::make_shared<WaterSupply>(idForBuilding);
+		newBuilding->print(); 
+		
 	}
 	else if (variant == "LandFill")
 	{
+		newBuilding = std::make_shared<WaterSupply>(idForBuilding);
 		buildings.push_back(make_shared<LandFill>(idForBuilding));
-		//newBuilding =  std::make_shared<LandFill>(idForBuilding);
-		return std::make_shared<LandFill>(idForBuilding);
+		newBuilding->print();
 	}
 	else if (variant == "SewagePlant")
 	{
+		newBuilding = std::make_shared<WaterSupply>(idForBuilding);
 		buildings.push_back(make_shared<SewagePlant>(idForBuilding));
-		//newBuilding =  std::make_shared<SewagePlant>(idForBuilding);
-		return std::make_shared<SewagePlant>(idForBuilding);
+		newBuilding->print();
 	}
 	else
 	{

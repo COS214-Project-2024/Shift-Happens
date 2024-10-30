@@ -13,6 +13,7 @@ public:
 	double getElectricityProduction();
 	void setElectricityProduction(int electricityProduction);
 	virtual void print();
+	~PowerPlant() override = default;
 };
 
 #endif
