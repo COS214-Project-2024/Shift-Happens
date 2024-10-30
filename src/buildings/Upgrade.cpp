@@ -44,4 +44,4 @@ void Upgrade::setWaterDemand(int waterDemand) {
 
 string Upgrade::getUpgradeType() {
     return type;
-}
+} 

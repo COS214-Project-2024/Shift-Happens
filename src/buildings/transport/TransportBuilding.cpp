@@ -46,3 +46,44 @@ void TransportBuilding::print(){
     std::cout << "Electricity Demand: " << this->getElectricityDemand() << std::endl;
     std::cout << "Water Demand: " << this->getWaterDemand() << std::endl;
 }
+
+// New functions
+double TransportBuilding::getAverageSatisfactionScore() {
+    return 0; // Transport buildings do not have a satisfaction score
+}
+
+int TransportBuilding::getTotalWaterSupply() {
+    return 0; // Transport buildings do not supply water
+}
+
+int TransportBuilding::getTotalWaterUsage() {
+    return getWaterDemand();
+}
+
+int TransportBuilding::getTotalElectricitySupply() {
+    return 0; // Transport buildings do not supply electricity
+}
+
+int TransportBuilding::getTotalElectricityDemand() {
+    return getElectricityDemand();
+}
+
+int TransportBuilding::getTotalSewageCapacity() {
+    return 0; // Transport buildings do not have sewage capacity
+}
+
+int TransportBuilding::getTotalWasteCapacity() {
+    return 0; // Transport buildings do not have waste capacity
+}
+
+int TransportBuilding::getTotalWasteProduction() {
+    return getWasteProduced();
+}
+
+int TransportBuilding::getTotalSewageProduction() {
+    return getSewageProduced();
+}
+
+int TransportBuilding::getTotalNumberOfJobs() {
+    return 0; // Transport buildings do not provide jobs
+}

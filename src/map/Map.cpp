@@ -168,6 +168,7 @@ Map& Map::getInstance() {
     static Map instance(0);
     return instance;
 }
+
 void Map::upgrade(int id, const string upgradeType) {
     for (auto& row : tiles) {
         for (auto& component : row) {
@@ -191,4 +192,127 @@ void Map::upgrade(int id, const string upgradeType) {
         }
     }
     cout << "Building with ID " << id << " not found" << endl;
+}
+
+// New functions
+double Map::getAverageSatisfactionScore() {
+    double totalScore = 0;
+    int count = 0;
+    for (const auto& row : tiles) {
+        for (const auto& component : row) {
+            if (component) {
+                totalScore += component->getAverageSatisfactionScore();
+                count++;
+            }
+        }
+    }
+    return count > 0 ? totalScore / count : 0;
+}
+
+int Map::getTotalWaterSupply() {
+    int total = 0;
+    for (const auto& row : tiles) {
+        for (const auto& component : row) {
+            if (component) {
+                total += component->getTotalWaterSupply();
+            }
+        }
+    }
+    return total;
+}
+
+int Map::getTotalWaterUsage() {
+    int total = 0;
+    for (const auto& row : tiles) {
+        for (const auto& component : row) {
+            if (component) {
+                total += component->getTotalWaterUsage();
+            }
+        }
+    }
+    return total;
+}
+
+int Map::getTotalElectricitySupply() {
+    int total = 0;
+    for (const auto& row : tiles) {
+        for (const auto& component : row) {
+            if (component) {
+                total += component->getTotalElectricitySupply();
+            }
+        }
+    }
+    return total;
+}
+
+int Map::getTotalElectricityDemand() {
+    int total = 0;
+    for (const auto& row : tiles) {
+        for (const auto& component : row) {
+            if (component) {
+                total += component->getTotalElectricityDemand();
+            }
+        }
+    }
+    return total;
+}
+
+int Map::getTotalSewageCapacity() {
+    int total = 0;
+    for (const auto& row : tiles) {
+        for (const auto& component : row) {
+            if (component) {
+                total += component->getTotalSewageCapacity();
+            }
+        }
+    }
+    return total;
+}
+
+int Map::getTotalWasteCapacity() {
+    int total = 0;
+    for (const auto& row : tiles) {
+        for (const auto& component : row) {
+            if (component) {
+                total += component->getTotalWasteCapacity();
+            }
+        }
+    }
+    return total;
+}
+
+int Map::getTotalWasteProduction() {
+    int total = 0;
+    for (const auto& row : tiles) {
+        for (const auto& component : row) {
+            if (component) {
+                total += component->getTotalWasteProduction();
+            }
+        }
+    }
+    return total;
+}
+
+int Map::getTotalSewageProduction() {
+    int total = 0;
+    for (const auto& row : tiles) {
+        for (const auto& component : row) {
+            if (component) {
+                total += component->getTotalSewageProduction();
+            }
+        }
+    }
+    return total;
+}
+
+int Map::getTotalNumberOfJobs() {
+    int total = 0;
+    for (const auto& row : tiles) {
+        for (const auto& component : row) {
+            if (component) {
+                total += component->getTotalNumberOfJobs();
+            }
+        }
+    }
+    return total;
 }

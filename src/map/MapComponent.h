@@ -66,6 +66,18 @@ public:
     virtual void render() = 0;
 
     virtual void print() = 0;
+
+    // New pure virtual functions
+    virtual double getAverageSatisfactionScore() = 0;
+    virtual int getTotalWaterSupply() = 0;
+    virtual int getTotalWaterUsage() = 0;
+    virtual int getTotalElectricitySupply() = 0;
+    virtual int getTotalElectricityDemand() = 0;
+    virtual int getTotalSewageCapacity() = 0;
+    virtual int getTotalWasteCapacity() = 0;
+    virtual int getTotalWasteProduction() = 0;
+    virtual int getTotalSewageProduction() = 0;
+    virtual int getTotalNumberOfJobs() = 0;
 };
 
 #endif

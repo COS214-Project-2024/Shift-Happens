@@ -6,28 +6,39 @@ class LandMark : public Building
 {
 
 protected:
-	string variant;
-	int satisfactionScore;
+    string variant;
+    int satisfactionScore;
 
 public:
-	LandMark(int id, string variant, int constructionPrice, int wasteProduced, int sewageProduced, int electricityDemand, int waterDemand, int satisfactionScore);
+    LandMark(int id, string variant, int constructionPrice, int wasteProduced, int sewageProduced, int electricityDemand, int waterDemand, int satisfactionScore);
 
-	int getSatisfactionScore();
+    int getSatisfactionScore();
 
-	void setSatisfactionScore(int satisfactionScore);
+    void setSatisfactionScore(int satisfactionScore);
 
-	void render();
+    void render();
 
-	bool add(MapComponent *component);
+    bool add(MapComponent *component);
 
-	bool remove(MapComponent *component);
+    bool remove(MapComponent *component);
 
-	void getComponent(int id);
+    void getComponent(int id);
 
-	void print();
+    void print();
 
-	~LandMark();
+    ~LandMark();
 
+    // New functions
+    double getAverageSatisfactionScore() override;
+    int getTotalWaterSupply() override;
+    int getTotalWaterUsage() override;
+    int getTotalElectricitySupply() override;
+    int getTotalElectricityDemand() override;
+    int getTotalSewageCapacity() override;
+    int getTotalWasteCapacity() override;
+    int getTotalWasteProduction() override;
+    int getTotalSewageProduction() override;
+    int getTotalNumberOfJobs() override;
 };
 
 #endif

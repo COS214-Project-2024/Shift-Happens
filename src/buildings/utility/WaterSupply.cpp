@@ -15,5 +15,46 @@ void WaterSupply::setWaterSupply(int waterSupply) {
 void WaterSupply::print() {
     std::cout << "WaterSupply Attributes:" << std::endl;
     std::cout << "Water Supply: " << waterSupply << std::endl;
-    UtilityBuilding::print(); // UtilityBuilding's print function
+    UtilityBuilding::print(); // Call to UtilityBuilding's print function
+}
+
+// New functions
+double WaterSupply::getAverageSatisfactionScore() {
+    return 0; // WaterSupply does not have a satisfaction score
+}
+
+int WaterSupply::getTotalWaterSupply() {
+    return getWaterSupply();
+}
+
+int WaterSupply::getTotalWaterUsage() {
+    return getWaterDemand();
+}
+
+int WaterSupply::getTotalElectricitySupply() {
+    return 0; // WaterSupply does not supply electricity
+}
+
+int WaterSupply::getTotalElectricityDemand() {
+    return getElectricityDemand();
+}
+
+int WaterSupply::getTotalSewageCapacity() {
+    return 0; // WaterSupply does not have sewage capacity
+}
+
+int WaterSupply::getTotalWasteCapacity() {
+    return 0; // WaterSupply does not have waste capacity
+}
+
+int WaterSupply::getTotalWasteProduction() {
+    return getWasteProduced();
+}
+
+int WaterSupply::getTotalSewageProduction() {
+    return getSewageProduced();
+}
+
+int WaterSupply::getTotalNumberOfJobs() {
+    return 0; // WaterSupply does not provide jobs
 }
