@@ -9,3 +9,8 @@ Office::Office(int id)
 Office::~Office()
 {
 }
+
+void Office::print(){
+    cout << "Office Attributes:" << endl;
+    CommercialBuilding::print(); // Call to CommercialBuilding's print function
+}

@@ -50,7 +50,7 @@ public:
 
 	void getComponent(int id);
 
-	virtual void print() = 0;
+	virtual void print();
 
 
 };

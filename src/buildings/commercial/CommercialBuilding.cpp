@@ -30,3 +30,11 @@ int CommercialBuilding::getNumberOfEmployees() {
 void CommercialBuilding::setNumberOfEmployees(int numberOfEmployees) {
 	this->numberOfEmployees = numberOfEmployees;
 }
+
+void CommercialBuilding::print() {
+	cout << "Commercial Building Attributes:" << endl;
+	cout << "Income per Hour: " << incomePerHour << endl;
+	cout << "Satisfaction Score: " << satisfactionScore << endl;
+	cout << "Number of Employees: " << numberOfEmployees << endl;
+	Building::print();
+}

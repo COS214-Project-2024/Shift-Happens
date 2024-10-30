@@ -64,6 +64,8 @@ public:
      * @brief Pure virtual function to render the component.
      */
     virtual void render() = 0;
+
+    virtual void print() = 0;
 };
 
 #endif

@@ -8,3 +8,8 @@ TrainStation::TrainStation(int id) :
 TrainStation::~TrainStation()
 {
 }
+
+void TrainStation::print()
+{
+    TransportBuilding::print();
+}

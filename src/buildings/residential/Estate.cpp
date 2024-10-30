@@ -7,7 +7,7 @@ Estate::~Estate()
 {
 }
 
-void Estate::print() const {
+void Estate::print() {
     std::cout << "Estate Attributes:" << std::endl;
     std::cout << "Satisfaction Score: " << satisfactionScore << std::endl;
     std::cout << "Capacity: " << capacity << std::endl;

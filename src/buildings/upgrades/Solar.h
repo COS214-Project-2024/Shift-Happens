@@ -1,12 +1,14 @@
 #ifndef SOLAR_H
 #define SOLAR_H
 
-#include "Upgrade.h"
+#include "../Upgrade.h"
+
 
 class Solar : public Upgrade {
 public:
-    Solar(Building* building);
+    Solar(shared_ptr<Building> building);
     int getElectricityDemand() override;
+    virtual void print();
 };
 
 #endif

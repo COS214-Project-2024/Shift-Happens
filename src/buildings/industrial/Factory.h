@@ -10,7 +10,7 @@ private:
 public:
 	Factory(int id);
 	~Factory();
-	virtual void print() const override;
+	virtual void print();
 };
 
 #endif

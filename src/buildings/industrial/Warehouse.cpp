@@ -14,7 +14,7 @@ Warehouse::~Warehouse()
 {
 }
 
-void Warehouse::print() const {
+void Warehouse::print(){
     cout << "Warehouse Attributes:" << endl;
     cout << "Storage Capacity: " << storageCapacity << endl;
     cout << "Storage Used: " << storageUsed << endl;

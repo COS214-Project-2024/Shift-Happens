@@ -2,12 +2,15 @@
 #define UPGRADE_H
 
 #include "Building.h"
+#include <string>
+#include <memory>
 
 class Upgrade : public Building {
 protected:
-    Building* building;
+    shared_ptr<Building> building;
+    string type;
 public:
-    Upgrade(Building* building);
+    Upgrade(shared_ptr<Building> building);
     virtual ~Upgrade();
 
     virtual int getWasteProduced() ;
@@ -21,6 +24,8 @@ public:
 
     virtual int getWaterDemand() ;
     virtual void setWaterDemand(int waterDemand) ;
+
+    string getUpgradeType();
 };
 
 #endif

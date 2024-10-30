@@ -1,6 +1,12 @@
 #include "Upgrade.h"
 
-Upgrade::Upgrade(Building* building) : Building(*building), building(building) {}
+Upgrade::Upgrade(shared_ptr<Building> building)
+: Building(building)
+{
+    this->building = building;
+}
+
+
 
 Upgrade::~Upgrade() {}
 
@@ -34,4 +40,8 @@ int Upgrade::getWaterDemand() {
 
 void Upgrade::setWaterDemand(int waterDemand) {
     building->setWaterDemand(waterDemand);
+}
+
+string Upgrade::getUpgradeType() {
+    return type;
 }

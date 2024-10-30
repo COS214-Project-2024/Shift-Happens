@@ -9,3 +9,9 @@ Store::Store(int id)
 Store::~Store()
 {
 }
+
+void Store::print()
+{
+    cout << "Store Attributes:" << endl;
+    CommercialBuilding::print(); // Call to CommercialBuilding's print function
+}

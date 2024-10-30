@@ -7,7 +7,7 @@ TownHouse::~TownHouse()
 {
 }
 
-void TownHouse::print() const {
+void TownHouse::print() {
     std::cout << "TownHouse Attributes:" << std::endl;
     std::cout << "Satisfaction Score: " << satisfactionScore << std::endl;
     std::cout << "Capacity: " << capacity << std::endl;

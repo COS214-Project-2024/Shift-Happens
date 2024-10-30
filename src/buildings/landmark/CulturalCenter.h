@@ -7,6 +7,8 @@ class CulturalCenter : public LandMark
 private:
     public:
         CulturalCenter(int id);
+        ~CulturalCenter();
+        void print();
         
 };
 

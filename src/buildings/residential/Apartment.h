@@ -11,7 +11,7 @@ class Apartment : public ResidentialBuilding{
 		Apartment(int id);
 		~Apartment();
 		//print 
-		virtual void print() const override;
+		virtual void print();
 };
 
 #endif

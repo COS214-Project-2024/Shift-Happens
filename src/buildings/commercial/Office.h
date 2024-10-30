@@ -10,6 +10,8 @@ private:
 public:
 	Office(int id);
 	~Office();
+
+	void print();
 };
 
 

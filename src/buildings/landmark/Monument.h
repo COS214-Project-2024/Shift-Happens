@@ -6,6 +6,10 @@ class Monument : public LandMark {
 	
 public:
     Monument(int id);
+    ~Monument();
+
+    void print();
+    
 };
 
 

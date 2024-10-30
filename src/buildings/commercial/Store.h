@@ -7,6 +7,8 @@ class Store : public CommercialBuilding
 public:
 	Store(int id);
 	~Store();
+
+	void print();
 private:
 
 

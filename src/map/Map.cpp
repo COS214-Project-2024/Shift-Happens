@@ -168,3 +168,27 @@ Map& Map::getInstance() {
     static Map instance(0);
     return instance;
 }
+void Map::upgrade(int id, const string upgradeType) {
+    for (auto& row : tiles) {
+        for (auto& component : row) {
+            if (component->getId() == id) {
+                shared_ptr<Building> building = dynamic_pointer_cast<Building>(component);
+                if (building) {
+                    if (upgradeType == "Solar") {
+                        component = make_shared<Solar>(building);
+                    } else if (upgradeType == "Garden") {
+                        component = make_shared<Garden>(building);
+                    } else if (upgradeType == "RainCatcher") {
+                        component = make_shared<RainCatcher>(building);
+                    } else if (upgradeType == "Recycling") {
+                        component = make_shared<Recycling>(building);
+                    } else {
+                        cout << "Invalid upgrade type" << endl;
+                    }
+                    return;
+                }
+            }
+        }
+    }
+    cout << "Building with ID " << id << " not found" << endl;
+}

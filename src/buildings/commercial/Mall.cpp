@@ -9,3 +9,9 @@ Mall::Mall(int id)
 Mall::~Mall()
 {
 }
+
+void Mall::print()
+{
+    cout << "Mall Attributes:" << endl;
+    CommercialBuilding::print(); // Call to CommercialBuilding's print function
+}

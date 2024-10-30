@@ -29,7 +29,7 @@ public:
 	~ResidentialBuilding();
 
 	//print function
-	virtual void print() const override;
+	virtual void print();
 };
 
 #endif

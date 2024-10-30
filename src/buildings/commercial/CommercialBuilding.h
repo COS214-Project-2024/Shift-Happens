@@ -28,6 +28,8 @@ using namespace std;
 
 		void setNumberOfEmployees(int numberOfEmployees);
 
+		virtual void print() = 0;
+
 		
 	};
 

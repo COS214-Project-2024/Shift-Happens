@@ -8,6 +8,7 @@ class BusStation : public TransportBuilding
 public:
     BusStation(int id);
     ~BusStation();
+    void print();
 };
 
 #endif // BUSSTATION_H

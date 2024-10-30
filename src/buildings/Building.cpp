@@ -133,3 +133,17 @@ void Building::print() const {
     cout << "Electricity Demand: " << electricityDemand << ", Water Demand: " << waterDemand << endl;
 }
 
+Building::Building(shared_ptr<Building> building) 
+: MapComponent(building->getId()) {
+    this->width = building->getWidth();
+    this->length = building->getLength();
+    this->xPos = building->getXPos();
+    this->yPos = building->getYPos();
+    this->variant = building->getVariant();
+    this->type = building->getType();
+    this->constructionPrice = building->getConstructionPrice();
+    this->wasteProduced = building->getWasteProduced();
+    this->sewageProduced = building->getSewageProduced();
+    this->electricityDemand = building->getElectricityDemand();
+    this->waterDemand = building->getWaterDemand();
+}

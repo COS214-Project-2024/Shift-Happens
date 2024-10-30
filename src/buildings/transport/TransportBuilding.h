@@ -23,6 +23,8 @@ public:
     int getConstructionCost() const;
     void setConstructionCost(int constructionCost);
 
+    virtual void print();
+
     ~TransportBuilding();
 };
 

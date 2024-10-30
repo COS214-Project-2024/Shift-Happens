@@ -13,6 +13,11 @@
 #include "../buildingFactories/InfrastructureFactory.h"
 #include "../buildingFactories/TransportBuildingFactory.h"
 
+#include "../buildings/upgrades/Garden.h"
+#include "../buildings/upgrades/RainCatcher.h"
+#include "../buildings/upgrades/Recycling.h"
+#include "../buildings/upgrades/Solar.h"
+
 using namespace std;
 
 /**
@@ -101,6 +106,8 @@ public:
      * @return The singleton instance of the Map.
      */
     static Map& getInstance();
+
+    void upgrade(int id, const string upgradeType); // Add this line
 };
 
 #endif

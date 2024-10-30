@@ -8,6 +8,8 @@ class Airport : public TransportBuilding
 public:
     Airport(int id);
     ~Airport();
+
+    void print();
 };
 
 #endif // AIRPORT_H

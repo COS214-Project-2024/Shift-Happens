@@ -34,3 +34,15 @@ void LandMark::getComponent(int id) {
 LandMark::~LandMark() {
 	
 }
+
+void LandMark::print() {
+	std::cout << "LandMark" << std::endl;
+	std::cout << "ID: " << this->getId() << std::endl;
+	std::cout << "Variant: " << this->variant << std::endl;
+	std::cout << "Construction Price: " << this->getConstructionPrice() << std::endl;
+	std::cout << "Waste Produced: " << this->getWasteProduced() << std::endl;
+	std::cout << "Sewage Produced: " << this->getSewageProduced() << std::endl;
+	std::cout << "Electricity Demand: " << this->getElectricityDemand() << std::endl;
+	std::cout << "Water Demand: " << this->getWaterDemand() << std::endl;
+	std::cout << "Satisfaction Score: " << this->satisfactionScore << std::endl;
+}

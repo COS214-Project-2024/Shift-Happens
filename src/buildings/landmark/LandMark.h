@@ -24,6 +24,8 @@ public:
 
 	void getComponent(int id);
 
+	void print();
+
 	~LandMark();
 
 };

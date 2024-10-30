@@ -5,3 +5,21 @@ Park::Park(int id)
 {
     
 }
+
+Park::~Park()
+{
+}
+
+void Park::print(){
+    cout << "Park Attributes:" << endl;
+    cout << "Width: " << getWidth() << endl;
+    cout << "Length: " << getLength() << endl;
+    cout << "X Position: " << getXPos() << endl;
+    cout << "Y Position: " << getYPos() << endl;
+    cout << "Construction Price: " << getConstructionPrice() << endl;
+    cout << "Waste Produced: " << getWasteProduced() << endl;
+    cout << "Sewage Produced: " << getSewageProduced() << endl;
+    cout << "Electricity Demand: " << getElectricityDemand() << endl;
+    cout << "Water Demand: " << getWaterDemand() << endl;
+    LandMark::print(); // Call to LandMark's print function
+}

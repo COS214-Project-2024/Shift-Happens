@@ -23,7 +23,7 @@ void IndustrialBuilding::setSatisfactionScore(int satisfactionScore) {
 	this->satisfactionScore = satisfactionScore;
 }
 
-void IndustrialBuilding::print() const {
+void IndustrialBuilding::print() {
     cout << "Industrial Building Attributes:" << endl;
     cout << "Number of Employees: " << numberOfEmployees << endl;
     cout << "Satisfaction Score: " << satisfactionScore << endl;

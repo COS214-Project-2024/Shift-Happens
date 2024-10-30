@@ -34,3 +34,15 @@ void TransportBuilding::setConstructionCost(int constructionCost) {
 
 TransportBuilding::~TransportBuilding() {
 }
+
+void TransportBuilding::print(){
+    std::cout << "Transport Building" << std::endl;
+    std::cout << "ID: " << this->getId() << std::endl;
+    std::cout << "Capacity: " << this->capacity << std::endl;
+    std::cout << "Maintenance Cost: " << this->maintenanceCost << std::endl;
+    std::cout << "Construction Cost: " << this->constructionCost << std::endl;
+    std::cout << "Waste Produced: " << this->getWasteProduced() << std::endl;
+    std::cout << "Sewage Produced: " << this->getSewageProduced() << std::endl;
+    std::cout << "Electricity Demand: " << this->getElectricityDemand() << std::endl;
+    std::cout << "Water Demand: " << this->getWaterDemand() << std::endl;
+}

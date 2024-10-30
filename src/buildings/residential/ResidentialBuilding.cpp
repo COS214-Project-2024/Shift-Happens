@@ -41,7 +41,7 @@ void ResidentialBuilding::setIncomePerHour(int incomePerHour) {
 ResidentialBuilding::~ResidentialBuilding() {
 }
 
-void ResidentialBuilding::print() const {
+void ResidentialBuilding::print() {
     cout << "ResidentialBuilding Attributes:" << endl;
     cout << "Capacity: " << capacity << ", Satisfaction Score: " << satisfactionScore << endl;
     cout << "Income per Hour: " << incomePerHour << endl;

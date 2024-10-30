@@ -16,7 +16,7 @@ Manufacturer::~Manufacturer()
 {
 }
 
-void Manufacturer::print() const {
+void Manufacturer::print(){
     cout << "Manufacturer Attributes:" << endl;
     cout << "Products per Hour: " << productsPerHour << endl;
     cout << "Parts Used per Product: " << partsUsedPerProduct << endl;

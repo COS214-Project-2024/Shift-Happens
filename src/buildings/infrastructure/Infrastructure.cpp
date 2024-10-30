@@ -70,5 +70,16 @@ Infrastructure::~Infrastructure() {
 	
 }
 
-
+void Infrastructure::print() {
+	//prints all the attributes
+	cout << "Infrastructure Attributes:" << endl;
+	cout << "Variant: " << variant << endl;
+	cout << "Type: " << type << endl;
+	cout << "Width: " << width << endl;
+	cout << "Length: " << length << endl;
+	cout << "Y Position: " << yPos << endl;
+	cout << "X Position: " << xPos << endl;
+	cout << "Construction Cost: " << constructionCost << endl;
+	
+}
 

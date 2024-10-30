@@ -2,6 +2,7 @@
 #define BUILDING_H
 
 #include <iostream>
+#include <memory>
 #include <string>
 #include "../map/MapComponent.h"
 
@@ -23,32 +24,34 @@ protected:
 
 public:
     Building(int id, int width, int length, int xPos, int yPos, std::string variant, std::string type, int constructionPrice, int wasteProduced, int sewageProduced, int electricityDemand, int waterDemand);
+    Building(shared_ptr<Building> building);
+    
     int getWidth();
 
-    bool add(MapComponent *component);
-    bool remove(MapComponent *component);
-    void getComponent(int id);
-    void render();
+    virtual bool add(MapComponent *component);
+    virtual bool remove(MapComponent *component);
+    virtual void getComponent(int id);
+    virtual void render();
 
-    void setWidth(int width);
+    virtual void setWidth(int width);
 
-    int getLength();
-    void setLength(int length);
+    virtual int getLength();
+    virtual void setLength(int length);
 
-    int getXPos();
-    void setXPos(int xPos);
+    virtual int getXPos();
+    virtual void setXPos(int xPos);
 
-    int getYPos();
-    void setYPos(int yPos);
+    virtual int getYPos();
+    virtual void setYPos(int yPos);
 
-    std::string getVariant();
-    void setVariant(std::string variant);
+    virtual std::string getVariant();
+    virtual void setVariant(std::string variant);
 
-    std::string getType();
-    void setType(std::string type);
+    virtual std::string getType();
+    virtual void setType(std::string type);
 
-    int getConstructionPrice();
-    void setConstructionPrice(int constructionPrice);
+    virtual int getConstructionPrice();
+    virtual void setConstructionPrice(int constructionPrice);
 
     virtual int getWasteProduced();
     virtual void setWasteProduced(int wasteProduced);

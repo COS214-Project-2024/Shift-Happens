@@ -7,6 +7,9 @@ class Park : public LandMark
 {
 public:
     Park(int id);
+    ~Park();
+
+    void print();
 };
 
 #endif

@@ -12,7 +12,7 @@ class TownHouse : public ResidentialBuilding{
 public:
 	TownHouse(int id);
 	~TownHouse();
-	virtual void print() const override;
+	virtual void print();
 
 };
 

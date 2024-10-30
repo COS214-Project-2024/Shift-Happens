@@ -7,7 +7,7 @@ House::~House()
 {
 }
 
-void House::print() const {
+void House::print() {
     std::cout << "House Attributes:" << std::endl;
     std::cout << "Satisfaction Score: " << satisfactionScore << std::endl;
     std::cout << "Capacity: " << capacity << std::endl;

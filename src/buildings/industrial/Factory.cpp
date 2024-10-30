@@ -15,7 +15,7 @@ Factory::~Factory()
 {
 }
 
-void Factory::print() const {
+void Factory::print() {
     cout << "Factory Attributes:" << endl;
     cout << "Part Production per Hour: " << partProductionPerHour << endl;
     cout << "Production Cost per Hour: " << productionCostPerHour << endl;

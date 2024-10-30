@@ -23,7 +23,7 @@ public:
 	int getSatisfactionScore();
 
 	void setSatisfactionScore(int satisfactionScore);
-	virtual void print() const override;
+	virtual void print();
 };
 
 #endif

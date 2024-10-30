@@ -13,7 +13,7 @@ private:
 public:
 	Warehouse(int id);
 	~Warehouse();
-	virtual void print() const override;
+	virtual void print();
 };
 
 #endif

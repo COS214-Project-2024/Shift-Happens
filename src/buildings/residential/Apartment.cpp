@@ -10,7 +10,7 @@ Apartment::~Apartment(){
 
 }
 
-void Apartment::print() const {
+void Apartment::print() {
     cout << "Apartment Attributes:" << endl;
     cout << "Satisfaction Score: " << satisfactionScore << endl;
     cout << "Capacity: " << capacity << endl;

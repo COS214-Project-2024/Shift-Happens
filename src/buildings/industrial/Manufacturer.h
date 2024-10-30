@@ -14,7 +14,7 @@ private:
 public:
 	Manufacturer(int id);
 	~Manufacturer();
-	virtual void print() const override;
+	virtual void print();
 };
 
 #endif

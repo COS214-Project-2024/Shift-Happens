@@ -7,3 +7,9 @@ BusStation::BusStation(int id) : TransportBuilding(id, 200, "BusStation", 1000, 
 BusStation::~BusStation()
 {
 }
+
+void BusStation::print()
+{
+    cout << "Bus Station Attributes:" << endl;
+    TransportBuilding::print();
+}

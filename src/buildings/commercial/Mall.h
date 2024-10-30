@@ -7,6 +7,7 @@ class Mall : public CommercialBuilding
 private:
 public:
 	Mall(int id);
+	void print() ;
 	~Mall();
 };
 

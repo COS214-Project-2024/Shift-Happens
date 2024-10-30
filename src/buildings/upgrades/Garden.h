@@ -1,12 +1,13 @@
 #ifndef GARDEN_H
 #define GARDEN_H
 
-#include "Upgrade.h"
+#include "../Upgrade.h"
 
 class Garden : public Upgrade {
 public:
-    Garden(Building* building);
+    Garden(shared_ptr<Building> building);
     int getSewageProduced() override;
+    virtual void print();
 };
 
 #endif
