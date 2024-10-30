@@ -178,8 +178,9 @@ void Game::createBuidling()
             
             //createVariant(getvariantop() );
             createUtilityBuilding("Utility");
-            cout <<"displaying buildings.\n";
-        printAllBuildings();
+            
+        //printAllBuildings();
+        buildings->print();
 
             valid = true;
             break;
@@ -190,9 +191,9 @@ void Game::createBuidling()
             setvariantop(choice2);
             setvar("Industrial");
             //createVariant(getvariantop() );
-            createUtilityBuilding("Industrial");
-            cout <<"displaying buildings.\n";
-        printAllBuildings();
+            createIndustrialBuilding("Industrial");
+            
+        buildings->print();
             valid = true;
             break;
         case 3:
@@ -201,9 +202,9 @@ void Game::createBuidling()
             setvariantop(choice2);
             setvar("Residential");
             //createVariant(getvariantop() );
-            createUtilityBuilding("Residential");
-            cout <<"displaying buildings.\n";
-        printAllBuildings();
+            createResidentialBuilding("Residential");
+            
+        buildings->print();
             
             valid = true;
             break;
@@ -212,9 +213,9 @@ void Game::createBuidling()
         setvariantop(choice2);
          setvar("Commercial");
        //createVariant(getvariantop() );
-            createUtilityBuilding("Commercial");
-            cout <<"displaying buildings.\n";
-        printAllBuildings();
+            createCommercialBuilding("Commercial");
+            
+        buildings->print();
         
        
         valid = true;
@@ -226,8 +227,8 @@ void Game::createBuidling()
          setvar("Infrastructure");
        //createVariant(getvariantop() );
             createInfrastructureBuilding("Infrastructure");
-            cout <<"displaying buildings.\n";
-        printAllBuildings();
+            
+        buildings->print();
         valid = true;
         break;
 
@@ -287,36 +288,97 @@ void Game::createBuidling()
     }
     //
     void Game::createUtilityBuilding(const std::string& variant) {
-    buildings.push_back(variant);  // Store building
-    std::cout << "Created " <<  getVar() << " building: " << display.getvariant() << std::endl;
+    cout <<"utility starting.\n";// for debugging
+    if(!utilityfactory){
+        utilityfactory = std::make_shared<UtilityBuildingFactory>(1);// instantiate if not there
+    }
+cout<<"utility step 2.\n"; // for debuggig
+cout <<display.getvariant() <<endl; // for debugging
+
+
+ std::shared_ptr<Building> building = utilityfactory->createBuilding2(display.getvariant()   );
+   if (building)
+    {
+      //buildings.push_back(building);
+      cout <<"Created a "<< getVar() <<" building: " << display.getvariant(); 
+    }else {
+        cout <<"Invalid building variant:  " << display.getvariant();
+    }
+
+    
+    /*buildings.push_back(variant);  // Store building
+    std::cout << "Created " <<  getVar() << " building: " << display.getvariant() << std::endl;*/
+
 }
 void Game::createResidentialBuilding(const std::string& variant) {
-    buildings.push_back(variant);  // Store building
-    std::cout << "Created " <<  getVar() << " building: " << display.getvariant() << std::endl;
+ if(!Residentialfactory){
+        Residentialfactory = std::make_shared<ResidentialBuildingFactory>(1);// instantiate if not there
+    }
+
+    std::shared_ptr<Building> building = Residentialfactory->createBuilding2(display.getvariant()  );
+   if (building)
+    {
+      //buildings.push_back(building);
+      cout <<"Created a "<< getVar() <<" building: " << display.getvariant(); 
+    }else {
+        cout <<"Invalid building variant:  " << display.getvariant();
+    }
 }
 void Game::createLandMarkBuilding(const std::string& variant) {
-    buildings.push_back(variant);  // Store building
-    std::cout << "Created " <<  getVar() << " building: " << display.getvariant() << std::endl;
+    if(!LandMarkfactory){
+        LandMarkfactory= std::make_shared<LandmarkBuildingFactory>(1);// instantiate if not there
+    }
+
+    std::shared_ptr<Building> building = LandMarkfactory->createBuilding2(display.getvariant()  );
+   if (building)
+    {
+     // buildings.push_back(building); already done on factory side
+      cout <<"Created a "<< getVar() <<" building: " << display.getvariant(); 
+    }else {
+        cout <<"Invalid building variant:  " << display.getvariant();
+    }
 }
 void Game::createCommercialBuilding(const std::string& variant) {
-    buildings.push_back(variant);  // Store building
-    std::cout << "Created " <<  getVar() << " building: " << display.getvariant() << std::endl;
+    if(!Commerecialfactory){
+        Commerecialfactory = std::make_shared<CommercialBuildingFactory>(1);// instantiate if not there
+    }
+    
+    std::shared_ptr<Building> building = Commerecialfactory->createBuilding2(display.getvariant() );
+   if (building)
+    {
+      //buildings.push_back(building); already done on factory side
+      cout <<"Created a "<< getVar() <<" building: " << display.getvariant(); 
+    }else {
+        cout <<"Invalid building variant:  " << display.getvariant();
+    }
 }
 void Game::createIndustrialBuilding(const std::string& variant) {
-    buildings.push_back(variant);  // Store building
-    std::cout << "Created " <<  getVar() << " building: " << display.getvariant() << std::endl;
+    if(!Industsrialfactory){
+        Industsrialfactory = std::make_shared<IndustrialBuildingFactory>(1);// instantiate if not there
+    }
+
+
+    std::shared_ptr<Building> building = Industsrialfactory->createBuilding2(display.getvariant() );
+   if (building)
+    {
+//      buildings.push_back(building);
+      cout <<"Created a "<< getVar() <<" building: " << display.getvariant(); 
+    }else {
+        cout <<"Invalid building variant:  " << display.getvariant();
+    }
 }
 void Game::createInfrastructureBuilding(const std::string& variant) {
-    buildings.push_back(variant);  // Store building
-    std::cout << "Created " <<  getVar() << " building: " << display.getvariant() << std::endl;
-}
-
-
-void Game::printAllBuildings() const {
-    std::cout << "All buildings created so far:" << std::endl;
-    for (const auto& building : buildings) {
-        //std::cout << "- " << building->getType() <<"- " << building->getVariant()  << std::endl;
-        std::cout << "- " << building  << std::endl;
+    if(!Infrastructurefactory){
+       Infrastructurefactory = std::make_shared<InfrastructureFactory>(1);// instantiate if not there
+    }
+    
+    std::shared_ptr<Building> building = Infrastructurefactory->createBuilding2(display.getvariant() );
+   if (building)
+    {
+      //buildings.push_back(building);
+      cout <<"Created a "<< getVar() <<" building: " << display.getvariant(); 
+    }else {
+        cout <<"Invalid building variant:  " << display.getvariant();
     }
 }
 

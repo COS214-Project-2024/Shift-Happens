@@ -4,6 +4,7 @@
 #include <vector>
 #include <string>
 #include <iostream>
+
 /**
  * @class Display
  * @brief  Handles the display and user interaction for various menu options in the game
@@ -122,6 +123,7 @@ public:
 private:
     // Add private members and methods as needed
     string variant;
+
 };
 
 #endif // DISPLAY_H

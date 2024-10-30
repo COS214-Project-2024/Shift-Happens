@@ -32,6 +32,36 @@ void TransportBuildingFactory::createBuilding(string variant) {
         buildingId--;
     }
 }
+//
+std::shared_ptr<Building> TransportBuildingFactory::createBuilding2(const string& variant) {
+    if (buildingId >= 100) // 99 max buildings
+    {
+        cout << "You have reached the maximum number of Transport buildings" << endl;
+        return nullptr;
+    }
+
+    int idForBuilding = buildingId + 100 * id;
+    buildingId++;
+    if (variant == "Airport")
+    {
+        buildings.push_back(make_shared<Airport>(idForBuilding));
+    }
+    else if (variant == "BusStation")
+    {
+        buildings.push_back(make_shared<BusStation>(idForBuilding));
+    }
+    else if (variant == "TrainStation")
+    {
+        buildings.push_back(make_shared<TrainStation>(idForBuilding));
+    }
+    else
+    {
+        cout << "Invalid building type" << endl;
+        buildingId--;
+    }
+}
+
+//
 
 TransportBuildingFactory::~TransportBuildingFactory()
 {

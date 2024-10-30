@@ -5,7 +5,13 @@
 #include "../map/MapComponent.h"
 #include "../map/Map.h"
 #include <string>
-//#include"Building.h"
+#include"../buildings/Building.h"
+#include"../buildingFactories/UtilityBuildingFactory.h"
+#include"../buildingFactories/CommercialBuildingFactory.h"
+#include"../buildingFactories/ResidentialBuildingFactory.h"
+#include"../buildingFactories/InfrastructureFactory.h"
+#include"../buildingFactories/LandmarkBuildingFactory.h"
+#include"../buildingFactories/IndustrialBuildingFactory.h"
 /**
  * @class Game
  * @brief Manages the main game operations including menus, player actions, and map interactions.
@@ -35,7 +41,7 @@ public:
     void createLandMarkBuilding(const std::string& variant);  // Building creation
     void createIndustrialBuilding(const std::string& variant);  // Building creation
 
-    void printAllBuildings() const;  // Print all buildings
+   
     
 
     void run();
@@ -141,7 +147,18 @@ public:
     MapComponent * map; ///>Pointer to the map
     string var;///< Stores the variant name for a building type
     int variantop;///< Stores the option selected for a building variant
-    std::vector<std::string> buildings; //store created buildings
+
+    //std::unique_ptr<MapComponent> map;
+    std::shared_ptr<Building> buildings;  // Container for created buildings
+    //factories
+    std::shared_ptr<UtilityBuildingFactory> utilityfactory;
+    std::shared_ptr<IndustrialBuildingFactory> Industsrialfactory;
+    std::shared_ptr<CommercialBuildingFactory> Commerecialfactory;
+    std::shared_ptr<LandmarkBuildingFactory> LandMarkfactory;
+    std::shared_ptr<ResidentialBuildingFactory> Residentialfactory;
+    std::shared_ptr<InfrastructureFactory> Infrastructurefactory;
+
+    //
 };
 
 #endif // GAME_H

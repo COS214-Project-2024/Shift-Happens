@@ -39,7 +39,8 @@ public:
      * @brief Creates a utility building.
      * @param variant The type of building to create.
      */
-    void createBuilding(string variant) override;
+    void createBuilding( string variant) override;
+    std::shared_ptr<Building> createBuilding2(const string& variant);
 
     /**
      * @brief Prints the created buildings.
