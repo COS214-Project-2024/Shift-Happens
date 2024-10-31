@@ -2,9 +2,6 @@
 CXX = g++
 CXXFLAGS = -Wall -Wextra -std=c++11
 
-# Executable name
-TARGET = main
-
 # Directories
 SRC_DIR = .
 OBJ_DIR = obj
@@ -12,9 +9,12 @@ OBJ_DIR = obj
 # Google Test Libraries
 GTEST_LIBS = -lgtest -lgtest_main -pthread
 
-# Source files
-SRCS = $(SRC_DIR)/PolicyMain.cpp \
-       $(SRC_DIR)/../game/Game.cpp \
+# Main source files
+POLICY_MAIN = $(SRC_DIR)/PolicyMain.cpp
+GOVERNMENT_MAIN = $(SRC_DIR)/GovernmentMain.cpp
+
+# Common source files
+COMMON_SRCS = $(SRC_DIR)/../game/Game.cpp \
        $(SRC_DIR)/../game/Display.cpp \
        $(SRC_DIR)/../map/MapComponent.cpp \
        $(SRC_DIR)/../map/Map.cpp \
@@ -68,24 +68,48 @@ SRCS = $(SRC_DIR)/PolicyMain.cpp \
        $(SRC_DIR)/../Government/BoostPolicePolicy.cpp \
        $(SRC_DIR)/../Government/BoostEducationPolicy.cpp
 
-# Object files
-OBJS = $(SRCS:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
+# Object files for common sources
+COMMON_OBJS = $(COMMON_SRCS:$(SRC_DIR)/../%.cpp=$(OBJ_DIR)/%.o)
 
-# Build target
-$(TARGET): $(OBJS)
+# Object files for each main file
+POLICY_MAIN_OBJ = $(OBJ_DIR)/PolicyMain.o
+GOVERNMENT_MAIN_OBJ = $(OBJ_DIR)/GovernmentMain.o
+
+# Executable names
+POLICY_EXEC = policy_exec
+GOVERNMENT_EXEC = government_exec
+
+# Build target for PolicyMain
+$(POLICY_EXEC): $(POLICY_MAIN_OBJ) $(COMMON_OBJS)
 	$(CXX) $(CXXFLAGS) -o $@ $^ $(GTEST_LIBS)
 
-# Build object files
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
+# Build target for GovernmentMain
+$(GOVERNMENT_EXEC): $(GOVERNMENT_MAIN_OBJ) $(COMMON_OBJS)
+	$(CXX) $(CXXFLAGS) -o $@ $^ $(GTEST_LIBS)
+
+# Rule to build object files for main files
+$(OBJ_DIR)/PolicyMain.o: $(POLICY_MAIN)
 	@mkdir -p $(dir $@)
 	$(CXX) $(CXXFLAGS) -c -o $@ $<
 
-# Run target
-run: $(TARGET)
-	./$(TARGET)
+$(OBJ_DIR)/GovernmentMain.o: $(GOVERNMENT_MAIN)
+	@mkdir -p $(dir $@)
+	$(CXX) $(CXXFLAGS) -c -o $@ $<
+
+# Rule to build object files for common sources
+$(OBJ_DIR)/%.o: $(SRC_DIR)/../%.cpp
+	@mkdir -p $(dir $@)
+	$(CXX) $(CXXFLAGS) -c -o $@ $<
+
+# Run targets
+run_policy: $(POLICY_EXEC)
+	./$(POLICY_EXEC)
+
+run_government: $(GOVERNMENT_EXEC)
+	./$(GOVERNMENT_EXEC)
 
 # Clean up
 clean:
-	rm -rf $(OBJ_DIR) $(TARGET)
+	rm -rf $(OBJ_DIR) $(POLICY_EXEC) $(GOVERNMENT_EXEC)
 
-.PHONY: clean run
+.PHONY: clean run_policy run_government
