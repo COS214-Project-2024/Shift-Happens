@@ -127,8 +127,10 @@ public:
     //For Building, detroying, and upgrading
     //########################################
     void showBuildings();
+    void showMap();
     std::pair<int, int> getBuildCoordinates();
-    std::pair<string, std::pair<int,int>> getDetroyedBuilding();
+    std::pair<int,int> getDestroyedBuilding();
+    std::pair<string, std::pair<int,int>> getUpgradedBuilding();
 
 
 private:
