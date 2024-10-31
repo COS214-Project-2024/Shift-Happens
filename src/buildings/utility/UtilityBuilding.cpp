@@ -19,4 +19,4 @@ void UtilityBuilding::print() {
     cout << "UtilityBuilding Attributes:" << endl;
     cout << "Running Cost per Hour: " << runningCostPerHour << endl;
     Building::print(); // Building print called
-}
+} 

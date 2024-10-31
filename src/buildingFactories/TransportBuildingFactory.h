@@ -41,6 +41,12 @@ public:
     void createBuilding(string variant) override;
 
     /**
+     * @brief Returns the created building.
+     * @return shared_ptr<TransportBuilding> The created building.
+     */
+    shared_ptr<TransportBuilding> getBuilding();
+
+    /**
      * @brief Prints the created buildings.
      */
     void print() override;

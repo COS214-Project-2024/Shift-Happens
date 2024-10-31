@@ -2,18 +2,30 @@
 #define WAREHOUSE_H
 
 #include "IndustrialBuilding.h"
-class Warehouse : public IndustrialBuilding{
 
+class Warehouse : public IndustrialBuilding {
 private:
-	int satisfactionScore;
+    int satisfactionScore;
     int numberOfEmployees;
-	int storageCapacity;
-	int storageUsed;
+    int storageCapacity;
+    int storageUsed;
 
 public:
-	Warehouse(int id);
-	~Warehouse();
-	virtual void print() const override;
+    Warehouse(int id);
+    ~Warehouse();
+    virtual void print();
+
+    // New functions
+    double getAverageSatisfactionScore() override;
+    int getTotalWaterSupply() override;
+    int getTotalWaterUsage() override;
+    int getTotalElectricitySupply() override;
+    int getTotalElectricityDemand() override;
+    int getTotalSewageCapacity() override;
+    int getTotalWasteCapacity() override;
+    int getTotalWasteProduction() override;
+    int getTotalSewageProduction() override;
+    int getTotalNumberOfJobs() override;
 };
 
 #endif
