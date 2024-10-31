@@ -75,10 +75,12 @@ COMMON_OBJS = $(COMMON_SRCS:$(SRC_DIR)/../%.cpp=$(OBJ_DIR)/%.o)
 # Object files for each main file
 POLICY_MAIN_OBJ = $(OBJ_DIR)/PolicyMain.o
 GOVERNMENT_MAIN_OBJ = $(OBJ_DIR)/GovernmentMain.o
+CITIZEN_MAIN_OBJ = $(OBJ_DIR)/CitizenUnitTesting.o
 
 # Executable names
 POLICY_EXEC = policy_exec
 GOVERNMENT_EXEC = government_exec
+CITIZEN_EXEC = citizen_exec
 
 # Build target for PolicyMain
 $(POLICY_EXEC): $(POLICY_MAIN_OBJ) $(COMMON_OBJS)
@@ -88,12 +90,20 @@ $(POLICY_EXEC): $(POLICY_MAIN_OBJ) $(COMMON_OBJS)
 $(GOVERNMENT_EXEC): $(GOVERNMENT_MAIN_OBJ) $(COMMON_OBJS)
 	$(CXX) $(CXXFLAGS) -o $@ $^ $(GTEST_LIBS)
 
+# Build target for CitizenMain
+$(CITIZEN_EXEC): $(CITIZEN_MAIN_OBJ) $(COMMON_OBJS)
+	$(CXX) $(CXXFLAGS) -o $@ $^ $(GTEST_LIBS)
+
 # Rule to build object files for main files
 $(OBJ_DIR)/PolicyMain.o: $(POLICY_MAIN)
 	@mkdir -p $(dir $@)
 	$(CXX) $(CXXFLAGS) -c -o $@ $<
 
 $(OBJ_DIR)/GovernmentMain.o: $(GOVERNMENT_MAIN)
+	@mkdir -p $(dir $@)
+	$(CXX) $(CXXFLAGS) -c -o $@ $<
+
+$(OBJ_DIR)/CitizenMain.o: $(CITIZEN_MAIN)
 	@mkdir -p $(dir $@)
 	$(CXX) $(CXXFLAGS) -c -o $@ $<
 
@@ -109,8 +119,11 @@ run_policy: $(POLICY_EXEC)
 run_government: $(GOVERNMENT_EXEC)
 	./$(GOVERNMENT_EXEC)
 
+run_citizen: $(CITIZEN_EXEC)
+       ./$(CITIZEN_EXEC)
+
 # Clean up
 clean:
-	rm -rf $(OBJ_DIR) $(POLICY_EXEC) $(GOVERNMENT_EXEC)
+	rm -rf $(OBJ_DIR) $(POLICY_EXEC) $(GOVERNMENT_EXEC) $(CITIZEN_EXEC)
 
-.PHONY: clean run_policy run_government
+.PHONY: clean run_policy run_government run_citizen
