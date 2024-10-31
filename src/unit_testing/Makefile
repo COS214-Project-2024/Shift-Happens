@@ -12,6 +12,7 @@ GTEST_LIBS = -lgtest -lgtest_main -pthread
 # Main source files
 POLICY_MAIN = $(SRC_DIR)/PolicyMain.cpp
 GOVERNMENT_MAIN = $(SRC_DIR)/GovernmentMain.cpp
+CITIZEN_MAIN = $(SRC_DIR)/CitizenUnitTesting.cpp
 
 # Common source files
 COMMON_SRCS = $(SRC_DIR)/../game/Game.cpp \
