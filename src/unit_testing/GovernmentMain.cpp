@@ -67,11 +67,42 @@
 #include "../Government/BoostPolicePolicy.h"
 #include "../Government/Policy.h"
 
+#include "../Government/UnderPopulated.h"
+#include "../Government/Normal.h"  
+#include "../Government/Economy.h"
+
 using namespace std;
 
+/*
+TEST(ManBuilderTest, addTypeTest){
+  std::shared_ptr<ManBuilder> manBuilder = std::make_shared<ManBuilder>();
+  manBuilder->addType();
+  std::shared_ptr<Citizen> man = manBuilder->getCitizen();
+  ASSERT_NE(man, nullptr);
+  EXPECT_EQ(man->getType(), "Man");
+}
+*/
 
-TEST(ExampleTest, SimpleTest) { //mock test to check if Gtest is working
-    EXPECT_EQ(1 + 1, 2);
+// Population testing
+TEST(UnderPopulatedTest, increasePopulation) {
+
+}
+
+TEST(UnderPopulatedTest, increasePopulationWithoutTransition) {
+
+}
+
+TEST(UnderPopulatedTest, decreasePopulation) {
+
+}
+
+TEST(UnderPopulatedTest, decreasePopulationBelowZero) {
+
+}
+
+TEST(UnderPopulatedTest, getType) {
+    std::shared_ptr<UnderPopulated> underPopulated = std::make_shared<UnderPopulated>();
+    EXPECT_EQ(underPopulated->getType(), "Under Populated");
 }
 
 

@@ -11,7 +11,7 @@ void Normal::increasePopulation(int increase){
   }
 }
 
-void Normal::descreasePopulation(int decrease){
+void Normal::decreasePopulation(int decrease){
   this->PopulationCount -= decrease;
 
   if(this->PopulationCount < PopNormalLowCap){

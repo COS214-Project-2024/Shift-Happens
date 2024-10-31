@@ -25,6 +25,8 @@ class UnderPopulated : public Population {
 		int PopUnderHighCap = 400;
 
 	public:
+		UnderPopulated();
+		UnderPopulated(int count);
 		/**
 		 * @brief Increases the population count, potentially impacting state.
 		 * @param increase The number of citizens to add to the population.
@@ -32,7 +34,7 @@ class UnderPopulated : public Population {
 		 * This method adjusts the population count upwards and checks if the new
 		 * count exceeds the defined limits, possibly transitioning to the `Normal` state.
 		 */
-		void increasePopulation(int increase) override;
+		void increasePopulation(int increase);
 
 		/**
 		 * @brief Decreases the population count, potentially impacting state.
@@ -41,7 +43,7 @@ class UnderPopulated : public Population {
 		 * This method reduces the population count and checks if the resulting count
 		 * falls below the threshold to maintain the `UnderPopulated` state.
 		 */
-		void decreasePopulation(int decrease) override;
+		void decreasePopulation(int decrease);
 
 		/**
 		 * @brief Returns the type of the current population state.
@@ -50,7 +52,7 @@ class UnderPopulated : public Population {
 		 * This method provides a human-readable description of the current population state
 		 * for diagnostic or user interface purposes.
 		 */
-		std::string getType() override;
+		std::string getType();
 };
 
 #endif // UNDERPOPULATED_H

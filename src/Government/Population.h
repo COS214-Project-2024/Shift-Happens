@@ -58,6 +58,7 @@ class Population {
 		 * Provides a human-readable representation of the population state for diagnostic or user interface purposes.
 		 */
 		virtual std::string getType() = 0;
+		int getPopulationCount();
 };
 
 #endif // POPULATION_H
