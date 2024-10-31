@@ -19,7 +19,6 @@ using namespace std;
  */
 class MapComponent
 {
-
 private:
     int id; ///< Component ID
 
