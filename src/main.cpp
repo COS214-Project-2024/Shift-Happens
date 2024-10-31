@@ -127,8 +127,8 @@ void testMap() {
 }
 
 int main() {
-    //demo();
+    demo();
     //testBuildingFactory();
-    testMap();
+    //testMap();
     return 0;
 }
