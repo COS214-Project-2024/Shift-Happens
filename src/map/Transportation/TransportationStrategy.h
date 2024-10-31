@@ -12,7 +12,7 @@ public:
     virtual ~TransportationStrategy() = default;
     virtual double calculateCost(shared_ptr<Map> start, shared_ptr<Map> end) = 0;
     virtual double calculateDuration(shared_ptr<Map> start, shared_ptr<Map> end) = 0;
-    virtual std::string getDescription() = 0;
+    virtual string getDescription() = 0;
 };
 
 #endif
