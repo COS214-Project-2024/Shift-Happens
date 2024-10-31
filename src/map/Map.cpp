@@ -1,6 +1,8 @@
 #include "Map.h"
 #include <iostream>
 
+using namespace std;
+
 Map::Map(int id) : MapComponent(id) {
     // Initialize a 25x25 grid with nullptr
     tiles = vector<vector<shared_ptr<MapComponent>>>(25, vector<shared_ptr<MapComponent>>(25, nullptr));
@@ -32,12 +34,12 @@ void Map::render() {
     for (size_t i = 0; i < 25; i++) {
         for (size_t j = 0; j < 25; j++) {
             if (tiles[i][j] == nullptr) {
-                std::cout << "|  ";
+                cout << "|  ";
             } else {
-                std::cout << "|X ";
+                cout << "|X ";
             }
         }
-        std::cout << "|" << std::endl;
+        cout << "|" << endl;
     }
 }
 

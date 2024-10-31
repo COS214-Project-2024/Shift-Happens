@@ -16,8 +16,7 @@
 
 using namespace std;
 
-class Map : public MapComponent
-{
+class Map : public MapComponent{
 	
 private:
 	//vector<vector<MapComponent*>> tiles;
@@ -32,17 +31,10 @@ private:
 	shared_ptr<InfrastructureFactory> infrastructureFactory;
 	shared_ptr<TransportBuildingFactory> transportBuildingFactory;
 
-	
-
-
-
-	
-	
-
 public:
 	Map(int id);
 
-	std::vector<std::shared_ptr<MapComponent>> components;
+	vector<shared_ptr<MapComponent>> components;
 	
 	void build(string variant, string type, int xPos, int yPos);
 

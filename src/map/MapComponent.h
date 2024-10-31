@@ -6,16 +6,13 @@
 #include <iostream>
 
 using namespace std;
-class MapComponent
-{
+class MapComponent{
 
 private:
 	int id;
 
 protected:
 	
-
-
 public:
 	MapComponent(int id);
 	virtual bool add(MapComponent *component) = 0;
