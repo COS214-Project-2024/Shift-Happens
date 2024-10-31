@@ -3,7 +3,7 @@
 
 #include <string>
 #include <iostream>
-
+#include <memory>
 using namespace std;
 
 /**
@@ -36,24 +36,9 @@ public:
     int getId();
 
     /**
-     * @brief Pure virtual function to add a component.
-     * @param component The component to add.
-     * @return True if the component was added, false otherwise.
-     */
-    virtual bool add(MapComponent *component) = 0;
-
-    /**
-     * @brief Pure virtual function to remove a component.
-     * @param component The component to remove.
-     * @return True if the component was removed, false otherwise.
-     */
-    virtual bool remove(MapComponent *component) = 0;
-
-    /**
      * @brief Pure virtual function to get a component by ID.
      * @param id The component ID.
      */
-    virtual void getComponent(int id) = 0;
 
     /**
      * @brief Destructor for MapComponent.

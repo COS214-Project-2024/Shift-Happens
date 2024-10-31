@@ -19,17 +19,8 @@ void LandMark::render() {
     throw "LandMark::render() not yet implemented";
 }
 
-bool LandMark::add(MapComponent *component) {
-    throw "LandMark::add() not yet implemented";
-}
 
-bool LandMark::remove(MapComponent *component) {
-    throw "LandMark::remove() not yet implemented";
-}
 
-void LandMark::getComponent(int id) {
-    throw "LandMark::getComponent() not yet implemented";
-}
 
 LandMark::~LandMark() {
 }

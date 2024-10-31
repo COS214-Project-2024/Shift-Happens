@@ -28,9 +28,6 @@ public:
     
     int getWidth();
 
-    virtual bool add(MapComponent *component);
-    virtual bool remove(MapComponent *component);
-    virtual void getComponent(int id);
     virtual void render();
 
     virtual void setWidth(int width);

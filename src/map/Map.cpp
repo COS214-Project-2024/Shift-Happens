@@ -19,30 +19,21 @@ Map::Map(int id) : MapComponent(id) {
     transportBuildingFactory = make_shared<TransportBuildingFactory>(7);
 }
 
-/**
- * @brief Adds a component to the map.
- * @param component The component to add.
- * @return True if the component was added, false otherwise.
- */
-bool Map::add(MapComponent* component) {
-    throw "Map::add(MapComponent* component) not implemented";
-}
-
-/**
- * @brief Removes a component from the map.
- * @param component The component to remove.
- * @return True if the component was removed, false otherwise.
- */
-bool Map::remove(MapComponent* component) {
-    throw "Map::remove(MapComponent* component) not implemented";
-}
 
 /**
  * @brief Gets a component by ID.
  * @param id The component ID.
  */
-void Map::getComponent(int id) {
-    // Implementation here
+shared_ptr<MapComponent> Map::getComponent(int id) {
+    
+    for (const auto& row : tiles) {
+        for (const auto& component : row) {
+            if (component->getId() == id) {
+                return component;
+            }
+        }
+    }
+    return nullptr;
 }
 
 /**

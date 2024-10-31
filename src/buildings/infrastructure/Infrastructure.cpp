@@ -55,17 +55,8 @@ void Infrastructure::render() {
     throw "Infrastructure::render() not yet implemented";
 }
 
-bool Infrastructure::add(MapComponent *component) {
-    throw "Infrastructure::add() not yet implemented";
-}
 
-bool Infrastructure::remove(MapComponent *component) {
-    throw "Infrastructure::remove() not yet implemented";
-}
 
-void Infrastructure::getComponent(int id) {
-    throw "Infrastructure::getComponent() not yet implemented";
-}
 
 Infrastructure::~Infrastructure() {
 }

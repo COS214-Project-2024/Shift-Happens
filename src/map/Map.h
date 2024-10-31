@@ -71,25 +71,14 @@ public:
      */
     void destroy(int id);
 
-    /**
-     * @brief Adds a component to the map.
-     * @param component The component to add.
-     * @return True if the component was added, false otherwise.
-     */
-    bool add(MapComponent *component) override;
+    
 
-    /**
-     * @brief Removes a component from the map.
-     * @param component The component to remove.
-     * @return True if the component was removed, false otherwise.
-     */
-    bool remove(MapComponent *component) override;
-
+    
     /**
      * @brief Gets a component by ID.
      * @param id The component ID.
      */
-    void getComponent(int id) override;
+    shared_ptr<MapComponent> getComponent(int id);
 
     /**
      * @brief Renders the map.

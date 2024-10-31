@@ -18,12 +18,6 @@ public:
 
     void render();
 
-    bool add(MapComponent *component);
-
-    bool remove(MapComponent *component);
-
-    void getComponent(int id);
-
     void print();
 
     ~LandMark();

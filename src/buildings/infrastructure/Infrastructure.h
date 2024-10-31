@@ -38,10 +38,7 @@ public:
 
     void render();
 
-    bool add(MapComponent *component);
-    bool remove(MapComponent *component);
-    void getComponent(int id);
-
+    
     virtual void print();
 
     // New functions
