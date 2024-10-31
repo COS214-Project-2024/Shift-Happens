@@ -6,15 +6,16 @@
 #include "Modern.h"
 #include "Standard.h"
 
-BoostEducationPolicy::BoostEducationPolicy(std::shared_ptr<Education> edu){
-  this->education = edu;
+BoostEducationPolicy::BoostEducationPolicy(){
+  this->Cost = 1000;
 }
 
-void BoostEducationPolicy::executePolicy(double AvailableBudget){
-  if(this->Cost > AvailableBudget){
-    std::cout << "You currently do not have the funds to fully implements this policy" << std::endl;
-    return; //Not enough funds to implement policy
-  } else {
+BoostEducationPolicy::BoostEducationPolicy(std::shared_ptr<Education> edu){
+  this->education = edu;
+  this->Cost = 1000;
+}
+
+void BoostEducationPolicy::executePolicy(){
      std::string currentState = this->education->getState()->getType();
     if(currentState == "Modern Services"){
       // build another education centre
@@ -28,7 +29,6 @@ void BoostEducationPolicy::executePolicy(double AvailableBudget){
       std::cout << "Your education services was upgraded from outdated to standard" << std::endl;
       // build another education centre
     }
-  }
 }
 
 std::string BoostEducationPolicy::getPolicyType(){

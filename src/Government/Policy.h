@@ -30,6 +30,12 @@
  */
 
 class Policy {
+    protected:
+    /**
+     * @brief Cost holds the price it would cost the government to implement this policy.
+     * 
+     */
+    double Cost;
 public:
     /**
      * @brief Executes the policy.
@@ -38,7 +44,7 @@ public:
      * 
      * @param AvailableBudget The budget allocated for implementing the policy.
      */
-    virtual void executePolicy(double AvailableBudget) = 0;
+    virtual void executePolicy() = 0;
 
     /**
      * @brief Retrieves the type of the policy.
@@ -46,6 +52,8 @@ public:
      * @return A string representing the specific type of policy.
      */
     virtual std::string getPolicyType() = 0;
+
+    double getCostOfPolicy();
 };
 
 #endif

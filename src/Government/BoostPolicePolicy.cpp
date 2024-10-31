@@ -5,15 +5,16 @@
 #include "Modern.h"
 #include "Standard.h"
 
+BoostPolicePolicy::BoostPolicePolicy(){
+  this->Cost = 1000;
+}
 
 BoostPolicePolicy::BoostPolicePolicy(std::shared_ptr<Police> police){
+  this->Cost = 1000;
   this->police = police;
 }
 
-void BoostPolicePolicy::executePolicy(double AvailableBudget){
-  if(this->Cost > AvailableBudget){
-    std::cout << "You currently do not have the funds to fully implements this policy" << std::endl;
-  } else {
+void BoostPolicePolicy::executePolicy(){
     std::string currentState = this->police->getState()->getType();
     if(currentState ==  "Modern Services"){
       // build another police centre?
@@ -27,7 +28,6 @@ void BoostPolicePolicy::executePolicy(double AvailableBudget){
       std::cout << "Your police services was upgraded from outdated to standard" << std::endl;
       // build another police centre?
     }
-  }
 }
 
 std::string BoostPolicePolicy::getPolicyType(){

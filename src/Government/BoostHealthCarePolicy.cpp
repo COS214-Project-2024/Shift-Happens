@@ -6,15 +6,16 @@
 #include "Modern.h"
 #include "Standard.h"
 
-BoostHealthCarePolicy::BoostHealthCarePolicy(std::shared_ptr<HealthCare> healthcare){
-  this->healthcare = healthcare;
+BoostHealthCarePolicy::BoostHealthCarePolicy(){
+  this->Cost = 1000;
 }
 
-void BoostHealthCarePolicy::executePolicy(double AvailableBudget){
-  if(this->Cost > AvailableBudget){
-    std::cout << "You currently do not have the funds to fully implements this policy" << std::endl;
-    return; //Not enough funds to implement policy
-  } else {
+BoostHealthCarePolicy::BoostHealthCarePolicy(std::shared_ptr<HealthCare> healthcare){
+  this->healthcare = healthcare;
+  this->Cost = 1000;
+}
+
+void BoostHealthCarePolicy::executePolicy(){
     std::string currentState = this->healthcare->getState()->getType();
     if(currentState ==  "Modern Services"){
       // build another healthcare centre?
@@ -28,7 +29,6 @@ void BoostHealthCarePolicy::executePolicy(double AvailableBudget){
       std::cout << "Your healthcare services was upgraded from outdated to standard" << std::endl;
       // build another healthcare centre?
     }
-  }
 }
 
 std::string BoostHealthCarePolicy::getPolicyType(){

@@ -4,6 +4,12 @@
 #include "Tax.h"
 #include "CitySubject.h"
 #include "Policy.h"
+#include "BoostEducationPolicy.h"
+#include "BoostHealthCarePolicy.h"
+#include "BoostPolicePolicy.h"
+#include "Education.h"
+#include "Police.h"
+#include "HealthCare.h"
 #include "../Statistics.h"
 #include <memory>
 #include <vector>
@@ -18,6 +24,9 @@
  */
 class Government : public CitySubject {
 	private:
+		std::shared_ptr<Education> education;
+		std::shared_ptr<Police> police;
+		std::shared_ptr<HealthCare> healthcare;
 		/**
 		 * @brief Current available spending budget for government-funded services and projects.
 		 */
@@ -46,7 +55,12 @@ class Government : public CitySubject {
 		/**
 		 * @brief A list of currently implemented policies affecting city services and dynamics.
 		 */
-		std::vector<std::shared_ptr<Policy>> PolicyState;
+		std::vector<std::shared_ptr<Policy>> ImplementedPolicies;
+
+		/**
+		 * @brief A list of all the possible policies that can be implemented by the government
+		*/
+		std::vector<std::shared_ptr<Policy>> AvailablePolicies;
 
 		/**
 		 * @brief Shared pointer to a Statistics object for tracking and reporting city metrics.
@@ -54,6 +68,7 @@ class Government : public CitySubject {
 		std::shared_ptr<Statistics> statistics;
 
 	public:
+		Government();
 		// Tax Management
 		/**
 		 * @brief Lowers the personal tax rate by a specified amount.
@@ -108,24 +123,13 @@ class Government : public CitySubject {
 		 * @brief Adds a new policy to the list of implemented policies.
 		 * @param newPolicy A shared pointer to the Policy object to be added.
 		 */
-		void addPolicy(std::shared_ptr<Policy> newPolicy);
-
-		/**
-		 * @brief Executes all current policies, applying their effects on the city's infrastructure.
-		 */
-		void executePolicy();
-
-		/**
-		 * @brief Removes an existing policy from the list of implemented policies.
-		 * @param removePolicy A shared pointer to the Policy object to be removed.
-		 */
-		void removePolicy(std::shared_ptr<Policy> removePolicy);
+		void addExecutePolicy();
 
 		/**
 		 * @brief Retrieves all currently implemented policies.
 		 * @return A vector of shared pointers to Policy objects representing active policies.
 		 */
-		std::vector<std::shared_ptr<Policy>> getPolicies();
+		std::vector<std::shared_ptr<Policy>> getCurrentPolicies();
 
 		// Budget Management
 		/**

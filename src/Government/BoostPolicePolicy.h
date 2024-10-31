@@ -14,10 +14,6 @@
  */
 class BoostPolicePolicy : public Policy {
   private:
-    /**
-     * @brief Cost holds the amount required by the government to implement this policy.
-     */
-    double Cost = 1000;
 
     /**
      * @brief police is a shared pointer to the Police object that will receive the upgrades.
@@ -25,6 +21,7 @@ class BoostPolicePolicy : public Policy {
     std::shared_ptr<Police> police;
 
   public:
+    BoostPolicePolicy();
     /**
      * @brief Constructor for the BoostPolicePolicy class.
      * @param police A shared pointer to the Police object that the class will work with.
@@ -33,9 +30,8 @@ class BoostPolicePolicy : public Policy {
 
     /**
      * @brief Executes the policy to enhance police services if the available budget allows.
-     * @param AvailableBudget The current budget available to determine if there are sufficient funds to implement the policy.
      */
-    void executePolicy(double AvailableBudget);
+    void executePolicy();
 
     /**
      * @brief Returns the type of policy.
