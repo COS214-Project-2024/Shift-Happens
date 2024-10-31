@@ -1,81 +1,68 @@
 #ifndef BUILDING_H
 #define BUILDING_H
 
+#include <iostream>
+#include <memory>
 #include <string>
 #include "../map/MapComponent.h"
 
-using namespace std;
-class Building : public MapComponent
-{
-
+class Building : public MapComponent {
 private:
-	int width;
-	int xPos;
-	int yPos;
-	int constructionPrice;
-	int length;
-	string variant;
-	string type;
-	int wasteProduced;
-	int sewageProduced;
-	int electricityDemand;
-	int waterDemand;
+    int width;
+    int xPos;
+    int yPos;
+    int constructionPrice;
+    int length;
+    std::string variant;
+    std::string type;
+    int wasteProduced;
+    int sewageProduced;
+    int electricityDemand;
+    int waterDemand;
 
 protected:
 
 public:
-	Building(int id,int width, int length, int xPos, int yPos, string variant, string type, int constructionPrice, int wasteProduced, int sewageProduced, int electricityDemand, int waterDemand);
-	int getWidth();
+    Building(int id, int width, int length, int xPos, int yPos, std::string variant, std::string type, int constructionPrice, int wasteProduced, int sewageProduced, int electricityDemand, int waterDemand);
+    Building(shared_ptr<Building> building);
+    
+    int getWidth();
 
-	bool add(MapComponent *component);
-	bool remove(MapComponent *component);
-	void getComponent(int id);
-	void render();
+    virtual void render();
 
-	void setWidth(int width);
+    virtual void setWidth(int width);
 
-	int getLength();
+    virtual int getLength();
+    virtual void setLength(int length);
 
-	void setLength(int length);
+    virtual int getXPos();
+    virtual void setXPos(int xPos);
 
-	int getXPos();
+    virtual int getYPos();
+    virtual void setYPos(int yPos);
 
-	void setXPos(int xPos);
+    virtual std::string getVariant();
+    virtual void setVariant(std::string variant);
 
-	int getYPos();
+    virtual std::string getType();
+    virtual void setType(std::string type);
 
-	void setYPos(int yPos);
+    virtual int getConstructionPrice();
+    virtual void setConstructionPrice(int constructionPrice);
 
-	string getVariant();
+    virtual int getWasteProduced();
+    virtual void setWasteProduced(int wasteProduced);
 
-	void setVariant(string variant);
+    virtual int getSewageProduced();
+    virtual void setSewageProduced(int sewageProduced);
 
-	string getType();
+    virtual int getElectricityDemand();
+    virtual void setElectricityDemand(int electricityDemand);
 
-	void setType(string type);
+    virtual int getWaterDemand();
+    virtual void setWaterDemand(int waterDemand);
 
-	int getConstructionPrice();
-
-	void setConstructionPrice(int constructionPrice);
-
-	int getWasteProduced();
-
-	void setWasteProduced(int wasteProduced);
-
-	int getSewageProduced();
-
-	void setSewageProduced(int sewageProduced);
-
-	int getElectricityDemand();
-
-	void setElectricityDemand(int electricityDemand);
-
-	int getWaterDemand();
-
-	void setWaterDemand(int waterDemand);
-
-	//print function:
-	virtual void print() const;
+    virtual void print() const;
 };
 
 #endif

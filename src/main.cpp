@@ -107,8 +107,28 @@ void testBuildingFactory() {
     transFactory->print(); // Print transport buildings
 }
 
+void testMap() {
+    cout << "Testing Map" << endl;
+
+    // Get the singleton instance of the Map
+    Map& map = Map::getInstance();
+
+    // Build some buildings on the map
+    map.build("House", "Residential", 0, 0);
+    map.build("Store", "Commercial", 1, 1);
+    map.build("Factory", "Industrial", 2, 2);
+    map.build("PowerPlant", "Utility", 3, 3);
+    map.build("Park", "Landmark", 4, 4);
+    map.build("Road", "Infrastructure", 5, 5);
+    map.build("Airport", "Transport", 6, 6);
+
+    // Print the map
+    map.print();
+}
+
 int main() {
     //demo();
-    testBuildingFactory();
+    //testBuildingFactory();
+    testMap();
     return 0;
 }

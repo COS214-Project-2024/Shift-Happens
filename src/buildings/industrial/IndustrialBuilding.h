@@ -2,28 +2,36 @@
 #define INDUSTRIALBUILDING_H
 #include "../Building.h"
 #include <vector>
-#include "../Building.h"
 #include <iostream>
 
-class IndustrialBuilding : public Building{
+class IndustrialBuilding : public Building {
 
 private:
-	int numberOfEmployees;
-	int satisfactionScore;
-
+    int numberOfEmployees;
+    int satisfactionScore;
 
 public:
+    IndustrialBuilding(int id, int numberOfEmployees, std::string variant, int satisfactionScore, int constructionPrice, int wasteProduced, int sewageProduced, int electricityDemand, int waterDemand);
 
-	IndustrialBuilding(int id, int numberOfEmployees,string variant, int satisfactionScore, int constructionPrice, int wasteProduced, int sewageProduced, int electricityDemand, int waterDemand);
-	
-	int getNumberOfEmployees();
+    int getNumberOfEmployees();
+    void setNumberOfEmployees(int numberOfEmployees);
 
-	void setNumberOfEmployees(int numberOfEmployees);
+    int getSatisfactionScore();
+    void setSatisfactionScore(int satisfactionScore);
 
-	int getSatisfactionScore();
+    virtual void print();
 
-	void setSatisfactionScore(int satisfactionScore);
-	virtual void print() const override;
+    // New functions
+    double getAverageSatisfactionScore() override;
+    int getTotalWaterSupply() override;
+    int getTotalWaterUsage() override;
+    int getTotalElectricitySupply() override;
+    int getTotalElectricityDemand() override;
+    int getTotalSewageCapacity() override;
+    int getTotalWasteCapacity() override;
+    int getTotalWasteProduction() override;
+    int getTotalSewageProduction() override;
+    int getTotalNumberOfJobs() override;
 };
 
 #endif

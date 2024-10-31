@@ -1,62 +1,62 @@
-#include "Garden.h"
+#include "Recycling.h"
 
-Garden::Garden(shared_ptr<Building> building) : Upgrade(building) {
-    type = "Garden";
+Recycling::Recycling(shared_ptr<Building> building) : Upgrade(building) {
+    type = "Recycling";
 }
 
-int Garden::getSewageProduced() {
-    return 0; // Set sewage produced to 0
+int Recycling::getWasteProduced() {
+    return 0; // Set waste produced to 0
 }
 
-void Garden::print() {
-    //prints the building's attributes with the 0 sewage produced and upgrade type
+void Recycling::print() {
+    //prints the building's attributes with the 0 waste produced and upgrade type
     cout << "Building Attributes:" << endl;
     cout << "Width: " << building->getWidth() << ", Length: " << building->getLength() << endl;
     cout << "Position: (" << building->getXPos() << ", " << building->getYPos() << ")" << endl;
     cout << "Type: " << building->getType() << ", Variant: " << building->getVariant() << endl;
     cout << "Upgrade Type: " << type << endl;
     cout << "Construction Price: " << building->getConstructionPrice() << endl;
-    cout << "Waste Produced: " << building->getWasteProduced() << ", Sewage Produced: " << 0 << endl;
+    cout << "Waste Produced: " << 0 << ", Sewage Produced: " << building->getSewageProduced() << endl;
     cout << "Electricity Demand: " << building->getElectricityDemand() << ", Water Demand: " << building->getWaterDemand() << endl;
 }
 
 // New functions
-double Garden::getAverageSatisfactionScore() {
+double Recycling::getAverageSatisfactionScore() {
     return building->getAverageSatisfactionScore();
 }
 
-int Garden::getTotalWaterSupply() {
+int Recycling::getTotalWaterSupply() {
     return building->getTotalWaterSupply();
 }
 
-int Garden::getTotalWaterUsage() {
+int Recycling::getTotalWaterUsage() {
     return building->getTotalWaterUsage();
 }
 
-int Garden::getTotalElectricitySupply() {
+int Recycling::getTotalElectricitySupply() {
     return building->getTotalElectricitySupply();
 }
 
-int Garden::getTotalElectricityDemand() {
+int Recycling::getTotalElectricityDemand() {
     return building->getTotalElectricityDemand();
 }
 
-int Garden::getTotalSewageCapacity() {
+int Recycling::getTotalSewageCapacity() {
     return building->getTotalSewageCapacity();
 }
 
-int Garden::getTotalWasteCapacity() {
+int Recycling::getTotalWasteCapacity() {
     return building->getTotalWasteCapacity();
 }
 
-int Garden::getTotalWasteProduction() {
-    return building->getTotalWasteProduction();
+int Recycling::getTotalWasteProduction() {
+    return getWasteProduced();
 }
 
-int Garden::getTotalSewageProduction() {
-    return getSewageProduced();
+int Recycling::getTotalSewageProduction() {
+    return building->getTotalSewageProduction();
 }
 
-int Garden::getTotalNumberOfJobs() {
+int Recycling::getTotalNumberOfJobs() {
     return building->getTotalNumberOfJobs();
 }

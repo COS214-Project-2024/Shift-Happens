@@ -62,7 +62,7 @@ void Game::newGame()
     display.wait(1);
 
     std::cout<< "Generating map..." << std::endl;
-    map = new Map(-1);
+   // map = new Map(-1);
 
     display.wait(1);
     std::cout<< "Setting up construction..." << std::endl;

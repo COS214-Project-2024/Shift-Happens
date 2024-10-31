@@ -1,14 +1,13 @@
-#ifndef TRAINSTATION_H
-#define TRAINSTATION_H
+#ifndef GARDEN_H
+#define GARDEN_H
 
-#include "TransportBuilding.h"
+#include "../Upgrade.h"
 
-class TrainStation : public TransportBuilding
-{
+class Garden : public Upgrade {
 public:
-    TrainStation(int id);
-    ~TrainStation();
-    void print() override;
+    Garden(shared_ptr<Building> building);
+    int getSewageProduced() override;
+    virtual void print() override;
 
     // New functions
     double getAverageSatisfactionScore() override;
@@ -23,4 +22,4 @@ public:
     int getTotalNumberOfJobs() override;
 };
 
-#endif // TRAINSTATION_H
+#endif

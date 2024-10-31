@@ -1,0 +1,45 @@
+Residential Buildings
+    variants:
+        Apartment
+        Estate
+        TownHouse
+        House
+
+    Available upgrades: Solar, Garden, RainCatcher, Recycling
+
+
+Commercial Buildings
+    Variants:
+        Store
+        Office
+        Mall
+    Available upgrades: Solar, Garden, RainCatcher, Recycling
+
+Industrial Buildings
+    Variants:
+        Factory
+        Manufacturer
+        Warehouse
+    Available upgrades: Solar, Garden, RainCatcher, Recycling
+
+Utility Buildings
+    Variants:
+        PowerPlant
+        SewagePlant
+        WaterSupply
+        LandFill
+    Available upgrades: Solar (Except for PowerPlant), Garden, RainCatcher(Except for WaterSupply), Recycling(Except for LandFill)
+
+Landmark Buildings
+    Variants:
+        Monument
+        CulturalCenter
+        Park
+    Available upgrades: Solar, Garden, RainCatcher, Recycling
+
+Transport Buildings
+    Variants:
+        Airport
+        BusStation
+        TrainStation
+    Available upgrades: Solar, Garden, RainCatcher, Recycling
