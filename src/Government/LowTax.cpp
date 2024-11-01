@@ -2,6 +2,11 @@
 
 #include <iostream>
 
+LowTax::LowTax(){
+	this->RunningRate = this->LowTHighCap/2;
+	this->RunningRateBusiness = this->LowTHighCapBusiness/2;
+}
+
 void LowTax::higher(double increase) {
 	this->RunningRate += increase;
 	if(this->RunningRate > LowTHighCap){

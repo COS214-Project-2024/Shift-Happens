@@ -2,6 +2,11 @@
 
 #include <memory>
 
+StandardTax::StandardTax(){
+	this->RunningRate = StandardTLowCap;
+	this->RunningRateBusiness = StandardTLowCapBusiness;
+}
+
 void StandardTax::higher(double increase) {
 	this->RunningRate += increase;
 	if(this->RunningRate > StandardTHighCap){
