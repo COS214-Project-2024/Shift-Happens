@@ -62,7 +62,7 @@ void buildAndDisplayCitizen(Director& director) {
 }
 
 int main() {
-   /*
+   
    cout << "Creating a government..." << endl;
     shared_ptr<Government> government = make_shared<Government>();
     cout << "Government successfully created." << endl;
@@ -114,12 +114,12 @@ int main() {
     }
 
     cout << "Program completed successfully." << endl;
-    */ 
-
-    Director director;
-    std::cout << "Citizen Builder Program\n";
     
-    buildAndDisplayCitizen(director);
+
+   // Director director;
+    //std::cout << "Citizen Builder Program\n";
+    
+    //buildAndDisplayCitizen(director);
     
     return 0;
 }
