@@ -30,6 +30,13 @@
 
 using namespace std;
 
+/**
+ * @brief Main function to demonstrate the government system.
+ */
+
+void executePolicy(shared_ptr<Government> government) {
+}
+
 int main() {
     cout << "Creating a government..." << endl;
     shared_ptr<Government> government = make_shared<Government>();
@@ -52,7 +59,7 @@ int main() {
     shared_ptr<Policy> boostHealthCare = make_shared<BoostHealthCarePolicy>(government->getHealthCare());
     shared_ptr<Policy> boostPolice = make_shared<BoostPolicePolicy>(government->getPolice());
 
-    cout << "Taxes, public service states, and policies successfully initialized." << endl;
+    cout << "Taxes, public service states, and policies successfully initialized..." << endl;
 
     // Set tax states
     cout << "Setting taxes..." << endl;
@@ -73,7 +80,7 @@ int main() {
     government->addExecutePolicy();
 
     // Display remaining budget after policy implementation
-    cout << "Remaining spending budget: $" << government->getAvailableSpendingBudget() << endl;
+    cout << "Remaining spending budget: " << government->getAvailableSpendingBudget() << endl;
 
     // Display all currently implemented policies
     cout << "\nPolicies currently implemented:" << endl;

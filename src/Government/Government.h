@@ -128,6 +128,12 @@ class Government : public CitySubject {
 		void addExecutePolicy();
 
 		/**
+		 * @brief Converts a string to lowercase.
+		 * @param str The string to convert.
+		 */
+		std::string toLowerCase(const std::string& str);
+
+		/**
 		 * @brief Retrieves all currently implemented policies.
 		 * @return A vector of shared pointers to Policy objects representing active policies.
 		 */
