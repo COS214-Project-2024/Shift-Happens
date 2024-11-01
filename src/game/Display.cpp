@@ -63,6 +63,9 @@ int Display::MainMenu() {
         displayMenu(options);
         std::cout << "Please select an option." << std::endl;
         int input;
+        if(input > 3){
+           displayMenu(options);
+        }
         std::cin >> input;
         return input;
     }
@@ -80,6 +83,10 @@ int Display::buildingtypemenu()
         std::cout << "Please select an option." << std::endl;
         int input;
         std::cin >> input;
+        if(input > 5){
+            cout <<"incorrect option chosen bruh." << endl;
+            displayMenu(options);
+        }
         return input;
     }
     return -1;
