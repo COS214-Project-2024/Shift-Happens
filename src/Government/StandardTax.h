@@ -37,6 +37,7 @@ class StandardTax : public Tax {
 		int StandardTLowCapBusiness = 7;
 
 	public:
+		StandardTax();
 		/**
 		 * @brief Increases the current tax rate for citizens.
 		 * @param increase The amount by which the citizens' tax rate is raised.

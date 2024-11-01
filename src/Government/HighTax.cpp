@@ -3,6 +3,11 @@
 #include <iostream>
 #include <memory>
 
+HighTax::HighTax(){
+	this->RunningRate = this->HighTLowCap;
+	this->RunningRateBusiness = this->HighTLowCapBusiness;
+}
+
 void HighTax::higher(double increase) {
 	this->RunningRate += increase;
 	if(RunningRateBusiness > 100){

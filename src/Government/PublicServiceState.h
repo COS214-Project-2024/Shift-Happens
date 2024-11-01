@@ -61,6 +61,8 @@ class PublicServiceState {
 		 * in a descriptive format, providing insights into service quality.
 		 */
 		virtual std::string getType() = 0;
+		double getRunningBudget();
+		void setPublicService(std::shared_ptr<Public_Services> publicService);
 };
 
 #endif // PUBLICSERVICESTATE_H

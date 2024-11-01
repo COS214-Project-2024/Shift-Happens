@@ -25,6 +25,7 @@ class LowTax : public Tax {
 		int LowTHighCapBusiness = 7;
 
 	public:
+		LowTax();
 		/**
 		 * @brief Increases the current tax rate for citizens.
 		 * @param increase The amount by which the citizens' tax rate is raised.
