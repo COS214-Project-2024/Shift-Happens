@@ -5,17 +5,44 @@
 #include <iostream>
 
 Government::Government() {
+    this->AvailableSpendingBudget = 150000; // Initial budget
+
     // Initialize the public services
+    // Initially public services states will be at the worst
     education = std::make_shared<Education>();
+    education->setPublicServiceState(make_shared<Outdated>());
+
     healthcare = std::make_shared<HealthCare>();
+    healthcare->setPublicServiceState(make_shared<Outdated>());
+
     police = std::make_shared<Police>();
+    police->setPublicServiceState(make_shared<Outdated>());
 
     // Now that the public services are initialized, create the policies
     AvailablePolicies.push_back(std::make_shared<BoostEducationPolicy>(education));
     AvailablePolicies.push_back(std::make_shared<BoostHealthCarePolicy>(healthcare));
     AvailablePolicies.push_back(std::make_shared<BoostPolicePolicy>(police));
 
-    this->AvailableSpendingBudget = 150000; // Initial budget
+    
+    PersonalTaxRate = 0;
+    BusinessTaxRate = 0;
+
+}
+
+double Government::getPersonalTaxRate(){
+    return this->PersonalTaxRate;
+}
+
+double Government::getBusinessTaxRate(){
+    return this->BusinessTaxRate;
+}
+
+double Government::setPersonalTaxRate(double rate){
+    this->PersonalTaxRate = rate;
+}
+
+double Government::setBusinessTaxRate(double rate){
+    this->BusinessTaxRate = rate;
 }
 
 void Government::setPersonalTaxLower(double decrease) {

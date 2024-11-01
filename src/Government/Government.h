@@ -26,6 +26,7 @@
 class Statistics;
 class Government : public CitySubject {
 	private:
+		// shared pointers to the public services
 		std::shared_ptr<Education> education;
 		std::shared_ptr<Police> police;
 		std::shared_ptr<HealthCare> healthcare;
@@ -70,6 +71,10 @@ class Government : public CitySubject {
 		std::shared_ptr<Statistics> statistics;
 
 	public:
+		double setPersonalTaxRate(double rate);
+		double setBusinessTaxRate(double rate);
+		double getPersonalTaxRate();
+		double getBusinessTaxRate();
 		Government();
 		// Tax Management
 		/**
