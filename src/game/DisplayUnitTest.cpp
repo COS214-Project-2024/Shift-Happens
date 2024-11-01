@@ -51,7 +51,7 @@ TEST(DisplayTest, UtilityMenuInvalidTest) {
     std::istringstream input("5\n"); // Invalid inputs followed by a valid selection
     std::cin.rdbuf(input.rdbuf());
     int choice = display.Utilitymenu();
-    EXPECT_EQ(choice, 5) // invalid op 
+    EXPECT_EQ(choice, 5); // invalid op 
     //<< "Expected Utilitymenu to skip invalid input and accept 2 (LandFill)";
 }
 
