@@ -28,6 +28,7 @@ public:
      /**
      * @brief Constructor for the Game class.
      */
+   // Game(Display* display);
 
 
     ~Game();
@@ -58,8 +59,8 @@ public:
     /**
      * @brief Runs the main game loop, starting with the intro and main menu.
      */
-    private: //client only has access to above
-
+    /////////////// MOVED TO PUBLIC SO I CAN TEST 
+ 
 
     void MainMenu();
     /**
@@ -156,7 +157,9 @@ public:
      * 
      */
 
-    
+       
+    private: //client only has access to above
+
 
 //private:
     Display display;///< Display object for handling user interface elements
