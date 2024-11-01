@@ -1,7 +1,7 @@
 #include "Standard.h"
 
 Standard::Standard(){
-  this->RunningBudget = 500;
+  this->RunningBudget = StandardLowerCap;
 }
 
 void Standard::increaseBudget(double increase){

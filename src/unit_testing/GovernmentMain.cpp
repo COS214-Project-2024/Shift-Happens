@@ -376,12 +376,113 @@ TEST(HighTaxTesting, decreaseTaxWithoutTransition) {
 }
 
 TEST(HighTaxTesting, increaseTaxWithoutTransition) {
-    std::shared_ptr<HighTax> highTax = std::make_shared<HighTax>();
-    EXPECT_EQ(highTax->getType(), "High Tax");
+  std::shared_ptr<HighTax> highTax = std::make_shared<HighTax>();
+  EXPECT_EQ(highTax->getType(), "High Tax");
 }
 
 
+// Public services state testing
+TEST(OutdatedServiceTesting, getType){
+  std::shared_ptr<Outdated> outdated = make_shared<Outdated>();
+  EXPECT_EQ(outdated->getType(), "Outdated Services");
+}
 
+TEST(OutdatedServiceTesting, increaseWithTransition){
+  std::shared_ptr<Outdated> outdated = make_shared<Outdated>();
+  std::shared_ptr<Public_Services> publicService = make_shared<Police>();
+  outdated->setPublicService(publicService);
+
+  EXPECT_EQ(outdated->getType(), "Outdated Services");
+
+  outdated->increaseBudget(120);
+
+  EXPECT_EQ(outdated->getRunningBudget(), 120);
+  EXPECT_EQ(publicService->getState()->getType(), "Standard Services");
+  
+}
+
+TEST(OutdatedServiceTesting, increaseWithoutTransition){
+  std::shared_ptr<Outdated> outdated = make_shared<Outdated>();
+  std::shared_ptr<Public_Services> publicService = make_shared<Police>();
+  outdated->setPublicService(publicService);
+
+  EXPECT_EQ(outdated->getType(), "Outdated Services");
+
+  outdated->increaseBudget(80);
+
+  EXPECT_EQ(outdated->getRunningBudget(), 80);
+  EXPECT_EQ(publicService->getState()->getType(), "Outdated Services");
+}
+
+TEST(OutdatedServiceTesting, decreaseWithOutTransition){
+  std::shared_ptr<Outdated> outdated = make_shared<Outdated>();
+  std::shared_ptr<Public_Services> publicService = make_shared<Police>();
+  outdated->setPublicService(publicService);
+
+  EXPECT_EQ(outdated->getType(), "Outdated Services");
+
+  outdated->decreaseBudget(80);
+
+  EXPECT_EQ(outdated->getRunningBudget(), 0);
+  EXPECT_EQ(publicService->getState()->getType(), "Outdated Services");
+}
+
+TEST(StandardServiceTesting, getType) {
+    std::shared_ptr<Standard> standard = std::make_shared<Standard>();
+    EXPECT_EQ(standard->getType(), "Standard Services");
+}
+
+TEST(StandardServiceTesting, increaseWithTransition) {
+    std::shared_ptr<Standard> standard = std::make_shared<Standard>();
+    std::shared_ptr<Public_Services> publicService = std::make_shared<Police>();
+    standard->setPublicService(publicService);
+
+    EXPECT_EQ(standard->getType(), "Standard Services");
+
+    standard->increaseBudget(900);
+
+    EXPECT_EQ(standard->getRunningBudget(), 1000);
+    EXPECT_EQ(publicService->getState()->getType(), "Modern Services");
+}
+
+TEST(StandardServiceTesting, increaseWithoutTransition) {
+    std::shared_ptr<Standard> standard = std::make_shared<Standard>();
+    std::shared_ptr<Public_Services> publicService = std::make_shared<Police>();
+    standard->setPublicService(publicService);
+
+    EXPECT_EQ(standard->getType(), "Standard Services");
+
+    standard->increaseBudget(400);
+
+    EXPECT_EQ(standard->getRunningBudget(), 500);
+    EXPECT_EQ(publicService->getState()->getType(), "Standard Services");
+}
+
+TEST(StandardServiceTesting, decreaseWithoutTransition) {
+    std::shared_ptr<Standard> standard = std::make_shared<Standard>();
+    std::shared_ptr<Public_Services> publicService = std::make_shared<Police>();
+    standard->setPublicService(publicService);
+
+    EXPECT_EQ(standard->getType(), "Standard Services");
+
+    standard->decreaseBudget(50);
+
+    EXPECT_EQ(standard->getRunningBudget(), 50);
+    EXPECT_EQ(publicService->getState()->getType(), "Standard Services");
+}
+
+TEST(StandardServiceTesting, decreaseWithTransition) {
+  std::shared_ptr<Standard> standard = std::make_shared<Standard>();
+  std::shared_ptr<Public_Services> publicService = std::make_shared<Police>();
+  standard->setPublicService(publicService);
+
+  EXPECT_EQ(standard->getType(), "Standard Services");
+
+  standard->decreaseBudget(200);
+
+  EXPECT_EQ(standard->getRunningBudget(), 0);
+  EXPECT_EQ(publicService->getState()->getType(), "Outdated Services");
+}
 
 
 int main(int argc, char **argv) {
