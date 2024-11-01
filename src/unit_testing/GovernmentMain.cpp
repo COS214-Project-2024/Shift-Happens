@@ -70,6 +70,7 @@
 #include "../Government/UnderPopulated.h"
 #include "../Government/Normal.h"  
 #include "../Government/Economy.h"
+#include "../Government/Government.h"
 
 using namespace std;
 
@@ -147,7 +148,7 @@ TEST(OverPopulatedTest, getType) {
   EXPECT_EQ(overpopulated->getType(), "Over Populated");
 }
 
-TEST(NormalTest, increasePopulationWithTransition) {
+TEST(NormalPopulationTest, increasePopulationWithTransition) {
   std::shared_ptr<Normal> normal = std::make_shared<Normal>();
   std::shared_ptr<Economy> economy = std::make_shared<Economy>();
   normal->setEconomy(economy);
@@ -156,7 +157,7 @@ TEST(NormalTest, increasePopulationWithTransition) {
   EXPECT_EQ(economy->getState()->getType(), "Over Populated");
 }
 
-TEST(NormalTest, decreasePopulationWithTransition) {
+TEST(NormalPopulationTest, decreasePopulationWithTransition) {
   std::shared_ptr<Normal> normal = std::make_shared<Normal>(500);
   std::shared_ptr<Economy> economy = std::make_shared<Economy>();
   normal->setEconomy(economy);
@@ -165,19 +166,25 @@ TEST(NormalTest, decreasePopulationWithTransition) {
   EXPECT_EQ(economy->getState()->getType(), "Under Populated");
 }
 
-TEST(NormalTest, increasePopulationWithinNormalRange) {
+TEST(NormalPopulationTest, increasePopulationWithinNormalRange) {
   std::shared_ptr<Normal> normal = std::make_shared<Normal>();
   normal->increasePopulation(500);
   EXPECT_EQ(normal->getPopulationCount(), 500);
   EXPECT_EQ(normal->getType(), "Normal Population");
 }
 
-TEST(NormalTest, getType) {
+TEST(NormalPopulationTest, getType) {
   std::shared_ptr<Normal> normal = std::make_shared<Normal>();
   EXPECT_EQ(normal->getType(), "Normal Population");
 }
 
 // Population testing done
+
+// Taxt testing 
+// TEST(StandardTaxTesting, increaseTaxWithTransition){
+//   std::shared_ptr<Gove
+// }
+
 
 int main(int argc, char **argv) {
     testing::InitGoogleTest(&argc, argv);
