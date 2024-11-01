@@ -7,6 +7,8 @@ Game::Game()
     variantop = 0;
     var= "";
 }
+//for testing bruh
+
 string Game::getVar()
 {
     return var;
