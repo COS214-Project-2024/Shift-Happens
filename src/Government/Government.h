@@ -139,6 +139,11 @@ class Government : public CitySubject {
 		 * @return The amount of available budget for city projects and services.
 		 */
 		double getAvailableSpendingBudget();
+
+	// Accessor methods for services
+    std::shared_ptr<Education> getEducation() const;
+    std::shared_ptr<HealthCare> getHealthCare() const;
+    std::shared_ptr<Police> getPolice() const;
 };
 
 #endif // GOVERNMENT_H

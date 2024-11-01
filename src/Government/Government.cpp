@@ -4,11 +4,16 @@
 #include <memory>
 #include <iostream>
 
-Government::Government(){
-	std::shared_ptr<Policy> policies[3] = { std::make_shared<BoostEducationPolicy>(education), std::make_shared<BoostHealthCarePolicy>(healthcare), std::make_shared<BoostPolicePolicy>(police) };
-	for(int i=0; i<3;i++){
-		AvailablePolicies.push_back(policies[i]);
-	}
+Government::Government() {
+    // Initialize the public services
+    education = std::make_shared<Education>();
+    healthcare = std::make_shared<HealthCare>();
+    police = std::make_shared<Police>();
+
+    // Now that the public services are initialized, create the policies
+    AvailablePolicies.push_back(std::make_shared<BoostEducationPolicy>(education));
+    AvailablePolicies.push_back(std::make_shared<BoostHealthCarePolicy>(healthcare));
+    AvailablePolicies.push_back(std::make_shared<BoostPolicePolicy>(police));
 }
 
 void Government::setPersonalTaxLower(double decrease) {
@@ -132,3 +137,15 @@ double Government::getAvailableSpendingBudget(){
 	return AvailableSpendingBudget;
 }
 
+
+std::shared_ptr<Education> Government::getEducation() const{
+    return education;
+}
+
+std::shared_ptr<HealthCare> Government::getHealthCare() const{
+    return healthcare;
+}
+
+std::shared_ptr<Police> Government::getPolice() const{
+    return police;
+}
