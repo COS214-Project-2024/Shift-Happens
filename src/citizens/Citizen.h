@@ -25,6 +25,10 @@
  * It observes changes in government policies, public service states, and population changes. 
  * Each citizen has a satisfaction score (out of 100) indicating their contentment with the current state of the city.
  */
+
+class Statistics; // Forward declaration to avoid circular dependency
+class Government;
+class Tax;
 class Citizen : public CitizenObserver {
 protected:
     std::shared_ptr<Director> director; ///< Pointer to the director managing the citizens.

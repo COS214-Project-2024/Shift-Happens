@@ -22,6 +22,8 @@
  * policy implementation, and allocation of the budget across various city services, such as healthcare, education, and law enforcement.
  * Government actions impact citizen satisfaction, economic growth, and overall city development.
  */
+
+class Statistics;
 class Government : public CitySubject {
 	private:
 		std::shared_ptr<Education> education;

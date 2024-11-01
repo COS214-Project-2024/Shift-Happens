@@ -3,6 +3,7 @@
 
 #include "../Government/Government.h"
 #include <iostream>
+#include <memory>
 
 /**
  * @class Tax
@@ -12,6 +13,8 @@
  * for retrieving current tax rates. Derived classes, such as `LowTax`, `StandardTax`, and `HighTax`, 
  * implement specific tax behavior based on rate thresholds.
  */
+
+class Government;
 class Tax {
 	private:
 		// Private members, if any, can be documented here as needed.

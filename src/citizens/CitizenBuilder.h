@@ -1,7 +1,9 @@
 #ifndef CITIZENBUILDER_H
 #define CITIZENBUILDER_H
 
+#include <memory>
 #include "../citizens/Citizen.h"
+
 
 /**
  * @class CitizenBuilder
@@ -11,6 +13,8 @@
  * the step-by-step construction of `Citizen` instances. It provides methods to 
  * specify the attributes of the citizen being built, such as gender, type, and status.
  */
+
+class Citizen;
 class CitizenBuilder {
 public:
     /**

@@ -68,7 +68,13 @@ COMMON_SRCS = $(SRC_DIR)/../game/Game.cpp \
        $(SRC_DIR)/../Government/Police.cpp \
        $(SRC_DIR)/../Government/BoostHealthCarePolicy.cpp \
        $(SRC_DIR)/../Government/BoostPolicePolicy.cpp \
-       $(SRC_DIR)/../Government/BoostEducationPolicy.cpp
+       $(SRC_DIR)/../Government/BoostEducationPolicy.cpp \
+       $(SRC_DIR)/../Government/Government.cpp \
+       $(SRC_DIR)/../Government/Policy.cpp \
+       $(SRC_DIR)/../Government/Tax.cpp \
+       $(SRC_DIR)/../Government/StandardTax.cpp \
+       $(SRC_DIR)/../Government/HighTax.cpp \
+       $(SRC_DIR)/../Government/LowTax.cpp \
 
 # Object files for common sources
 COMMON_OBJS = $(COMMON_SRCS:$(SRC_DIR)/../%.cpp=$(OBJ_DIR)/%.o)

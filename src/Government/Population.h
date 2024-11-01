@@ -14,6 +14,8 @@
  * The class maintains a population count, which determines the current state of the population and
  * can trigger state-dependent responses in associated economic models.
  */
+
+class Economy;
 class Population {
 	protected:
 		/**
