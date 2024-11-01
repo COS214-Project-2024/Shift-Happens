@@ -109,6 +109,8 @@ public:
      * @param decrease The amount to decrease the satisfaction score by.
      */
     void decreaseSatisfaction(double decrease);
+
+    virtual std::string getDescription() const = 0; ///< Returns a string representation of the citizen.
 };
 
 #endif

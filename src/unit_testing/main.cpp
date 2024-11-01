@@ -45,11 +45,20 @@
 
 using namespace std;
 
-/**
- * @brief Main function to demonstrate the government system.
- */
-
-void executePolicy(shared_ptr<Government> government) {
+void buildAndDisplayCitizen(Director& director) {
+    director.construct();
+    auto builder = director.getBuilder();  // Retrieve the current builder
+    
+    if (builder) {
+        std::shared_ptr<Citizen> citizen = builder->getCitizen();
+        if (citizen) {
+            std::cout << "Created Citizen: " << citizen->getDescription() << "\n";
+        } else {
+            std::cout << "Citizen creation failed.\n";
+        }
+    } else {
+        std::cout << "No builder assigned.\n";
+    }
 }
 
 int main() {
@@ -107,7 +116,10 @@ int main() {
     cout << "Program completed successfully." << endl;
     */ 
 
-
+    Director director;
+    std::cout << "Citizen Builder Program\n";
+    
+    buildAndDisplayCitizen(director);
     
     return 0;
 }

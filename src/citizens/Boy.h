@@ -67,6 +67,11 @@ public:
      * @param status A boolean indicating if the boy is in school (true) or not (false).
      */
     void setSchool(bool status);
+
+    /**
+     * @brief Retrieves a string representation of the object.
+     */
+    std::string getDescription() const;
 };
 
 #endif

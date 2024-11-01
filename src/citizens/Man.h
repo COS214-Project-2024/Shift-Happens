@@ -3,6 +3,7 @@
 
 #include "Citizen.h"
 #include <iostream>
+#include <string>
 
 /**
  * @class Man
@@ -66,6 +67,11 @@ public:
      * @param status A boolean indicating if the man is employed (true) or not (false).
      */
     void setEmployment(bool status);
+
+     /**
+     * @brief Retrieves a string representation of the object.
+     */
+    std::string getDescription() const;
 };
 
 #endif

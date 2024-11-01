@@ -28,3 +28,6 @@ std::string Man::getType(){
 	return Type;
 }
 
+std::string Man::getDescription() const {
+    return "Man Citizen";
+}

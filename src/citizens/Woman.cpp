@@ -27,3 +27,7 @@ bool Woman::getStatus(){
 std::string Woman::getType(){
 	return Type;
 }
+
+std::string Woman::getDescription() const {
+    return "Woman Citizen";
+}

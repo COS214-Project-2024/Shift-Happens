@@ -26,6 +26,13 @@ public:
      * are defined within the builder implementation.
      */
     void construct();
+
+    /**
+     * @brief Returns the current builder.
+     * 
+     * @return std::shared_ptr<CitizenBuilder> The builder associated with the Director.
+     */
+    std::shared_ptr<CitizenBuilder> getBuilder() const; 
 };
 
 #endif

@@ -2,6 +2,7 @@
 #define GIRL_H
 
 #include "Citizen.h"
+#include <string>
 
 /**
  * @class Girl
@@ -65,6 +66,11 @@ public:
      * @param status A boolean indicating if the girl is in school (true) or not (false).
      */
     void setSchool(bool status);
+
+    /**
+     * @brief Retrieves a string representation of the object.
+     */
+    std::string getDescription() const;
 };
 
 #endif
