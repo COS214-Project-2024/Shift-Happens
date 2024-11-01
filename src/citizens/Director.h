@@ -12,6 +12,7 @@
  * coordinating the building process. It defines the order of operations required to construct 
  * a complete `Citizen` object, ensuring that all necessary attributes are set correctly.
  */
+class CitizenBuilder;
 class Director {
 private:
     std::shared_ptr<CitizenBuilder> Builder; ///< Shared pointer to the `CitizenBuilder` used for constructing citizens.

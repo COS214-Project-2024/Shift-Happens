@@ -1,11 +1,11 @@
 #include "ManBuilder.h"
 
 void ManBuilder::addGender() {
-	Man->setGender("Male");
+	man->setGender("Male");
 }
 
 void ManBuilder::addType() {
-	Man->setType("Man");
+	man->setType("Man");
 }
 
 void ManBuilder::addStatus() {
@@ -13,9 +13,9 @@ void ManBuilder::addStatus() {
 	std::cout << "Is the Man employed? (Yes/No)" << std::endl;
 	std::cin >> answer;
 	if(answer == "Yes" || answer == "yes"){
-		Man->setEmployment(true);
+		man->setEmployment(true);
 	} else if(answer == "No" || answer == "no"){
-		Man->setEmployment(false);
+		man->setEmployment(false);
 	} else {
 		bool done = false;
 		while (done != true)
@@ -24,10 +24,10 @@ void ManBuilder::addStatus() {
 			std::cout << "Is the Man employed? (Yes/No)" << std::endl;
 			std::cin >> answer;
 			if(answer == "Yes" || answer == "yes"){
-				Man->setEmployment(true);
+				man->setEmployment(true);
 				done = true;
 			} else if(answer == "No" || answer == "no"){
-				Man->setEmployment(false);
+				man->setEmployment(false);
 				done = false;
 			}
 		}
@@ -36,5 +36,5 @@ void ManBuilder::addStatus() {
 }
 
 shared_ptr<Citizen> ManBuilder::getCitizen() {
-	return Man;
+	return this->man;
 }

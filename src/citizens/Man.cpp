@@ -28,6 +28,3 @@ std::string Man::getType(){
 	return Type;
 }
 
-void Man::setEmployment(bool status) {
-	this->Employment = status;
-}

@@ -15,35 +15,35 @@
  */
 class BoyBuilder : public CitizenBuilder {
 private:
-    std::shared_ptr<Boy> Boy; ///< Shared pointer to the `Boy` object being constructed.
+    std::shared_ptr<Boy> boy; ///< Shared pointer to the `Boy` object being constructed.
 
 public:
     /**
      * @brief Adds the gender attribute to the `Boy` object.
      * 
-     * This method sets the gender of the `Boy` based on specific criteria or user input.
+     * This method sets the gender of the `boy` based on specific criteria or user input.
      */
     void addGender();
 
     /**
-     * @brief Adds the type attribute to the `Boy` object.
+     * @brief Adds the type attribute to the `boy` object.
      * 
-     * This method sets the type of the `Boy`, which is typically a constant value representing 
+     * This method sets the type of the `boy`, which is typically a constant value representing 
      * that the citizen is a boy.
      */
     void addType();
 
     /**
-     * @brief Adds the status attribute to the `Boy` object.
+     * @brief Adds the status attribute to the `boy` object.
      * 
      * This method determines and sets the employment or school status of the `Boy`.
      */
     void addStatus();
 
     /**
-     * @brief Retrieves the constructed `Boy` object as a `Citizen`.
+     * @brief Retrieves the constructed `boy` object as a `Citizen`.
      * 
-     * @return A shared pointer to the constructed `Boy` object, cast to the `Citizen` type.
+     * @return A shared pointer to the constructed `boy` object, cast to the `Citizen` type.
      */
     std::shared_ptr<Citizen> getCitizen();
 };

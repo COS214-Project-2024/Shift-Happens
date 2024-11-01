@@ -2,6 +2,8 @@
 #define BOY_H
 
 #include "Citizen.h"
+#include <string>
+#include <memory>
 
 /**
  * @class Boy

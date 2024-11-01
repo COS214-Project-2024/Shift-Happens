@@ -14,7 +14,7 @@
  */
 class ManBuilder : public CitizenBuilder {
 private:
-    std::shared_ptr<Man> Man; ///< Shared pointer to the `Man` object being constructed.
+    std::shared_ptr<Man> man; ///< Shared pointer to the `Man` object being constructed.
 
 public:
     /**

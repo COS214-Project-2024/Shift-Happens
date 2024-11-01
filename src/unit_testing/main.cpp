@@ -19,6 +19,21 @@
 #include "../Government/Policy.h"
 #include "../Government/Government.h"
 
+//citizens
+#include "../citizens/Boy.h"
+#include "../citizens/BoyBuilder.h"
+#include "../citizens/Citizen.h"
+#include "../citizens/CitizenBuilder.h"
+#include "../citizens/CitizenObserver.h"
+#include "../citizens/Director.h"
+#include "../citizens/Girl.h"
+#include "../citizens/GirlBuilder.h"
+#include "../citizens/Man.h"
+#include "../citizens/ManBuilder.h"
+#include "../citizens/Woman.h"
+#include "../citizens/WomanBuilder.h"
+#include "../Government/Economy.h"
+
 // Taxes
 #include "../Government/Tax.h"
 #include "../Government/LowTax.h"
@@ -38,7 +53,8 @@ void executePolicy(shared_ptr<Government> government) {
 }
 
 int main() {
-    cout << "Creating a government..." << endl;
+   /*
+   cout << "Creating a government..." << endl;
     shared_ptr<Government> government = make_shared<Government>();
     cout << "Government successfully created." << endl;
 
@@ -89,6 +105,9 @@ int main() {
     }
 
     cout << "Program completed successfully." << endl;
+    */ 
 
+
+    
     return 0;
 }

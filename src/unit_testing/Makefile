@@ -74,7 +74,20 @@ COMMON_SRCS = $(SRC_DIR)/../game/Game.cpp \
        $(SRC_DIR)/../Government/Tax.cpp \
        $(SRC_DIR)/../Government/StandardTax.cpp \
        $(SRC_DIR)/../Government/HighTax.cpp \
-       $(SRC_DIR)/../Government/LowTax.cpp 
+       $(SRC_DIR)/../Government/LowTax.cpp \
+       $(SRC_DIR)/../Government/Economy.cpp \
+       $(SRC_DIR)/../citizens/Boy.cpp \
+       $(SRC_DIR)/../citizens/BoyBuilder.cpp \
+       $(SRC_DIR)/../citizens/Citizen.cpp \
+       $(SRC_DIR)/../citizens/Director.cpp \
+       $(SRC_DIR)/../citizens/Girl.cpp \
+       $(SRC_DIR)/../citizens/GirlBuilder.cpp \
+       $(SRC_DIR)/../citizens/Man.cpp \
+       $(SRC_DIR)/../citizens/ManBuilder.cpp \
+       $(SRC_DIR)/../citizens/Woman.cpp \
+       $(SRC_DIR)/../citizens/WomanBuilder.cpp 
+       
+
 
 # Object files for common sources
 COMMON_OBJS = $(COMMON_SRCS:$(SRC_DIR)/../%.cpp=$(OBJ_DIR)/%.o)

@@ -29,7 +29,3 @@ bool Girl::getStatus(){
 std::string Girl::getType(){
 	return Type;
 }
-
-void Girl::setSchool(bool status) {
-	this->School = status;
-}

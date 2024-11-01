@@ -3,11 +3,11 @@
 #include <iostream>
 
 void BoyBuilder::addGender() {
-	Boy->setGender("Male");
+	boy->setGender("Male");
 }
 
 void BoyBuilder::addType() {
-	Boy->setType("Boy");
+	boy->setType("Boy");
 }
 
 void BoyBuilder::addStatus() {
@@ -15,9 +15,9 @@ void BoyBuilder::addStatus() {
 	std::cout << "Is the boy in school? (Yes/No)" << std::endl;
 	std::cin >> answer;
 	if(answer == "Yes" || answer == "yes"){
-		Boy->setSchool(true);
+		boy->setSchool(true);
 	} else if(answer == "No" || answer == "no"){
-		Boy->setSchool(false);
+		boy->setSchool(false);
 	} else {
 		bool done = false;
 		while (done != true)
@@ -26,10 +26,10 @@ void BoyBuilder::addStatus() {
 			std::cout << "Is the boy in school? (Yes/No)" << std::endl;
 			std::cin >> answer;
 			if(answer == "Yes" || answer == "yes"){
-				Boy->setSchool(true);
+				boy->setSchool(true);
 				done = true;
 			} else if(answer == "No" || answer == "no"){
-				Boy->setSchool(false);
+				boy->setSchool(false);
 				done = false;
 			}
 		}
@@ -38,5 +38,5 @@ void BoyBuilder::addStatus() {
 }
 
 std::shared_ptr<Citizen> BoyBuilder::getCitizen() {
-	return Boy;
+	return this->boy;
 }
