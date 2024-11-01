@@ -120,7 +120,8 @@ run_government: $(GOVERNMENT_EXEC)
 	./$(GOVERNMENT_EXEC)
 
 run_citizen: $(CITIZEN_EXEC)
-       ./$(CITIZEN_EXEC)
+	./$(CITIZEN_EXEC)
+
 
 # Clean up
 clean:
