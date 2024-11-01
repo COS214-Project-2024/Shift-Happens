@@ -37,7 +37,7 @@ class Citizen : public CitizenObserver {
 		PublicServiceState* observerPublicServiceState;
 		Tax* observerTax;
 		std::vector<Policy*> observerPolicy;
-		Statistics* observerStatistics;
+
 
 
 

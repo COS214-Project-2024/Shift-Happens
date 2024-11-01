@@ -45,6 +45,8 @@ private:
     shared_ptr<InfrastructureFactory> infrastructureFactory;
     shared_ptr<TransportBuildingFactory> transportBuildingFactory;
 
+
+
     /**
      * @brief Private constructor to prevent instantiation.
      * @param id Map ID.
@@ -55,6 +57,9 @@ public:
     // Deleted copy constructor and assignment operator to prevent copying
     Map(const Map&) = delete;
     Map& operator=(const Map&) = delete;
+
+    string getType() override;
+    string getVariant() override;
 
     /**
      * @brief Builds a building on the map.
@@ -109,6 +114,13 @@ public:
     int getTotalWasteProduction() override;
     int getTotalSewageProduction() override;
     int getTotalNumberOfJobs() override;
+
+
+    //counting number of buildings
+    int numBuildings(string var);
+
+
+
 
 };
 

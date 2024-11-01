@@ -308,3 +308,27 @@ int Map::getTotalNumberOfJobs() {
     }
     return total;
 }
+
+
+//counting number of buildings
+int Map::numBuildings(string var) {
+    int count = 0;
+    for (const auto& row : tiles) {
+        for (const auto& component : row) {
+            if (component) {
+                if (component->getVariant() == var) {
+                    count++;
+                }
+            }
+        }
+    }
+    return count;
+}
+
+string Map::getType() {
+    return "Map";
+}
+
+string Map::getVariant() {
+    return "Map";
+}

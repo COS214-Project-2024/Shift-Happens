@@ -9,8 +9,7 @@ class Tax {
 	private:
 	
 	protected:
-		Government* government;
-		double RunningRate;
+	double RunningRate;
 		double RunningRateBusiness;
 
 	public:

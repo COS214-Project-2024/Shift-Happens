@@ -21,6 +21,9 @@ public:
     int getTotalWasteProduction() override;
     int getTotalSewageProduction() override;
     int getTotalNumberOfJobs() override;
+
+    string getType() override;
+    string getVariant() override;
 };
 
 #endif
