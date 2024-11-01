@@ -13,6 +13,7 @@ GTEST_LIBS = -lgtest -lgtest_main -pthread
 POLICY_MAIN = $(SRC_DIR)/PolicyMain.cpp
 GOVERNMENT_MAIN = $(SRC_DIR)/GovernmentMain.cpp
 CITIZEN_MAIN = $(SRC_DIR)/CitizenUnitTesting.cpp
+MAIN_CPP = $(SRC_DIR)/main.cpp
 
 # Common source files
 COMMON_SRCS = $(SRC_DIR)/../game/Game.cpp \
@@ -76,11 +77,13 @@ COMMON_OBJS = $(COMMON_SRCS:$(SRC_DIR)/../%.cpp=$(OBJ_DIR)/%.o)
 POLICY_MAIN_OBJ = $(OBJ_DIR)/PolicyMain.o
 GOVERNMENT_MAIN_OBJ = $(OBJ_DIR)/GovernmentMain.o
 CITIZEN_MAIN_OBJ = $(OBJ_DIR)/CitizenUnitTesting.o
+MAIN_OBJ = $(OBJ_DIR)/main.o
 
 # Executable names
 POLICY_EXEC = policy_exec
 GOVERNMENT_EXEC = government_exec
 CITIZEN_EXEC = citizen_exec
+MAIN_EXEC = main_exec
 
 # Build target for PolicyMain
 $(POLICY_EXEC): $(POLICY_MAIN_OBJ) $(COMMON_OBJS)
@@ -94,6 +97,10 @@ $(GOVERNMENT_EXEC): $(GOVERNMENT_MAIN_OBJ) $(COMMON_OBJS)
 $(CITIZEN_EXEC): $(CITIZEN_MAIN_OBJ) $(COMMON_OBJS)
 	$(CXX) $(CXXFLAGS) -o $@ $^ $(GTEST_LIBS)
 
+# Build target for main.cpp
+$(MAIN_EXEC): $(MAIN_OBJ) $(COMMON_OBJS)
+	$(CXX) $(CXXFLAGS) -o $@ $^
+
 # Rule to build object files for main files
 $(OBJ_DIR)/PolicyMain.o: $(POLICY_MAIN)
 	@mkdir -p $(dir $@)
@@ -103,7 +110,11 @@ $(OBJ_DIR)/GovernmentMain.o: $(GOVERNMENT_MAIN)
 	@mkdir -p $(dir $@)
 	$(CXX) $(CXXFLAGS) -c -o $@ $<
 
-$(OBJ_DIR)/CitizenMain.o: $(CITIZEN_MAIN)
+$(OBJ_DIR)/CitizenUnitTesting.o: $(CITIZEN_MAIN)
+	@mkdir -p $(dir $@)
+	$(CXX) $(CXXFLAGS) -c -o $@ $<
+
+$(OBJ_DIR)/main.o: $(MAIN_CPP)
 	@mkdir -p $(dir $@)
 	$(CXX) $(CXXFLAGS) -c -o $@ $<
 
@@ -122,9 +133,11 @@ run_government: $(GOVERNMENT_EXEC)
 run_citizen: $(CITIZEN_EXEC)
 	./$(CITIZEN_EXEC)
 
+run_main: $(MAIN_EXEC)
+	./$(MAIN_EXEC)
 
 # Clean up
 clean:
-	rm -rf $(OBJ_DIR) $(POLICY_EXEC) $(GOVERNMENT_EXEC) $(CITIZEN_EXEC)
+	rm -rf $(OBJ_DIR) $(POLICY_EXEC) $(GOVERNMENT_EXEC) $(CITIZEN_EXEC) $(MAIN_EXEC)
 
-.PHONY: clean run_policy run_government run_citizen
+.PHONY: clean run_policy run_government run_citizen run_main
