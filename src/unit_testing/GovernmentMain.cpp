@@ -85,26 +85,99 @@ TEST(ManBuilderTest, addTypeTest){
 
 // Population testing
 TEST(UnderPopulatedTest, increasePopulation) {
-
+  std::shared_ptr<UnderPopulated> underpopulated = make_shared<UnderPopulated>();
+  std::shared_ptr<Economy> economy = make_shared<Economy>();
+  underpopulated->setEconomy(economy);
+  underpopulated->increasePopulation(500);
+  EXPECT_EQ(underpopulated->getPopulationCount(), 500);
+  EXPECT_EQ(economy->getState()->getType(), "Normal Population");
 }
 
 TEST(UnderPopulatedTest, increasePopulationWithoutTransition) {
-
+  std::shared_ptr<UnderPopulated> underpopulated = make_shared<UnderPopulated>();
+  std::shared_ptr<Economy> economy = make_shared<Economy>();
+  underpopulated->setEconomy(economy);
+  underpopulated->increasePopulation(200);
+  EXPECT_EQ(underpopulated->getPopulationCount(), 200);
+  EXPECT_EQ(economy->getState()->getType(), "Under Populated");
 }
 
 TEST(UnderPopulatedTest, decreasePopulation) {
-
+  std::shared_ptr<UnderPopulated> underpopulated = make_shared<UnderPopulated>(1000);
+  underpopulated->decreasePopulation(800);
+  EXPECT_EQ(underpopulated->getPopulationCount(), 200);
 }
 
 TEST(UnderPopulatedTest, decreasePopulationBelowZero) {
-
+  std::shared_ptr<UnderPopulated> underpopulated = make_shared<UnderPopulated>(200);
+  underpopulated->decreasePopulation(800);
+  EXPECT_EQ(underpopulated->getPopulationCount(), 0);
 }
 
 TEST(UnderPopulatedTest, getType) {
-    std::shared_ptr<UnderPopulated> underPopulated = std::make_shared<UnderPopulated>();
-    EXPECT_EQ(underPopulated->getType(), "Under Populated");
+  std::shared_ptr<UnderPopulated> underPopulated = std::make_shared<UnderPopulated>();
+  EXPECT_EQ(underPopulated->getType(), "Under Populated");
 }
 
+
+TEST(OverPopulatedTest, increasePopulation) {
+  std::shared_ptr<OverPopulated> overpopulated = std::make_shared<OverPopulated>();
+  overpopulated->increasePopulation(500);
+  EXPECT_EQ(overpopulated->getPopulationCount(), 500);
+}
+
+TEST(OverPopulatedTest, decreasePopulationWithTransition) {
+  std::shared_ptr<OverPopulated> overpopulated = std::make_shared<OverPopulated>(2500);
+  std::shared_ptr<Economy> economy = std::make_shared<Economy>();
+  overpopulated->setEconomy(economy);
+  overpopulated->decreasePopulation(800);  // Should trigger transition to Normal
+  EXPECT_EQ(overpopulated->getPopulationCount(), 1700);
+  EXPECT_EQ(economy->getState()->getType(), "Normal Population");
+}
+
+TEST(OverPopulatedTest, decreasePopulationBelowLowCap) {
+  std::shared_ptr<OverPopulated> overpopulated = std::make_shared<OverPopulated>(2100);
+  overpopulated->decreasePopulation(1500);
+  EXPECT_EQ(overpopulated->getPopulationCount(), 600);  // Above transition threshold
+  EXPECT_EQ(overpopulated->getType(), "Over Populated");
+}
+
+TEST(OverPopulatedTest, getType) {
+  std::shared_ptr<OverPopulated> overpopulated = std::make_shared<OverPopulated>();
+  EXPECT_EQ(overpopulated->getType(), "Over Populated");
+}
+
+TEST(NormalTest, increasePopulationWithTransition) {
+  std::shared_ptr<Normal> normal = std::make_shared<Normal>();
+  std::shared_ptr<Economy> economy = std::make_shared<Economy>();
+  normal->setEconomy(economy);
+  normal->increasePopulation(2500);  // Should transition to OverPopulated
+  EXPECT_EQ(normal->getPopulationCount(), 2500);
+  EXPECT_EQ(economy->getState()->getType(), "Over Populated");
+}
+
+TEST(NormalTest, decreasePopulationWithTransition) {
+  std::shared_ptr<Normal> normal = std::make_shared<Normal>(500);
+  std::shared_ptr<Economy> economy = std::make_shared<Economy>();
+  normal->setEconomy(economy);
+  normal->decreasePopulation(200);  // Should transition to UnderPopulated
+  EXPECT_EQ(normal->getPopulationCount(), 300);
+  EXPECT_EQ(economy->getState()->getType(), "Under Populated");
+}
+
+TEST(NormalTest, increasePopulationWithinNormalRange) {
+  std::shared_ptr<Normal> normal = std::make_shared<Normal>();
+  normal->increasePopulation(500);
+  EXPECT_EQ(normal->getPopulationCount(), 500);
+  EXPECT_EQ(normal->getType(), "Normal Population");
+}
+
+TEST(NormalTest, getType) {
+  std::shared_ptr<Normal> normal = std::make_shared<Normal>();
+  EXPECT_EQ(normal->getType(), "Normal Population");
+}
+
+// Population testing done
 
 int main(int argc, char **argv) {
     testing::InitGoogleTest(&argc, argv);

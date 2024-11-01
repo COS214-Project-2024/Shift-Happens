@@ -59,6 +59,7 @@ class Population {
 		 */
 		virtual std::string getType() = 0;
 		int getPopulationCount();
+		void setEconomy(std::shared_ptr<Economy> PassedEconomy);
 };
 
 #endif // POPULATION_H
