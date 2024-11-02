@@ -4,7 +4,7 @@
 Statistics::Statistics() : map(Map::getInstance()) {
     
     this->money = 1000000;
-    this->income = 0;
+    this->income = 10;
     this->population = 0;
     this->maxPopulation = 0;
     this->employment = 0;
@@ -23,7 +23,9 @@ Statistics::Statistics() : map(Map::getInstance()) {
 void Statistics::updateStats() {
 
     money += income;
+    income = map.getIncome();
     
+    satisfaction = map.getAverageSatisfactionScore();
     waterSupply = map.getTotalWaterSupply();
     powerSupply = map.getTotalElectricitySupply();
     sewageCapacity = map.getTotalSewageCapacity();
@@ -35,6 +37,7 @@ void Statistics::updateStats() {
     wasteProduction = map.getTotalWasteProduction();
 
     employment = map.getTotalNumberOfJobs();
+    maxPopulation = map.getTotalPopulationCapacity();
 
 }
 
@@ -150,3 +153,29 @@ void Statistics::setSewageProduction(int sp) {
 void Statistics::setWasteProduction(int wp) {
     wasteProduction = wp;
 }
+
+void Statistics::increaseBusinessTax() {
+    throw "Statistics::increaseBusinessTax() not implemented";
+}
+
+void Statistics::decreaseBusinessTax() {
+    throw "Statistics::decreaseBusinessTax() not implemented";
+}
+
+void Statistics::collectBusinessTax() {
+    throw "Statistics::collectBusinessTax() not implemented";
+}
+
+void Statistics::increasePersonalTax() {
+    throw "Statistics::increasePersonalTax() not implemented";
+}
+
+void Statistics::decreasePersonalTax() {
+    throw "Statistics::decreasePersonalTax() not implemented";
+}
+
+void Statistics::collectPersonalTax() {
+    throw "Statistics::collectPersonalTax() not implemented";
+}
+
+
