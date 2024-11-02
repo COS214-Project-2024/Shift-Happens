@@ -36,5 +36,9 @@ std::string Boy::getDescription() const {
 
 
 void Boy::setIncomeRate(double income){
-	
+
+}
+
+double Boy::getIncome(){
+	return 0;
 }

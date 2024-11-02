@@ -214,25 +214,25 @@ void Government::addCitizen(){
     while (true) {
         std::cin >> Answer;
 
-        if (Answer == "Man") {  
+        if (Answer == "Man" || Answer == "man") {  
             CitizenDirector = std::make_shared<Director>(std::make_shared<ManBuilder>());
             CitizenDirector->construct();
             std::shared_ptr<Citizen> newCitizen = CitizenDirector->getBuilder()->getCitizen();
             CitizenCollection.push_back(newCitizen);
             break;
-        } else if (Answer == "Woman") {
+        } else if (Answer == "Woman" || Answer == "woman") {
             CitizenDirector = std::make_shared<Director>(std::make_shared<WomanBuilder>());
             CitizenDirector->construct();
             std::shared_ptr<Citizen> newCitizen = CitizenDirector->getBuilder()->getCitizen();
             CitizenCollection.push_back(newCitizen);
             break;
-        } else if (Answer == "Boy") {
+        } else if (Answer == "Boy" || Answer == "boy") {
             CitizenDirector = std::make_shared<Director>(std::make_shared<BoyBuilder>());
             CitizenDirector->construct();
             std::shared_ptr<Citizen> newCitizen = CitizenDirector->getBuilder()->getCitizen();
             CitizenCollection.push_back(newCitizen);
             break;
-        } else if (Answer == "Girl") {
+        } else if (Answer == "Girl" || Answer == "girl") {
             CitizenDirector = std::make_shared<Director>(std::make_shared<GirlBuilder>());
             CitizenDirector->construct();
             std::shared_ptr<Citizen> newCitizen = CitizenDirector->getBuilder()->getCitizen();
@@ -247,4 +247,27 @@ void Government::addCitizen(){
 
 void Government::addCitizen(std::shared_ptr<Citizen> newCitizen){
     CitizenCollection.push_back(newCitizen);
+}
+
+double Government::CollectPersonalTax(){
+    double incomeTax;
+    for(shared_ptr<Citizen> temp: CitizenCollection){
+        if(temp->getDescription() != "Man" || temp->getDescription() != "Woman"){
+            incomeTax += temp->getIncome() * this->PersonalTaxRate/100;
+        }
+    }
+
+    return incomeTax;
+}
+
+double Government::CollectBusinessTax(){
+
+}
+
+double Government::getIncome(){
+    return CollectBusinessTax() + CollectPersonalTax();
+}
+
+void Government::IncreaseAvialableBudget(double increase){
+    this->AvailableSpendingBudget += increase;
 }

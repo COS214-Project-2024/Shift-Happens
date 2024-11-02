@@ -113,6 +113,7 @@ public:
     virtual std::string getDescription() const = 0; ///< Returns a string representation of the citizen.
 
     virtual void setIncomeRate(double income) = 0;
+    virtual double getIncome() = 0;
 };
 
 #endif

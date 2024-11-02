@@ -72,6 +72,7 @@ public:
      */
     std::string getDescription() const;
     void setIncomeRate(double income);
+    double getIncome();
 };
 
 #endif

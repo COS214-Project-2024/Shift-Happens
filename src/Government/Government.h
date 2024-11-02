@@ -86,6 +86,12 @@ class Government : public CitySubject {
 		void addCitizen(std::shared_ptr<Citizen> newCitizen);
 		void addCitizen();
 		void removeCitizen();
+		
+		double CollectPersonalTax();
+		double CollectBusinessTax();
+		double getIncome();
+
+		void IncreaseAvialableBudget(double increase);
 
 		// Tax Management
 		/**

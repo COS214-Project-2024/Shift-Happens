@@ -245,8 +245,12 @@ void Taxation(shared_ptr<Government> government){
                 government->setBusinessTaxLower(Decrease);
                 break;
             case 5:
+                double Income = government->CollectPersonalTax();
+                government->IncreaseAvialableBudget(Income);
                 break;
             case 6:
+                double BIncome = government->CollectBusinessTax();
+                government->IncreaseAvialableBudget(BIncome);
                 break;
             case 7:
                 cout << "Exiting menu." << endl;

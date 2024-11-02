@@ -20,7 +20,6 @@ private:
     bool Employment; ///< Indicates whether the woman is employed (true) or not (false).
 
 public:
-    double getIncome();
     /**
      * @brief Retrieves the type of the woman.
      * 
@@ -75,6 +74,7 @@ public:
      */
     std::string getDescription() const;
     void setIncomeRate(double income);
+    double getIncome();
 };
 
 #endif
