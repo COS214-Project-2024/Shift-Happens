@@ -1,6 +1,11 @@
 #include "Education.h"
 #include <limits>
 
+Education::Education(){
+  InfraStructureCondition = std::make_shared<Outdated>();  // Initial Standard state for education
+
+}
+
 void Education::increaseBudget(){
   std::string answer;
   double amount;
@@ -28,17 +33,17 @@ void Education::decreaseBudget(){
     std::cout << "Invalid input. Please enter a valid number (integer or decimal): ";
   }
 
-  InfraStructureCondition->descreaseBudget(amount);
+  InfraStructureCondition->decreaseBudget(amount);
 }
 
-void Education::setPublicServiceState(PublicServiceState* newState){
-  delete this->InfraStructureCondition;
+void Education::setPublicServiceState(std::shared_ptr<PublicServiceState> newState){
+  this->InfraStructureCondition.reset();
   this->InfraStructureCondition = newState;
 
   this->notify();
 }
 
-PublicServiceState* Education::getState(){
+std::shared_ptr<PublicServiceState> Education::getState(){
   return InfraStructureCondition;
 }
 

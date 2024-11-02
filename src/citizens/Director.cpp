@@ -6,28 +6,33 @@
 #include "GirlBuilder.h"
 
 #include <iostream>
+
+Director::Director(std::shared_ptr<CitizenBuilder> Builder){
+	this->Builder = Builder;
+}
+
 void Director::construct() {
 	std::string answer;
 	std::cout << "Would you like to create a Man,Woman,Boy or Girl. Enter you choice below: " << std::endl;
 	std::cin >> answer;
 
 	if(answer == "Man" || answer == "man"){
-		Builder = new ManBuilder;
+		Builder = std::make_shared<ManBuilder>();
 		Builder->addGender();
 		Builder->addStatus();
 		Builder->addType();	
 	} else if(answer == "Woman" || answer == "woman"){
-		Builder = new WomanBuilder;
+		Builder = std::make_shared<WomanBuilder>() ;
 		Builder->addGender();
 		Builder->addStatus();
 		Builder->addType();	
 	} else if(answer == "Boy" || answer == "Boy"){
-		Builder = new BoyBuilder;
+		Builder = std::make_shared<BoyBuilder>();
 		Builder->addGender();
 		Builder->addStatus();
 		Builder->addType();
 	} else if(answer == "Girl" || answer == "girl"){
-		Builder = new GirlBuilder;
+		Builder = std::make_shared<GirlBuilder>();
 		Builder->addGender();
 		Builder->addStatus();
 		Builder->addType();
@@ -40,25 +45,25 @@ void Director::construct() {
 			std::cin >> answer;
 
 			if(answer == "Man" || answer == "man"){
-				Builder = new ManBuilder;
+				Builder = std::make_shared<ManBuilder>();
 				Builder->addGender();
 				Builder->addStatus();
 				Builder->addType();	
 				done = true;
 			} else if(answer == "Woman" || answer == "woman"){
-				Builder = new WomanBuilder;
+				Builder = std::make_shared<WomanBuilder>();
 				Builder->addGender();
 				Builder->addStatus();
 				Builder->addType();	
 				done = true;
 			} else if(answer == "Boy" || answer == "Boy"){
-				Builder = new BoyBuilder;
+				Builder = std::make_shared<BoyBuilder>();
 				Builder->addGender();
 				Builder->addStatus();
 				Builder->addType();
 				done = true;
 			} else if(answer == "Girl" || answer == "girl"){
-				Builder = new GirlBuilder;
+				Builder = std::make_shared<GirlBuilder>();
 				Builder->addGender();
 				Builder->addStatus();
 				Builder->addType();
@@ -66,5 +71,9 @@ void Director::construct() {
 			}	
 		}
 	}
+}
+
+std::shared_ptr<CitizenBuilder> Director::getBuilder() const {
+	return Builder;
 }
 

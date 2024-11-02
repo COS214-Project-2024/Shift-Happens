@@ -3,17 +3,41 @@
 
 #include "Policy.h"
 #include "Police.h"
-// this policy has a cost, if the budget is enough then it will take police to the next level and build one more police centre or upgrade and existing one
-// invoker is the government
-// this policy 
-// receiver is police
 
+#include <memory>
+
+/**
+ * @class BoostPolicePolicy
+ * @brief This policy is used when the government decides to enhance the current police system. It will upragde the police system.
+ * 
+ * The BoostPolicePolicy class represents a command to improve police infrastructure, either by adding a new police center or upgrading an existing one, if the budget permits.
+ */
 class BoostPolicePolicy : public Policy {
   private:
-    double Cost = 1000;
-    Police* police;
+
+    /**
+     * @brief police is a shared pointer to the Police object that will receive the upgrades.
+     */
+    std::shared_ptr<Police> police;
+
   public:
-    void executePolicy(double AvailableBudget);
+    BoostPolicePolicy();
+    /**
+     * @brief Constructor for the BoostPolicePolicy class.
+     * @param police A shared pointer to the Police object that the class will work with.
+     */
+    BoostPolicePolicy(std::shared_ptr<Police> police);
+
+    /**
+     * @brief Executes the policy to enhance police services if the available budget allows.
+     */
+    void executePolicy();
+
+    /**
+     * @brief Returns the type of policy.
+     * @return A string indicating the type of policy, e.g., "Boost Police Policy".
+     */
+    std::string getPolicyType();
 };
 
-#endif
+#endif // BOOSTPOLICEPOLICY
