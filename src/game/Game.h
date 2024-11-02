@@ -5,6 +5,14 @@
 #include "../map/MapComponent.h"
 #include "../map/Map.h"
 #include <string>
+#include "../buildings/Building.h"
+#include "../buildingFactories/UtilityBuildingFactory.h"
+#include "../buildingFactories/CommercialBuildingFactory.h"
+#include "../buildingFactories/ResidentialBuildingFactory.h"
+#include "../buildingFactories/InfrastructureFactory.h"
+#include "../buildingFactories/LandmarkBuildingFactory.h"
+#include "../buildingFactories/IndustrialBuildingFactory.h"
+
 
 class Game
 {
@@ -13,16 +21,19 @@ public:
     ~Game();
 
     void run();
+
     void MainMenu();
-    void newGame();
-    void loadGame();
-    void underConstruction();
-    void render();
+    void GameMenu();
+
+
+
+
+    
+    
+
 
 private:
     Display display;
-    string playerName;
-    MapComponent * map;
 };
 
 #endif // GAME_H

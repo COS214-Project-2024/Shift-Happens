@@ -1,7 +1,7 @@
 #include <memory>
 #include <string>
 #include <iostream>
-
+#include <cstdlib>
 //Game
 #include "game/Game.h"
 
@@ -51,8 +51,13 @@
 using namespace std;
 
 void demo() {
-    Game game;
-    game.run();
+   
+    try{
+        Game game;
+        game.run();
+    } catch (char const* msg) {
+        cout << msg << endl;
+    }
 }
 
 void testBuildingFactory() {
@@ -127,8 +132,8 @@ void testMap() {
 }
 
 int main() {
-    //demo();
+    demo();
     //testBuildingFactory();
-    testMap();
+    //testMap();
     return 0;
 }

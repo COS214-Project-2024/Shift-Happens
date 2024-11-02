@@ -19,7 +19,6 @@ using namespace std;
  */
 class MapComponent
 {
-
 private:
     int id; ///< Component ID
 
@@ -64,6 +63,9 @@ public:
     virtual int getTotalWasteProduction() = 0;
     virtual int getTotalSewageProduction() = 0;
     virtual int getTotalNumberOfJobs() = 0;
+
+    virtual string getType() = 0;
+    virtual string getVariant() = 0;
 };
 
 #endif

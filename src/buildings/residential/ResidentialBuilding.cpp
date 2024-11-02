@@ -85,3 +85,4 @@ int ResidentialBuilding::getTotalSewageProduction() {
 int ResidentialBuilding::getTotalNumberOfJobs() {
     return 0; // Residential buildings do not provide jobs
 }
+

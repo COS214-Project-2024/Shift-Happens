@@ -7,7 +7,7 @@
 class Population {
 	protected:
 		int PopulationCount;
-		Economy* economy;
+
 	
 	public:
 		virtual void increasePopulation(int increase) = 0;
