@@ -134,44 +134,46 @@ void Game::render(){
     buldingmenu();
     
 }
-void Game::buldingmenu(){
-    cout <<"Lets get started with the simulation!\n";
-    int choice = display.GameMenu();
+
+void Game::buldingmenu() {
+    cout << "Let's get started with the simulation!\n";
     bool valid = false;
-    while (!valid){
-        switch (choice)
-        {
-        case 1:
-            createBuidling();
-            valid = true;
-            break;
-        case 2:
-            upgradeBuilding();
-            valid = true;
-            break;
-        case 3:
-            demolishbuilding();
-            valid = true;
-            break;
-        case 4:
-        createGovernment(); // Insert my government menu here
-        valid = true;
-        break;
-        case 5: 
-        MainMenu();
+    int choice;
 
-        default:
-            std::cout << "Invalid choice. Please enter a number." << std::endl;
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            //choice = display.MainMenu();
-            choice = display.GameMenu();
-            break;
+    while (!valid) {
+        choice = display.GameMenu(); // Update choice before each iteration
+
+        switch (choice) {
+            case 1:
+                createBuidling();
+                valid = true;
+                break;
+            case 2:
+                upgradeBuilding();
+                valid = true;
+                break;
+            case 3:
+                demolishbuilding();
+                valid = true;
+                break;
+            case 4:
+                createGovernment();
+                valid = true;
+                break;
+            case 5:
+                MainMenu();
+                valid = true;
+                break;
+            default:
+                std::cout << "Invalid choice. Please enter a number." << std::endl;
+                std::cin.clear();
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                break;
         }
-
     }
-
 }
+
+
 void Game::createBuidling()
 {
     int count =0;
@@ -571,7 +573,6 @@ void Game::upgradeBuilding()
 }
 }
 
-
 static void Taxation(std::shared_ptr<Government> government) {
     bool done = false;
     while(!done) {
@@ -820,7 +821,6 @@ static void CityBudget(shared_ptr<Government> government){
     // this is just going to show where the government is currently spending money
 }
 
-
 void Game::createGovernment()
 {
     std::shared_ptr<Government> government = make_shared<Government>();
@@ -917,7 +917,6 @@ void Game::createGovernment()
    //display.Governmentmenu();
 
 }
-
 
 //placeholder values for now
     void Game::createVariant(const int& op)
