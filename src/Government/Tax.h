@@ -20,8 +20,19 @@ class Tax {
 		// Private members, if any, can be documented here as needed.
 
 	protected:
-		Government* government;
+		/**
+		 * @brief Pointer to the Government instance, allowing access to government functions and data.
+		 */
+		std::shared_ptr<Government> government;
+
+		/**
+		 * @brief Holds the current tax rate for individuals.
+		 */
 		double RunningRate;
+
+		/**
+		 * @brief Holds the current tax rate for businesses.
+		 */
 		double RunningRateBusiness;
 
 	public:

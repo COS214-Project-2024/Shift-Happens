@@ -49,11 +49,26 @@ class Government : public CitySubject {
 		 * @brief Tax rate applied to businesses.
 		 */
 		double BusinessTaxRate;
-		Tax* BusinessTaxState;
-		// Policies
-		std::vector<Policy*> PolicyState;
-		// Stats
-		Statistics* statistics; // for keeping track of stats via the statistics object and sending the correct data to the statistics object
+
+		/**
+		 * @brief Tax state for businesses, representing current tax-related policies or adjustments.
+		 */
+		std::shared_ptr<Tax> BusinessTaxState;
+
+		/**
+		 * @brief A list of currently implemented policies affecting city services and dynamics.
+		 */
+		std::vector<std::shared_ptr<Policy>> ImplementedPolicies;
+
+		/**
+		 * @brief A list of all the possible policies that can be implemented by the government
+		*/
+		std::vector<std::shared_ptr<Policy>> AvailablePolicies;
+
+		/**
+		 * @brief Shared pointer to a Statistics object for tracking and reporting city metrics.
+		 */
+		std::shared_ptr<Statistics> statistics;
 
 	public:
 		double setPersonalTaxRate(double rate);

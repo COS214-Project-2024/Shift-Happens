@@ -41,7 +41,15 @@ public:
      */
     virtual void addStatus() = 0;
 
-		virtual Citizen* getCitizen() = 0;
-	};
+    /**
+     * @brief Retrieves the constructed citizen object.
+     * 
+     * @return A shared pointer to the constructed `Citizen` object.
+     * 
+     * This method should be implemented by derived classes to return the 
+     * finalized citizen instance.
+     */
+    virtual std::shared_ptr<Citizen> getCitizen() = 0;
+};
 
 #endif

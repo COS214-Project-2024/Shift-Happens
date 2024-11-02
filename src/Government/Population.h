@@ -25,7 +25,14 @@ class Population {
 		 * determine whether the population is in an overpopulated, underpopulated, or normal state.
 		 */
 		int PopulationCount;
-		Economy* economy;
+
+		/**
+		 * @brief Pointer to the associated `Economy` object.
+		 *
+		 * The `economy` pointer allows the population state to interact with and update the economy,
+		 * enabling state changes in population to reflect within the broader economic context.
+		 */
+		std::shared_ptr<Economy> economy;
 	
 	public:
 		/**

@@ -180,12 +180,68 @@ void Taxation(shared_ptr<Government> government){
 
         switch (choice) {
             case 1:
+                double Increase;
+                std::cout << "What do you want to increase the current tax rate by?" << std::endl;
+                while (true) {
+                    std::cin >> Increase;
+
+                    if (std::cin.fail() || Increase <= 0) {
+                        std::cin.clear();
+                        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                        std::cout << "Please enter a positive value to increase the tax rate." << std::endl;
+                    } else {
+                        break;
+                    }
+                }
+                government->setPersonalTaxHigher(Increase);
                 break;
             case 2:
+                double Decrease;
+                std::cout << "What do you want to decrease the current tax rate by?" << std::endl;
+                while (true) {
+                    std::cin >> Decrease;
+
+                    if (std::cin.fail() || Decrease <= 0) {
+                        std::cin.clear();
+                        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                        std::cout << "Please enter a positive value to decrease the tax rate." << std::endl;
+                    } else {
+                        break;
+                    }
+                }
+                government->setPersonalTaxLower(Decrease);
                 break;
             case 3:
+                double Increase;
+                std::cout << "What do you want to increase the current tax rate by?" << std::endl;
+                while (true) {
+                    std::cin >> Increase;
+
+                    if (std::cin.fail() || Increase <= 0) {
+                        std::cin.clear();
+                        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                        std::cout << "Please enter a positive value to increase the tax rate." << std::endl;
+                    } else {
+                        break;
+                    }
+                }
+                government->setBusinessTaxHigher(Increase);
                 break;
             case 4:
+                double Decrease;
+                std::cout << "What do you want to decrease the current tax rate by?" << std::endl;
+                while (true) {
+                    std::cin >> Decrease;
+
+                    if (std::cin.fail() || Decrease <= 0) {
+                        std::cin.clear();
+                        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                        std::cout << "Please enter a positive value to decrease the tax rate." << std::endl;
+                    } else {
+                        break;
+                    }
+                }
+                government->setBusinessTaxLower(Decrease);
                 break;
             case 5:
                 break;
@@ -226,6 +282,7 @@ void Policies(shared_ptr<Government> government){
 
         switch (choice) {
             case 1:
+                government->addExecutePolicy();
                 break;
             case 2:
                 break;
