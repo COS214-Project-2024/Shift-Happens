@@ -64,6 +64,12 @@ public:
 	void setSewageProduction(int sp);
 	void setWasteProduction(int wp);
 
+	void increaseBusinessTax();
+	void decreaseBusinessTax();
+	void increasePersonalTax();
+	void decreasePersonalTax();
+	void collectBusinessTax();
+	void collectPersonalTax();
 	
 
 

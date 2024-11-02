@@ -114,10 +114,13 @@ public:
     int getTotalWasteProduction() override;
     int getTotalSewageProduction() override;
     int getTotalNumberOfJobs() override;
+    int getTotalPopulationCapacity();
 
 
     //counting number of buildings
     int numBuildings(string var);
+    int getIncome();
+    
 
 
 
