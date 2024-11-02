@@ -1,7 +1,7 @@
 #ifndef PUBLICSERVICESTATE_H
 #define PUBLICSERVICESTATE_H
 
-#include "Public Services.h"
+#include "PublicServices.h"
 
 class PublicServiceState {
 	protected:
