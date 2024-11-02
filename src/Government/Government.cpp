@@ -1,4 +1,8 @@
 #include "Government.h"
+#include "ManBuilder.h"
+#include "WomanBuilder.h"
+#include "BoyBuilder.h"
+#include "GirlBuilder.h"
 
 #include <algorithm>
 #include <memory>
@@ -197,4 +201,50 @@ std::shared_ptr<HealthCare> Government::getHealthCare() const{
 
 std::shared_ptr<Police> Government::getPolice() const{
     return police;
+}
+
+void Government::removeCitizen(){
+    CitizenCollection.pop_back();
+}
+
+void Government::addCitizen(){
+    std::string Answer;
+    std::cout << "Specify the type of citizen you would like to add: Man/Woman/Boy/Girl" << std::endl;
+
+    while (true) {
+        std::cin >> Answer;
+
+        if (Answer == "Man") {  
+            CitizenDirector = std::make_shared<Director>(std::make_shared<ManBuilder>());
+            CitizenDirector->construct();
+            std::shared_ptr<Citizen> newCitizen = CitizenDirector->getBuilder()->getCitizen();
+            CitizenCollection.push_back(newCitizen);
+            break;
+        } else if (Answer == "Woman") {
+            CitizenDirector = std::make_shared<Director>(std::make_shared<WomanBuilder>());
+            CitizenDirector->construct();
+            std::shared_ptr<Citizen> newCitizen = CitizenDirector->getBuilder()->getCitizen();
+            CitizenCollection.push_back(newCitizen);
+            break;
+        } else if (Answer == "Boy") {
+            CitizenDirector = std::make_shared<Director>(std::make_shared<BoyBuilder>());
+            CitizenDirector->construct();
+            std::shared_ptr<Citizen> newCitizen = CitizenDirector->getBuilder()->getCitizen();
+            CitizenCollection.push_back(newCitizen);
+            break;
+        } else if (Answer == "Girl") {
+            CitizenDirector = std::make_shared<Director>(std::make_shared<GirlBuilder>());
+            CitizenDirector->construct();
+            std::shared_ptr<Citizen> newCitizen = CitizenDirector->getBuilder()->getCitizen();
+            CitizenCollection.push_back(newCitizen);
+            break;
+        } else {
+            std::cout << "Invalid input. Please enter one of the following: Man, Woman, Boy, or Girl." << std::endl;
+        }
+    }
+}
+
+
+void Government::addCitizen(std::shared_ptr<Citizen> newCitizen){
+    CitizenCollection.push_back(newCitizen);
 }

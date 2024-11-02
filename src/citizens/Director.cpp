@@ -7,6 +7,9 @@
 
 #include <iostream>
 
+Director::Director(std::shared_ptr<CitizenBuilder> Builder){
+	this->Builder = Builder;
+}
 
 void Director::construct() {
 	std::string answer;
