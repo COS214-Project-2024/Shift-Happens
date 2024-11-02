@@ -48,6 +48,22 @@
 #include "buildings/transport/BusStation.h"
 #include "buildings/transport/TrainStation.h"
 
+//Policies
+#include "Government/PublicServiceState.h"
+#include "Government/Standard.h"
+#include "Government/Outdated.h"
+#include "Government/Modern.h"
+#include "Government/PublicServices.h"
+#include "Government/CitySubject.h"
+#include "citizens/CitizenObserver.h"
+#include "Government/Education.h"
+#include "Government/HealthCare.h"
+#include "Government/Police.h"
+#include "Government/BoostEducationPolicy.h"
+#include "Government/BoostHealthCarePolicy.h"
+#include "Government/BoostPolicePolicy.h"
+#include "Government/Policy.h"
+
 using namespace std;
 
 void demo() {
@@ -112,28 +128,8 @@ void testBuildingFactory() {
     transFactory->print(); // Print transport buildings
 }
 
-void testMap() {
-    cout << "Testing Map" << endl;
-
-    // Get the singleton instance of the Map
-    Map& map = Map::getInstance();
-
-    // Build some buildings on the map
-    map.build("House", "Residential", 0, 0);
-    map.build("Store", "Commercial", 1, 1);
-    map.build("Factory", "Industrial", 2, 2);
-    map.build("PowerPlant", "Utility", 3, 3);
-    map.build("Park", "Landmark", 4, 4);
-    map.build("Road", "Infrastructure", 5, 5);
-    map.build("Airport", "Transport", 6, 6);
-
-    // Print the map
-    map.print();
-}
-
 int main() {
-    demo();
-    //testBuildingFactory();
-    //testMap();
+    //demo();
+    testBuildingFactory();
     return 0;
 }

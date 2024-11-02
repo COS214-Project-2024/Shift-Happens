@@ -30,6 +30,6 @@ std::string Girl::getType(){
 	return Type;
 }
 
-void Girl::setSchool(bool status) {
-	this->School = status;
+std::string Girl::getDescription() const {
+    return "Girl Citizen";
 }

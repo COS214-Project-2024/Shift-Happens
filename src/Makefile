@@ -53,12 +53,7 @@ SRCS = $(SRC_DIR)/main.cpp \
        $(SRC_DIR)/buildingFactories/ResidentialBuildingFactory.cpp \
        $(SRC_DIR)/buildingFactories/UtilityBuildingFactory.cpp \
        $(SRC_DIR)/buildingFactories/TransportBuildingFactory.cpp \
-       $(SRC_DIR)/buildings/Upgrade.cpp \
-       $(SRC_DIR)/buildings/upgrades/Solar.cpp \
-       $(SRC_DIR)/buildings/upgrades/RainCatcher.cpp \
-       $(SRC_DIR)/buildings/upgrades/Recycling.cpp \
-       $(SRC_DIR)/buildings/upgrades/Garden.cpp \
-       $(SRC_DIR)/Statistics.cpp \
+
 
 # Object files
 OBJS = $(SRCS:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)

@@ -28,6 +28,6 @@ std::string Man::getType(){
 	return Type;
 }
 
-void Man::setEmployment(bool status) {
-	this->Employment = status;
+std::string Man::getDescription() const {
+    return "Man Citizen";
 }

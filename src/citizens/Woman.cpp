@@ -27,6 +27,7 @@ bool Woman::getStatus(){
 std::string Woman::getType(){
 	return Type;
 }
-void Woman::setEmployment(bool status) {
-	this->Employment = status;
+
+std::string Woman::getDescription() const {
+    return "Woman Citizen";
 }
