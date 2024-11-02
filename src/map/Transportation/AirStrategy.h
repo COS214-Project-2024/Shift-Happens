@@ -17,10 +17,10 @@ private:
     double costPerKm;
 
 public:
-	AirStrategy(int cap, double fare, double speed, double baseCost);
-    double calculateCost(shared_ptr<Map> start, shared_ptr<Map> end) override;
-    double calculateDuration(shared_ptr<Map> start, shared_ptr<Map> end) override;
-    string getDescription() override;
+	AirStrategy();
+    double calculateCost(shared_ptr<Map> map, int startX, int startY, int endX, int endY) override;
+    double calculateDuration(shared_ptr<Map> map, int startX, int startY, int endX, int endY) override;
+    string getDescription() override { return "Aeroplane"; }
 };
 #endif
 

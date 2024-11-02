@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <memory>
+#include <cmath> 
 #include "MapComponent.h"
 
 #include "../buildingFactories/CommercialBuildingFactory.h"
@@ -109,6 +110,14 @@ public:
     int getTotalWasteProduction() override;
     int getTotalSewageProduction() override;
     int getTotalNumberOfJobs() override;
+
+    // Function to calculate the distance between two points (x1, y1) and (x2, y2)
+    bool isTileTraversable(int x, int y) const;
+    bool isValidPosition(int x, int y) const;
+    double calculateManhattanDistance(int startX, int startY, int endX, int endY) const;
+    double roadDistanceTo(int x1, int y1, int x2, int y2) const;
+    double airDistanceTo(int startX, int startY, int endX, int endY) const;
+    double trainDistanceTo(int startX, int startY, int endX, int endY) const;
 
 };
 
