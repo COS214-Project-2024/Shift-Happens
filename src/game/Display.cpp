@@ -334,7 +334,7 @@ void Display::displayStats()
     gridmap.add_row({TrainStation1, Warehouse2, Warehouse2, Factory2, Manufacturer1, Warehouse4, Warehouse4, Factory4, Manufacturer2, PowerPlant3, PowerPlant4, Airport2, Airport2, TrainStation2, TrainStation2});
     gridmap.add_row({"", "", "", "", "", "", "", "", "", "", "", "", "", "", ""});
 
-    gridmap.format().width(10);
+    gridmap.format().width(12);
     gridmap.format().height(2);
     gridmap.format().font_align(tabulate::FontAlign::center);
 
@@ -1443,17 +1443,23 @@ void Display::upgradeMenu(){
     clear();
     logo();
 
-    vector<string> apartmentUpgrades = getUpgrades("Apartment", 3);
-
-
-
-
-
+    vector<string> apartmentUpgrades = getUpgrades("Apartment", 1);
 
 }
 
 vector<string> Display::getUpgrades(string var, int num){
-    throw "Display::getUpgrades() not implemented";
+    vector<string> upgrades;
+    int count = map.numBuildings(var);
+    if (count >= num)
+    {
+        
+    }
+    else
+    {
+        return upgrades;
+    }
+
+
 }
 
 void Display::governmentMenu(){
