@@ -20,7 +20,6 @@ private:
     bool Employment; ///< Indicates whether the man is employed (true) or not (false).
 
 public:
-    double getIncome();
     /**
      * @brief Retrieves the type of the man.
      * 

@@ -27,9 +27,9 @@
  */
 
 class Statistics; // Forward declaration to avoid circular dependency
-class Government;
-class Tax;
-class Director;
+// class Government;
+// class Tax;
+// class Director;
 class Citizen : public CitizenObserver {
 protected:
     std::shared_ptr<Director> director; ///< Pointer to the director managing the citizens.

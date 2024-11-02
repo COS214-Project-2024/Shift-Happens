@@ -11,8 +11,8 @@
 #include "Police.h"
 #include "HealthCare.h"
 #include "../Statistics.h"
-#include "../citizens/Citizen.h"
-#include "../citizens/Director.h"
+// #include "../citizens/Citizen.h"
+//#include "../citizens/Director.h"
 #include <memory>
 #include <vector>
 
@@ -25,7 +25,9 @@
  * Government actions impact citizen satisfaction, economic growth, and overall city development.
  */
 
-class Statistics;
+//class Statistics;
+class Citizen;
+class Director;
 class Government : public CitySubject {
 	private:
 		// 

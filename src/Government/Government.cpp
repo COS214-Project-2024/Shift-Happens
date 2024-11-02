@@ -1,8 +1,8 @@
 #include "Government.h"
-#include "ManBuilder.h"
-#include "WomanBuilder.h"
-#include "BoyBuilder.h"
-#include "GirlBuilder.h"
+#include "../citizens/ManBuilder.h"
+#include "../citizens/WomanBuilder.h"
+#include "../citizens/BoyBuilder.h"
+#include "../citizens/GirlBuilder.h"
 
 #include <algorithm>
 #include <memory>

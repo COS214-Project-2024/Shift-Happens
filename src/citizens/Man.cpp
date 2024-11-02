@@ -40,7 +40,3 @@ double Man::getIncome(){
 void Man::setIncomeRate(double income){
 	this->Income = income;
 }
-
-double Man::getIncome(){
-	return this->Income;
-}

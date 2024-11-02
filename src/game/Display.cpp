@@ -1,6 +1,8 @@
 #include "Display.h"
 #include <iostream>
 #include <thread>
+#include <algorithm>
+
 //#include <curses.h>
 
 
@@ -290,7 +292,7 @@ int Display::LandMarkmenu()
     return -1;
 }
 int Display::GameMenu(){
-     std::vector<std::string> options = {"Create a building", "Upgrade a building", "Demolish a building","Create Government","Return to main menu"};
+     std::vector<std::string> options = {"Create a building", "Upgrade a building", "Demolish a building","Government Menu","Return to main menu"};
     bool running = true;
     while (running) {
         clear();
@@ -298,16 +300,16 @@ int Display::GameMenu(){
         displayMenu(options);
         std::cout << "Please select an action." << std::endl;
         int input;
-        std::cin >> input;
         return input;
     }
     return -1;
      
         
      }
+
 int Display::Governmentmenu()
-{
-  std::vector<std::string> options = {"Implement Tax policy","Implementing a new Policy","Return to main menu"};
+{   
+    std::vector<std::string> options = {"Taxation", "Policies", "Public Servicess","City Budget","View Statistics", "Exit"};
     bool running = true;
     while (running) {
         clear();
@@ -315,35 +317,92 @@ int Display::Governmentmenu()
         displayMenu(options);
         std::cout << "Please select an action." << std::endl;
         int input;
-        std::cin >> input;
         return input;
     }
     return -1;
+
+    // std::shared_ptr<Government> government = make_shared<Government>();
+    // bool Done = false;
+    // while (Done == false)
+    // {
+    //     int choice = 0;
+    //     cout << "========== Government Menu ==============" << endl;
+    //     cout << "1. Taxation" << endl;
+    //     cout << "2. Policies" << endl;
+    //     cout << "3. Public Services" << endl;
+    //     cout << "4. City Budget" << endl;
+    //     cout << "5. View Statistics" << endl;
+    //     cout << "6. Exit" << endl;
+    //     cout << "=========================================" << endl;
+
+    //     do {
+    //         cout << "Enter your choice (1-5): ";
+    //         cin >> choice;
+
+    //         if (cin.fail() || choice < 1 || choice > 5) {
+    //             cout << "Invalid input. Please enter a number between 1 and 5." << endl;
+    //             cin.clear(); 
+    //             cin.ignore(numeric_limits<streamsize>::max(), '\n'); 
+    //         } else {
+    //             break;
+    //         }
+    //     } while (true);
+
+    //     switch (choice) {
+    //         case 1:
+    //             cout << "Taxation selected." << endl;
+    //             Taxation(government);
+    //             break;
+    //         case 2:
+    //             cout << "Policies selected." << endl;
+    //             Policies(government);
+    //             break;
+    //         case 3:
+    //             cout << "Public Services selected." << endl;
+    //             PublicServices(government);
+    //             break;
+    //         case 4:
+    //             cout << "City Budget selected." << endl;
+    //             CityBudget(government);
+    //             break;
+    //         case 5:
+    //             // open up stats
+    //             break;
+    //         case 6:
+    //             cout << "Exiting menu." << endl;
+    //             Done = true;
+    //             break;
+    //         default:
+    //             break;
+    //     }
+    // }
 }     
 int Display::taxMenu()
 {
      cout <<"what would you like to do with tax?.\n";
-     std::vector<std::string> options = {"Increase", "Standard","Lower"}; //high tax/standard tax/low tax
+     std::vector<std::string> options = {"Increase Tax", "Decrease Tax","Collect Tax", "Exit"}; //high tax/standard tax/low tax
     bool running = true;
     while (running) {
         clear();
         logo();
         displayMenu(options);
-        std::cout << "Please select an action." << std::endl;
-        int input;
-        std::cin >> input;
-        if(input == 1){
-         cout << "You have chosen to increase tax\n" ; 
-        }else if(input == 2){
-            cout <<"You have chosen to issue standard tax\n";
+        int choice;
+        do {
+            cout << "Enter your choice (1-4): ";
+            cin >> choice;
 
-        }else if(input == 3){
-            cout << "You have chosen to lower tax\n";
-        }else {
-            cout <<"Invalid entry" << endl;
-            displayMenu(options);
-        }
-        return input;
+            if (cin.fail() || choice < 1 || choice > 7) {
+                cout << "Invalid input. Please enter a number between 1 and 7." << endl;
+                cin.clear(); 
+                cin.ignore(numeric_limits<streamsize>::max(), '\n'); 
+            } else {
+                break;
+            }
+        } while (true);
+
+        
+
+        return choice;
     }
     return -1;
 }

@@ -5,6 +5,8 @@
 #include <string>
 #include <iostream>
 
+#include "../Government/Government.h"
+
 /**
  * @class Display
  * @brief  Handles the display and user interaction for various menu options in the game
