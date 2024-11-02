@@ -33,3 +33,7 @@ std::string Girl::getType(){
 std::string Girl::getDescription() const {
     return "Girl Citizen";
 }
+
+void Girl::setIncomeRate(double income){
+	
+}

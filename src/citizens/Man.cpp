@@ -31,3 +31,12 @@ std::string Man::getType(){
 std::string Man::getDescription() const {
     return "Man Citizen";
 }
+
+
+double Man::getIncome(){
+	return this->Income;
+}
+
+void Man::setIncomeRate(double income){
+	this->Income = income;
+}

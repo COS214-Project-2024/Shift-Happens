@@ -31,3 +31,11 @@ std::string Woman::getType(){
 std::string Woman::getDescription() const {
     return "Woman Citizen";
 }
+
+void Woman::setIncomeRate(double income){
+	this->Income = income;
+}
+
+double Woman::getIncome(){
+	return this->Income;
+}

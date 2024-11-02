@@ -72,6 +72,8 @@ public:
      * @brief Retrieves a string representation of the object.
      */
     std::string getDescription() const;
+
+    void setIncomeRate(double income);
 };
 
 #endif
