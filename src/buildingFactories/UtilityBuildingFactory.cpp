@@ -23,7 +23,7 @@ void UtilityBuildingFactory::createBuilding(string variant)
 	{
 		buildings.push_back(make_shared<WaterSupply>(idForBuilding));
 	}
-	else if (variant == "LandFill")
+	else if (variant == "Landfill")
 	{
 		buildings.push_back(make_shared<LandFill>(idForBuilding));
 	}
@@ -50,4 +50,16 @@ void UtilityBuildingFactory::print()
 	{
 		building->print();
 	}
+}
+
+shared_ptr<UtilityBuilding> UtilityBuildingFactory::getBuilding()
+{
+	//check if the vector is empty
+	if (buildings.empty())
+	{
+		throw "No Utility buildings created";
+	}
+
+	//return the last building created
+	return buildings.back();
 }

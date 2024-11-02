@@ -47,23 +47,19 @@ protected:
      */
     bool Status;
 
-    // Observer parts
-    std::shared_ptr<Economy> economy; ///< Pointer to the economy subject being observed.
-    
-    /// Pointers to various public services.
-    std::shared_ptr<Public_Services> police; ///< Pointer to the police public service.
-    std::shared_ptr<Public_Services> education; ///< Pointer to the education public service.
-    std::shared_ptr<Public_Services> healthcare; ///< Pointer to the healthcare public service.
-    std::shared_ptr<Government> government; ///< Pointer to the government object.
+		// Observer parts
+		// Pointers to concrete subjects
+		Economy* economy;
+		Public_Services* infrastructure;
+		Government* government;
+		// States of the concrete subjects
+		Population* observerPopulation;
+		PublicServiceState* observerPublicServiceState;
+		Tax* observerTax;
+		std::vector<Policy*> observerPolicy;
+		Statistics* observerStatistics;
 
-    // States of the concrete subjects being observed.
-    std::shared_ptr<Population> observerPopulation; ///< Pointer to the population state.
-    std::shared_ptr<PublicServiceState> observerPolice; ///< Pointer to the police service state.
-    std::shared_ptr<PublicServiceState> observerEducation; ///< Pointer to the education service state.
-    std::shared_ptr<PublicServiceState> observerHealthcare; ///< Pointer to the healthcare service state.
-    std::shared_ptr<Tax> observerTax; ///< Pointer to the tax subject being observed.
 
-    std::shared_ptr<Statistics> observerStatistics; ///< Pointer to the statistics object for tracking data.
 
 public:
     /**

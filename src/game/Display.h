@@ -3,27 +3,56 @@
 
 #include <vector>
 #include <string>
+#include <memory>
+
 #include <iostream>
+#include "../map/Map.h"
+#include "../Statistics.h"
 
 
 using namespace std;
+
 class Display {
+
 public:
     Display();
     ~Display();
 
-    void intro();
+
+    //Display functions
     void logo();
     void clear();
     void wait(int seconds);
     void loadscreen();
 
+    void displayStats();
+
+    //Menus
     int MainMenu();
-    void displayMenu(vector<string> options);
+    int GameMenu();
+
+    void buildMenu();
+    void residentialMenu();
+    void commercialMenu();
+    void industrialMenu();
+    void utilityMenu();
+    void landmarkMenu();
+    void infrastructureMenu();
 
 
+    
+    string check(string var, int num);
+
+
+
+
+
+ 
 private:
-    // Add private members and methods as needed
+
+    Map& map;
+    shared_ptr<Statistics> stats;
+
 };
 
 #endif // DISPLAY_H

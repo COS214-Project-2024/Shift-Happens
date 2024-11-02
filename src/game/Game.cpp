@@ -5,106 +5,63 @@
 Game::Game()
 {
 }
-
 Game::~Game()
 {
 }
 
+
 void Game::run()
 {
-    display.intro();
     MainMenu();
 }
 void Game::MainMenu()
-{
-    int choice = display.MainMenu();
-
-    bool valid = false;
-    while (!valid){
+{   
+    int choice;
+    while (true){
+        choice = display.MainMenu();
         switch (choice)
         {
         case 1:
-            newGame();
-            valid = true;
-            break;
+            GameMenu();
         case 2:
-            loadGame();
-            valid = true;
-            break;
+            
         case 3:
+
+        case 4:
             display.clear();
             std::cout << "Goodbye!" << std::endl;
             display.wait(1);
-            return;
+            exit(0);
         default:
-            std::cout << "Invalid choice. Please enter a number." << std::endl;
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            choice = display.MainMenu();
-            break;
+            throw "error: invalid input main menu";
         }
-
     }
 }
 
-void Game::newGame()
-{
-    display.clear();
-    display.logo();
-   
-    std::cout<< "Enter your name: " << std::endl;
-    std::cin >> playerName;
-    
-    std::cout << "Starting new game..." << std::endl;
-    display.wait(1);
+void Game::GameMenu()
+{   
+    int choice;
+    while (true){
+        choice = display.GameMenu();
+        switch (choice)
+        {
+        case 1:
+            
+        case 2:
+            
+        case 3:
 
-    std::cout<< "Welcome " << playerName << "!" << std::endl;
-    display.wait(1);
+        case 4:
+            display.clear();
+            std::cout << "Goodbye!" << std::endl;
+            display.wait(1);
+            exit(0);
+        default:
+            throw "error: invalid input main menu";
+        }
+    }
 
-    std::cout<< "Generating map..." << std::endl;
-    map = new Map(-1);
-
-    display.wait(1);
-    std::cout<< "Setting up construction..." << std::endl;
-
-    display.wait(1);
-    std::cout<< "Getting people to move in..." << std::endl;
-
-    display.wait(1);
-    std::cout<< "Establishing a government..." << std::endl;
-
-    display.loadscreen();
-
-    render();
-}
-
-void Game::loadGame()
-{
-    underConstruction();
 }
 
 
 
-
-void Game::underConstruction()
-{
-    display.clear();
-    display.logo();
-    std::cout << "Under Construction..." << std::endl;
-    display.wait(2);
-    std::cout << "Press any key to go back to main" << std::endl;
-    string input;
-    std::cin >> input;
-    MainMenu();
-}
-
-void Game::render(){
-    display.clear();
-    display.logo();
-    map->render();
-    display.wait(5);
-    //MainMenu();
-    int input;
-    cin>>input;
-    
-}

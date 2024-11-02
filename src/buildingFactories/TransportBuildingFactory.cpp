@@ -44,3 +44,13 @@ void TransportBuildingFactory::print() {
         building->print();
     }
 }
+
+shared_ptr<TransportBuilding> TransportBuildingFactory::getBuilding()
+{
+    //check if the vector is empty
+    if (buildings.empty())
+    {
+        throw "No Transport buildings created";
+    }
+    return buildings.back();
+}

@@ -9,8 +9,7 @@ ResidentialBuildingFactory::ResidentialBuildingFactory(int id)
 void ResidentialBuildingFactory::createBuilding(string variant){
 	if (buildingId >= 100) // 100 max buildings
 	{
-		cout << "You have reached the maximum number of Residential buildings" << endl;
-		return;
+		throw "Max Residential buildings reached";
 	}
 	
 	int idForBuilding = buildingId + 100 * id;
@@ -33,8 +32,7 @@ void ResidentialBuildingFactory::createBuilding(string variant){
 	}
 	else
 	{
-		cout << "Invalid building type" << endl;
-		buildingId--;
+		throw "Invalid Residential building type";
 	}
 }
 
@@ -50,4 +48,14 @@ void ResidentialBuildingFactory::print()
 	{
 		building->print();
 	}
+}
+
+shared_ptr<ResidentialBuilding> ResidentialBuildingFactory::getBuilding()
+{
+	//check if the vector is empty
+	if (buildings.empty())
+	{
+		throw "No Residential buildings created";
+	}
+	return buildings.back();
 }
