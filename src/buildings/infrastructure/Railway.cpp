@@ -56,11 +56,3 @@ int Railway::getTotalSewageProduction() {
 int Railway::getTotalNumberOfJobs() {
     return Infrastructure::getTotalNumberOfJobs();
 }
-
-string Railway::getType() {
-    return "Infrastructure";
-}
-
-string Railway::getVariant() {
-    return "Railway";
-}

@@ -9,7 +9,8 @@ ResidentialBuildingFactory::ResidentialBuildingFactory(int id)
 void ResidentialBuildingFactory::createBuilding(string variant){
 	if (buildingId >= 100) // 100 max buildings
 	{
-		throw "Max Residential buildings reached";
+		cout << "You have reached the maximum number of Residential buildings" << endl;
+		return;
 	}
 	
 	int idForBuilding = buildingId + 100 * id;
@@ -32,7 +33,8 @@ void ResidentialBuildingFactory::createBuilding(string variant){
 	}
 	else
 	{
-		throw "Invalid Residential building type";
+		cout << "Invalid building type" << endl;
+		buildingId--;
 	}
 }
 

@@ -1,6 +1,6 @@
 # Compiler
 CXX = g++
-CXXFLAGS = -Wall -Wextra -std=c++11 -I./libs/tabulate/include -I./libs/tabulate  # Add the path to the tabulate folder
+CXXFLAGS = -Wall -Wextra -std=c++11
 
 # Executable name
 TARGET = main
@@ -53,6 +53,12 @@ SRCS = $(SRC_DIR)/main.cpp \
        $(SRC_DIR)/buildingFactories/ResidentialBuildingFactory.cpp \
        $(SRC_DIR)/buildingFactories/UtilityBuildingFactory.cpp \
        $(SRC_DIR)/buildingFactories/TransportBuildingFactory.cpp \
+       $(SRC_DIR)/buildings/Upgrade.cpp \
+       $(SRC_DIR)/buildings/upgrades/Solar.cpp \
+       $(SRC_DIR)/buildings/upgrades/RainCatcher.cpp \
+       $(SRC_DIR)/buildings/upgrades/Recycling.cpp \
+       $(SRC_DIR)/buildings/upgrades/Garden.cpp \
+       
 
 
 # Object files

@@ -1,18 +1,16 @@
 #include "BusStrategy.h"
 
-BusStrategy::BusStrategy(int cap, double fare, double speed, double baseCost) {
-	capacity = cap;
-	this->fare = fare;
-	this->speed = speed;
-	costPerKm = baseCost;
+double Building_State::BusStrategy::calculateCost(Building_State::Map start, Building_State::Map end) {
+	// TODO - implement BusStrategy::calculateCost
+	throw "Not yet implemented";
 }
 
-double BusStrategy::calculateCost(shared_ptr<Map> start, shared_ptr<Map> end) {
+double Building_State::BusStrategy::calcDuration(Building_State::Map start, Building_State::Map end) {
+	// TODO - implement BusStrategy::calcDuration
+	throw "Not yet implemented";
 }
 
-double BusStrategy::calculateDuration(shared_ptr<Map> start, shared_ptr<Map> end) {
+string Building_State::BusStrategy::getDescription() {
+	// TODO - implement BusStrategy::getDescription
+	throw "Not yet implemented";
 }
-
-string BusStrategy::getDescription() {
-}
-
