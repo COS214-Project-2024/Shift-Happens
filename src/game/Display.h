@@ -3,27 +3,79 @@
 
 #include <vector>
 #include <string>
+#include <memory>
+
 #include <iostream>
+#include "../map/Map.h"
+#include "../Statistics.h"
 
 
 using namespace std;
+
 class Display {
+
 public:
     Display();
     ~Display();
 
-    void intro();
+
+    //Display functions
     void logo();
     void clear();
     void wait(int seconds);
     void loadscreen();
 
+    void displayStats();
+
+    //Menus
     int MainMenu();
-    void displayMenu(vector<string> options);
+    int GameMenu();
+
+    //Building Menus
+    void buildMenu();
+    void residentialMenu();
+    void commercialMenu();
+    void industrialMenu();
+    void utilityMenu();
+    void landmarkMenu();
+    void infrastructureMenu();
 
 
+    //Upgrade Menus
+    void upgradeMenu();
+
+    //Government Menus
+    void governmentMenu();
+
+    void taxMenu();
+    void businessTaxMenu();
+    void personalTaxMenu();
+
+    void policiesMenu();
+
+    void servicesMenu();
+
+    void budgetMenu();
+    
+    void statisticsMenu();
+
+
+
+    //helper functions
+    string check(string var, int num); // check if building is built
+    vector<string> getUpgrades(string var, int num); // get available upgrades for building
+
+
+
+
+
+
+ 
 private:
-    // Add private members and methods as needed
+
+    Map& map;
+    shared_ptr<Statistics> stats;
+
 };
 
 #endif // DISPLAY_H

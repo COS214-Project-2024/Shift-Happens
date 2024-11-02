@@ -311,6 +311,64 @@ int Map::getTotalNumberOfJobs() {
 }
 
 
+//counting number of buildings
+int Map::numBuildings(string var) {
+    int count = 0;
+    for (const auto& row : tiles) {
+        for (const auto& component : row) {
+            if (component) {
+                if (component->getVariant() == var) {
+                    count++;
+                }
+            }
+        }
+    }
+    return count;
+}
+
+string Map::getType() {
+    return "Map";
+}
+
+string Map::getVariant() {
+    return "Map";
+}
+
+int Map::getTotalPopulationCapacity() {
+    int total = 0;
+    for (const auto& row : tiles) {
+        for (const auto& component : row) {
+            if (component != nullptr) {
+                if (component->getType() == "Residential") {
+                    shared_ptr<ResidentialBuilding> building = dynamic_pointer_cast<ResidentialBuilding>(component);
+                    total += building->getCapacity();
+                }
+            }
+        }
+    }
+    return total;
+}
+
+int Map::getIncome() {
+    int total = 0;
+    for (const auto& row : tiles) {
+        for (const auto& component : row) {
+            if (component != nullptr) {
+                if (component->getType() == "Commercial") {
+                    shared_ptr<CommercialBuilding> building = dynamic_pointer_cast<CommercialBuilding>(component);
+                    total += building->getIncomePerHour();
+                }
+                if (component->getType() == "Residential") {
+                    shared_ptr<ResidentialBuilding> building = dynamic_pointer_cast<ResidentialBuilding>(component);
+                    total += building->getIncomePerHour();
+                }
+                
+            }
+        }
+    }
+    return total;
+}
+
 //Monica - Trasportation functions:
 /*
 Manhattan distance is particularly suitable for grid-like structures, 

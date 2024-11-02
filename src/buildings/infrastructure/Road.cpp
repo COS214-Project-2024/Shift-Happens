@@ -18,41 +18,49 @@ void Road::print()
 
 // New functions
 double Road::getAverageSatisfactionScore() {
-    return Infrastructure::getAverageSatisfactionScore();
+    return 75;
 }
 
 int Road::getTotalWaterSupply() {
-    return Infrastructure::getTotalWaterSupply();
+    return 0;
 }
 
 int Road::getTotalWaterUsage() {
-    return Infrastructure::getTotalWaterUsage();
+    return 0;
 }
 
 int Road::getTotalElectricitySupply() {
-    return Infrastructure::getTotalElectricitySupply();
+    return 0;
 }
 
 int Road::getTotalElectricityDemand() {
-    return Infrastructure::getTotalElectricityDemand();
+    return 0;
 }
 
 int Road::getTotalSewageCapacity() {
-    return Infrastructure::getTotalSewageCapacity();
+    return 0;
 }
 
 int Road::getTotalWasteCapacity() {
-    return Infrastructure::getTotalWasteCapacity();
+    return 0;
 }
 
 int Road::getTotalWasteProduction() {
-    return Infrastructure::getTotalWasteProduction();
+    return 0;
 }
 
 int Road::getTotalSewageProduction() {
-    return Infrastructure::getTotalSewageProduction();
+    return 0;
 }
 
 int Road::getTotalNumberOfJobs() {
-    return Infrastructure::getTotalNumberOfJobs();
+    return 0;
+}
+
+string Road::getType() {
+    return "Infrastructure";
+}
+
+string Road::getVariant() {
+    return "Road";
 }
