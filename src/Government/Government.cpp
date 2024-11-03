@@ -233,7 +233,7 @@ void Government::addCitizen(){
             CitizenCollection.push_back(newCitizen);
             break;
         } else if (Answer == "Boy" || Answer == "boy") {
-            CitizenDirector = std::m1ke_shared<Director>(std::make_shared<BoyBuilder>());
+            CitizenDirector = std::make_shared<Director>(std::make_shared<BoyBuilder>());
             CitizenDirector->construct();
             std::shared_ptr<Citizen> newCitizen = CitizenDirector->getBuilder()->getCitizen();
             CitizenCollection.push_back(newCitizen);
@@ -264,6 +264,21 @@ double Government::CollectPersonalTax(){
     }
 
     return incomeTax;
+}
+
+double Government::getSatisfaction(){
+    double Satisfaction;
+    int count = CitizenCollection.size();
+    for(shared_ptr<Citizen> temp: CitizenCollection){
+        Satisfaction += temp->getSatisfactionScore();
+    }
+
+    return Satisfaction/count;
+}
+
+void Government::setPeopleCount(int count){
+    int ActualPopulation = count/getSatisfaction()*100;
+    this->PopulationCount = ActualPopulation;
 }
 
 double Government::CollectBusinessTax(int numBusinesses){

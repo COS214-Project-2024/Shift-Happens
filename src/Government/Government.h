@@ -77,7 +77,7 @@ class Government : public CitySubject {
 		 * @brief Shared pointer to a Statistics object for tracking and reporting city metrics.
 		 */
 		
-
+		int PopulationCount;
 	public:
 		double setPersonalTaxRate(double rate);
 		double setBusinessTaxRate(double rate);
@@ -94,6 +94,9 @@ class Government : public CitySubject {
 		double getIncome();
 
 		void IncreaseAvialableBudget(double increase);
+
+		void setPeopleCount(int count);
+		double getSatisfaction();
 
 		// Tax Management
 		/**
