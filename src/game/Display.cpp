@@ -1373,6 +1373,7 @@ void Display::personalTaxMenu() {
                         }
                     }
                     stats->changePersonalTax(Increase, "increase");
+                    personalTaxMenu();
                     break;
                 }
                 case 2: { // Decrease tax
@@ -1390,6 +1391,7 @@ void Display::personalTaxMenu() {
                         }
                     }
                     stats->changePersonalTax(Decrease, "decrease");
+                    personalTaxMenu();
                     break;
                 }
                 case 3: // Collect tax
