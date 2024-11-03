@@ -1236,64 +1236,27 @@ void Display::taxMenu()
 {
     clear();
     logo();
-    tabulate::Table options;
-    options.add_row({"1. Business", "2. Personal", "3. Back"});
-    options.format().width(20);
-    options.format().font_align(tabulate::FontAlign::center);
-    options.format().font_style({tabulate::FontStyle::bold});
 
-    tabulate::Table menu;
-    menu.add_row({"Tax Menu"});
-    menu.add_row({options});
-    std::string taxRates = "Current Tax Rates - Personal: " + std::to_string(stats->getGovernment()->getPersonalTaxRate()) +
-                           "%, Business: " + std::to_string(stats->getGovernment()->getBusinessTaxRate()) + "%";
-    menu.add_row({taxRates});
-    menu.format().font_align(tabulate::FontAlign::center);
-    menu[0][0].format().font_color(tabulate::Color::blue);
-    std::cout << menu << std::endl;
-    std::cout << "Please select an option." << std::endl;
-
-    int input;
-    bool valid = false;
-    vector<string> errorMsg = {"Invalid option. Please try again.", "Enter an integer."};
-    int errorCount = 0;
-
-    while (!valid)
+    displayTaxStats();
+    displayMenu("Tax Menu", {"Business", "Personal", "Back"});
+    
+    int input = getInput(1, 3);
+    switch (input)
     {
-        std::cin >> input;
-
-        if (std::cin.fail())
-        {
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            std::cout << errorMsg[1] << std::endl;
-        }
-        else if (input > 3 || input < 1)
-        {
-            std::cout << errorMsg[0] << std::endl;
-        }
-        else
-        {
-            valid = true;
-            // std::cout << "User selected: " << input << std::endl; // Debug output
-            switch (input)
-            {
-            case 1:
-                businessTaxMenu();
-                break;
-            case 2:
-                personalTaxMenu();
-                break;
-            case 3:
-                governmentMenu();
-                break;
-            }
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        }
+    case 1:
+        businessTaxMenu();
+        break;
+    case 2:
+        personalTaxMenu();
+        break;
+    case 3:
+        governmentMenu();
+        break;
     }
 }
-void Display::displayTaxStats(){
+
+void Display::displayTaxStats()
+{
     vector<string> taxStats;
     taxStats.push_back("Business Tax:");
     string bTax = std::to_string(stats->getGovernment()->getBusinessTaxRate()) + "%";
@@ -1303,16 +1266,27 @@ void Display::displayTaxStats(){
     taxStats.push_back(pTax);
     displayRow(taxStats);
 
-    //availble for collection
+    // availble for collection
     tabulate::Table taxTable;
-    string business = std::to_string(stats->getGovernment()->getBusinessTaxRate());
+    string business = std::to_string(stats->getUncollectedTax("business"));
+    string personal = std::to_string(stats->getUncollectedTax("personal"));
+    taxTable.add_row({"Business: ", business, "Personal: ", personal});
 
+    taxTable.format().font_align(tabulate::FontAlign::center);
+    taxTable[0][0].format().font_color(tabulate::Color::blue);
+
+    tabulate::Table uncollected;
+    uncollected.add_row({"Uncollected Taxes"});
+    uncollected.add_row({taxTable});
+    uncollected.format().font_align(tabulate::FontAlign::center);
+    uncollected[0][0].format().font_color(tabulate::Color::blue);
+    std::cout << uncollected << std::endl;
 }
 void Display::businessTaxMenu()
 {
     clear();
     logo();
-    
+
     displayTaxStats();
     displayMenu("Business Tax Menu", {"Increase", "Decrease", "Collect", "Back"});
     int input = getInput(1, 4);

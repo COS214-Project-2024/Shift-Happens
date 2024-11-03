@@ -21,7 +21,18 @@ Map::Map(int id) : MapComponent(id) {
     transportBuildingFactory = make_shared<TransportBuildingFactory>(7);
 }
 
-
+int Map::getTotalNumBuildings() {
+    
+    int count = 0;
+    for (const auto& row : tiles) {
+        for (const auto& component : row) {
+            if (component != nullptr) {
+                count++;
+            }
+        }
+    }
+    return count;
+}
 /**
  * @brief Gets a component by ID.
  * @param id The component ID.

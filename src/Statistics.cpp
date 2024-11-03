@@ -19,6 +19,10 @@ Statistics::Statistics() : map(Map::getInstance()) {
     this->sewageProduction = 0;
     this->wasteProduction = 0;
 
+    this->uncollectedBusinessTax = 0;
+    this->unclolectedPersonalTax = 0;
+
+
     government = make_shared<Government>();
     
     government->setTaxState(make_shared<StandardTax>(government));
@@ -45,6 +49,9 @@ void Statistics::updateStats() {
 
     employment = map.getTotalNumberOfJobs();
     maxPopulation = map.getTotalPopulationCapacity();
+
+    uncollectedBusinessTax += government->CollectBusinessTax(map.getTotalNumBuildings());
+    uncollectedPersonalTax += government->CollectPersonalTax();
 
 }
 
@@ -163,13 +170,14 @@ void Statistics::setWasteProduction(int wp) {
 
 
 void Statistics::collectBusinessTax() {
-    throw "Statistics::collectBusinessTax() not implemented";
+    money += uncollectedBusinessTax;
+    uncollectedBusinessTax = 0;
 }
 
 
 void Statistics::collectPersonalTax() {
-    double CollectedPersonalTax = government->CollectPersonalTax();
-    // decide what to do with the taxes
+    money += uncollectedPersonalTax;
+    uncollectedPersonalTax = 0;
 }
 
 void Statistics::changePersonalTax(double amount, std::string type) {
@@ -230,6 +238,16 @@ shared_ptr<Government> Statistics::getGovernment(){
     return this->government;
 }
 
-
+int Statistics::getUncollectedTax(string type){
+    if(type == "business"){
+        return uncollectedBusinessTax;
+    } else if(type == "personal"){
+        return unclolectedPersonalTax;
+    }
+    else{
+        throw "Statistics::getUncollectedTax() invalid type";
+    }
+    return -1;
+}
 
 

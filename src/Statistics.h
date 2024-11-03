@@ -37,6 +37,9 @@ private:
 	int sewageProduction;
 	int wasteProduction;
 
+	int uncollectedBusinessTax;
+	int uncollectedPersonalTax;
+
 	std::shared_ptr<Government> government;
 
 public:
@@ -87,6 +90,8 @@ public:
 	void implementPolicy();
 	vector<string> getCurrentPolicies();
 	void changeBudget(string type, string change);
+
+	int getUncollectedTax(string type);
 
 	
 

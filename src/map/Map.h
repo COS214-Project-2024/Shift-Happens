@@ -77,6 +77,7 @@ public:
      */
     void destroy(int id);
 
+    int getTotalNumBuildings();
     
 
     
