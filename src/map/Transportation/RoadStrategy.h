@@ -9,15 +9,15 @@ using namespace std;
 
 class RoadStrategy : public TransportationStrategy {
 private:
-    int capacity; // = 5;         
-    double baseFare;// = 20.0;       
-    double costPerKm; // = 8.0;
-    double aveSpeed; // = 60.0; 
+    int capacityMin = 1;
+    int capacityMax = 5;
+    double speed = 60;
+    double costPerKm = 20;
 
 public:
     RoadStrategy();
-    double calculateCost(shared_ptr<Map> map, int startX, int startY, int endX, int endY) override;
-    double calculateDuration(shared_ptr<Map> map, int startX, int startY, int endX, int endY) override;
+    double calculateCost(int distance) override;
+    double calculateDuration(int distance) override;
     string getDescription() override { return "Car"; }
 };
 
