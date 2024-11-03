@@ -1468,10 +1468,10 @@ void Display::policiesMenu()
 {
     clear();
     logo();
-
+    
     if (stats->getImplementedPolicies().empty())
     {
-        
+
         displayRow({"No policies have been implemented."});
     }
     else
