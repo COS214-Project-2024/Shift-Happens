@@ -334,7 +334,7 @@ int Display::GameMenu()
     }
     else if (input == 6)
     {
-        // citizensMenu();
+        CitizenMenu();
     }
     else if (input == 7)
     {
@@ -358,6 +358,15 @@ int Display::GameMenu()
     }
 
     return input;
+}
+
+void Display::CitizenMenu(){
+    vector<vector<string>> citizenInfo;
+    double CitizenSatisfaction = stats->getGovernment()->getSatisfaction();
+    
+    // satisfaction
+    vector<string> temp ;
+    temp.push_back("Satisfaction of citizens: "+ to_string(CitizenSatisfaction));
 }
 
 void Display::displayStats()

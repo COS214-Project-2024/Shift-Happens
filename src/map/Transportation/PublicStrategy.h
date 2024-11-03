@@ -10,15 +10,14 @@ using namespace std;
 
 class PublicStrategy : public TransportationStrategy {
 private:
-    int capacity;
-    double baseFare;
-    double aveSpeed;
-    double costPerKm;
+    int capacityMin = 5;
+    int capacityMax = 15;
+    double speed = 55;
+    double costPerKm = 10;
 
 public:
-    PublicStrategy();
-    double calculateCost(shared_ptr<Map> map, int startX, int startY, int endX, int endY) override;
-    double calculateDuration(shared_ptr<Map> map, int startX, int startY, int endX, int endY) override;
+    double calculateCost(int distance) override;
+    double calculateDuration(int distance) override;
     string getDescription() override { return "Taxi"; }
 };
 #endif
