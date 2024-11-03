@@ -242,7 +242,7 @@ int Statistics::getUncollectedTax(string type){
     if(type == "business"){
         return uncollectedBusinessTax;
     } else if(type == "personal"){
-        return uncollectedBusinessTax;
+        return uncollectedPersonalTax;
     }
     else{
         throw "Statistics::getUncollectedTax() invalid type";
