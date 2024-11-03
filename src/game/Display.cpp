@@ -152,6 +152,76 @@ void Display::displayMenu(string title, string options)
     std::cout << "Please select an option." << std::endl;
 }
 
+void Display::displayTable(vector<vector<string>> table)
+{
+    tabulate::Table tab;
+    int rowWidth = table[0].size();
+    // check if all rows are the same width
+    for (int i = 0; i < table.size(); i++)
+    {
+        if (table[i].size() != rowWidth)
+        {
+            throw "Display::displayTable: Rows are not the same width";
+        }
+        for (int j = 0; j < table[i].size(); j++)
+        {
+            if (table[i][j].empty())
+            {
+                table[i][j] = " ";
+            }
+            else if (table[i][j] == "")
+            {
+                table[i][j] = " ";
+            }
+        }
+    }
+
+    if (rowWidth == 1)
+    {
+        for (int i = 0; i < table.size(); i++)
+        {
+            tab.add_row({table[i][0]});
+        }
+    }
+    else if (rowWidth == 2)
+    {
+        for (int i = 0; i < table.size(); i++)
+        {
+            tab.add_row({table[i][0], table[i][1]});
+        }
+    }
+    else if (rowWidth == 3)
+    {
+        for (int i = 0; i < table.size(); i++)
+        {
+            tab.add_row({table[i][0], table[i][1], table[i][2]});
+        }
+    }
+    else if (rowWidth == 4)
+    {
+        for (int i = 0; i < table.size(); i++)
+        {
+            tab.add_row({table[i][0], table[i][1], table[i][2], table[i][3]});
+        }
+    }
+    else if (rowWidth == 5)
+    {
+        for (int i = 0; i < table.size(); i++)
+        {
+            tab.add_row({table[i][0], table[i][1], table[i][2], table[i][3], table[i][4]});
+        }
+    }
+    else
+    {
+        throw "Display::displayTable: Too many columns or no columns";
+    }
+
+    tab.format().width(20);
+    tab.format().font_align(tabulate::FontAlign::center);
+    tab.format().font_style({tabulate::FontStyle::bold});
+
+    std::cout << tab << std::endl;
+}
 void Display::Display::displayRow(vector<string> row)
 {
     tabulate::Table table;
@@ -1240,7 +1310,7 @@ void Display::taxMenu()
 
     displayTaxStats();
     displayMenu("Tax Menu", {"Business", "Personal", "Back"});
-    
+
     int input = getInput(1, 3);
     switch (input)
     {
@@ -1399,34 +1469,31 @@ void Display::policiesMenu()
     clear();
     logo();
 
-    displayMenu("Policies Menu", {"Implement new policy", "View implemented policies", "Back"});
-    int input = getInput(1, 3);
-    if (input == 1)
+    if (stats->getImplementedPolicies().empty())
     {
-        stats->implementPolicy();
-        policiesMenu();
+        
+        displayRow({"No policies have been implemented."});
     }
-    else if (input == 2)
+    else
     {
-        vector<string> policies = stats->getCurrentPolicies();
-        tabulate::Table policyTable;
-        policyTable.add_row({"Current Policies"});
-        for (int i = 0; i < policies.size(); i++)
-        {
-            policyTable.add_row({policies[i]});
-        }
-        policyTable.format().font_align(tabulate::FontAlign::center);
-        policyTable[0][0].format().font_color(tabulate::Color::blue);
-        std::cout << policyTable << std::endl;
+        displayTable(stats->getImplementedPolicies());
+    }
+    
+    if (stats->getAvailablePolicies().empty())
+    {
+        displayRow({"No policies available to implement."});
         std::cout << "Press any key to go back." << std::endl;
         std::cin.ignore();
         std::cin.get();
-        policiesMenu();
-    }
-    else if (input == 3)
-    {
-        cout << "Exiting menu." << endl;
         governmentMenu();
+    }
+    else
+    {
+        displayMenu("Policies Menu", stats->getAvailablePolicies());
+        int input = getInput(1, stats->getAvailablePolicies().size());
+        string implementedPolicy = stats->implementPolicy(stats->getAvailablePolicies()[input - 1]);
+        std::cout << implementedPolicy << " has been implemented." << std::endl;
+        policiesMenu();
     }
 }
 

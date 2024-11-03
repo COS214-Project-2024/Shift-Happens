@@ -35,6 +35,7 @@ public:
 
     void displayTaxStats();
 
+    void displayTable(vector<vector<string>> table);
     void displayStats();
 
     //Menus

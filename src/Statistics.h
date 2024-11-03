@@ -87,11 +87,14 @@ public:
 	void collectPersonalTax();
 	shared_ptr<Government> getGovernment();
 
-	void implementPolicy();
+	string implementPolicy(string policy);
 	vector<string> getCurrentPolicies();
 	void changeBudget(string type, string change);
 
 	int getUncollectedTax(string type);
+
+	vector<vector<string>> getImplementedPolicies();
+	vector<string> getAvailablePolicies();
 
 	
 

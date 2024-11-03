@@ -68,94 +68,30 @@ std::string Government::toLowerCase(const std::string& str) {
     return lowerStr;
 }
 
-void Government::addExecutePolicy() {
-    // Display available policies and their costs
-    std::cout << "Here are all the available policies and their costs:\n";
+void Government::addExecutePolicy(string policyType) {
+
+    std::string lowerPolicy = toLowerCase(policyType);
+    bool success = false;
     for (const auto& policy : AvailablePolicies) {
-        std::cout << policy->getPolicyType() << ", Cost: " << policy->getCostOfPolicy() << '\n';
-    }
+        if (toLowerCase(policy->getPolicyType()) == lowerPolicy) {
+            ImplementedPolicies.push_back(policy);
+            policy->executePolicy();
+            success = true;
+            break;
 
-    // Display already implemented policies
-    std::cout << "\nCurrently implemented policies:\n";
-    if(ImplementedPolicies.size() == 0){
-        std::cout << "There are currently no policies implemented" << std::endl;
-    } else {
-        for (const auto& policy : ImplementedPolicies) {
-            std::cout << policy->getPolicyType() << '\n';
         }
     }
-    std::cout << '\n';
-
-    // Confirm if the user wants to implement a new policy
-    std::string answer;
-    while (true) {
-        std::cout << "Would you like to implement a new Policy? (Yes/No): ";
-        std::cin >> answer;
-        answer = toLowerCase(answer);
-        if (answer == "yes" || answer == "no") break;
-        std::cout << "Invalid input. Please enter 'Yes' or 'No'.\n";
+    if (success == false) {
+        throw "Government::addExecutePolicy() invalid policy: " + policyType;
     }
-
-    if (answer == "no") return;
-
-    // Gather unimplemented policies that are available for selection
-    std::vector<std::shared_ptr<Policy>> policiesToImplement;
-    int count =1;
-    for (const auto& availablePolicy : AvailablePolicies) {
-        bool alreadyImplemented = false;
-        for (const auto& implementedPolicy : ImplementedPolicies) {
-            if (toLowerCase(availablePolicy->getPolicyType()) == toLowerCase(implementedPolicy->getPolicyType())) {
-                alreadyImplemented = true;
-                break;
-            }
+    
+    //remove the policy from the available policies
+    for (int i = 0; i < AvailablePolicies.size(); i++) {
+        if (toLowerCase(AvailablePolicies[i]->getPolicyType()) == lowerPolicy) {
+            AvailablePolicies.erase(AvailablePolicies.begin() + i);
+            success = true;
+            break;
         }
-        if (!alreadyImplemented) {
-            policiesToImplement.push_back(availablePolicy);
-            std::cout << count<< ". " <<availablePolicy->getPolicyType() << ", Cost: " << availablePolicy->getCostOfPolicy() << '\n';
-        }
-        count++;
-    }
-
-    // No unimplemented policies available
-    if (policiesToImplement.empty()) {
-        std::cout << "No new policies available for implementation.\n";
-        return;
-    }
-
-    // Choose a policy to implement
-    int PolicyNumber;
-    std::string policyChosen;
-    std::shared_ptr<Policy> selectedPolicy = nullptr;
-
-    std::cin.ignore(); // Clear the newline character left by std::cin >> answer
-    while (selectedPolicy == nullptr) {
-        std::cout << "Enter the name of the policy you would like to implement: ";
-        std::getline(std::cin, policyChosen);
-        policyChosen = toLowerCase(policyChosen);
-
-        for (const auto& policy : policiesToImplement) {
-            if (toLowerCase(policy->getPolicyType()) == policyChosen) {
-                selectedPolicy = policy;
-                break;
-            }
-        }
-
-        if (!selectedPolicy) {
-            std::cout << "Invalid policy name. Please enter a valid policy from the list above.\n";
-        }
-    }
-
-    // Check budget and implement policy if possible
-    if (selectedPolicy->getCostOfPolicy() > AvailableSpendingBudget) {
-        std::cout << "Insufficient funds to implement " << selectedPolicy->getPolicyType() << ".\n";
-    } else {
-        std::cout << "Implementing " << selectedPolicy->getPolicyType() << ".\n";
-        selectedPolicy->executePolicy();
-        
-        // Deduct the cost and add to implemented policies
-        AvailableSpendingBudget -= selectedPolicy->getCostOfPolicy();
-        ImplementedPolicies.push_back(selectedPolicy);
-        std::cout << "Policy implemented successfully. Remaining budget: " << AvailableSpendingBudget << '\n';
     }
 }
 
@@ -396,4 +332,8 @@ double Government::getIncome(){
 
 void Government::IncreaseAvialableBudget(double increase){
     this->AvailableSpendingBudget += increase;
+}
+
+std::vector<std::shared_ptr<Policy>> Government::getAvailablePolicies(){
+    return AvailablePolicies;
 }
