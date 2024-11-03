@@ -17,6 +17,7 @@ private:
     std::shared_ptr<Girl> girl; ///< Shared pointer to the `Girl` object being constructed.
 
 public:
+    GirlBuilder();
     /**
      * @brief Adds the gender attribute to the `Girl` object.
      * 

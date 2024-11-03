@@ -208,109 +208,51 @@ double Government::CollectPersonalTax(){
     return incomeTax;
 }
 
-// double Government::getSatisfaction(){
-//     double Satisfaction =0;
-//     int count = CitizenCollection.size();
-//     for(shared_ptr<Citizen> temp: CitizenCollection){
-//         Satisfaction += temp->getSatisfactionScore();
-//     }
-
-//     return Satisfaction/count;
-// }
-
 double Government::getSatisfaction() {
-    double Satisfaction = 0.0; // Initialize to zero
+    double Satisfaction = 0.0;
     int count = CitizenCollection.size();
 
-    // If there are no citizens, return 0.0 to avoid division by zero
     if (count == 0) {
-        std::cout << "Warning: No citizens in collection, returning satisfaction of 0." << std::endl;
         return 0.0;
     }
 
-    // Accumulate satisfaction scores
     for (shared_ptr<Citizen> temp : CitizenCollection) {
         double score = temp->getSatisfactionScore();
-        // Check for invalid scores
         if (std::isnan(score)) {
-            std::cout << "Warning: Encountered NaN score, ignoring it." << std::endl;
-            continue; // Skip NaN scores
+            continue; 
         }
         Satisfaction += score;
     }
 
-    // Calculate and return average satisfaction
     return Satisfaction / count;
 }
 
 void Government::setPeopleCount(int count, int BusinessSatisfaction) {
-    std::cout << "Max citizens: " << count << std::endl;
-    std::cout << "Business Satisfaction: " << BusinessSatisfaction << std::endl;
-
-    // Get the satisfaction value
     double satisfaction = getSatisfaction();
-    std::cout << "Satisfaction: " << satisfaction << std::endl;
-
-    // Calculate Combined Satisfaction
     double CombinedSatisfaction = (BusinessSatisfaction + satisfaction) / 2;
     
-    // Check for division by zero when calculating ActualPopulation
-    if (CombinedSatisfaction <= 0) { // Check for zero or negative values
-        std::cout << "Warning: Combined Satisfaction is zero or negative, cannot calculate population." << std::endl;
-        this->PopulationCount = 0; // Handle as appropriate
+    if (CombinedSatisfaction <= 0) { 
+        this->PopulationCount = 0; 
         return;
     }
 
-    std::cout << "Combined Satisfaction: " << CombinedSatisfaction << std::endl;
-
-    // Calculate Actual Population
-    // Ensure proper casting to avoid overflow issues
     int ActualPopulation = static_cast<int>(count * CombinedSatisfaction/100);
     this->PopulationCount = ActualPopulation;
     this->CombinedSatisfaction = CombinedSatisfaction;
 
-    std::cout << "Population Count calculated: " << PopulationCount << std::endl;
 
-    // if(PopulationCount > CitizenCollection.size()){
-    //     // create citizens
-    //     int Difference = PopulationCount - CitizenCollection.size();
-    //     for(int i=0; i<Difference; i++){
-    //         addCitizen();
-    //     } 
-    // }
+    if(PopulationCount > CitizenCollection.size()){
+        // create citizens
+        int Difference = PopulationCount - CitizenCollection.size();
+        for(int i=0; i<Difference; i++){
+            addCitizen();
+        } 
+    }
 }
 
 double Government::getCombinedSatisfaction(){
     return CombinedSatisfaction;
 }
-
-
-// void Government::setPeopleCount(int count, int BusinessSatisfaction) {
-//     std::cout << "Max citizens: " << count << std::endl;
-//     std::cout << "Business Satisfaction: " << BusinessSatisfaction << std::endl;
-
-//     // Get the satisfaction value
-//     double satisfaction = getSatisfaction();
-//     std::cout << "Satisfaction: " << satisfaction << std::endl;
-
-//     // Calculate Combined Satisfaction
-//     double CombinedSatisfaction = (BusinessSatisfaction + satisfaction) / 2;
-    
-//     // Check for division by zero when calculating ActualPopulation
-//     if (CombinedSatisfaction == 0) {
-//         std::cout << "Warning: Combined Satisfaction is zero, cannot calculate population." << std::endl;
-//         this->PopulationCount = 0; // Handle as appropriate
-//         return;
-//     }
-
-//     std::cout << "Combined Satisfaction: " << CombinedSatisfaction << std::endl;
-
-//     // Calculate Actual Population
-//     int ActualPopulation = static_cast<int>(count / CombinedSatisfaction * 100);
-//     this->PopulationCount = ActualPopulation;
-
-//     std::cout << "Population Count calculated: " << PopulationCount << std::endl;
-// }
 
 
 int Government::getPeopleCount(){

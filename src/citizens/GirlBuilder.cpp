@@ -2,6 +2,10 @@
 
 #include <iostream>
 
+GirlBuilder::GirlBuilder(){
+	this->girl = make_shared<Girl>();
+}
+
 void GirlBuilder::addGender() {
 	girl->setGender("Female");
 }

@@ -1,5 +1,9 @@
 #include "ManBuilder.h"
 
+ManBuilder::ManBuilder(){
+	this->man = make_shared<Man>();
+}
+
 void ManBuilder::addGender() {
 	man->setGender("Male");
 }

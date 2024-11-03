@@ -1,6 +1,10 @@
 #include "WomanBuilder.h"
 #include <iostream>
 
+WomanBuilder::WomanBuilder(){
+	this->woman = make_shared<Woman>();
+}
+
 void WomanBuilder::addGender() {
 	woman->setGender("Female");
 }

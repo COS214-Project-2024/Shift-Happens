@@ -2,6 +2,10 @@
 
 #include <iostream>
 
+BoyBuilder::BoyBuilder(){
+	this->boy = make_shared<Boy>();
+}
+
 void BoyBuilder::addGender() {
 	boy->setGender("Male");
 }
