@@ -9,6 +9,7 @@
 #include <iostream>
 
 Government::Government() {
+    // Initially set tax states
     this->AvailableSpendingBudget = 150000; // Initial budget
 
     // Initialize the public services
@@ -172,8 +173,6 @@ std::shared_ptr<Tax> Government::getBusinessTax(){
 
 void Government::setBusinessTaxState(std::shared_ptr<Tax> tax){
 	this->BusinessTaxState = tax;
-	// notify businesses
-	// still needs to be added
 }
 
 void Government::setBusinessTaxHigher(double increase){

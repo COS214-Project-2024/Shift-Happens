@@ -8,6 +8,10 @@
 #include <iostream>
 #include "../map/Map.h"
 #include "../Statistics.h"
+#include "../Government/Government.h"
+#include "../Government/StandardTax.h"
+#include "../Government/LowTax.h"
+#include "../Government/HighTax.h"
 
 
 using namespace std;
@@ -45,17 +49,14 @@ public:
     void upgradeMenu();
 
     //Government Menus
-    void governmentMenu();
+    void governmentMenu(std::shared_ptr<Government> government);
 
-    void taxMenu();
-    void businessTaxMenu();
-    void personalTaxMenu();
-
-    void policiesMenu();
-
-    void servicesMenu();
-
-    void budgetMenu();
+    void taxMenu(std::shared_ptr<Government> government);
+    void businessTaxMenu(std::shared_ptr<Government> government);
+    void personalTaxMenu(std::shared_ptr<Government> government);
+    void policiesMenu(std::shared_ptr<Government> government);
+    void servicesMenu(std::shared_ptr<Government> government);
+    void budgetMenu(std::shared_ptr<Government> government);
     
     void statisticsMenu();
 

@@ -1,7 +1,6 @@
 #ifndef GOVERNMENT_H
 #define GOVERNMENT_H
 
-#include "Tax.h"
 #include "CitySubject.h"
 #include "Policy.h"
 #include "BoostEducationPolicy.h"
@@ -28,6 +27,7 @@
 //class Statistics;
 class Citizen;
 class Director;
+class Tax;
 class Government : public CitySubject {
 	private:
 		// 

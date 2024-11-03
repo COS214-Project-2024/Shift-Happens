@@ -25,7 +25,7 @@ class HighTax : public Tax {
 		int HighTLowCapBusiness = 27;
 
 	public:
-		HighTax();
+		HighTax(std::shared_ptr<Government> government);
 		/**
 		 * @brief Increases the current tax rate for citizens.
 		 * @param increase The amount by which the citizens' tax rate is raised.

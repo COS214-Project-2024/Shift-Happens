@@ -1,6 +1,6 @@
 # Compiler
 CXX = g++
-CXXFLAGS = -Wall -Wextra -std=c++11 -I./libs/tabulate/include -I./libs/tabulate  # Add the path to the tabulate folder
+CXXFLAGS = -Wall -Wextra -std=c++11 -g -I./libs/tabulate/include -I./libs/tabulate  # Add -g for debugging
 
 # Executable name
 TARGET = main
@@ -59,6 +59,34 @@ SRCS = $(SRC_DIR)/main.cpp \
        $(SRC_DIR)/buildings/upgrades/Recycling.cpp \
        $(SRC_DIR)/buildings/upgrades/Garden.cpp \
        $(SRC_DIR)/Statistics.cpp \
+       $(SRC_DIR)/../Government/Standard.cpp \
+       $(SRC_DIR)/../Government/Outdated.cpp \
+       $(SRC_DIR)/../Government/Modern.cpp \
+       $(SRC_DIR)/../Government/PublicServices.cpp \
+       $(SRC_DIR)/../Government/CitySubject.cpp \
+       $(SRC_DIR)/../Government/Education.cpp \
+       $(SRC_DIR)/../Government/HealthCare.cpp \
+       $(SRC_DIR)/../Government/Police.cpp \
+       $(SRC_DIR)/../Government/BoostHealthCarePolicy.cpp \
+       $(SRC_DIR)/../Government/BoostPolicePolicy.cpp \
+       $(SRC_DIR)/../Government/BoostEducationPolicy.cpp \
+       $(SRC_DIR)/../Government/Government.cpp \
+       $(SRC_DIR)/../Government/Policy.cpp \
+       $(SRC_DIR)/../Government/Tax.cpp \
+       $(SRC_DIR)/../Government/StandardTax.cpp \
+       $(SRC_DIR)/../Government/HighTax.cpp \
+       $(SRC_DIR)/../Government/LowTax.cpp \
+       $(SRC_DIR)/../Government/Economy.cpp \
+       $(SRC_DIR)/../citizens/Boy.cpp \
+       $(SRC_DIR)/../citizens/BoyBuilder.cpp \
+       $(SRC_DIR)/../citizens/Citizen.cpp \
+       $(SRC_DIR)/../citizens/Director.cpp \
+       $(SRC_DIR)/../citizens/Girl.cpp \
+       $(SRC_DIR)/../citizens/GirlBuilder.cpp \
+       $(SRC_DIR)/../citizens/Man.cpp \
+       $(SRC_DIR)/../citizens/ManBuilder.cpp \
+       $(SRC_DIR)/../citizens/Woman.cpp \
+       $(SRC_DIR)/../citizens/WomanBuilder.cpp 
 
 # Object files
 OBJS = $(SRCS:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
@@ -79,8 +107,12 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
 run: $(TARGET)
 	./$(TARGET)
 
+# Debug target with gdb
+debug: $(TARGET)
+	gdb ./$(TARGET)
+
 # Clean up
 clean:
 	rm -rf $(OBJ_DIR) $(TARGET)
 
-.PHONY: clean run
+.PHONY: clean run debug

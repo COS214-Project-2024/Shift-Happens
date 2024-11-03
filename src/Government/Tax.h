@@ -36,6 +36,7 @@ class Tax {
 		double RunningRateBusiness;
 
 	public:
+		Tax(std::shared_ptr<Government> goverment);
 		/**
 		 * @brief Increases the current tax rate for citizens. Must be implemented by derived classes.
 		 * @param increase The amount by which to increase the citizen tax rate.
@@ -77,6 +78,9 @@ class Tax {
 		 * @return The current business tax rate as a double.
 		 */
 		double getBusinessRate();
+
+		void setPersonalRate(double rate);
+		void setBusinessRate(double rate);
 };
 
 #endif // TAX_H

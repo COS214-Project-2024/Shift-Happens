@@ -105,6 +105,78 @@ void Display::loadscreen(){
     }
 }
 
+void InitialisePersonalTax(shared_ptr<Government> government){
+    cout << endl;
+    double InputPersonalTax;
+    cout << "Please enter the tax rate for personal tax: " << endl;
+
+    // do checks until a valid double rate is entered;
+    // Loop until a valid double value is entered
+    while (true) {
+        std::cin >> InputPersonalTax;
+
+        if (std::cin.fail() || InputPersonalTax < 0.0 || InputPersonalTax > 100.0) {
+            std::cout << "Invalid input. Please enter a valid tax rate between 0 and 100: ";
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); 
+        } else {
+            break;
+        }
+    }
+    
+    // set the rate and check in which category of tax state it falls
+    
+    if(InputPersonalTax <= 20){
+        std::shared_ptr<LowTax> lowtax = make_shared<LowTax>(government);
+        lowtax->setPersonalRate(InputPersonalTax);
+        government->setTaxState(lowtax);
+    } else if(InputPersonalTax > 20 && InputPersonalTax < 35){
+        std::shared_ptr<StandardTax> standard = make_shared<StandardTax>(government);
+        standard->setPersonalRate(InputPersonalTax);
+        government->setTaxState(standard);
+    } else {
+        std::shared_ptr<HighTax> hightax = make_shared<HighTax>(government);
+        hightax->setPersonalRate(InputPersonalTax);
+        government->setTaxState(hightax);
+    }
+    cout << "Initializing Personal tax..." << endl;
+
+    double InputBusinessTax;
+    cout << "Please enter the tax rate for business tax: " << endl;
+
+    // do checks until a valid double rate is entered;
+    // Loop until a valid double value is entered
+    while (true) {
+        std::cin >> InputBusinessTax;
+
+        if (std::cin.fail() || InputBusinessTax < 0.0 || InputBusinessTax > 100.0) {
+            std::cout << "Invalid input. Please enter a valid tax rate between 0 and 100: ";
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); 
+        } else {
+            break;
+        }
+    }
+    
+    // set the rate and check in which category of tax state it falls
+    if(InputBusinessTax <= 20){
+        std::shared_ptr<LowTax> lowtax = make_shared<LowTax>(government);
+        lowtax->setBusinessRate(InputBusinessTax);
+        government->setBusinessTaxState(lowtax);
+    } else if(InputBusinessTax > 20 && InputBusinessTax < 35){
+        std::shared_ptr<StandardTax> standard = make_shared<StandardTax>(government);
+        standard->setBusinessRate(InputBusinessTax);
+        government->setBusinessTaxState(standard);
+    } else {
+        std::shared_ptr<HighTax> hightax = make_shared<HighTax>(government);
+        hightax->setBusinessRate(InputBusinessTax);
+        government->setBusinessTaxState(hightax);
+    }
+    cout << "Initializing Business tax..." << endl;
+    cout << "Tax system implemented" << endl;
+
+}
+
 int Display::GameMenu()
 {
 
@@ -179,8 +251,10 @@ int Display::GameMenu()
                 //destroyMenu();
             }
             else if (input == 5)
-            {
-                governmentMenu();
+            {   
+                std::shared_ptr<Government> government = make_shared<Government>();
+                InitialisePersonalTax(government);
+                governmentMenu(government);
             }
             else if (input == 6)
             {
@@ -1462,7 +1536,7 @@ vector<string> Display::getUpgrades(string var, int num){
 
 }
 
-void Display::governmentMenu(){
+void Display::governmentMenu(std::shared_ptr<Government> government){
     clear();
     logo();
     tabulate::Table options;
@@ -1517,19 +1591,19 @@ void Display::governmentMenu(){
             if (input == 1)
             {
                
-                taxMenu();
+                taxMenu(government);
             }
             else if (input == 2)
             {
-                policiesMenu();
+                policiesMenu(government);
             }
             else if (input == 3)
             {
-                servicesMenu();
+                servicesMenu(government);
             }
             else if (input == 4)
             {
-                budgetMenu();
+                budgetMenu(government);
             }
             else if (input == 5)
             {
@@ -1543,7 +1617,7 @@ void Display::governmentMenu(){
     }
 }
 
-void Display::taxMenu(){
+void Display::taxMenu(std::shared_ptr<Government> government){
     clear();
     logo();
     tabulate::Table options;
@@ -1591,21 +1665,21 @@ void Display::taxMenu(){
             valid = true;
             if (input == 1)
             {
-                businessTaxMenu();
+                businessTaxMenu(government);
             }
             else if (input == 2)
             {
-                personalTaxMenu();
+                personalTaxMenu(government);
             }
             else if (input == 3)
             {
-                governmentMenu();
+                governmentMenu(government);
             }
         }
     }
 }
 
-void Display::businessTaxMenu(){
+void Display::businessTaxMenu(std::shared_ptr<Government> government){
     clear();
     logo();
     tabulate::Table options;
@@ -1657,23 +1731,50 @@ void Display::businessTaxMenu(){
         }
         else{
             if (input == 1)
-            {
-                stats->increaseBusinessTax();
-                businessTaxMenu();
+            {   
+                double Increase;
+                std::cout << "What do you want to increase the current tax rate by?" << std::endl;
+                while (true) {
+                    std::cin >> Increase;
+
+                    if (std::cin.fail() || Increase <= 0) {
+                        std::cin.clear();
+                        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                        std::cout << "Please enter a positive value to increase the tax rate." << std::endl;
+                    } else {
+                        break;
+                    }
+                }
+                government->setBusinessTaxHigher(Increase);
+                businessTaxMenu(government);
             }
             else if (input == 2)
-            {
-                stats->decreaseBusinessTax();
-                businessTaxMenu();
+            {   
+                double Decrease;
+                std::cout << "What do you want to decrease the current tax rate by?" << std::endl;
+                while (true) {
+                    std::cin >> Decrease;
+
+                    if (std::cin.fail() || Decrease <= 0) {
+                        std::cin.clear();
+                        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                        std::cout << "Please enter a positive value to decrease the tax rate." << std::endl;
+                    } else {
+                        break;
+                    }
+                }
+                government->setPersonalTaxLower(Decrease);
+                businessTaxMenu(government);
             }
             else if (input == 3)
             {
-                stats->collectBusinessTax();
-                businessTaxMenu();
+                double BIncome = government->CollectBusinessTax();
+                government->IncreaseAvialableBudget(BIncome);
+                businessTaxMenu(government);
             }
             else if (input == 4)
             {
-                taxMenu();
+                taxMenu(government);
             }
             valid = true;
         }
@@ -1681,7 +1782,7 @@ void Display::businessTaxMenu(){
 
 }
 
-void Display::personalTaxMenu(){
+void Display::personalTaxMenu(std::shared_ptr<Government> government){
     clear();
     logo();
     tabulate::Table options;
@@ -1734,37 +1835,244 @@ void Display::personalTaxMenu(){
         else{
             if (input == 1)
             {
-                stats->increasePersonalTax();
-                personalTaxMenu();
+                double Increase;
+                std::cout << "What do you want to increase the current tax rate by?" << std::endl;
+                while (true) {
+                    std::cin >> Increase;
+
+                    if (std::cin.fail() || Increase <= 0) {
+                        std::cin.clear();
+                        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                        std::cout << "Please enter a positive value to increase the tax rate." << std::endl;
+                    } else {
+                        break;
+                    }
+                }
+                government->setBusinessTaxHigher(Increase);
+                personalTaxMenu(government);
             }
             else if (input == 2)
             {
-                stats->decreasePersonalTax();
-                personalTaxMenu();
+                double Decrease;
+                std::cout << "What do you want to decrease the current tax rate by?" << std::endl;
+                while (true) {
+                    std::cin >> Decrease;
+
+                    if (std::cin.fail() || Decrease <= 0) {
+                        std::cin.clear();
+                        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                        std::cout << "Please enter a positive value to decrease the tax rate." << std::endl;
+                    } else {
+                        break;
+                    }
+                }
+                government->setPersonalTaxLower(Decrease);
+                personalTaxMenu(government);
             }
             else if (input == 3)
             {
-                stats->collectPersonalTax();
-                personalTaxMenu();
+                double Income = government->CollectPersonalTax();
+                government->IncreaseAvialableBudget(Income);
+                personalTaxMenu(government);
             }
             else if (input == 4)
             {
-                taxMenu();
+                taxMenu(government);
             }
             valid = true;
         }
     }
 }
 
-void Display::policiesMenu(){
-    
+void Display::policiesMenu(std::shared_ptr<Government> government){
+    clear();
+    logo();
+    tabulate::Table options;
+    options.add_row({"1. Implement new policy", "2. View implemented policies", "3. Back"});
+    options.format().width(20);
+    options.format().font_align(tabulate::FontAlign::center);
+    options.format().font_style({tabulate::FontStyle::bold});
+    options.format().hide_border_bottom();
+    options.format().hide_border_top();
+
+    options[0][0].format().hide_border_left();
+    options[0][3].format().hide_border_right();
+
+    tabulate::Table menu;
+    menu.add_row({"Policy Menu"});
+    menu.add_row({options});
+
+    menu.format().font_align(tabulate::FontAlign::center);
+    menu[0][0].format().font_color(tabulate::Color::blue);
+    std::cout << menu << std::endl;
+    std::cout << "Please select an option." << std::endl;
+    int input;
+
+    bool valid = false;
+    vector<string> errorMsg = {"Invalid option. Please try again.", "Enter an integer.", "What are you doing?", "Can you even read?", "You are clearly doing it on purpose.", "You are testing my patience.", "I am not a happy computer.", "Stop that!!"};
+    int errorCount = 0;
+    while(!valid){
+        std::cin >> input;
+        if (std::cin.fail())
+        {
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+            if (errorCount == 7)
+            {
+                errorCount = 0;
+            }
+            std::cout << errorMsg[errorCount] << std::endl;
+            errorCount++;
+        }
+        else if (input > 3 || input < 1)
+        {
+            if (errorCount == 7)
+            {
+                errorCount = 0;
+            }
+            std::cout << errorMsg[errorCount] << std::endl;
+            errorCount++;
+        }
+    }
+
+    switch (input) {
+            case 1:
+                government->addExecutePolicy();
+                policiesMenu(government);
+                break;
+            case 2:
+                std::cout << "\nCurrently implemented policies:\n";
+                for (const auto& policy : government->getCurrentPolicies()) {
+                    std::cout << policy->getPolicyType() << '\n';
+                }
+                std::cout << '\n';
+                policiesMenu(government);
+                break;
+            case 3:
+                cout << "Exiting menu." << endl;
+                governmentMenu(government);
+                break;
+            default:
+                break;
+        }
 }
 
-void Display::servicesMenu(){
+void Display::servicesMenu(std::shared_ptr<Government> government){
+    clear();
+    logo();
+    tabulate::Table options;
+    options.add_row({"1. Handle Police", "2. Handle Education", "3. Handle Healthcare"});
+    options.format().width(20);
+    options.format().font_align(tabulate::FontAlign::center);
+    options.format().font_style({tabulate::FontStyle::bold});
+    options.format().hide_border_bottom();
+    options.format().hide_border_top();
 
+    options[0][0].format().hide_border_left();
+    options[0][3].format().hide_border_right();
+
+    tabulate::Table menu;
+    menu.add_row({"Public Services Menu"});
+    menu.add_row({options});
+
+    menu.format().font_align(tabulate::FontAlign::center);
+    menu[0][0].format().font_color(tabulate::Color::blue);
+    std::cout << menu << std::endl;
+    std::cout << "Please select an option." << std::endl;
+    int input;
+
+    bool valid = false;
+    vector<string> errorMsg = {"Invalid option. Please try again.", "Enter an integer.", "What are you doing?", "Can you even read?", "You are clearly doing it on purpose.", "You are testing my patience.", "I am not a happy computer.", "Stop that!!"};
+    int errorCount = 0;
+    while(!valid){
+        std::cin >> input;
+        if (std::cin.fail())
+        {
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+            if (errorCount == 7)
+            {
+                errorCount = 0;
+            }
+            std::cout << errorMsg[errorCount] << std::endl;
+            errorCount++;
+        }
+        else if (input > 4 || input < 1)
+        {
+            if (errorCount == 7)
+            {
+                errorCount = 0;
+            }
+            std::cout << errorMsg[errorCount] << std::endl;
+            errorCount++;
+        }
+    }
+
+    string answer;
+    switch (input) {
+            case 1:
+                std::cout << "Would you like to add or remove funds to the Police? (Add/Remove)" << std::endl;
+                while (true) {
+                    std::cin >> answer;
+                    transform(answer.begin(), answer.end(), answer.begin(), ::tolower);
+
+                    if (answer == "add") {
+                        government->getPolice()->increaseBudget();
+                        break;
+                    } else if (answer == "remove") {
+                        government->getPolice()->decreaseBudget();
+                        break;
+                    } else {
+                        std::cout << "Invalid input. Please enter 'Add' or 'Remove'." << std::endl;
+                    }
+                }
+                break;
+            case 2:
+                std::cout << "Would you like to add or remove funds to the Education? (Add/Remove)" << std::endl;
+                while (true) {
+                    std::cin >> answer;
+                    transform(answer.begin(), answer.end(), answer.begin(), ::tolower);
+
+                    if (answer == "add") {
+                        government->getEducation()->increaseBudget();
+                        break;
+                    } else if (answer == "remove") {
+                        government->getEducation()->decreaseBudget();
+                        break;
+                    } else {
+                        std::cout << "Invalid input. Please enter 'Add' or 'Remove'." << std::endl;
+                    }
+                }
+                break;
+            case 3:
+                std::cout << "Would you like to add or remove funds to the Healthcare? (Add/Remove)" << std::endl;
+                while (true) {
+                    std::cin >> answer;
+                    transform(answer.begin(), answer.end(), answer.begin(), ::tolower);
+
+                    if (answer == "add") {
+                        government->getHealthCare()->increaseBudget();
+                        break;
+                    } else if (answer == "remove") {
+                        government->getHealthCare()->decreaseBudget();
+                        break;
+                    } else {
+                        std::cout << "Invalid input. Please enter 'Add' or 'Remove'." << std::endl;
+                    }
+                }
+                break;
+            case 4:
+                cout << "Exiting menu." << endl;
+                governmentMenu(government);
+                break;
+            default:
+                break;
+        }
 }
 
-void Display::budgetMenu(){
+void Display::budgetMenu(std::shared_ptr<Government> government){
 
 }
 

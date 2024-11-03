@@ -2,7 +2,7 @@
 
 #include <memory>
 
-StandardTax::StandardTax(){
+StandardTax::StandardTax(std::shared_ptr<Government> government) : Tax(government) {
 	this->RunningRate = StandardTLowCap;
 	this->RunningRateBusiness = StandardTLowCapBusiness;
 }
@@ -10,8 +10,9 @@ StandardTax::StandardTax(){
 void StandardTax::higher(double increase) {
 	this->RunningRate += increase;
 	if(this->RunningRate > StandardTHighCap){
-		std::shared_ptr<Tax> newTax = std::make_shared<HighTax>();
-		// make state change
+		std::shared_ptr<Tax> newTax = std::make_shared<HighTax>(this->government);
+		newTax->setBusinessRate(this->getBusinessRate());
+		newTax->setPersonalRate(this->getRate());
 		government->setTaxState(newTax);
 	}
 }
@@ -19,7 +20,9 @@ void StandardTax::higher(double increase) {
 void StandardTax::lower(double decrease) {
 	this->RunningRate -= decrease;
 	if(this->RunningRate < StandardTLowCap){
-		std::shared_ptr<Tax> newTax = std::make_shared<LowTax>();
+		std::shared_ptr<Tax> newTax = std::make_shared<LowTax>(this->government);
+		newTax->setBusinessRate(this->getBusinessRate());
+		newTax->setPersonalRate(this->getRate());
 		government->setTaxState(newTax);
 	}
 }
@@ -31,7 +34,9 @@ std::string StandardTax::getType(){
 void StandardTax::lowerBusiness(double decrease){
 	this->RunningRateBusiness -= decrease;
 	if(this->RunningRateBusiness < StandardTLowCapBusiness){
-		std::shared_ptr<Tax> newTax = std::make_shared<LowTax>();
+		std::shared_ptr<Tax> newTax = std::make_shared<LowTax>(this->government);
+		newTax->setBusinessRate(this->getBusinessRate());
+		newTax->setPersonalRate(this->getRate());
 		government->setBusinessTaxState(newTax);
 	}
 }
@@ -39,7 +44,9 @@ void StandardTax::lowerBusiness(double decrease){
 void StandardTax::higherBusiness(double increase){
 	this->RunningRateBusiness += increase;
 	if(this->RunningRateBusiness > StandardTHighCapBusiness){
-		std::shared_ptr<Tax> newTax = std::make_shared<HighTax>();
+		std::shared_ptr<Tax> newTax = std::make_shared<HighTax>(this->government);
+		newTax->setBusinessRate(this->getBusinessRate());
+		newTax->setPersonalRate(this->getRate());
 		government->setBusinessTaxState(newTax);
 	}
 }
