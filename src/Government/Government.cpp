@@ -282,6 +282,10 @@ void Government::setPeopleCount(int count, int BusinessSatisfaction){
     this->PopulationCount = ActualPopulation;
 }
 
+int Government::getPeopleCount(){
+    return this->PopulationCount;
+}
+
 double Government::CollectBusinessTax(int numBusinesses){
     double businessTax = 0;
     for(int i = 0; i < numBusinesses; i++){

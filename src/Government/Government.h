@@ -96,6 +96,7 @@ class Government : public CitySubject {
 		void IncreaseAvialableBudget(double increase);
 
 		void setPeopleCount(int count, int BusinessSatisfaction);
+		int getPeopleCount();
 		double getSatisfaction();
 
 		// Tax Management

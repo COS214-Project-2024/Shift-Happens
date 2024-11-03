@@ -50,6 +50,7 @@ void Statistics::updateStats() {
     employment = map.getTotalNumberOfJobs();
     maxPopulation = map.getTotalPopulationCapacity();
     government->setPeopleCount(maxPopulation, satisfaction);
+    population = government->getPeopleCount();
     uncollectedBusinessTax += government->CollectBusinessTax(map.getTotalNumBuildings());
     uncollectedPersonalTax += government->CollectPersonalTax();
 
