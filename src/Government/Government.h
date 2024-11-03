@@ -153,7 +153,7 @@ class Government : public CitySubject {
 		 * @brief Adds a new policy to the list of implemented policies.
 		 * @param newPolicy A shared pointer to the Policy object to be added.
 		 */
-		void addExecutePolicy();
+		void addExecutePolicy(string policyType);
 
 		/**
 		 * @brief Converts a string to lowercase.
@@ -166,6 +166,7 @@ class Government : public CitySubject {
 		 * @return A vector of shared pointers to Policy objects representing active policies.
 		 */
 		std::vector<std::shared_ptr<Policy>> getCurrentPolicies();
+		std::vector<std::shared_ptr<Policy>> getAvailablePolicies();
 
 		// Budget Management
 		/**

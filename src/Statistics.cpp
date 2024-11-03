@@ -220,8 +220,27 @@ void Statistics::changeBudget(string type, string change) {
     }
 }
 
-void Statistics::implementPolicy(){
-    government->addExecutePolicy();
+string Statistics::implementPolicy(string policy) {
+
+    if (money < 1000)
+    {
+        return "Insufficient funds";
+    }
+    
+    if (policy == "Boost Education Policy ($1000)") {
+        government->addExecutePolicy("Boost Education Policy");
+        return "Boost Education has been implemented.";
+    }else if (policy == "Boost Healthcare Policy ($1000)") {
+        government->addExecutePolicy("Boost Healthcare Policy");
+        return "Boost Healthcare has been implemented.";
+    }else if (policy == "Boost Police Policy ($1000)") {
+        government->addExecutePolicy("Boost Police Policy");
+        return "Boost Police has been implemented.";
+    } else {
+        string error = "Statistics::implementPolicy() invalid policy: " + policy;
+        throw error;
+    }
+    
 }
 
 vector<string> Statistics::getCurrentPolicies(){
@@ -251,3 +270,34 @@ int Statistics::getUncollectedTax(string type){
 }
 
 
+vector<vector<string>> Statistics::getImplementedPolicies(){
+    vector<vector<string>> implementedPolicies;
+    int i = 1;
+    if (government->getCurrentPolicies().empty())
+    {
+        return implementedPolicies;
+    }
+    
+    for (const auto& policy : government->getCurrentPolicies()) {
+        vector<string> temp;
+        temp.push_back(to_string(i) + ". " + policy->getPolicyType());
+        temp.push_back("Cost: " + to_string(policy->getCostOfPolicy()));
+        implementedPolicies.push_back(temp);
+    }
+
+}
+
+vector<string> Statistics::getAvailablePolicies(){
+    vector<string> availablePolicies;
+    if (government->getAvailablePolicies().empty())
+    {
+        return availablePolicies;
+    }
+    
+    for (const auto& policy : government->getAvailablePolicies()) {
+        int cost = policy->getCostOfPolicy();
+        string temp = policy->getPolicyType() + " ($" + to_string(cost) + ")";
+        availablePolicies.push_back(temp);
+    }
+    return availablePolicies;
+}
