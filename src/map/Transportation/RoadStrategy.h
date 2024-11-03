@@ -2,25 +2,23 @@
 #define ROADSTRATEGY_H
 
 #include "TransportationStrategy.h"
-#include "Map.h"
 #include <memory>
 #include <string>
 
 using namespace std;
 
 class RoadStrategy : public TransportationStrategy {
-
 private:
-    int capacity;
-    double fare;
-    double speed;
-    double costPerKm;
+    int capacity; // = 5;         
+    double baseFare;// = 20.0;       
+    double costPerKm; // = 8.0;
+    double aveSpeed; // = 60.0; 
 
 public:
-	RoadStrategy(int cap, double fare, double speed, double baseCost);
-    double calculateCost(shared_ptr<Map> start, shared_ptr<Map> end) override;
-    double calculateDuration(shared_ptr<Map> start, shared_ptr<Map> end) override;
-    string getDescription() override;
+    RoadStrategy();
+    double calculateCost(shared_ptr<Map> map, int startX, int startY, int endX, int endY) override;
+    double calculateDuration(shared_ptr<Map> map, int startX, int startY, int endX, int endY) override;
+    string getDescription() override { return "Car"; }
 };
 
-#endif
+#endif // ROADSTRATEGY_H

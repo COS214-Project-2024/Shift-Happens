@@ -1,16 +1,20 @@
-#include "AirStrategy.h"
+#include "PublicStrategy.h"
+#include "Map.h"
 
-double Building_State::AirStrategy::calculateCost(Building_State::Map start, Building_State::Map end) {
-	// TODO - implement AirStrategy::calculateCost
-	throw "Not yet implemented";
+PublicStrategy::PublicStrategy() 
+    : capacity(165), 
+      baseFare(3125.1), 
+      costPerKm(259), 
+      aveSpeed(800.0) {}
+
+double PublicStrategy::calculateCost(shared_ptr<Map> map, int startX, int startY, int endX, int endY) {
+    double distance = map->airDistanceTo(startX, startY, endX, endY);
+	string mssg = "This TAXI trip costs: R";
+    return mssg, baseFare + (costPerKm * distance);
 }
 
-double Building_State::AirStrategy::calcDuration(Building_State::Map start, Building_State::Map end) {
-	// TODO - implement AirStrategy::calcDuration
-	throw "Not yet implemented";
-}
-
-string Building_State::AirStrategy::getDescription() {
-	// TODO - implement AirStrategy::getDescription
-	throw "Not yet implemented";
+double PublicStrategy::calculateDuration(shared_ptr<Map> map, int startX, int startY, int endX, int endY) {
+    double distance = map->airDistanceTo(startX, startY, endX, endY);
+	string mssg = "The TAXI trip will take: (mins)";
+    return mssg, (distance / aveSpeed) * 60; 
 }

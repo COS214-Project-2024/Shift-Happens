@@ -42,7 +42,7 @@ class Government : public CitySubject {
 		// Policies
 		std::vector<Policy*> PolicyState;
 		// Stats
-		Statistics* statistics; // for keeping track of stats via the statistics object and sending the correct data to the statistics object
+
 
 	public:
 		// Taxes

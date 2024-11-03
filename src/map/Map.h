@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <memory>
+#include <cmath> 
 #include "MapComponent.h"
 
 #include "../buildingFactories/CommercialBuildingFactory.h"
@@ -45,6 +46,8 @@ private:
     shared_ptr<InfrastructureFactory> infrastructureFactory;
     shared_ptr<TransportBuildingFactory> transportBuildingFactory;
 
+
+
     /**
      * @brief Private constructor to prevent instantiation.
      * @param id Map ID.
@@ -55,6 +58,9 @@ public:
     // Deleted copy constructor and assignment operator to prevent copying
     Map(const Map&) = delete;
     Map& operator=(const Map&) = delete;
+
+    string getType() override;
+    string getVariant() override;
 
     /**
      * @brief Builds a building on the map.
@@ -109,6 +115,20 @@ public:
     int getTotalWasteProduction() override;
     int getTotalSewageProduction() override;
     int getTotalNumberOfJobs() override;
+    int getTotalPopulationCapacity();
+
+
+    //counting number of buildings
+    int numBuildings(string var);
+    int getIncome();
+
+    // Function to calculate the distance between two points (x1, y1) and (x2, y2)
+    bool isTileTraversable(int x, int y) const;
+    bool isValidPosition(int x, int y) const;
+    double calculateManhattanDistance(int startX, int startY, int endX, int endY) const;
+    double roadDistanceTo(int x1, int y1, int x2, int y2) const;
+    double airDistanceTo(int startX, int startY, int endX, int endY) const;
+    double trainDistanceTo(int startX, int startY, int endX, int endY) const;
 
 };
 

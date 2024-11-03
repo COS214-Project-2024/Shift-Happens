@@ -23,7 +23,7 @@ void UtilityBuildingFactory::createBuilding(string variant)
 	{
 		buildings.push_back(make_shared<WaterSupply>(idForBuilding));
 	}
-	else if (variant == "LandFill")
+	else if (variant == "Landfill")
 	{
 		buildings.push_back(make_shared<LandFill>(idForBuilding));
 	}
