@@ -35,6 +35,8 @@ class PublicServiceState {
 		double RunningBudget;
 
 	public:
+		PublicServiceState();
+		PublicServiceState(std::shared_ptr<Public_Services> PS);
 		/**
 		 * @brief Increases the current running budget for the public service.
 		 * @param increase The amount to add to the current budget.

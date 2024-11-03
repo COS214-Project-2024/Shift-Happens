@@ -15,13 +15,13 @@ Government::Government() {
     // Initialize the public services
     // Initially public services states will be at the worst
     education = std::make_shared<Education>();
-    education->setPublicServiceState(make_shared<Outdated>());
+    education->setPublicServiceState(make_shared<Outdated>(education));
 
     healthcare = std::make_shared<HealthCare>();
-    healthcare->setPublicServiceState(make_shared<Outdated>());
+    healthcare->setPublicServiceState(make_shared<Outdated>(healthcare));
 
     police = std::make_shared<Police>();
-    police->setPublicServiceState(make_shared<Outdated>());
+    police->setPublicServiceState(make_shared<Outdated>(police));
 
     // Now that the public services are initialized, create the policies
     AvailablePolicies.push_back(std::make_shared<BoostEducationPolicy>(education));
@@ -76,8 +76,12 @@ void Government::addExecutePolicy() {
 
     // Display already implemented policies
     std::cout << "\nCurrently implemented policies:\n";
-    for (const auto& policy : ImplementedPolicies) {
-        std::cout << policy->getPolicyType() << '\n';
+    if(ImplementedPolicies.size() == 0){
+        std::cout << "There are currently no policies implemented" << std::endl;
+    } else {
+        for (const auto& policy : ImplementedPolicies) {
+            std::cout << policy->getPolicyType() << '\n';
+        }
     }
     std::cout << '\n';
 
@@ -95,6 +99,7 @@ void Government::addExecutePolicy() {
 
     // Gather unimplemented policies that are available for selection
     std::vector<std::shared_ptr<Policy>> policiesToImplement;
+    int count =1;
     for (const auto& availablePolicy : AvailablePolicies) {
         bool alreadyImplemented = false;
         for (const auto& implementedPolicy : ImplementedPolicies) {
@@ -105,8 +110,9 @@ void Government::addExecutePolicy() {
         }
         if (!alreadyImplemented) {
             policiesToImplement.push_back(availablePolicy);
-            std::cout << availablePolicy->getPolicyType() << ", Cost: " << availablePolicy->getCostOfPolicy() << '\n';
+            std::cout << count<< ". " <<availablePolicy->getPolicyType() << ", Cost: " << availablePolicy->getCostOfPolicy() << '\n';
         }
+        count++;
     }
 
     // No unimplemented policies available
@@ -116,6 +122,7 @@ void Government::addExecutePolicy() {
     }
 
     // Choose a policy to implement
+    int PolicyNumber;
     std::string policyChosen;
     std::shared_ptr<Policy> selectedPolicy = nullptr;
 

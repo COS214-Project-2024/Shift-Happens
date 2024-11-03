@@ -29,7 +29,7 @@ public:
      * the pure virtual functions that handle the specifics of increasing 
      * or decreasing the budget in the derived classes.
      */
-    void DelegateFunds();
+    void DelegateFunds(std::string answer);
 
     /**
      * @brief Sets the state of the public service.

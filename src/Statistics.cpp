@@ -191,7 +191,25 @@ void Statistics::changeBusinessTax(double amount, std::string type) {
 }
 
 void Statistics::changeBudget(string type, string change) {
-    throw "Statistics::changeBudget() not implemented";
+    if(type == "police"){
+        if(change == "increase"){
+            government->getPolice()->DelegateFunds("increase");
+        } else if(change == "decrease"){
+            government->getPolice()->DelegateFunds("decrease");
+        }
+    } else if(type == "education"){
+        if(change == "increase"){
+            government->getEducation()->DelegateFunds("increase");
+        } else if(change == "decrease"){
+            government->getEducation()->DelegateFunds("decrease");
+        }
+    } else if(type == "healthcare"){
+        if(change == "increase"){
+            government->getHealthCare()->DelegateFunds("increase");
+        } else if(change == "decrease"){
+            government->getHealthCare()->DelegateFunds("decrease");
+        }
+    }
 }
 
 void Statistics::implementPolicy(){

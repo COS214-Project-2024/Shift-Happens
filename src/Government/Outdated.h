@@ -34,6 +34,7 @@ class Outdated : public PublicServiceState {
 		 * reflect a minimal quality of service.
 		 */
 		Outdated();
+		Outdated(std::shared_ptr<Public_Services> PS);
 
 		/**
 		 * @brief Increases the running budget and checks if the state should upgrade.

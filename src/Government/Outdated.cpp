@@ -1,7 +1,11 @@
 #include "Outdated.h"
+#include <memory>
 
+Outdated::Outdated() : PublicServiceState(){
+  this->RunningBudget = 0;
+}
 
-Outdated::Outdated(){
+Outdated::Outdated(std::shared_ptr<Public_Services> PS) : PublicServiceState(PS){
   this->RunningBudget = 0;
 }
 void Outdated::increaseBudget(double increase){

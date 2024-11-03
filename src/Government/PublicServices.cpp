@@ -1,12 +1,12 @@
 #include "PublicServices.h"
 #include <limits>
 
-void Public_Services::DelegateFunds(){
-  std::string answer;
-  double amount;
+void Public_Services::DelegateFunds(std::string answer){
+  // std::string answer;
+  // double amount;
 
-  std::cout << "Would you like to increase or decrease the public services funds? " << std::endl;
-  std::cin >> answer;
+  // std::cout << "Would you like to increase or decrease the public services funds? " << std::endl;
+  // std::cin >> answer;
 
   if(answer == "Increase" || answer == "increase"){
     this->increaseBudget();
