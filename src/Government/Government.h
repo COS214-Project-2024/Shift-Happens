@@ -78,6 +78,7 @@ class Government : public CitySubject {
 		 */
 		
 		int PopulationCount;
+		double CombinedSatisfaction;
 	public:
 		double setPersonalTaxRate(double rate);
 		double setBusinessTaxRate(double rate);
@@ -98,6 +99,7 @@ class Government : public CitySubject {
 		void setPeopleCount(int count, int BusinessSatisfaction);
 		int getPeopleCount();
 		double getSatisfaction();
+		double getCombinedSatisfaction();
 
 		// Tax Management
 		/**

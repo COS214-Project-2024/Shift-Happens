@@ -36,7 +36,7 @@ void Statistics::updateStats() {
     money += income;
     income = map.getIncome();
     
-    satisfaction = (map.getAverageSatisfactionScore() + government->getSatisfaction())/2;
+    //satisfaction = (map.getAverageSatisfactionScore() + government->getSatisfaction())/2;
     waterSupply = map.getTotalWaterSupply();
     powerSupply = map.getTotalElectricitySupply();
     sewageCapacity = map.getTotalSewageCapacity();
@@ -51,6 +51,7 @@ void Statistics::updateStats() {
     maxPopulation = map.getTotalPopulationCapacity();
     government->setPeopleCount(maxPopulation, map.getAverageSatisfactionScore());
     population = government->getPeopleCount();
+    satisfaction = government->getCombinedSatisfaction();
     uncollectedBusinessTax += government->CollectBusinessTax(map.getTotalNumBuildings());
     uncollectedPersonalTax += government->CollectPersonalTax();
 }

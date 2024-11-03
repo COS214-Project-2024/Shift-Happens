@@ -495,6 +495,7 @@ void Display::residentialMenu()
             map.build("Apartment", "Residential", 0, count);
             std::cout << "Construction finsihsed!!" << std::endl;
             wait(1);
+            stats->updateStats();
             GameMenu();
         }
         else
