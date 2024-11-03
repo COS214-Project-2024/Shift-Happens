@@ -1,5 +1,11 @@
 #include "Police.h"
 #include <limits>
+#include <memory>
+
+
+Police::Police(){
+  InfraStructureCondition = std::make_shared<Outdated>();  // Initial Standard state for police
+}
 
 void Police::increaseBudget(){
   std::string answer;
@@ -28,17 +34,17 @@ void Police::decreaseBudget(){
     std::cout << "Invalid input. Please enter a valid number (integer or decimal): ";
   }
 
-  InfraStructureCondition->descreaseBudget(amount);
+  InfraStructureCondition->decreaseBudget(amount);
 }
 
-void Police::setPublicServiceState(PublicServiceState* newState){
-  delete this->InfraStructureCondition;
+void Police::setPublicServiceState(std::shared_ptr<PublicServiceState> newState){
+  this->InfraStructureCondition.reset();
   this->InfraStructureCondition = newState;
 
   this->notify();
 }
 
-PublicServiceState* Police::getState(){
+std::shared_ptr<PublicServiceState> Police::getState(){
   return InfraStructureCondition;
 }
 

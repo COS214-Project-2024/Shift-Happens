@@ -1,16 +1,16 @@
 #include "TaxiStrategy.h"
 
-double Building_State::TaxiStrategy::calculateCost(Building_State::Map start, Building_State::Map end) {
+double TaxiStrategy::calculateCost(Map start, Map end) {
 	// TODO - implement TaxiStrategy::calculateCost
 	throw "Not yet implemented";
 }
 
-double Building_State::TaxiStrategy::calcDuration(Building_State::Map start, Building_State::Map end) {
+double TaxiStrategy::calcDuration(Map start, Map end) {
 	// TODO - implement TaxiStrategy::calcDuration
 	throw "Not yet implemented";
 }
 
-string Building_State::TaxiStrategy::getDescription() {
+string TaxiStrategy::getDescription() {
 	// TODO - implement TaxiStrategy::getDescription
 	throw "Not yet implemented";
 }
