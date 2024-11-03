@@ -33,3 +33,12 @@ std::string Boy::getType(){
 std::string Boy::getDescription() const {
     return "Boy Citizen";
 }
+
+
+void Boy::setIncomeRate(double income){
+
+}
+
+double Boy::getIncome(){
+	return 0;
+}

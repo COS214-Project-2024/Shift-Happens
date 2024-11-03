@@ -48,22 +48,6 @@
 #include "buildings/transport/BusStation.h"
 #include "buildings/transport/TrainStation.h"
 
-//Policies
-#include "Government/PublicServiceState.h"
-#include "Government/Standard.h"
-#include "Government/Outdated.h"
-#include "Government/Modern.h"
-#include "Government/PublicServices.h"
-#include "Government/CitySubject.h"
-#include "citizens/CitizenObserver.h"
-#include "Government/Education.h"
-#include "Government/HealthCare.h"
-#include "Government/Police.h"
-#include "Government/BoostEducationPolicy.h"
-#include "Government/BoostHealthCarePolicy.h"
-#include "Government/BoostPolicePolicy.h"
-#include "Government/Policy.h"
-
 using namespace std;
 
 void demo() {
@@ -123,112 +107,28 @@ void testBuildingFactory() {
     transFactory->print(); // Print transport buildings
 }
 
-void testPolicies(){
-    cout<<"Testing Policies..."<<endl;
+void testMap() {
+    cout << "Testing Map" << endl;
 
-    cout<<"Creating Public Services..."<<endl;
-    shared_ptr<Education> education = make_shared<Education>();
-    cout<<education->getTypeOfPublicService()<<" successfully created..."<<endl;
-    
-    shared_ptr<HealthCare> healthcare = make_shared<HealthCare>();
-    cout<<healthcare->getTypeOfPublicService()<<" successfully created..."<<endl;
-    
-    shared_ptr<Police> police = make_shared<Police>();
-    cout<<police->getTypeOfPublicService()<<" successfully created..."<<endl;
+    // Get the singleton instance of the Map
+    Map& map = Map::getInstance();
 
-    cout<<"Creating Policies..."<<endl;
-    cout<<"****************************************************"<<endl;
-    shared_ptr<Policy> boostEducation = make_shared<BoostEducationPolicy>(education);
-    cout<<"Current policy type: "<<boostEducation->getPolicyType()<<endl;
-    cout<<"Current state of education: "<<education->getState()->getType()<<endl;
+    // Build some buildings on the map
+    map.build("House", "Residential", 0, 0);
+    map.build("Store", "Commercial", 1, 1);
+    map.build("Factory", "Industrial", 2, 2);
+    map.build("PowerPlant", "Utility", 3, 3);
+    map.build("Park", "Landmark", 4, 4);
+    map.build("Road", "Infrastructure", 5, 5);
+    map.build("Airport", "Transport", 6, 6);
 
-    cout<<"Executing Boost Education Policy..."<<endl;
-    //start with insuficient funds
-    boostEducation->executePolicy();
-    cout<<"Current state of education: "<<education->getState()->getType()<<endl;
-    boostEducation->executePolicy();
-    cout<<"Current state of education: "<<education->getState()->getType()<<endl;
-
-    cout<<"----------------------------"<<endl;
-        //start with insuficient funds
-    boostEducation->executePolicy();
-    cout<<"Current state of education: "<<education->getState()->getType()<<endl;
-    boostEducation->executePolicy();
-    cout<<"Current state of education: "<<education->getState()->getType()<<endl;
-    cout<<"----------------------------"<<endl;
-        //start with insuficient funds
-    boostEducation->executePolicy();
-    cout<<"Current state of education: "<<education->getState()->getType()<<endl;
-    boostEducation->executePolicy();
-    cout<<"Current state of education: "<<education->getState()->getType()<<endl;
-    cout<<"****************************************************"<<endl;
-
-    shared_ptr<Policy> boostHealthCare = make_shared<BoostHealthCarePolicy>(healthcare);
-    cout<<"Current policy type: "<<boostHealthCare->getPolicyType()<<endl;
-    cout<<"Current state of healthcare: "<<healthcare->getState()->getType()<<endl;
-
-    cout<<"Executing Boost HealthCare Policy..."<<endl;
-    //start with insuficient funds
-    boostHealthCare->executePolicy();
-    cout<<"Current state of healthcare: "<<healthcare->getState()->getType()<<endl;
-    boostHealthCare->executePolicy();
-    cout<<"Current state of healthcare: "<<healthcare->getState()->getType()<<endl;
-
-     cout<<"----------------------------"<<endl;
-    //start with insuficient funds
-    boostHealthCare->executePolicy();
-    cout<<"Current state of healthcare: "<<healthcare->getState()->getType()<<endl;
-    boostHealthCare->executePolicy();
-    cout<<"Current state of healthcare: "<<healthcare->getState()->getType()<<endl;
-
-     cout<<"----------------------------"<<endl;
-        //start with insuficient funds
-    boostHealthCare->executePolicy();
-    cout<<"Current state of healthcare: "<<healthcare->getState()->getType()<<endl;
-    boostHealthCare->executePolicy();
-    cout<<"Current state of healthcare: "<<healthcare->getState()->getType()<<endl;
-    cout<<"****************************************************"<<endl;
-
-
-    shared_ptr<Policy> boostPolice = make_shared<BoostPolicePolicy>(police);
-    cout<<"Current policy type: "<<boostPolice->getPolicyType()<<endl;
-    cout<<"Current state of police: "<<police->getState()->getType()<<endl;
-
-    cout<<"Executing Boost Police Policy..."<<endl;
-    //start with insuficient funds
-    boostPolice->executePolicy();
-    cout<<"Current state of police: "<<police->getState()->getType()<<endl;
-    boostPolice->executePolicy();
-    cout<<"Current state of police: "<<police->getState()->getType()<<endl;
-
-    cout<<"----------------------------"<<endl;
-        //start with insuficient funds
-    boostPolice->executePolicy();
-    cout<<"Current state of police: "<<police->getState()->getType()<<endl;
-    boostPolice->executePolicy();
-    cout<<"Current state of police: "<<police->getState()->getType()<<endl;
-
-
-    cout<<"----------------------------"<<endl;
-        //start with insuficient funds
-    boostPolice->executePolicy();
-    cout<<"Current state of police: "<<police->getState()->getType()<<endl;
-    boostPolice->executePolicy();
-    cout<<"Current state of police: "<<police->getState()->getType()<<endl;
-
-    cout<<"----------------------------"<<endl;
-        //start with insuficient funds
-    boostPolice->executePolicy();
-    cout<<"Current state of police: "<<police->getState()->getType()<<endl;
-    boostPolice->executePolicy();
-    cout<<"Current state of police: "<<police->getState()->getType()<<endl;
-
-    cout<<"****************************************************"<<endl;
+    // Print the map
+    map.print();
 }
 
 int main() {
-    //demo();
+    demo();
     //testBuildingFactory();
-    testPolicies();
+    //testMap();
     return 0;
 }

@@ -5,54 +5,53 @@
 #include <string>
 
 using namespace std;
+
 class Infrastructure : public MapComponent
 {
-
 protected:
-	string variant; 
-	string type;
-	int width;
-	int length;
-	int yPos;
-	int xPos;
-	int constructionCost;
+    string variant;
+    string type;
+    int width;
+    int length;
+    int yPos;
+    int xPos;
+    int constructionCost;
 
 public:
-	Infrastructure(string variant, int id);
+    Infrastructure(string variant, int id);
+    virtual ~Infrastructure();
 
-	virtual ~Infrastructure();
+    int getWidth();
+    void setWidth(int width);
 
-	int getWidth();
+    int getLength();
+    void setLength(int length);
 
-	void setWidth(int width);
+    int getYPos();
+    void setYPos(int yPos);
 
-	int getLength();
+    int getXPos();
+    void setXPos(int xPos);
 
-	void setLength(int length);
+    int getConstructionCost();
+    void setConstructionCost(int constructionCost);
 
-	int getYPos();
+    void render();
 
-	void setYPos(int yPos);
+    
+    virtual void print();
 
-	int getXPos();
-
-	void setXPos(int xPos);
-
-	int getConstructionCost();
-
-	void setConstructionCost(int constructionCost);
-	
-	void render();
-
-	bool add(MapComponent *component);
-
-	bool remove(MapComponent *component);
-
-	void getComponent(int id);
-
-	virtual void print() = 0;
-
-
+    // New functions
+    double getAverageSatisfactionScore() override;
+    int getTotalWaterSupply() override;
+    int getTotalWaterUsage() override;
+    int getTotalElectricitySupply() override;
+    int getTotalElectricityDemand() override;
+    int getTotalSewageCapacity() override;
+    int getTotalWasteCapacity() override;
+    int getTotalWasteProduction() override;
+    int getTotalSewageProduction() override;
+    int getTotalNumberOfJobs() override;
 };
 
 #endif

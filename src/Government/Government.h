@@ -11,6 +11,8 @@
 #include "Police.h"
 #include "HealthCare.h"
 #include "../Statistics.h"
+// #include "../citizens/Citizen.h"
+//#include "../citizens/Director.h"
 #include <memory>
 #include <vector>
 
@@ -23,9 +25,15 @@
  * Government actions impact citizen satisfaction, economic growth, and overall city development.
  */
 
-class Statistics;
+//class Statistics;
+class Citizen;
+class Director;
 class Government : public CitySubject {
 	private:
+		// 
+		std::shared_ptr<Director> CitizenDirector;
+		// Citizen counter
+		std::vector<std::shared_ptr<Citizen>> CitizenCollection;
 		// shared pointers to the public services
 		std::shared_ptr<Education> education;
 		std::shared_ptr<Police> police;
@@ -76,6 +84,17 @@ class Government : public CitySubject {
 		double getPersonalTaxRate();
 		double getBusinessTaxRate();
 		Government();
+
+		void addCitizen(std::shared_ptr<Citizen> newCitizen);
+		void addCitizen();
+		void removeCitizen();
+		
+		double CollectPersonalTax();
+		double CollectBusinessTax();
+		double getIncome();
+
+		void IncreaseAvialableBudget(double increase);
+
 		// Tax Management
 		/**
 		 * @brief Lowers the personal tax rate by a specified amount.

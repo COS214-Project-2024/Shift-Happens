@@ -7,6 +7,14 @@ void Citizen::update(){
   observerHealthcare = healthcare->getState();
   observerTax = government->getTax();
 
+  if(observerTax->getType() == "High Tax"){
+    this->setIncomeRate(15000);
+  } else if(observerTax->getType() == "Standard Tax"){
+    this->setIncomeRate(10000);
+  } else if(observerTax->getType() == "Low Tax"){
+    this->setIncomeRate(5000);
+  }
+
   CalculateSatisfaction();
 } 
 

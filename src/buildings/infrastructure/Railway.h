@@ -2,19 +2,25 @@
 #define RAILWAY_H
 #include "Infrastructure.h"
 
-
-using namespace std;
 class Railway : public Infrastructure
 {
-
-private:
 public:
-	Railway(int id);
-	~Railway();
+    Railway(int id);
+    ~Railway();
 
+    void print() override;
 
-	void print();
+    // New functions
+    double getAverageSatisfactionScore() override;
+    int getTotalWaterSupply() override;
+    int getTotalWaterUsage() override;
+    int getTotalElectricitySupply() override;
+    int getTotalElectricityDemand() override;
+    int getTotalSewageCapacity() override;
+    int getTotalWasteCapacity() override;
+    int getTotalWasteProduction() override;
+    int getTotalSewageProduction() override;
+    int getTotalNumberOfJobs() override;
 };
-
 
 #endif

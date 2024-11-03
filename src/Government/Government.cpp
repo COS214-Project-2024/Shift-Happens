@@ -1,4 +1,8 @@
 #include "Government.h"
+#include "../citizens/ManBuilder.h"
+#include "../citizens/WomanBuilder.h"
+#include "../citizens/BoyBuilder.h"
+#include "../citizens/GirlBuilder.h"
 
 #include <algorithm>
 #include <memory>
@@ -197,4 +201,73 @@ std::shared_ptr<HealthCare> Government::getHealthCare() const{
 
 std::shared_ptr<Police> Government::getPolice() const{
     return police;
+}
+
+void Government::removeCitizen(){
+    CitizenCollection.pop_back();
+}
+
+void Government::addCitizen(){
+    std::string Answer;
+    std::cout << "Specify the type of citizen you would like to add: Man/Woman/Boy/Girl" << std::endl;
+
+    while (true) {
+        std::cin >> Answer;
+
+        if (Answer == "Man" || Answer == "man") {  
+            CitizenDirector = std::make_shared<Director>(std::make_shared<ManBuilder>());
+            CitizenDirector->construct();
+            std::shared_ptr<Citizen> newCitizen = CitizenDirector->getBuilder()->getCitizen();
+            CitizenCollection.push_back(newCitizen);
+            break;
+        } else if (Answer == "Woman" || Answer == "woman") {
+            CitizenDirector = std::make_shared<Director>(std::make_shared<WomanBuilder>());
+            CitizenDirector->construct();
+            std::shared_ptr<Citizen> newCitizen = CitizenDirector->getBuilder()->getCitizen();
+            CitizenCollection.push_back(newCitizen);
+            break;
+        } else if (Answer == "Boy" || Answer == "boy") {
+            CitizenDirector = std::make_shared<Director>(std::make_shared<BoyBuilder>());
+            CitizenDirector->construct();
+            std::shared_ptr<Citizen> newCitizen = CitizenDirector->getBuilder()->getCitizen();
+            CitizenCollection.push_back(newCitizen);
+            break;
+        } else if (Answer == "Girl" || Answer == "girl") {
+            CitizenDirector = std::make_shared<Director>(std::make_shared<GirlBuilder>());
+            CitizenDirector->construct();
+            std::shared_ptr<Citizen> newCitizen = CitizenDirector->getBuilder()->getCitizen();
+            CitizenCollection.push_back(newCitizen);
+            break;
+        } else {
+            std::cout << "Invalid input. Please enter one of the following: Man, Woman, Boy, or Girl." << std::endl;
+        }
+    }
+}
+
+
+void Government::addCitizen(std::shared_ptr<Citizen> newCitizen){
+    CitizenCollection.push_back(newCitizen);
+}
+
+double Government::CollectPersonalTax(){
+    double incomeTax;
+    for(shared_ptr<Citizen> temp: CitizenCollection){
+        if(temp->getDescription() != "Man" || temp->getDescription() != "Woman"){
+            incomeTax += temp->getIncome() * this->PersonalTaxRate/100;
+        }
+    }
+
+    return incomeTax;
+}
+
+double Government::CollectBusinessTax(){
+
+}
+
+double Government::getIncome(){
+    return CollectBusinessTax() + CollectPersonalTax();
+}
+
+void Government::IncreaseAvialableBudget(double increase){
+    this->AvailableSpendingBudget += increase;
 }

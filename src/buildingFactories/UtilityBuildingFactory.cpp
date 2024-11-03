@@ -51,3 +51,15 @@ void UtilityBuildingFactory::print()
 		building->print();
 	}
 }
+
+shared_ptr<UtilityBuilding> UtilityBuildingFactory::getBuilding()
+{
+	//check if the vector is empty
+	if (buildings.empty())
+	{
+		throw "No Utility buildings created";
+	}
+
+	//return the last building created
+	return buildings.back();
+}

@@ -47,3 +47,13 @@ void CommercialBuildingFactory::print()
 		building->print();
 	}
 }
+
+shared_ptr<CommercialBuilding> CommercialBuildingFactory::getBuilding()
+{
+	//check if the vector is empty
+	if (buildings.empty())
+	{
+		throw "No Commercial buildings created";
+	}
+	return buildings.back();
+}

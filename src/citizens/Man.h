@@ -14,6 +14,7 @@
  */
 class Man : public Citizen {
 private:
+    double Income;
     std::string Type; ///< The type is "Man".
     std::string Gender; ///< The gender of the man (e.g., "Male").
     bool Employment; ///< Indicates whether the man is employed (true) or not (false).
@@ -72,6 +73,8 @@ public:
      * @brief Retrieves a string representation of the object.
      */
     std::string getDescription() const;
+    void setIncomeRate(double income);
+    double getIncome();
 };
 
 #endif

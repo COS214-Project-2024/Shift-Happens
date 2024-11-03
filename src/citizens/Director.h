@@ -18,6 +18,7 @@ private:
     std::shared_ptr<CitizenBuilder> Builder; ///< Shared pointer to the `CitizenBuilder` used for constructing citizens.
 
 public:
+    Director(std::shared_ptr<CitizenBuilder> Builder);
     /**
      * @brief Constructs a `Citizen` object using the associated `CitizenBuilder`.
      * 

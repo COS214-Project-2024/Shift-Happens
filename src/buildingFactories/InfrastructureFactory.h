@@ -35,11 +35,18 @@ public:
      */
     InfrastructureFactory(int id);
 
+
     /**
      * @brief Creates an infrastructure building.
      * @param variant The type of building to create.
      */
     void createBuilding(string variant) override;
+
+    /**
+     * @brief Returns the created infrastructure.
+     * @return shared_ptr<Infrastructure> The created infrastructure.
+     */
+    shared_ptr<Infrastructure> getBuilding();
 
     /**
      * @brief Prints the created buildings.
