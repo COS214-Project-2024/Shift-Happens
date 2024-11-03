@@ -3,20 +3,32 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <memory>
 #include "map/Map.h"
+#include "Government/Government.h"
+#include "Government/StandardTax.h"
+#include "Government/LowTax.h"
+#include "Government/HighTax.h"
 
+using namespace std;
 class Statistics
 {
 private:
 	Map &map;
+
 	int money;
 	int income;
+	
 	int population;
 	int maxPopulation;
+
 	int employment;
+
 	int satisfaction;
+
 	int waterSupply;
 	int powerSupply;
+
 	int sewageCapacity;
 	int wasteCapacity;
 
@@ -25,7 +37,7 @@ private:
 	int sewageProduction;
 	int wasteProduction;
 
-
+	std::shared_ptr<Government> government = std::make_shared<Government>();
 
 public:
 	Statistics();
@@ -64,12 +76,17 @@ public:
 	void setSewageProduction(int sp);
 	void setWasteProduction(int wp);
 
-	void increaseBusinessTax();
-	void decreaseBusinessTax();
-	void increasePersonalTax();
-	void decreasePersonalTax();
+
+	//Government
+	void changeBusinessTax(double rate, string type);
+	void changePersonalTax(double rate, string type);
 	void collectBusinessTax();
 	void collectPersonalTax();
+
+	void implementPolicy();
+	vector<string> getCurrentPolicies();
+	void changeBudget(string type, string change);
+
 	
 
 

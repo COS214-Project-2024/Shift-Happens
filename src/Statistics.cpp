@@ -154,28 +154,36 @@ void Statistics::setWasteProduction(int wp) {
     wasteProduction = wp;
 }
 
-void Statistics::increaseBusinessTax() {
-    throw "Statistics::increaseBusinessTax() not implemented";
-}
-
-void Statistics::decreaseBusinessTax() {
-    throw "Statistics::decreaseBusinessTax() not implemented";
-}
 
 void Statistics::collectBusinessTax() {
     throw "Statistics::collectBusinessTax() not implemented";
 }
 
-void Statistics::increasePersonalTax() {
-    throw "Statistics::increasePersonalTax() not implemented";
-}
-
-void Statistics::decreasePersonalTax() {
-    throw "Statistics::decreasePersonalTax() not implemented";
-}
 
 void Statistics::collectPersonalTax() {
     throw "Statistics::collectPersonalTax() not implemented";
 }
+
+void Statistics::changePersonalTax(double amount, std::string type) {
+    throw "Statistics::changePersonalTax() not implemented";
+}
+
+void Statistics::changeBusinessTax(double amount, std::string type) {
+    throw "Statistics::changeBusinessTax() not implemented";
+}
+
+void Statistics::changeBudget(string type, string change) {
+    throw "Statistics::changeBudget() not implemented";
+}
+
+void Statistics::implementPolicy(){
+    throw "Statistics::implementPolicy() not implemented";
+}
+
+vector<string> Statistics::getCurrentPolicies(){
+    throw "Statistics::getCurrentPolicies() not implemented";
+}
+
+
 
 

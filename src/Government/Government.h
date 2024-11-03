@@ -76,7 +76,7 @@ class Government : public CitySubject {
 		/**
 		 * @brief Shared pointer to a Statistics object for tracking and reporting city metrics.
 		 */
-		std::shared_ptr<Statistics> statistics;
+		
 
 	public:
 		double setPersonalTaxRate(double rate);
@@ -90,7 +90,7 @@ class Government : public CitySubject {
 		void removeCitizen();
 		
 		double CollectPersonalTax();
-		double CollectBusinessTax();
+		double CollectBusinessTax(int numBusinesses);
 		double getIncome();
 
 		void IncreaseAvialableBudget(double increase);

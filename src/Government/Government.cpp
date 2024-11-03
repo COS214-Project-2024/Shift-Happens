@@ -259,12 +259,17 @@ double Government::CollectPersonalTax(){
     return incomeTax;
 }
 
-double Government::CollectBusinessTax(){
+double Government::CollectBusinessTax(int numBusinesses){
+    double businessTax = 0;
+    for(int i = 0; i < numBusinesses; i++){
+        businessTax +=  this->BusinessTaxRate;
+    }
 
+    return businessTax;
 }
 
 double Government::getIncome(){
-    return CollectBusinessTax() + CollectPersonalTax();
+    throw "Government::getIncome() not implemented";
 }
 
 void Government::IncreaseAvialableBudget(double increase){

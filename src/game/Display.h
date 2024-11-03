@@ -28,6 +28,9 @@ public:
     void clear();
     void wait(int seconds);
     void loadscreen();
+    int getInput(int max, int min);
+    void displayMenu(string title, vector<string> options);
+    void displayMenu(string title, string options);
 
     void displayStats();
 
@@ -49,14 +52,14 @@ public:
     void upgradeMenu();
 
     //Government Menus
-    void governmentMenu(std::shared_ptr<Government> government);
+    void governmentMenu();
 
-    void taxMenu(std::shared_ptr<Government> government);
-    void businessTaxMenu(std::shared_ptr<Government> government);
-    void personalTaxMenu(std::shared_ptr<Government> government);
-    void policiesMenu(std::shared_ptr<Government> government);
-    void servicesMenu(std::shared_ptr<Government> government);
-    void budgetMenu(std::shared_ptr<Government> government);
+    void taxMenu();
+    void businessTaxMenu();
+    void personalTaxMenu();
+    void policiesMenu();
+    void servicesMenu();
+    void budgetMenu();
     
     void statisticsMenu();
 
