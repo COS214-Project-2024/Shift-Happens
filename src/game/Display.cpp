@@ -1477,7 +1477,7 @@ void Display::policiesMenu()
 {
     clear();
     logo();
-    
+
     if (stats->getImplementedPolicies().empty())
     {
 
@@ -1605,3 +1605,31 @@ void Display::statisticsMenu()
 {
     throw "Statistics Menu not implemented";
 }
+
+
+
+/*
+build 
+- factory
+-composite 
+-singleton
+- template
+
+upgrades
+-decorator
+
+
+government
+-State
+-Command
+-Observer
+-builder
+-template
+
+transport
+-strategy
+
+
+Facade
+
+*/
