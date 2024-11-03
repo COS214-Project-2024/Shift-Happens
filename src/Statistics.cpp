@@ -1,4 +1,4 @@
-
+#include <algorithm>
 #include "Statistics.h"
 
 Statistics::Statistics() : map(Map::getInstance()) {
@@ -18,6 +18,13 @@ Statistics::Statistics() : map(Map::getInstance()) {
     this->powerConsumption = 0;
     this->sewageProduction = 0;
     this->wasteProduction = 0;
+
+    government = make_shared<Government>();
+    
+    government->setTaxState(make_shared<StandardTax>(government));
+    government->setBusinessTaxState(make_shared<StandardTax>(government));
+    government->setPersonalTaxRate(government->getTax()->getRate());
+    government->setBusinessTaxRate(government->getBusinessTax()->getBusinessRate());
 }
 
 void Statistics::updateStats() {
@@ -161,15 +168,26 @@ void Statistics::collectBusinessTax() {
 
 
 void Statistics::collectPersonalTax() {
-    throw "Statistics::collectPersonalTax() not implemented";
+    double CollectedPersonalTax = government->CollectPersonalTax();
+    // decide what to do with the taxes
 }
 
 void Statistics::changePersonalTax(double amount, std::string type) {
-    throw "Statistics::changePersonalTax() not implemented";
+    cout << "Entered tax change" << endl;
+    if(type == "increase"){
+        government->setPersonalTaxHigher(amount);
+    } else if(type == "decrease"){
+        government->setPersonalTaxLower(amount);
+    }
+    cout << "Exited statistics" << endl;
 }
 
 void Statistics::changeBusinessTax(double amount, std::string type) {
-    throw "Statistics::changeBusinessTax() not implemented";
+    if(type == "increase"){
+        government->setBusinessTaxHigher(amount);
+    } else if(type == "decrease"){
+        government->setBusinessTaxLower(amount);
+    }
 }
 
 void Statistics::changeBudget(string type, string change) {
@@ -177,11 +195,17 @@ void Statistics::changeBudget(string type, string change) {
 }
 
 void Statistics::implementPolicy(){
-    throw "Statistics::implementPolicy() not implemented";
+    government->addExecutePolicy();
 }
 
 vector<string> Statistics::getCurrentPolicies(){
-    throw "Statistics::getCurrentPolicies() not implemented";
+    vector<string> CurrentPolicies;
+    for (const auto& policy : government->getCurrentPolicies()) {
+        CurrentPolicies.push_back(policy->getPolicyType());
+    }
+
+    return CurrentPolicies;
+    
 }
 
 

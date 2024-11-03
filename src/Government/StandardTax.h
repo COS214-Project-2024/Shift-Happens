@@ -4,6 +4,7 @@
 #include "Tax.h"
 #include "HighTax.h"
 #include "LowTax.h"
+#include "../Government/Government.h"
 
 /**
  * @class StandardTax

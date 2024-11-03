@@ -1616,8 +1616,7 @@ void Display::governmentMenu()
     }
 }
 
-void Display::taxMenu()
-{
+void Display::taxMenu() {
     clear();
     logo();
     tabulate::Table options;
@@ -1625,61 +1624,50 @@ void Display::taxMenu()
     options.format().width(20);
     options.format().font_align(tabulate::FontAlign::center);
     options.format().font_style({tabulate::FontStyle::bold});
+    
     tabulate::Table menu;
     menu.add_row({"Tax Menu"});
     menu.add_row({options});
-
+    
     menu.format().font_align(tabulate::FontAlign::center);
     menu[0][0].format().font_color(tabulate::Color::blue);
     std::cout << menu << std::endl;
     std::cout << "Please select an option." << std::endl;
+    
     int input;
-
     bool valid = false;
-    vector<string> errorMsg = {"Invalid option. Please try again.", "Enter an integer.", "What are you doing?", "Can you even read?", "You are clearly doing it on purpose.", "You are testing my patience.", "I am not a happy computer.", "Stop that!!"};
+    vector<string> errorMsg = {"Invalid option. Please try again.", "Enter an integer."};
     int errorCount = 0;
-    while (!valid)
-    {
+
+    while (!valid) {
         std::cin >> input;
-        if (std::cin.fail())
-        {
+        
+        if (std::cin.fail()) {
             std::cin.clear();
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-
-            if (errorCount == 7)
-            {
-                errorCount = 0;
-            }
-            std::cout << errorMsg[errorCount] << std::endl;
-            errorCount++;
-        }
-        else if (input > 3 || input < 1)
-        {
-            if (errorCount == 7)
-            {
-                errorCount = 0;
-            }
-            std::cout << errorMsg[errorCount] << std::endl;
-            errorCount++;
-        }
-        else
-        {
+            std::cout << errorMsg[1] << std::endl; // "Enter an integer."
+        } else if (input > 3 || input < 1) {
+            std::cout << errorMsg[0] << std::endl; // "Invalid option. Please try again."
+        } else {
             valid = true;
-            if (input == 1)
-            {
-                businessTaxMenu();
+            //std::cout << "User selected: " << input << std::endl; // Debug output
+            switch (input) {
+                case 1:
+                    businessTaxMenu();
+                    break;
+                case 2:
+                    personalTaxMenu();
+                    break;
+                case 3:
+                    governmentMenu();
+                    break;
             }
-            else if (input == 2)
-            {
-                personalTaxMenu();
-            }
-            else if (input == 3)
-            {
-                governmentMenu();
-            }
+            std::cin.clear();
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         }
     }
 }
+
 
 void Display::businessTaxMenu()
 {
@@ -1791,8 +1779,7 @@ void Display::businessTaxMenu()
     }
 }
 
-void Display::personalTaxMenu()
-{
+void Display::personalTaxMenu() {
     clear();
     logo();
     tabulate::Table options;
@@ -1814,91 +1801,82 @@ void Display::personalTaxMenu()
     menu[0][0].format().font_color(tabulate::Color::blue);
     std::cout << menu << std::endl;
     std::cout << "Please select an option." << std::endl;
-    int input;
 
+    int input;
     bool valid = false;
-    vector<string> errorMsg = {"Invalid option. Please try again.", "Enter an integer.", "What are you doing?", "Can you even read?", "You are clearly doing it on purpose.", "You are testing my patience.", "I am not a happy computer.", "Stop that!!"};
+    vector<string> errorMsg = {"Invalid option. Please try again.", "Enter an integer.", "What are you doing?", 
+                                "Can you even read?", "You are clearly doing it on purpose.", 
+                                "You are testing my patience.", "I am not a happy computer.", 
+                                "Stop that!!"};
     int errorCount = 0;
-    while (!valid)
-    {
+
+    while (!valid) {
         std::cin >> input;
-        if (std::cin.fail())
-        {
+
+        if (std::cin.fail()) {
             std::cin.clear();
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
-            if (errorCount == 7)
-            {
+            if (errorCount == 7) {
                 errorCount = 0;
             }
             std::cout << errorMsg[errorCount] << std::endl;
             errorCount++;
-        }
-        else if (input > 4 || input < 1)
-        {
-            if (errorCount == 7)
-            {
+        } else if (input > 4 || input < 1) {
+            if (errorCount == 7) {
                 errorCount = 0;
             }
             std::cout << errorMsg[errorCount] << std::endl;
             errorCount++;
-        }
-        else
-        {
-            if (input == 1)
-            {
-                double Increase;
-                std::cout << "What do you want to increase the current tax rate by?" << std::endl;
-                while (true)
-                {
-                    std::cin >> Increase;
+        } else {
+            valid = true; // Valid input received
 
-                    if (std::cin.fail() || Increase <= 0)
-                    {
-                        std::cin.clear();
-                        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                        std::cout << "Please enter a positive value to increase the tax rate." << std::endl;
-                    }
-                    else
-                    {
-                        break;
-                    }
-                }
-                stats->changePersonalTax(Increase, "increase");
-            }
-            else if (input == 2)
-            {
-                double Decrease;
-                std::cout << "What do you want to decrease the current tax rate by?" << std::endl;
-                while (true)
-                {
-                    std::cin >> Decrease;
+            switch (input) {
+                case 1: { // Increase tax
+                    double Increase;
+                    std::cout << "What do you want to increase the current tax rate by?" << std::endl;
+                    while (true) {
+                        std::cin >> Increase;
 
-                    if (std::cin.fail() || Decrease <= 0)
-                    {
-                        std::cin.clear();
-                        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                        std::cout << "Please enter a positive value to decrease the tax rate." << std::endl;
+                        if (std::cin.fail() || Increase <= 0) {
+                            std::cin.clear();
+                            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                            std::cout << "Please enter a positive value to increase the tax rate." << std::endl;
+                        } else {
+                            break;
+                        }
                     }
-                    else
-                    {
-                        break;
-                    }
+                    stats->changePersonalTax(Increase, "increase");
+                    break;
                 }
-                stats->changePersonalTax(Decrease, "decrease");
+                case 2: { // Decrease tax
+                    double Decrease;
+                    std::cout << "What do you want to decrease the current tax rate by?" << std::endl;
+                    while (true) {
+                        std::cin >> Decrease;
+
+                        if (std::cin.fail() || Decrease <= 0) {
+                            std::cin.clear();
+                            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                            std::cout << "Please enter a positive value to decrease the tax rate." << std::endl;
+                        } else {
+                            break;
+                        }
+                    }
+                    stats->changePersonalTax(Decrease, "decrease");
+                    break;
+                }
+                case 3: // Collect tax
+                    stats->collectPersonalTax();
+                    break;
+                case 4: // Back to tax menu
+                    taxMenu();
+                    break;
             }
-            else if (input == 3)
-            {
-                stats->collectPersonalTax();
-            }
-            else if (input == 4)
-            {
-                taxMenu();
-            }
-            valid = true;
         }
     }
 }
+
 
 void Display::policiesMenu()
 {

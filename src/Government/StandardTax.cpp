@@ -1,6 +1,7 @@
 #include "StandardTax.h"
 
 #include <memory>
+#include <iostream>
 
 StandardTax::StandardTax(std::shared_ptr<Government> government) : Tax(government) {
 	this->RunningRate = StandardTLowCap;
@@ -8,6 +9,7 @@ StandardTax::StandardTax(std::shared_ptr<Government> government) : Tax(governmen
 }
 
 void StandardTax::higher(double increase) {
+	//std::cout << "Entered standard tax higher" <<std::endl;
 	this->RunningRate += increase;
 	if(this->RunningRate > StandardTHighCap){
 		std::shared_ptr<Tax> newTax = std::make_shared<HighTax>(this->government);
@@ -15,6 +17,7 @@ void StandardTax::higher(double increase) {
 		newTax->setPersonalRate(this->getRate());
 		government->setTaxState(newTax);
 	}
+	//std::cout << "Passed standard" << std::endl;
 }
 
 void StandardTax::lower(double decrease) {

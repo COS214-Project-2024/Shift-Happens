@@ -37,7 +37,7 @@ private:
 	int sewageProduction;
 	int wasteProduction;
 
-	std::shared_ptr<Government> government = std::make_shared<Government>();
+	std::shared_ptr<Government> government;
 
 public:
 	Statistics();

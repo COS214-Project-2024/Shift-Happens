@@ -28,9 +28,7 @@ Government::Government() {
     AvailablePolicies.push_back(std::make_shared<BoostHealthCarePolicy>(healthcare));
     AvailablePolicies.push_back(std::make_shared<BoostPolicePolicy>(police));
 
-    
-    PersonalTaxRate = 0;
-    BusinessTaxRate = 0;
+
 
 }
 
@@ -56,8 +54,10 @@ void Government::setPersonalTaxLower(double decrease) {
 }
 
 void Government::setPersonalTaxHigher(double increase) {
+    //cout << "Entered government higher" << endl;
 	PersonalTaxState->higher(increase);
 	this->PersonalTaxRate = PersonalTaxState->getRate();
+    //cout << "Exited government" << endl;
 }
 
 // Helper function to convert strings to lowercase
