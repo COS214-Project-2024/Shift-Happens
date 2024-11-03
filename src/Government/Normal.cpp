@@ -1,20 +1,21 @@
 #include "Normal.h"
 
 #include "OverPopulated.h"
+using namespace std;
 
 void Normal::increasePopulation(int increase){
   this->PopulationCount += increase;
 
   if(this->PopulationCount > PopNormalHighCap){
-    this->economy->setPopulationState(new OverPopulated);
+    this->economy->setPopulationState(make_shared<OverPopulated>());
   }
 }
 
-void Normal::descreasePopulation(int decrease){
+void Normal::decreasePopulation(int decrease){
   this->PopulationCount -= decrease;
 
   if(this->PopulationCount < PopNormalLowCap){
-    this->economy->setPopulationState(new UnderPopulated);
+    this->economy->setPopulationState(make_shared<UnderPopulated>());
   }
 }
 
