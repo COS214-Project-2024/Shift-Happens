@@ -20,7 +20,7 @@ Statistics::Statistics() : map(Map::getInstance()) {
     this->wasteProduction = 0;
 
     this->uncollectedBusinessTax = 0;
-    this->unclolectedPersonalTax = 0;
+    this->uncollectedBusinessTax = 0;
 
 
     government = make_shared<Government>();
@@ -242,7 +242,7 @@ int Statistics::getUncollectedTax(string type){
     if(type == "business"){
         return uncollectedBusinessTax;
     } else if(type == "personal"){
-        return unclolectedPersonalTax;
+        return uncollectedBusinessTax;
     }
     else{
         throw "Statistics::getUncollectedTax() invalid type";
