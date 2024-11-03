@@ -9,7 +9,6 @@
 #include "../map/Map.h"
 #include "../Statistics.h"
 
-
 using namespace std;
 
 class Display {
@@ -40,6 +39,8 @@ public:
     void landmarkMenu();
     void infrastructureMenu();
 
+    //Transportation
+    void transportMenu();
 
     //Upgrade Menus
     void upgradeMenu();
@@ -60,15 +61,9 @@ public:
     void statisticsMenu();
 
 
-
     //helper functions
     string check(string var, int num); // check if building is built
     vector<string> getUpgrades(string var, int num); // get available upgrades for building
-
-
-
-
-
 
  
 private:

@@ -61,6 +61,7 @@ public:
 
     string getType() override;
     string getVariant() override;
+    string getSymbol() override;
 
     /**
      * @brief Builds a building on the map.
@@ -85,6 +86,23 @@ public:
      * @param id The component ID.
      */
     shared_ptr<MapComponent> getComponent(int id);
+
+    //Monica - test
+    /**
+     * @brief Gets the coordinates of a component by ID.
+     * @param id The component ID.
+     * @return A pair of integers representing the (x, y) coordinates of the component.
+     */
+    pair<int, int> getComponentCoord(int id);
+
+    /**
+     * @brief Gets a list of all buildings with the given ID.
+     * @param id The component ID.
+     * @return A vector of shared pointers to the buildings with the specified ID.
+     */
+    vector<shared_ptr<MapComponent>> getListOfBuildings(int id);
+
+    void displayBuildingList(const vector<shared_ptr<MapComponent>>& buildings);
 
     /**
      * @brief Renders the map.

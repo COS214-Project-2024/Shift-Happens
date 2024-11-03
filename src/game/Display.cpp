@@ -188,7 +188,7 @@ int Display::GameMenu()
             }
             else if (input == 7)
             {
-                //transportMenu();
+                transportMenu();
             }
             else if (input == 8)
             {
@@ -1515,8 +1515,7 @@ void Display::governmentMenu(){
         else{
             valid = true;
             if (input == 1)
-            {
-               
+            {   
                 taxMenu();
             }
             else if (input == 2)
@@ -1540,6 +1539,113 @@ void Display::governmentMenu(){
                 GameMenu();
             }
         }
+    }
+}
+
+void Display::transportMenu() {
+    clear();
+    logo();
+    
+    // Step 1: Ask for starting coordinates
+    cout << "Enter the starting coordinates (in the format x,y): ";
+    int startX, startY;
+    char comma;
+    bool validInput = false;
+    while (!validInput) {
+        std::cin >> startX >> comma >> startY;
+        if (cin.fail() || comma != ',' || startX < 0 || startY < 0) {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Invalid input. Please enter coordinates in the format x,y: ";
+        } else {
+            validInput = true;
+        }
+    }
+
+    // Step 2: Ask for destination coordinates
+    cout << "Enter the destination coordinates (in the format x,y): ";
+    int destX, destY;
+    validInput = false;
+    while (!validInput) {
+        cin >> destX >> comma >> destY;
+        if (cin.fail() || comma != ',' || destX < 0 || destY < 0) {
+            cin.clear();
+            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            cout << "Invalid input. Please enter coordinates in the format x,y: ";
+        } else {
+            validInput = true;
+        }
+    }
+
+    // Step 3: Display travel options
+    tabulate::Table options;
+    options.add_row({"1. Car", "2. Train", "3. Taxi", "4. Airplane", "5. Cancel"});
+    options.format().width(20);
+    options.format().font_align(tabulate::FontAlign::center);
+    options.format().font_style({tabulate::FontStyle::bold});
+    options.format().hide_border_bottom();
+    options.format().hide_border_top();
+
+    options[0][0].format().hide_border_left();
+    options[0][3].format().hide_border_right();
+
+    tabulate::Table menu;
+    menu.add_row({"Transport Menu"});
+    menu.add_row({options});
+    menu.format().font_align(tabulate::FontAlign::center);
+    menu[0][0].format().font_color(tabulate::Color::blue);
+    
+    cout << menu << std::endl;
+    cout << "Please select a travel option." << std::endl;
+
+    // Step 4: Prompt for choice and validate input
+    int input;
+    bool valid = false;
+    vector<string> errorMsg = {"Invalid option. Please try again.", "Enter an integer."};
+    int errorCount = 0;
+    while (!valid) {
+        cin >> input;
+        if (cin.fail() || input < 1 || input > 5) {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << errorMsg[errorCount % errorMsg.size()] << endl;
+            errorCount++;
+        } else {
+            valid = true;
+        }
+    }
+
+    // Step 5: Display travel details based on choice
+    if (input != 5) {  //not "Cancel" option
+        string travelType;
+        if (input == 1) 
+        {
+            travelType = "Car";
+            cout << "You have selected: " << travelType;
+
+            int distance = map.roadDistanceTo(startX, startY, destX, destY);
+        } 
+        else if (input == 2) 
+        {
+            travelType = "Train";
+            cout << "You have selected: " << travelType;
+        } 
+        else if (input == 3) 
+        {
+            travelType = "Taxi";
+            cout << "You have selected: " << travelType;
+        } 
+        else if (input == 4) 
+        {
+            travelType = "Airplane";
+            cout << "You have selected: " << travelType;
+
+        }
+
+        
+        
+    } else {
+        cout << "Transport Menu canceled." << endl;
     }
 }
 

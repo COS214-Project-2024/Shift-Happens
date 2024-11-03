@@ -21,6 +21,8 @@ class MapComponent
 {
 private:
     int id; ///< Component ID
+    string type;      // Building type
+    string variant;   // Building variant
 
 public:
     /**

@@ -25,8 +25,6 @@ private:
 	int sewageProduction;
 	int wasteProduction;
 
-
-
 public:
 	Statistics();
 

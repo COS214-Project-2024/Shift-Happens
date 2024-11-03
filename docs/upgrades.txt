@@ -3,7 +3,7 @@ Residential Buildings
         Apartment
         Estate
         TownHouse
-        House
+        House10
 
     Available upgrades: Solar, Garden, RainCatcher, Recycling
 

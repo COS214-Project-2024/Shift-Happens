@@ -1,6 +1,8 @@
 #include "Map.h"
 #include <iostream>
 #include <cmath>
+#include <queue>
+
 
 /**
  * @brief Private constructor for Map.
@@ -37,6 +39,63 @@ shared_ptr<MapComponent> Map::getComponent(int id) {
     }
     return nullptr;
 }
+
+//Monica - test
+/**
+ * @brief Gets the coordinates of a component by ID.
+ * @param id The component ID.
+ * @return A pair of integers representing the (x, y) coordinates of the component.
+ */
+pair<int, int> Map::getComponentCoord(int id) {
+    for (int x = 0; x < tiles.size(); ++x) {
+        for (int y = 0; y < tiles[x].size(); ++y) {
+            if (tiles[x][y] && tiles[x][y]->getId() == id) {
+                return {x, y};
+            }
+        }
+    }
+    // If the component is not found, return an invalid coordinate (-1, -1)
+    return {-1, -1};
+}
+
+    /**
+     * @brief Gets a list of all buildings with the given ID.
+     * @param id The component ID.
+     * @return A vector of shared pointers to the buildings with the specified ID.
+     */
+    vector<shared_ptr<MapComponent>> Map::getListOfBuildings(int id) {
+        vector<shared_ptr<MapComponent>> buildings;
+
+        for (const auto& row : tiles) {
+            for (const auto& component : row) {
+                if (component && component->getId() == id) {
+                    buildings.push_back(component);
+                }
+            }
+        }
+        
+        return buildings;
+    }
+
+void Map::displayBuildingList(const vector<std::shared_ptr<MapComponent>>& buildings) {
+    if (buildings.empty()) {
+        cout << "No buildings found with the specified ID.\n" << endl;;
+        return;
+    }
+
+    cout << "Buildings Found:\n";
+    cout << "-----------------\n";
+    cout << "ID\tType\tVariant\n";
+    cout << "-----------------\n";
+
+    for (const auto& building : buildings) {
+        cout << building->getId() << "\t"
+            << building->getType() << "\t"
+            << building->getVariant() << "\n";
+    }
+    cout << "-----------------\n";
+}
+
 
 /**
  * @brief Renders the map.
@@ -334,6 +393,10 @@ string Map::getVariant() {
     return "Map";
 }
 
+string Map::getSymbol() {
+    return "-";
+}
+
 int Map::getTotalPopulationCapacity() {
     int total = 0;
     for (const auto& row : tiles) {
@@ -369,6 +432,7 @@ int Map::getIncome() {
     return total;
 }
 
+
 //Monica - Trasportation functions:
 /*
 Manhattan distance is particularly suitable for grid-like structures, 
@@ -397,45 +461,71 @@ double Map::calculateManhattanDistance(int startX, int startY, int endX, int end
 double Map::roadDistanceTo(int startX, int startY, int endX, int endY) const {
     double totalDistance = 0.0;
 
-    // Get the direction to iterate
-    int stepX = (endX > startX) ? 1 : (endX < startX) ? -1 : 0;
-    int stepY = (endY > startY) ? 1 : (endY < startY) ? -1 : 0;
+    // Directions for movement (right, down, left, up)
+    int dx[] = {1, 0, -1, 0};
+    int dy[] = {0, 1, 0, -1};
 
     int x = startX;
     int y = startY;
 
-    // Traverse from the start point to the end point
-    while (x != endX || y != endY) {
-        if (isTileTraversable(x, y)) {
-            totalDistance += 1.0; // Each tile represents 1 km
-        } else {
-            // Optionally, you can handle non-traversable tiles, such as logging an error or stopping the pathfinding
-            std::cout << "Tile (" << x << ", " << y << ") is not traversable." << std::endl;
+    // Use a queue to perform a breadth-first search (BFS)
+    queue<pair<int, int>> q;
+    q.push({x, y});
+
+    // Distance map to store distance to each tile
+    vector<vector<int>> distance(25, vector<int>(25, -1));
+    distance[x][y] = 0;
+
+    while (!q.empty()) {
+        auto [curX, curY] = q.front();
+        q.pop();
+
+        // If reached the destination
+        if (curX == endX && curY == endY) {
+            totalDistance = distance[curX][curY];
+            break;
         }
 
-        // Move towards the end position
-        if (x != endX) {
-            x += stepX; // Move in the x direction
-        }
-        if (y != endY) {
-            y += stepY; // Move in the y direction
+        // Explore neighbors
+        for (int i = 0; i < 4; ++i) {
+            int newX = curX + dx[i];
+            int newY = curY + dy[i];
+
+            // Check boundaries and if it is traversable with a road
+            //if (isValidPosition(newX, newY) && (tiles[newX][newY] == "-" || tiles[newX][newY] == "|")) {
+            if (isValidPosition(newX, newY) &&
+            tiles[newX][newY] != nullptr && 
+            (tiles[newX][newY]->getSymbol() == "-" || tiles[newX][newY]->getSymbol() == "|")) {
+                // If the tile hasn't been visited yet
+                if (distance[newX][newY] == -1) {
+                    distance[newX][newY] = distance[curX][curY] + 1;
+                    q.push({newX, newY});
+                }
+            }
         }
     }
 
-    return totalDistance;
+    // If the destination is not reachable via roads, return -1 or a similar indicator
+    if (totalDistance == 0.0 && (startX != endX || startY != endY)) {
+        std::cout << "No valid road path found between points." << std::endl;
+        return -1.0;
+    }
+
+    return totalDistance; // Return the total road distance if reachable
 }
+
 
 //just the displacement for air travel
 double Map::airDistanceTo(int startX, int startY, int endX, int endY) const {
     double deltaX = endX - startX;
     double deltaY = endY - startY;
-    return std::sqrt(deltaX * deltaX + deltaY * deltaY);
+    return sqrt(deltaX * deltaX + deltaY * deltaY);
 }
 
 double Map::trainDistanceTo(int startX, int startY, int endX, int endY) const {
     // Check if start and end positions are valid
     if (!isValidPosition(startX, startY) || !isValidPosition(endX, endY)) {
-        throw std::invalid_argument("Invalid start or end position.");
+        throw invalid_argument("Invalid start or end position.");
     }
 
     // Calculate Manhattan distance
