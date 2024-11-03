@@ -82,6 +82,7 @@ public:
 	void changePersonalTax(double rate, string type);
 	void collectBusinessTax();
 	void collectPersonalTax();
+	shared_ptr<Government> getGovernment();
 
 	void implementPolicy();
 	vector<string> getCurrentPolicies();

@@ -1203,7 +1203,9 @@ void Display::taxMenu() {
     tabulate::Table menu;
     menu.add_row({"Tax Menu"});
     menu.add_row({options});
-    
+    std::string taxRates = "Current Tax Rates - Personal: " + std::to_string(stats->getGovernment()->getPersonalTaxRate()) + 
+                           "%, Business: " + std::to_string(stats->getGovernment()->getBusinessTaxRate()) + "%";
+    menu.add_row({taxRates});
     menu.format().font_align(tabulate::FontAlign::center);
     menu[0][0].format().font_color(tabulate::Color::blue);
     std::cout << menu << std::endl;
@@ -1220,9 +1222,9 @@ void Display::taxMenu() {
         if (std::cin.fail()) {
             std::cin.clear();
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            std::cout << errorMsg[1] << std::endl; // "Enter an integer."
+            std::cout << errorMsg[1] << std::endl; 
         } else if (input > 3 || input < 1) {
-            std::cout << errorMsg[0] << std::endl; // "Invalid option. Please try again."
+            std::cout << errorMsg[0] << std::endl; 
         } else {
             valid = true;
             //std::cout << "User selected: " << input << std::endl; // Debug output

@@ -208,6 +208,10 @@ vector<string> Statistics::getCurrentPolicies(){
     
 }
 
+shared_ptr<Government> Statistics::getGovernment(){
+    return this->government;
+}
+
 
 
 
