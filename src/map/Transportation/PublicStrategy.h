@@ -16,7 +16,6 @@ private:
     double costPerKm = 10;
 
 public:
-    PublicStrategy();
     double calculateCost(int distance) override;
     double calculateDuration(int distance) override;
     string getDescription() override { return "Taxi"; }

@@ -15,7 +15,6 @@ private:
     double costPerKm = 20;
 
 public:
-    RoadStrategy();
     double calculateCost(int distance) override;
     double calculateDuration(int distance) override;
     string getDescription() override { return "Car"; }

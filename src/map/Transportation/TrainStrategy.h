@@ -15,7 +15,6 @@ private:
     double costPerKm = 15;
 
 public:
-	TrainStrategy();
     double calculateCost(int distance) override;
     double calculateDuration(int distance) override;
     string getDescription() override { return "Train"; }

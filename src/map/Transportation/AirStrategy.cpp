@@ -1,11 +1,10 @@
-#include "PublicStrategy.h"
+#include "AirStrategy.h"
 #include "Map.h"
 
-
-double PublicStrategy::calculateCost(int distance) {
+double AirStrategy::calculateCost(int distance) {
     return distance*costPerKm;
 }
 
-double PublicStrategy::calculateDuration(int distance) {
+double AirStrategy::calculateDuration(int distance) {
     return distance/this->speed;
 }
