@@ -36,7 +36,7 @@ void Statistics::updateStats() {
     money += income;
     income = map.getIncome();
     
-    satisfaction = map.getAverageSatisfactionScore();
+    satisfaction = (map.getAverageSatisfactionScore() + government->getSatisfaction())/2;
     waterSupply = map.getTotalWaterSupply();
     powerSupply = map.getTotalElectricitySupply();
     sewageCapacity = map.getTotalSewageCapacity();
