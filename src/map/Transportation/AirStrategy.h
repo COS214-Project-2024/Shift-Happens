@@ -17,7 +17,6 @@ private:
     double costPerKm = 250;
 
 public:
-	AirStrategy();
     double calculateCost(int distance) override;
     double calculateDuration(int distance) override;
     string getDescription() override { return "Aeroplane"; }

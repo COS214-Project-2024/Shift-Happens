@@ -57,7 +57,7 @@ public:
 
     //Government Menus
     void governmentMenu();
-
+    void CitizenMenu();
     void taxMenu();
     void businessTaxMenu();
     void personalTaxMenu();
