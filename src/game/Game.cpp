@@ -23,10 +23,11 @@ void Game::MainMenu()
         {
         case 1:
             GameMenu();
+            break;
         case 2:
-            
+            throw "error: load game not implemented";
         case 3:
-
+            throw "error: save game not implemented";
         case 4:
             display.clear();
             std::cout << "Goodbye!" << std::endl;
