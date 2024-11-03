@@ -276,8 +276,9 @@ double Government::getSatisfaction(){
     return Satisfaction/count;
 }
 
-void Government::setPeopleCount(int count){
-    int ActualPopulation = count/getSatisfaction()*100;
+void Government::setPeopleCount(int count, int BusinessSatisfaction){
+    double CombinedSatisfaction = BusinessSatisfaction+getSatisfaction()/2;
+    int ActualPopulation = count/CombinedSatisfaction*100;
     this->PopulationCount = ActualPopulation;
 }
 
