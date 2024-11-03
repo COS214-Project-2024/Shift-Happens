@@ -2,7 +2,7 @@
 #define PUBLICSERVICES_H
 
 #include "CitySubject.h"
-#include "PublicServiceState.h"
+//#include "PublicServiceState.h"
 
 #include <iostream>
 

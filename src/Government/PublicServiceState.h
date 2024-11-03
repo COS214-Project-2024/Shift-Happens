@@ -13,7 +13,7 @@
  * Each state manages the current budget spent on the service, allowing derived classes
  * to implement specific behaviors based on the budget and the quality of service provided.
  */
-class Public_Services; // Forward declaration to resolve circular dependency
+//class Public_Services; // Forward declaration to resolve circular dependency
 
 class PublicServiceState {
 	protected:

@@ -3,6 +3,7 @@
 
 #include "PublicServiceState.h"
 #include "Standard.h"
+#include "PublicServices.h"
 
 /**
  * @class Outdated
@@ -14,7 +15,6 @@
  * The service can transition to a higher quality state, such as "Standard," if the budget increases.
  */
 
-class Standard;
 class Outdated : public PublicServiceState {
 	private:
 		/**

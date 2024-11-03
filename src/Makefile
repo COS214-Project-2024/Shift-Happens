@@ -66,6 +66,7 @@ SRCS = $(SRC_DIR)/main.cpp \
        $(SRC_DIR)/../Government/CitySubject.cpp \
        $(SRC_DIR)/../Government/Education.cpp \
        $(SRC_DIR)/../Government/HealthCare.cpp \
+       $(SRC_DIR)/../Government/PublicServiceState.cpp \
        $(SRC_DIR)/../Government/Police.cpp \
        $(SRC_DIR)/../Government/BoostHealthCarePolicy.cpp \
        $(SRC_DIR)/../Government/BoostPolicePolicy.cpp \
