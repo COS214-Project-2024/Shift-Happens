@@ -31,6 +31,9 @@ public:
     int getInput(int max, int min);
     void displayMenu(string title, vector<string> options);
     void displayMenu(string title, string options);
+    void displayRow(vector<string> row);
+
+    void displayTaxStats();
 
     void displayStats();
 

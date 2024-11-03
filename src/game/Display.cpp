@@ -152,6 +152,47 @@ void Display::displayMenu(string title, string options)
     std::cout << "Please select an option." << std::endl;
 }
 
+void Display::Display::displayRow(vector<string> row)
+{
+    tabulate::Table table;
+    if (row.size() == 0)
+    {
+        throw "Display::displayRow: No data to display";
+    }
+
+    if (row.size() == 1)
+    {
+        table.add_row({row[0]});
+        table[0][0].format().font_color(tabulate::Color::blue);
+    }
+    else if (row.size() == 2)
+    {
+        table.add_row({row[0], row[1]});
+    }
+    else if (row.size() == 3)
+    {
+        table.add_row({row[0], row[1], row[2]});
+        table[0][2].format().font_color(tabulate::Color::blue);
+    }
+    else if (row.size() == 4)
+    {
+        table.add_row({row[0], row[1], row[2], row[3]});
+    }
+    else if (row.size() == 5)
+    {
+        table.add_row({row[0], row[1], row[2], row[3], row[4]});
+    }
+    else
+    {
+        throw "Display::displayRow: Too many columns or no columns";
+    }
+
+    table.format().width(21);
+    table.format().font_align(tabulate::FontAlign::center);
+    table.format().font_style({tabulate::FontStyle::bold});
+
+    std::cout << table << std::endl;
+}
 void Display::wait(int seconds)
 {
     std::this_thread::sleep_for(std::chrono::seconds(seconds));
@@ -266,7 +307,7 @@ void Display::displayStats()
     stats.add_row({"Money", "Income", "Population", "Satisfaction", "Water", "Electricity", "Waste", "Sewage"});
     stats.add_row({money, income, population, satisfaction, water, power, waste, sewage});
 
-    stats.format().width(15);
+    stats.format().width(10);
     stats.format().font_align(tabulate::FontAlign::center);
     stats.format().font_style({tabulate::FontStyle::bold});
 
@@ -1252,59 +1293,58 @@ void Display::taxMenu()
         }
     }
 }
+void Display::displayTaxStats(){
+    vector<string> taxStats;
+    taxStats.push_back("Business Tax:");
+    string bTax = std::to_string(stats->getGovernment()->getBusinessTaxRate()) + "%";
+    taxStats.push_back(bTax);
+    taxStats.push_back("Personal Tax:");
+    string pTax = std::to_string(stats->getGovernment()->getPersonalTaxRate()) + "%";
+    taxStats.push_back(pTax);
+    displayRow(taxStats);
 
+    //availble for collection
+    tabulate::Table taxTable;
+    string business = std::to_string(stats->getGovernment()->getBusinessTaxRate());
+
+}
 void Display::businessTaxMenu()
 {
     clear();
     logo();
+    
+    displayTaxStats();
     displayMenu("Business Tax Menu", {"Increase", "Decrease", "Collect", "Back"});
     int input = getInput(1, 4);
 
     if (input == 1)
     {
-        double Increase;
         std::cout << "What do you want to increase the current tax rate by?" << std::endl;
-        while (true)
+        double Increase = getInput(0, 100);
+        while (Increase + stats->getGovernment()->getBusinessTaxRate() > 100)
         {
-            std::cin >> Increase;
-
-            if (std::cin.fail() || Increase <= 0)
-            {
-                std::cin.clear();
-                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                std::cout << "Please enter a positive value to increase the tax rate." << std::endl;
-            }
-            else
-            {
-                break;
-            }
+            std::cout << "The total tax rate cannot exceed 100%. Please enter a lower value." << std::endl;
+            Increase = getInput(0, 100);
         }
         stats->changeBusinessTax(Increase, "increase");
+        businessTaxMenu();
     }
     else if (input == 2)
     {
-        double Decrease;
         std::cout << "What do you want to decrease the current tax rate by?" << std::endl;
-        while (true)
+        double Decrease = getInput(0, stats->getGovernment()->getBusinessTaxRate());
+        while (Decrease + stats->getGovernment()->getBusinessTaxRate() < 0)
         {
-            std::cin >> Decrease;
-
-            if (std::cin.fail() || Decrease <= 0)
-            {
-                std::cin.clear();
-                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                std::cout << "Please enter a positive value to decrease the tax rate." << std::endl;
-            }
-            else
-            {
-                break;
-            }
+            std::cout << "The total tax rate cannot be negative. Please enter a lower value." << std::endl;
+            Decrease = getInput(0, stats->getGovernment()->getBusinessTaxRate());
         }
         stats->changeBusinessTax(Decrease, "decrease");
+        businessTaxMenu();
     }
     else if (input == 3)
     {
         stats->collectBusinessTax();
+        businessTaxMenu();
     }
     else if (input == 4)
     {
@@ -1316,6 +1356,7 @@ void Display::personalTaxMenu()
 {
     clear();
     logo();
+    displayTaxStats();
     displayMenu("Personal Tax Menu", {"Increase", "Decrease", "Collect", "Back"});
 
     int input = getInput(1, 4);
@@ -1370,6 +1411,7 @@ void Display::personalTaxMenu()
     }
     case 3: // Collect tax
         stats->collectPersonalTax();
+        personalTaxMenu();
         break;
     case 4: // Back to tax menu
         taxMenu();
@@ -1419,6 +1461,7 @@ void Display::servicesMenu()
     logo();
 
     displayMenu("Services Menu", {"Police", "Education", "Healthcare", "Back"});
+
     int input = getInput(1, 4);
 
     string answer;
