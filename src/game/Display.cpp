@@ -1934,6 +1934,7 @@ void Display::policiesMenu(std::shared_ptr<Government> government){
             std::cout << errorMsg[errorCount] << std::endl;
             errorCount++;
         }
+        valid = true;
     }
 
     switch (input) {
