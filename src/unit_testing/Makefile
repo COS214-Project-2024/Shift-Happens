@@ -14,13 +14,29 @@ POLICY_MAIN = $(SRC_DIR)/PolicyMain.cpp
 GOVERNMENT_MAIN = $(SRC_DIR)/GovernmentMain.cpp
 CITIZEN_MAIN = $(SRC_DIR)/CitizenUnitTesting.cpp
 MAIN_CPP = $(SRC_DIR)/main.cpp
+GAME_MAIN = $(SRC_DIR)/GameUnitTesting.cpp 
+DISPLAY_MAIN = $(SRC_DIR)/DisplayUnitTesting.cpp
 
 # Common source files
 COMMON_SRCS = $(SRC_DIR)/../game/Game.cpp \
        $(SRC_DIR)/../game/Display.cpp \
        $(SRC_DIR)/../map/MapComponent.cpp \
        $(SRC_DIR)/../map/Map.cpp \
+       $(SRC_DIR)/../Statistics.cpp \
+       $(SRC_DIR)/../map/Transportation/AirStrategy.cpp \
+       $(SRC_DIR)/../map/Transportation/PublicStrategy.cpp \
+       $(SRC_DIR)/../map/Transportation/RoadStrategy.cpp \
+       $(SRC_DIR)/../map/Transportation/TrainStrategy.cpp \
+       $(SRC_DIR)/../Government/PublicServiceState.cpp \
+       $(SRC_DIR)/../Government/Outdated.cpp \
+       $(SRC_DIR)/../Government/Standard.cpp \
+       $(SRC_DIR)/../Government/Modern.cpp \
+       $(SRC_DIR)/../buildings/upgrades/Solar.cpp \
+       $(SRC_DIR)/../buildings/upgrades/Recycling.cpp \
+       $(SRC_DIR)/../buildings/upgrades/RainCatcher.cpp \
+       $(SRC_DIR)/../buildings/upgrades/Garden.cpp \
        $(SRC_DIR)/../buildings/Building.cpp \
+       $(SRC_DIR)/../buildings/Upgrade.cpp \
        $(SRC_DIR)/../buildings/residential/ResidentialBuilding.cpp \
        $(SRC_DIR)/../buildings/commercial/CommercialBuilding.cpp \
        $(SRC_DIR)/../buildings/industrial/IndustrialBuilding.cpp \
@@ -97,12 +113,15 @@ POLICY_MAIN_OBJ = $(OBJ_DIR)/PolicyMain.o
 GOVERNMENT_MAIN_OBJ = $(OBJ_DIR)/GovernmentMain.o
 CITIZEN_MAIN_OBJ = $(OBJ_DIR)/CitizenUnitTesting.o
 MAIN_OBJ = $(OBJ_DIR)/main.o
-
+GAME_MAIN_OBJ = $(OBJ_DIR)/GameUnitTesting.o
+DISPLAY_MAIN_OBJ = $(OBJ_DIR)/DisplayUnitTesting.o
 # Executable names
 POLICY_EXEC = policy_exec
 GOVERNMENT_EXEC = government_exec
 CITIZEN_EXEC = citizen_exec
 MAIN_EXEC = main_exec
+GAME_EXEC = game_exec
+DISPLAY_EXEC = display_exec 
 
 # Build target for PolicyMain
 $(POLICY_EXEC): $(POLICY_MAIN_OBJ) $(COMMON_OBJS)
@@ -119,6 +138,15 @@ $(CITIZEN_EXEC): $(CITIZEN_MAIN_OBJ) $(COMMON_OBJS)
 # Build target for main.cpp
 $(MAIN_EXEC): $(MAIN_OBJ) $(COMMON_OBJS)
 	$(CXX) $(CXXFLAGS) -o $@ $^
+
+# Build target for Gameunittesting main
+$(GAME_EXEC): $(GAME_MAIN_OBJ) $(COMMON_OBJS)
+	$(CXX) $(CXXFLAGS) -o $@ $^ $(GTEST_LIBS)
+
+# Build target for displayunittesting main
+$(DISPLAY_EXEC): $(DISPLAY_MAIN_OBJ) $(COMMON_OBJS)
+	$(CXX) $(CXXFLAGS) -o $@ $^ $(GTEST_LIBS)
+
 
 # Rule to build object files for main files
 $(OBJ_DIR)/PolicyMain.o: $(POLICY_MAIN)
@@ -137,6 +165,14 @@ $(OBJ_DIR)/main.o: $(MAIN_CPP)
 	@mkdir -p $(dir $@)
 	$(CXX) $(CXXFLAGS) -c -o $@ $<
 
+$(OBJ_DIR)/GameUnitTesting.o: $(GAME_MAIN)
+	@mkdir -p $(dir $@)
+	$(CXX) $(CXXFLAGS) -c -o $@ $<
+
+$(OBJ_DIR)/DisplayUnitTesting.o: $(DISPLAY_MAIN)
+	@mkdir -p $(dir $@)
+	$(CXX) $(CXXFLAGS) -c -o $@ $<
+      
 # Rule to build object files for common sources
 $(OBJ_DIR)/%.o: $(SRC_DIR)/../%.cpp
 	@mkdir -p $(dir $@)
@@ -155,8 +191,14 @@ run_citizen: $(CITIZEN_EXEC)
 run_main: $(MAIN_EXEC)
 	./$(MAIN_EXEC)
 
+run_game: $(GAME_EXEC)
+	./$(GAME_EXEC)
+
+run_display: $(DISPLAY_EXEC)
+	./$(DISPLAY_EXEC)
+
 # Clean up
 clean:
-	rm -rf $(OBJ_DIR) $(POLICY_EXEC) $(GOVERNMENT_EXEC) $(CITIZEN_EXEC) $(MAIN_EXEC)
+	rm -rf $(OBJ_DIR) $(POLICY_EXEC) $(GOVERNMENT_EXEC) $(CITIZEN_EXEC) $(MAIN_EXEC) $(GAME_EXEC) $(DISPLAY_EXEC)
 
-.PHONY: clean run_policy run_government run_citizen run_main
+.PHONY: clean run_policy run_government run_citizen run_main run_game run_display

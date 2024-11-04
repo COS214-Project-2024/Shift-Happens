@@ -67,6 +67,14 @@
 #include "../Government/BoostPolicePolicy.h"
 #include "../Government/Policy.h"
 
+#include "../Statistics.h"
+//Includes for Transportation strategies
+#include "../map/Transportation/TransportationStrategy.h"
+#include "../map/Transportation/RoadStrategy.h"
+#include "../map/Transportation/TrainStrategy.h"
+#include "../map/Transportation/AirStrategy.h"
+#include "../map/Transportation/PublicStrategy.h"
+
 using namespace std;
 
 /*

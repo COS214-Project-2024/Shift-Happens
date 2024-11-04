@@ -1924,7 +1924,10 @@ void Display::transportMenu()
     // Step 3: Options based on what user put in distance capacity
     clear();
     logo();
- 
+    
+    cout << "Here are the available Transport options for:" << endl;
+    cout << "Passengers: " << capacity << "." << endl;
+    cout <<  "Distance: " << distance << "km." << endl;
     cout << "Select your transport option:\n";
     int optionCount = 1;
 
@@ -1967,7 +1970,7 @@ void Display::transportMenu()
 
     // Step 4: transport choice, getting from user
     int transportChoice;
-    cout << "Please enter the number of your choice: ";
+    cout << "Please enter the NUMBER of your choice: ";
     cin >> transportChoice;
     while (cin.fail() || transportChoice < 1 || transportChoice >= optionCount) {
         cin.clear();

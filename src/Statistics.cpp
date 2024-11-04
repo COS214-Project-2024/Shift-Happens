@@ -332,7 +332,7 @@ double Statistics::getDuration(int distance) {
 void Statistics::displayOption(int distance) {
     if (strategy) {
         cout << "Transport Mode: " << strategy->getType() << endl;
-        cout << "Estimated Cost: " << getCost(distance) << " ZAR" << endl;
+        cout << "Estimated Cost: $" << getCost(distance) << " USD" << endl;
         cout << "Estimated Duration: " << getDuration(distance) << " minutes" << endl;
     } else {
         cout << "No transportation strategy set." << endl;
