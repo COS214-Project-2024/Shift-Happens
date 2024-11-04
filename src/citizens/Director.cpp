@@ -7,7 +7,6 @@
 
 #include <iostream>
 #include <cstdlib>
-#include <ctime>
 
 Director::Director(std::shared_ptr<CitizenBuilder> Builder){
 	this->Builder = Builder;
@@ -34,15 +33,15 @@ void Director::construct() {
 	// }
 
 	std::string answer;
-	srand(static_cast<unsigned int>(time(0)));
 
-  // Generate a random value between 1 and 5
-  int randomValue = rand() % 5 + 1; 
-  if (randomValue <= 3) { 
-    answer = "Yes";
-  } else { 
-    answer = "No";
-  }
+  int randomValue = rand() % 21; 
+	//cout << "Random" << randomValue << endl;
+
+	if(randomValue <= 13){
+		answer = "Yes";
+	} else {
+		answer = "No";
+	}
 	Builder->addGender();
 	Builder->addStatus(answer);
 	Builder->addType();	

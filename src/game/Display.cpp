@@ -1572,7 +1572,7 @@ void Display::displayPoliceStats()
 
     vector<string> taxStats3;
     taxStats3.push_back("Current Healthcare state:");
-    string HCstate = stats->getGovernment()->getPolice()->getState()->getType();
+    string HCstate = stats->getGovernment()->getHealthCare()->getState()->getType();
     taxStats3.push_back(HCstate);
     taxStats3.push_back("Current Healthcare running budget: ");
     string budgetHC = to_string(stats->getGovernment()->getHealthCare()->getState()->getRunningBudget());

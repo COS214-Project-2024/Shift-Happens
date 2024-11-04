@@ -106,37 +106,43 @@ void Government::addExecutePolicy(string policyType) {
 
 double Government::getUnemployment(){
     int Total = 0;
-    int Employed = 0;
+    int NotEmployed = 0;
     for(shared_ptr<Citizen> temp: CitizenCollection){
         //cout << "Entered" << endl;
         if(temp->getDescription() == "Man Citizen" || temp->getDescription() == "Woman Citizen"){
             Total++;
             //cout << "Entered" << endl;
             if(temp->getStatus()){
-                Employed++;
+                
+            } else {
+                NotEmployed++;
             }
         }
     }
-    cout << Total << endl;
-    cout << Employed << endl;
+    // cout <<"Total parents: "<< Total << endl;
+    // cout << "Total emplyed: "<<NotEmployed << endl;
     if (Total == 0) return 0.0;
 
-    return (static_cast<double>(Total - Employed) / Total) * 100;
+    return (static_cast<double>(Total - NotEmployed) / Total) * 100;
 }
 
 double Government::getSchoolStats(){
     int Total = 0;
-    int inSchool = 0;
+    int notinSchool = 0;
     for(shared_ptr<Citizen> temp: CitizenCollection){
         if(temp->getDescription() == "Boy Citizen" || temp->getDescription() == "Girl Citizen"){
             Total++;
             if(temp->getStatus()){
-                inSchool++;
+                
+            } else {
+                notinSchool++;
             }
         }
     }
+    // cout <<"Total kids: "<< Total << endl;
+    // cout << "Total school: "<<notinSchool << endl;
     if (Total == 0) return 0.0;
-    return (static_cast<double>(Total - inSchool) / Total) * 100;
+    return (static_cast<double>(Total - notinSchool) / Total) * 100;
 }
 
 void Government::setTaxState(std::shared_ptr<Tax> tax){
@@ -204,29 +210,30 @@ void Government::addCitizen(){
     string woman = "woman";
     string girl = "girl";
 
+    int randomValue = (rand() % 4) + 1;
+
     if(this->citizenTypeCounter == 0){
-        Answer = boy;
+        Answer = "Boy";
         citizenTypeCounter++;
     }
     else if(this->citizenTypeCounter == 1){
-        Answer = girl;
+        Answer = "Girl";
         citizenTypeCounter++;
     }
     else if(this->citizenTypeCounter == 2){
-        Answer = man;
+        Answer = "Man";
         citizenTypeCounter++;
     }
     else if(this->citizenTypeCounter == 3){
-        Answer = woman;
+        Answer = "Woman";
         citizenTypeCounter = 0;
     }
 
 
     std::shared_ptr<Government> self = shared_from_this();
-    while (true) {
         
 
-        if (Answer == "Man" || Answer == "man") {  
+        if (Answer == "Man") {  
             
             ManCitizenDirector->construct();
             std::shared_ptr<Citizen> newCitizen = ManCitizenDirector->getBuilder()->getCitizen();
@@ -243,8 +250,7 @@ void Government::addCitizen(){
             economy->attach(newCitizen);
             this->attach(newCitizen);
             
-            break;
-        } else if (Answer == "Woman" || Answer == "woman") {
+        } else if (Answer == "Woman") {
             WomanCitizenDirector->construct();
             std::shared_ptr<Citizen> newCitizen = WomanCitizenDirector->getBuilder()->getCitizen();
             newCitizen->setEconomy(economy);
@@ -260,8 +266,7 @@ void Government::addCitizen(){
             healthcare->attach(newCitizen);
             economy->attach(newCitizen);
             this->attach(newCitizen);
-            break;
-        } else if (Answer == "Boy" || Answer == "boy") {
+        } else if (Answer == "Boy") {
             BoyCitizenDirector->construct();
             std::shared_ptr<Citizen> newCitizen = BoyCitizenDirector->getBuilder()->getCitizen();
             newCitizen->setEconomy(economy);
@@ -277,8 +282,7 @@ void Government::addCitizen(){
             healthcare->attach(newCitizen);
             economy->attach(newCitizen);
             this->attach(newCitizen);
-            break;
-        } else if (Answer == "Girl" || Answer == "girl") {
+        } else if (Answer == "Girl") {
             GirlCitizenDirector->construct();
             std::shared_ptr<Citizen> newCitizen = GirlCitizenDirector->getBuilder()->getCitizen();
             newCitizen->setEconomy(economy);
@@ -294,11 +298,9 @@ void Government::addCitizen(){
             healthcare->attach(newCitizen);
             economy->attach(newCitizen);
             this->attach(newCitizen);
-            break;
         } else {
             std::cout << "Invalid input. Please enter one of the following: Man, Woman, Boy, or Girl." << std::endl;
         }
-    }
 }
 
 

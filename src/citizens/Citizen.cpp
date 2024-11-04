@@ -83,15 +83,15 @@ void Citizen::CalculateSatisfaction(){
   // education services
   if(observerEducation->getType() == "Modern Services"){
     if(this->getType() == "Boy" || this->getType() == "Girl"){
-      Total += 10;
+      Total += 30;
     } else {
-      Total += 5;
+      Total += 20;
     }
   } else if(observerEducation->getType() == "Standard Services"){
     if(this->getType() == "Boy" || this->getType() == "Girl"){
-      Total += 5;
+      Total += 20;
     }
-    Total += 2;
+    Total += 10;
   } else if(observerEducation->getType() == "Outdated Services"){
     if(this->getType() == "Boy" || this->getType() == "Girl"){
       Total += 0;
@@ -102,15 +102,15 @@ void Citizen::CalculateSatisfaction(){
   // police services
   if(observerEducation->getType() == "Modern Services"){
     if(this->getType() == "Boy" || this->getType() == "Girl"){
-      Total += 10;
+      Total += 30;
     } else {
-      Total += 5;
+      Total += 20;
     }
   } else if(observerEducation->getType() == "Standard Services"){
     if(this->getType() == "Boy" || this->getType() == "Girl"){
-      Total += 5;
+      Total += 20;
     }
-    Total += 2;
+    Total += 10;
   } else if(observerEducation->getType() == "Outdated Services"){
     if(this->getType() == "Boy" || this->getType() == "Girl"){
       Total += 0;
@@ -120,9 +120,9 @@ void Citizen::CalculateSatisfaction(){
 
   // healthcare
   if(observerEducation->getType() == "Modern Services"){
-    Total += 5;
+    Total += 20;
   } else if(observerEducation->getType() == "Standard Services"){
-    Total += 2;
+    Total += 10;
   } else if(observerEducation->getType() == "Outdated Services"){
     Total += 0;
   }
@@ -131,7 +131,7 @@ void Citizen::CalculateSatisfaction(){
   if(observerPopulation->getType() == "Over Populated"){
     Total += 0;
   } else if(observerPopulation->getType() == "Normal Populated"){
-    Total += 10;
+    Total += 20;
   } else if(observerPopulation->getType() == "Under Populated"){
     Total += 0;
   }
