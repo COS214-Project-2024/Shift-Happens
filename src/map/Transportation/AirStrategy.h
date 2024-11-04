@@ -20,7 +20,7 @@ using namespace std;
 class AirStrategy : public TransportationStrategy {
 
 private:
-    int capacityMin = 20;  ///< Minimum passenger capacity for airplane.
+    int capacityMin = 14;  ///< Minimum passenger capacity for airplane.
     int capacityMax = 165; ///< Maximum passenger capacity for airplane.
     double speed = 500;    ///< Average speed of airplane in km/h.
     double costPerKm = 250; ///< Cost per kilometer for airplane travel.

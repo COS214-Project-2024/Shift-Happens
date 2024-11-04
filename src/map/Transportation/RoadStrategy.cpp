@@ -9,7 +9,7 @@
  * @return The calculated travel cost in currency units.
  */
 double RoadStrategy::calculateCost(int distance) {
-    return distance * costPerKm;
+    return (distance * costPerKm)/2.5;
 }
 
 /**
@@ -21,7 +21,7 @@ double RoadStrategy::calculateCost(int distance) {
  * @return The estimated travel time in hours.
  */
 double RoadStrategy::calculateDuration(int distance) {
-    return distance / speed;
+    return (distance / this->speed)*100;
 }
 
 /**
