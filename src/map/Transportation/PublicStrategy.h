@@ -18,6 +18,6 @@ private:
 public:
     double calculateCost(int distance) override;
     double calculateDuration(int distance) override;
-    string getDescription() override { return "Taxi"; }
+    string getDescription() { return "Taxi"; }
 };
 #endif

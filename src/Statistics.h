@@ -43,6 +43,8 @@ private:
 
 	std::shared_ptr<Government> government;
 
+	shared_ptr<TransportationStrategy> strategy;	//for transportation
+
 public:
 	Statistics();
 
@@ -97,8 +99,11 @@ public:
 	vector<vector<string>> getImplementedPolicies();
 	vector<string> getAvailablePolicies();
 
-	// strategy functions
-
+	//transportation functions
+	void setStrategy(shared_ptr<TransportationStrategy> strat);
+	double getCost(int distance);
+    double getDuration(int distance);
+    void displayOption(int distance);
 
 
 };

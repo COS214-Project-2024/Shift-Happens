@@ -17,7 +17,7 @@ private:
 public:
     double calculateCost(int distance) override;
     double calculateDuration(int distance) override;
-    string getDescription() override { return "Car"; }
+    string getDescription() { return "Car"; }
 };
 
 #endif // ROADSTRATEGY_H

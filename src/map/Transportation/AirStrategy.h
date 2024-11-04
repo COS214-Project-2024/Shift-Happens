@@ -19,7 +19,7 @@ private:
 public:
     double calculateCost(int distance) override;
     double calculateDuration(int distance) override;
-    string getDescription() override { return "Aeroplane"; }
+    string getDescription() { return "Aeroplane"; }
 };
 #endif
 
