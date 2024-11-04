@@ -2,6 +2,7 @@
 #define CITIZENBUILDER_H
 
 #include <memory>
+#include <string>
 #include "../citizens/Citizen.h"
 
 
@@ -39,7 +40,7 @@ public:
      * This method should be implemented by derived classes to specify how the 
      * employment or school status is set for the citizen instance.
      */
-    virtual void addStatus() = 0;
+    virtual void addStatus(std::string answer) = 0;
 
     /**
      * @brief Retrieves the constructed citizen object.

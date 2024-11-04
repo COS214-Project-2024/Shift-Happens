@@ -16,6 +16,7 @@ class CitizenBuilder;
 class Director {
 private:
     std::shared_ptr<CitizenBuilder> Builder; ///< Shared pointer to the `CitizenBuilder` used for constructing citizens.
+    int CreatorCounter =0;
 public:
     Director(std::shared_ptr<CitizenBuilder> Builder);
     /**

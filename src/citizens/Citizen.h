@@ -66,12 +66,20 @@ protected:
     std::shared_ptr<Statistics> observerStatistics; ///< Pointer to the statistics object for tracking data.
 
 public:
+    Citizen();
+    Citizen(std::shared_ptr<Public_Services> police,std::shared_ptr<Public_Services> education,std::shared_ptr<Public_Services> healthcare, std::shared_ptr<Government> government, std::shared_ptr<Economy> economy);
     /**
      * @brief Updates the citizen based on changes in the states of the subjects being observed.
      * 
      * This observer function is called when there are changes in the states of subjects that the citizen observes.
      */
     void update();
+
+    void setPolice(std::shared_ptr<Public_Services> police);
+    void setEducation(std::shared_ptr<Education> education);
+    void setHealthcare(std::shared_ptr<Public_Services> healthcare);
+    void setGovernment(std::shared_ptr<Government> government);
+    void setEconomy( std::shared_ptr<Economy> economy);
 
     // Basic attribute accessors
     virtual std::string getType() = 0; ///< Returns the type of the citizen.

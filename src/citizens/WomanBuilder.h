@@ -15,7 +15,6 @@
 class WomanBuilder : public CitizenBuilder {
 private:
     std::shared_ptr<Woman> woman; ///< Shared pointer to the `Woman` object being constructed.
-    int CreatorCounter = 0;
 public:
     WomanBuilder();
     /**
@@ -38,7 +37,7 @@ public:
      * 
      * This method determines and sets the employment status of the `Woman`.
      */
-    void addStatus();
+    void addStatus(std::string answer);
 
     /**
      * @brief Retrieves the constructed `Woman` object as a `Citizen`.

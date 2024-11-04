@@ -1,6 +1,46 @@
 #include "Citizen.h"
+#include <memory>
+#include <sys/wait.h>
+
+Citizen::Citizen(){
+
+}
+
+Citizen::Citizen(std::shared_ptr<Public_Services> police,std::shared_ptr<Public_Services> education,std::shared_ptr<Public_Services> healthcare, std::shared_ptr<Government> government,std::shared_ptr<Economy> economy){
+  this->police = police;
+  this->education = education;
+  this->healthcare = healthcare;
+  this->government = government;
+  this->economy = economy;
+}
+
+void Citizen::setPolice(std::shared_ptr<Public_Services> police){
+  this->police = police;
+  this->observerPolice = this->police->getState();
+}
+
+void Citizen::setEducation(std::shared_ptr<Education> education){
+  this->education = education;
+  this->observerEducation = this->education->getState();
+}
+
+void Citizen::setHealthcare(std::shared_ptr<Public_Services> healthcare){
+  this->healthcare = healthcare;
+  this->observerHealthcare = this->healthcare->getState();
+}
+
+void Citizen::setGovernment(std::shared_ptr<Government> government){
+  this->government = government;
+  this->observerTax = this->government->getTax();
+}
+
+void Citizen::setEconomy( std::shared_ptr<Economy> economy){
+  this->economy = economy;
+  this->observerPopulation = this->economy->getState();
+}
 
 void Citizen::update(){
+    cout << "Citizen notified" << endl;
   observerPopulation = economy->getState();
   observerPolice = police->getState();
   observerEducation = education->getState();
@@ -54,9 +94,9 @@ void Citizen::CalculateSatisfaction(){
     Total += 2;
   } else if(observerEducation->getType() == "Outdated Services"){
     if(this->getType() == "Boy" || this->getType() == "Girl"){
-      Total -= 10;
+      Total += 0;
     }
-    Total -= 5;
+    Total += 0 ;
   }
 
   // police services
@@ -73,9 +113,9 @@ void Citizen::CalculateSatisfaction(){
     Total += 2;
   } else if(observerEducation->getType() == "Outdated Services"){
     if(this->getType() == "Boy" || this->getType() == "Girl"){
-      Total -= 10;
+      Total += 0;
     }
-    Total -= 5;
+    Total += 0;
   }
 
   // healthcare
@@ -84,22 +124,22 @@ void Citizen::CalculateSatisfaction(){
   } else if(observerEducation->getType() == "Standard Services"){
     Total += 2;
   } else if(observerEducation->getType() == "Outdated Services"){
-    Total -= 10;
+    Total += 0;
   }
 
   // Population
   if(observerPopulation->getType() == "Over Populated"){
-    Total -= 5;
+    Total += 0;
   } else if(observerPopulation->getType() == "Normal Populated"){
     Total += 10;
   } else if(observerPopulation->getType() == "Under Populated"){
-    Total -= 5;
+    Total += 0;
   }
 
   // tax
   if(observerTax->getType() == "High Tax"){
     if(this->getType() == "Man" || this->getType() == "Woman"){
-      Total -= 20;
+      Total -= 10;
     }
   } else if(observerTax->getType() == "Standard Tax"){
     if(this->getType() == "Man" || this->getType() == "Woman"){
@@ -114,7 +154,9 @@ void Citizen::CalculateSatisfaction(){
   this->SatisfactionScore = Total;
 }
 
+
 double Citizen::getSatisfactionScore(){
+  CalculateSatisfaction();
   return this->SatisfactionScore;
 }
 

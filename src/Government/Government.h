@@ -7,6 +7,7 @@
 #include "BoostHealthCarePolicy.h"
 #include "BoostPolicePolicy.h"
 #include "Education.h"
+#include "Economy.h"
 #include "Police.h"
 #include "HealthCare.h"
 #include "../Statistics.h"
@@ -28,17 +29,21 @@
 class Citizen;
 class Director;
 class Tax;
-class Government : public CitySubject {
+class Government : public CitySubject,public std::enable_shared_from_this<Government> {
 	private:
 		int citizenTypeCounter = 0;
 		// 
-		std::shared_ptr<Director> CitizenDirector;
+		std::shared_ptr<Director> ManCitizenDirector;
+		std::shared_ptr<Director> WomanCitizenDirector;
+		std::shared_ptr<Director> GirlCitizenDirector;
+		std::shared_ptr<Director> BoyCitizenDirector;
 		// Citizen counter
 		std::vector<std::shared_ptr<Citizen>> CitizenCollection;
 		// shared pointers to the public services
 		std::shared_ptr<Education> education;
 		std::shared_ptr<Police> police;
 		std::shared_ptr<HealthCare> healthcare;
+		std::shared_ptr<Economy> economy;
 		/**
 		 * @brief Current available spending budget for government-funded services and projects.
 		 */

@@ -381,16 +381,32 @@ int Display::GameMenu()
 }
 
 void Display::CitizenMenu(){
+    stats->updateStats();
+    clear();
+    logo();
+    vector<string> options ;
+    std::string input = "Back";
+    options.push_back(input);
+    
+
     vector<vector<string>> citizenInfo;
     double CitizenSatisfaction = stats->getGovernment()->getSatisfaction();
     
     // satisfaction
     vector<string> temp ;
-    temp.push_back("Satisfaction of citizens: "+ to_string(CitizenSatisfaction));
+    temp.push_back("Satisfaction of citizens: "+ to_string(stats->getGovernment()->getSatisfaction()));
     temp.push_back("Employment rate: "+ to_string(stats->getGovernment()->getUnemployment()));
     temp.push_back("In school rate: "+ to_string(stats->getGovernment()->getSchoolStats()));
 
     citizenInfo.push_back(temp);
+
+    displayTable(citizenInfo);
+    displayMenu("Citizen Menu", options);
+    int Input = getInput(1, 1);
+    if (Input == 1)
+    {
+        GameMenu();
+    }
 }
 
 void Display::displayStats()
@@ -1511,7 +1527,7 @@ void Display::taxMenu()
     clear();
     logo();
 
-    displayTaxStats();
+    //displayTaxStats();
     displayMenu("Tax Menu", {"Business", "Personal", "Back"});
 
     int input = getInput(1, 3);
@@ -1529,22 +1545,89 @@ void Display::taxMenu()
     }
 }
 
-void Display::displayTaxStats()
+
+void Display::displayPoliceStats()
 {
     vector<string> taxStats;
-    taxStats.push_back("Business Tax:");
-    string bTax = std::to_string(stats->getGovernment()->getBusinessTaxRate()) + "%";
-    taxStats.push_back(bTax);
+    // taxStats.push_back("Business Tax:");
+    // string bTax = std::to_string(stats->getGovernment()->getBusinessTaxRate()) + "%";
+    // taxStats.push_back(bTax);
+    taxStats.push_back("Current Police state:");
+    string policestate = stats->getGovernment()->getPolice()->getState()->getType();
+    taxStats.push_back(policestate);
+    taxStats.push_back("Current Police running budget: ");
+    string budget = to_string(stats->getGovernment()->getPolice()->getState()->getRunningBudget());
+    taxStats.push_back(budget);
+
+    taxStats.push_back("Current Education state:");
+    string educationstate = stats->getGovernment()->getEducation()->getState()->getType();
+    taxStats.push_back(educationstate);
+    taxStats.push_back("Current Education running budget: ");
+    string budgetE = to_string(stats->getGovernment()->getEducation()->getState()->getRunningBudget());
+    taxStats.push_back(budgetE);
+
+    taxStats.push_back("Current Healthcare state:");
+    string HCstate = stats->getGovernment()->getPolice()->getState()->getType();
+    taxStats.push_back(HCstate);
+    taxStats.push_back("Current Healthcare running budget: ");
+    string budgetHC = to_string(stats->getGovernment()->getHealthCare()->getState()->getRunningBudget());
+    taxStats.push_back(budgetHC);
+
+    displayRow(taxStats);
+}
+
+
+void Display::displayTaxStats()
+{   
+    stats->updateStats();
+    vector<string> taxStats;
+    // taxStats.push_back("Business Tax:");
+    // string bTax = std::to_string(stats->getGovernment()->getBusinessTaxRate()) + "%";
+    // taxStats.push_back(bTax);
     taxStats.push_back("Personal Tax:");
     string pTax = std::to_string(stats->getGovernment()->getPersonalTaxRate()) + "%";
     taxStats.push_back(pTax);
+    taxStats.push_back("Personal Tax state:");
+    string state = stats->getGovernment()->getTax()->getType();
+    taxStats.push_back(state);
     displayRow(taxStats);
 
     // availble for collection
     tabulate::Table taxTable;
     string business = std::to_string(stats->getUncollectedTax("business"));
     string personal = std::to_string(stats->getUncollectedTax("personal"));
-    taxTable.add_row({"Business: ", business, "Personal: ", personal});
+    taxTable.add_row({"Personal: ", personal});
+
+    taxTable.format().font_align(tabulate::FontAlign::center);
+    taxTable[0][0].format().font_color(tabulate::Color::blue);
+
+    tabulate::Table uncollected;
+    uncollected.add_row({"Uncollected Taxes"});
+    uncollected.add_row({taxTable});
+    uncollected.format().font_align(tabulate::FontAlign::center);
+    uncollected[0][0].format().font_color(tabulate::Color::blue);
+    std::cout << uncollected << std::endl;
+}
+
+void Display::displayTaxStatsBusiness()
+{
+    vector<string> taxStats;
+    taxStats.push_back("Business Tax:");
+    string bTax = std::to_string(stats->getGovernment()->getBusinessTaxRate()) + "%";
+    taxStats.push_back(bTax);
+    // taxStats.push_back("Personal Tax:");
+    // string pTax = std::to_string(stats->getGovernment()->getPersonalTaxRate()) + "%";
+    // taxStats.push_back(pTax);
+    taxStats.push_back("Business Tax state:");
+    string state = stats->getGovernment()->getBusinessTax()->getType();
+    taxStats.push_back(state);
+    displayRow(taxStats);
+
+    // availble for collection
+    tabulate::Table taxTable;
+    string business = std::to_string(stats->getUncollectedTax("business"));
+    string personal = std::to_string(stats->getUncollectedTax("personal"));
+    taxTable.add_row({"Business: ", business});
 
     taxTable.format().font_align(tabulate::FontAlign::center);
     taxTable[0][0].format().font_color(tabulate::Color::blue);
@@ -1561,7 +1644,7 @@ void Display::businessTaxMenu()
     clear();
     logo();
 
-    displayTaxStats();
+    displayTaxStatsBusiness();
     displayMenu("Business Tax Menu", {"Increase", "Decrease", "Collect", "Back"});
     int input = getInput(1, 4);
 
@@ -1631,6 +1714,7 @@ void Display::personalTaxMenu()
             }
         }
         stats->changePersonalTax(Increase, "increase");
+        stats->updateStats();
         personalTaxMenu();
         break;
     }
@@ -1654,11 +1738,13 @@ void Display::personalTaxMenu()
             }
         }
         stats->changePersonalTax(Decrease, "decrease");
+        stats->updateStats();
         personalTaxMenu();
         break;
     }
     case 3: // Collect tax
         stats->collectPersonalTax();
+        stats->updateStats();
         personalTaxMenu();
         break;
     case 4: // Back to tax menu
@@ -1715,7 +1801,7 @@ void Display::servicesMenu()
 {
     clear();
     logo();
-
+    displayPoliceStats();
     displayMenu("Services Menu", {"Police", "Education", "Healthcare", "Back"});
 
     int input = getInput(1, 4);
@@ -1918,8 +2004,12 @@ void Display::transportMenu()
     string confirm;
     cin >> confirm;
 
-    if (confirm == "yes" || confirm == "y" || confirm == "YES" || confirm == "Y") {
+    if (confirm == "yes" || confirm == "y" || confirm == "Yes") {
         cout << "Travel confirmed! Your journey has begun.\n";
+        wait(2);
+        cout << "Arrived at your destination." << endl;
+        wait(2);
+        MainMenu();
     } else {
         cout << "Travel cancelled.\n";
     }
