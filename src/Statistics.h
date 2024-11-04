@@ -96,7 +96,8 @@ public:
 	vector<vector<string>> getImplementedPolicies();
 	vector<string> getAvailablePolicies();
 
-	
+	// strategy functions
+
 
 
 };
