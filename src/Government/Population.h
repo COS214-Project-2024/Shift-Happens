@@ -2,7 +2,7 @@
 #define POPULATION_H
 
 #include <memory>
-//#include "../Government/Economy.h"
+#include "../Government/Economy.h"
 #include <iostream>	
 
 /**
