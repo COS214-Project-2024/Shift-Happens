@@ -5,6 +5,7 @@
 #include <string>
 #include <memory>
 #include "map/Map.h"
+#include "map/Transportation/TransportationStrategy.h"
 #include "Government/Government.h"
 #include "Government/StandardTax.h"
 #include "Government/LowTax.h"
