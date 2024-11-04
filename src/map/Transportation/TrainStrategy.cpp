@@ -1,5 +1,4 @@
 #include "TrainStrategy.h"
-#include "Map.h"
 
 
 double TrainStrategy::calculateCost(int distance) {

@@ -87,7 +87,11 @@ SRCS = $(SRC_DIR)/main.cpp \
        $(SRC_DIR)/../citizens/Man.cpp \
        $(SRC_DIR)/../citizens/ManBuilder.cpp \
        $(SRC_DIR)/../citizens/Woman.cpp \
-       $(SRC_DIR)/../citizens/WomanBuilder.cpp 
+       $(SRC_DIR)/../citizens/WomanBuilder.cpp \
+       $(SRC_DIR)/map/Transportation/AirStrategy.cpp \
+       $(SRC_DIR)/map/Transportation/PublicStrategy.cpp \
+       $(SRC_DIR)/map/Transportation/TrainStrategy.cpp \
+       $(SRC_DIR)/map/Transportation/RoadStrategy.cpp \
 
 # Object files
 OBJS = $(SRCS:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)

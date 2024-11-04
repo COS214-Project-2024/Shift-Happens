@@ -1,6 +1,5 @@
 #include "AirStrategy.h"
 #include "AirStrategy.h"
-#include "Map.h"
 
 double AirStrategy::calculateCost(int distance) {
     return distance*costPerKm;

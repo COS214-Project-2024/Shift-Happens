@@ -1,5 +1,4 @@
 #include "RoadStrategy.h"
-#include "Map.h"
 
 
 double RoadStrategy::calculateCost(int distance) {
