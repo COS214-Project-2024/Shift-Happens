@@ -10,7 +10,7 @@ using namespace std;
 class AirStrategy : public TransportationStrategy {
 
 private:
-    int capacityMin = 50;
+    int capacityMin = 20;
     int capacityMax = 165;
     double speed = 500;
     double costPerKm = 250;

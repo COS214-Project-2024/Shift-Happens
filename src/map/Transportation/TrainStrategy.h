@@ -9,7 +9,7 @@ using namespace std;
 
 class TrainStrategy : public TransportationStrategy {
 private:
-    int capacityMin = 50;
+    int capacityMin = 15;
     int capacityMax = 300;
     double speed = 110;
     double costPerKm = 15;
