@@ -1799,29 +1799,3 @@ void Display::transportMenu()
 }
 
 
-
-/*
-build
-- factory
--composite
--singleton
-- template
-
-upgrades
--decorator
-
-
-government
--State
--Command
--Observer
--builder
--template
-
-transport
--strategy
-
-
-Facade
-
-*/
