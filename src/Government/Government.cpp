@@ -96,7 +96,35 @@ void Government::addExecutePolicy(string policyType) {
 }
 
 
+double Government::getUnemployment(){
+    int Total = 0;
+    int Employed = 0;
+    for(shared_ptr<Citizen> temp: CitizenCollection){
+        if(temp->getDescription() != "Man" || temp->getDescription() != "Woman"){
+            Total++;
+            if(temp->getStatus()){
+                Employed++;
+            }
+        }
+    }
 
+    return Employed/Total*100;
+}
+
+double Government::getSchoolStats(){
+    int Total = 0;
+    int inSchool = 0;
+    for(shared_ptr<Citizen> temp: CitizenCollection){
+        if(temp->getDescription() != "Boy" || temp->getDescription() != "Girl"){
+            Total++;
+            if(temp->getStatus()){
+                inSchool++;
+            }
+        }
+    }
+
+    return inSchool/Total*100;
+}
 
 void Government::setTaxState(std::shared_ptr<Tax> tax){
 	this->PersonalTaxState = tax;

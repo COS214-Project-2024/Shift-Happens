@@ -372,6 +372,10 @@ void Display::CitizenMenu(){
     // satisfaction
     vector<string> temp ;
     temp.push_back("Satisfaction of citizens: "+ to_string(CitizenSatisfaction));
+    temp.push_back("Employment rate: "+ to_string(stats->getGovernment()->getUnemployment()));
+    temp.push_back("In school rate: "+ to_string(stats->getGovernment()->getSchoolStats()));
+
+    citizenInfo.push_back(temp);
 }
 
 void Display::displayStats()
