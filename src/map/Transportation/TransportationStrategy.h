@@ -12,7 +12,7 @@ public:
     virtual ~TransportationStrategy() = default;
     virtual double calculateCost(int distance) = 0;
     virtual double calculateDuration(int distance) = 0;
-    virtual string getDescription() = 0;
+    virtual string getType() = 0;
 };
 
 #endif
