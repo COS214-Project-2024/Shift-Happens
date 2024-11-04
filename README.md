@@ -20,6 +20,8 @@ CityCraft is a city builder simulation where the user acts as the government of 
       - [Polcies Menu](#policies-menu)
       - [Public Services Menu](#public-services-menu)
     - [Transportation](#transportation-menu)
+    - [View Menu](#view-menu)
+
 
 ## Usage
 
@@ -94,5 +96,9 @@ Choose Transport Option: The user selects a transport method, which is then appl
 Show Travel Details: Displays the estimated cost and duration of the trip. Asks the user to confirm whether to proceed.
 
 Confirm Travel: If the user confirms, it displays a message that the journey has begun; otherwise, it notifies that the travel was canceled.
+
+## View Menu
+
+The view display method uses the getTiles() method from the map in order to get pointers to the tiles(spaces on the map). The tiles are then checked to see whether or not they are empty and if not empty, the building ids of the buildings built on those tiles is collected as well as the building type. These two variables are stored in separate vectors and then tabulated so the user may choose the building which they would like to view the contents of. The user selects a building using the id and thereafter the contents of that building (all private attributes) are displayed. For example income, capacity, satisfaction etcetera...
 
 
