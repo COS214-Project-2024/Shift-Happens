@@ -46,6 +46,8 @@ class Standard : public PublicServiceState {
 		 * and maintaining mid-level service quality.
 		 */
 		Standard();
+		Standard(std::shared_ptr<Public_Services> PS);
+		Standard(std::shared_ptr<Public_Services> PS, double Budget);
 
 		/**
 		 * @brief Increases the running budget and checks if the state should upgrade.

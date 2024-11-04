@@ -34,6 +34,8 @@ class Modern : public PublicServiceState {
 		 * ensure the highest quality of service as long as the budget remains sufficient.
 		 */
 		Modern();
+		Modern(std::shared_ptr<Public_Services> PS);
+		Modern(std::shared_ptr<Public_Services> PS, double Budget);
 
 		/**
 		 * @brief Increases the running budget, maintaining the "Modern" quality state.

@@ -279,7 +279,7 @@ void Display::Display::displayRow(vector<string> row)
     else if (row.size() == 5)
     {
         table.add_row({row[0], row[1], row[2], row[3], row[4]});
-    }
+    } 
     else
     {
         throw "Display::displayRow: Too many columns or no columns";
@@ -1504,8 +1504,8 @@ void Display::governmentMenu()
     clear();
     logo();
 
-    displayMenu("Government Menu", {"Tax", "Policies", "Services", "Budget", "Statistics", "Back"});
-    int input = getInput(1, 6);
+    displayMenu("Government Menu", {"Tax", "Policies", "Services","Back"});
+    int input = getInput(1, 4);
 
     if (input == 1)
     {
@@ -1520,14 +1520,6 @@ void Display::governmentMenu()
         servicesMenu();
     }
     else if (input == 4)
-    {
-        budgetMenu();
-    }
-    else if (input == 5)
-    {
-        statisticsMenu();
-    }
-    else if (input == 6)
     {
         GameMenu();
     }
@@ -1570,21 +1562,25 @@ void Display::displayPoliceStats()
     string budget = to_string(stats->getGovernment()->getPolice()->getState()->getRunningBudget());
     taxStats.push_back(budget);
 
-    taxStats.push_back("Current Education state:");
+    vector<string> taxStats2;
+    taxStats2.push_back("Current Education state:");
     string educationstate = stats->getGovernment()->getEducation()->getState()->getType();
-    taxStats.push_back(educationstate);
-    taxStats.push_back("Current Education running budget: ");
+    taxStats2.push_back(educationstate);
+    taxStats2.push_back("Current Education running budget: ");
     string budgetE = to_string(stats->getGovernment()->getEducation()->getState()->getRunningBudget());
-    taxStats.push_back(budgetE);
+    taxStats2.push_back(budgetE);
 
-    taxStats.push_back("Current Healthcare state:");
+    vector<string> taxStats3;
+    taxStats3.push_back("Current Healthcare state:");
     string HCstate = stats->getGovernment()->getPolice()->getState()->getType();
-    taxStats.push_back(HCstate);
-    taxStats.push_back("Current Healthcare running budget: ");
+    taxStats3.push_back(HCstate);
+    taxStats3.push_back("Current Healthcare running budget: ");
     string budgetHC = to_string(stats->getGovernment()->getHealthCare()->getState()->getRunningBudget());
-    taxStats.push_back(budgetHC);
+    taxStats3.push_back(budgetHC);
 
     displayRow(taxStats);
+    displayRow(taxStats2);
+    displayRow(taxStats3);
 }
 
 
@@ -1769,7 +1765,7 @@ void Display::policiesMenu()
     clear();
     logo();
 
-    if (stats->getImplementedPolicies().empty())
+    if (stats->getImplementedPolicies().size() == 0)
     {
 
         displayRow({"No policies have been implemented."});
@@ -1830,11 +1826,13 @@ void Display::servicesMenu()
             if (answer == "add")
             {
                 stats->changeBudget("police", "increase");
+                servicesMenu();
                 break;
             }
             else if (answer == "remove")
             {
                 stats->changeBudget("police", "decrease");
+                servicesMenu();
                 break;
             }
             else
@@ -1853,11 +1851,13 @@ void Display::servicesMenu()
             if (answer == "add")
             {
                 stats->changeBudget("education", "increase");
+                servicesMenu();
                 break;
             }
             else if (answer == "remove")
             {
                 stats->changeBudget("education", "decrease");
+                servicesMenu();
                 break;
             }
             else
@@ -1876,11 +1876,13 @@ void Display::servicesMenu()
             if (answer == "add")
             {
                 stats->changeBudget("healthcare", "increase");
+                servicesMenu();
                 break;
             }
             else if (answer == "remove")
             {
                 stats->changeBudget("healthcare", "decrease");
+                servicesMenu();
                 break;
             }
             else
