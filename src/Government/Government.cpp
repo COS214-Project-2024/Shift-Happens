@@ -43,10 +43,12 @@ double Government::getBusinessTaxRate(){
 
 double Government::setPersonalTaxRate(double rate){
     this->PersonalTaxRate = rate;
+    return this->PersonalTaxRate;
 }
 
 double Government::setBusinessTaxRate(double rate){
     this->BusinessTaxRate = rate;
+    return this->BusinessTaxRate;
 }
 
 void Government::setPersonalTaxLower(double decrease) {
@@ -86,7 +88,7 @@ void Government::addExecutePolicy(string policyType) {
     }
     
     //remove the policy from the available policies
-    for (int i = 0; i < AvailablePolicies.size(); i++) {
+    for (std::vector<std::shared_ptr<Policy>>::size_type i = 0; i < AvailablePolicies.size(); i++) {
         if (toLowerCase(AvailablePolicies[i]->getPolicyType()) == lowerPolicy) {
             AvailablePolicies.erase(AvailablePolicies.begin() + i);
             success = true;
@@ -179,12 +181,33 @@ void Government::removeCitizen(){
 }
 
 void Government::addCitizen(){
-    //CitizenDirector->construct();
-    std::string Answer;
-    std::cout << "Specify the type of citizen you would like to add: Man/Woman/Boy/Girl" << std::endl;
+    std::string Answer = "";
+    string boy = "boy";
+    string man = "man";
+    string woman = "woman";
+    string girl = "girl";
+
+    if(this->citizenTypeCounter == 0){
+        Answer = boy;
+        citizenTypeCounter++;
+    }
+    else if(this->citizenTypeCounter == 1){
+        Answer = girl;
+        citizenTypeCounter++;
+    }
+    else if(this->citizenTypeCounter == 2){
+        Answer = man;
+        citizenTypeCounter++;
+    }
+    else if(this->citizenTypeCounter == 3){
+        Answer = woman;
+        citizenTypeCounter = 0;
+    }
+
+
 
     while (true) {
-        std::cin >> Answer;
+        
 
         if (Answer == "Man" || Answer == "man") {  
             CitizenDirector.reset();
@@ -269,7 +292,7 @@ void Government::setPeopleCount(int count, int BusinessSatisfaction) {
     this->CombinedSatisfaction = CombinedSatisfaction;
 
 
-    if(PopulationCount > CitizenCollection.size()){
+    if(static_cast<std::vector<std::shared_ptr<Citizen>>::size_type>(PopulationCount) > CitizenCollection.size()){
         // create citizens
         int Difference = PopulationCount - CitizenCollection.size();
         for(int i=0; i<Difference; i++){

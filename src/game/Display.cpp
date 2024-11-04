@@ -566,9 +566,9 @@ void Display::residentialMenu()
     clear();
     logo();
 
-    displayMenu("Residential Menu", {"Apartment", "Town House", "House"});
+    displayMenu("Residential Menu", {"Apartment", "Town House", "House","Estate"});
 
-    int input = getInput(1, 3);
+    int input = getInput(1, 4);
 
     
 
