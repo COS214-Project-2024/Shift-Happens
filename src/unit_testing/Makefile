@@ -16,6 +16,7 @@ CITIZEN_MAIN = $(SRC_DIR)/CitizenUnitTesting.cpp
 MAIN_CPP = $(SRC_DIR)/main.cpp
 GAME_MAIN = $(SRC_DIR)/GameUnitTesting.cpp 
 DISPLAY_MAIN = $(SRC_DIR)/DisplayUnitTesting.cpp
+MATERIALS_MAIN =$(SRC_DIR)/MaterialsUnitTesting.cpp
 
 # Common source files
 COMMON_SRCS = $(SRC_DIR)/../game/Game.cpp \
@@ -36,6 +37,7 @@ COMMON_SRCS = $(SRC_DIR)/../game/Game.cpp \
        $(SRC_DIR)/../buildings/upgrades/RainCatcher.cpp \
        $(SRC_DIR)/../buildings/upgrades/Garden.cpp \
        $(SRC_DIR)/../buildings/Building.cpp \
+       $(SRC_DIR)/../buildings/Materials.cpp \
        $(SRC_DIR)/../buildings/Upgrade.cpp \
        $(SRC_DIR)/../buildings/residential/ResidentialBuilding.cpp \
        $(SRC_DIR)/../buildings/commercial/CommercialBuilding.cpp \
@@ -115,13 +117,16 @@ CITIZEN_MAIN_OBJ = $(OBJ_DIR)/CitizenUnitTesting.o
 MAIN_OBJ = $(OBJ_DIR)/main.o
 GAME_MAIN_OBJ = $(OBJ_DIR)/GameUnitTesting.o
 DISPLAY_MAIN_OBJ = $(OBJ_DIR)/DisplayUnitTesting.o
+MATERIALS_MAIN_OBJ = $(OBJ_DIR)/MaterialsUnitTesting.o
+
 # Executable names
 POLICY_EXEC = policy_exec
 GOVERNMENT_EXEC = government_exec
 CITIZEN_EXEC = citizen_exec
 MAIN_EXEC = main_exec
 GAME_EXEC = game_exec
-DISPLAY_EXEC = display_exec 
+DISPLAY_EXEC = display_exec
+MATERIALS_EXEC = materials_exec 
 
 # Build target for PolicyMain
 $(POLICY_EXEC): $(POLICY_MAIN_OBJ) $(COMMON_OBJS)
@@ -145,6 +150,10 @@ $(GAME_EXEC): $(GAME_MAIN_OBJ) $(COMMON_OBJS)
 
 # Build target for displayunittesting main
 $(DISPLAY_EXEC): $(DISPLAY_MAIN_OBJ) $(COMMON_OBJS)
+	$(CXX) $(CXXFLAGS) -o $@ $^ $(GTEST_LIBS)
+
+# Build target for materialsunittesting main
+$(MATERIALS_EXEC): $(MATERIALS_MAIN_OBJ) $(COMMON_OBJS)
 	$(CXX) $(CXXFLAGS) -o $@ $^ $(GTEST_LIBS)
 
 
@@ -172,6 +181,12 @@ $(OBJ_DIR)/GameUnitTesting.o: $(GAME_MAIN)
 $(OBJ_DIR)/DisplayUnitTesting.o: $(DISPLAY_MAIN)
 	@mkdir -p $(dir $@)
 	$(CXX) $(CXXFLAGS) -c -o $@ $<
+
+$(OBJ_DIR)/MaterialsUnitTesting.o: $(MATERIALS_MAIN)
+	@mkdir -p $(dir $@)
+	$(CXX) $(CXXFLAGS) -c -o $@ $<
+
+
       
 # Rule to build object files for common sources
 $(OBJ_DIR)/%.o: $(SRC_DIR)/../%.cpp
@@ -197,8 +212,12 @@ run_game: $(GAME_EXEC)
 run_display: $(DISPLAY_EXEC)
 	./$(DISPLAY_EXEC)
 
+run_materials: $(MATERIALS_EXEC)
+	./$(MATERIALS_EXEC)
+
+
 # Clean up
 clean:
-	rm -rf $(OBJ_DIR) $(POLICY_EXEC) $(GOVERNMENT_EXEC) $(CITIZEN_EXEC) $(MAIN_EXEC) $(GAME_EXEC) $(DISPLAY_EXEC)
+	rm -rf $(OBJ_DIR) $(POLICY_EXEC) $(GOVERNMENT_EXEC) $(CITIZEN_EXEC) $(MAIN_EXEC) $(GAME_EXEC) $(DISPLAY_EXEC) $(MATERIALS_EXEC)
 
-.PHONY: clean run_policy run_government run_citizen run_main run_game run_display
+.PHONY: clean run_policy run_government run_citizen run_main run_game run_display run_materials
