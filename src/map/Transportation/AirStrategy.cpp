@@ -7,7 +7,7 @@
  * @return The calculated travel cost in currency units.
  */
 double AirStrategy::calculateCost(int distance) {
-    return (distance * costPerKm)/2.5;
+    return ((distance * costPerKm)/2.5)/10;
 }
 
 /**
@@ -17,7 +17,7 @@ double AirStrategy::calculateCost(int distance) {
  * @return The estimated travel duration in hours.
  */
 double AirStrategy::calculateDuration(int distance) {
-    return (distance / this->speed)*100;
+    return ((distance / this->speed)*100)/2;
 }
 
 /**
