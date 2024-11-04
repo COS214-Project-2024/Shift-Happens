@@ -41,6 +41,7 @@ public:
 
     void displayTable(vector<vector<string>> table);
     void displayStats();
+    void easterMenu();
 
     //Menus
     int MainMenu();
@@ -54,7 +55,8 @@ public:
     void utilityMenu();
     void landmarkMenu();
     void infrastructureMenu();
-
+    void destroyAll();
+    void buildAll();
 
     //Upgrade Menus
     void upgradeMenu();
@@ -79,7 +81,9 @@ public:
     void destroyMenu();
     //transport menu
     void transportMenu();
+    void intro();
 
+   
     //view the inner workings of all the buildings
     void viewMenu();
  

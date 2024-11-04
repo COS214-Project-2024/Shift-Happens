@@ -27,7 +27,9 @@ int Display::getInput(int min, int max)
     int input;
     bool valid = false;
 
+    int easterEgg = 0;
     vector<string> errorMsg = {"Invalid option. Please try again.", "Enter an integer.", "What are you doing?", "Can you even read?", "You are clearly doing it on purpose.", "You are testing my patience.", "I am not a happy computer.", "Stop that!!"};
+    vector<string> easterEggMsg = {"Oh no..","I can feel something coming..","My spidey senses are tingling..", "whoooo...."};
     int errorCount = 0;
     while (!valid)
     {
@@ -37,10 +39,20 @@ int Display::getInput(int min, int max)
         {
             std::cin.clear();
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-
+            
             if (errorCount == 7)
             {
                 errorCount = 0;
+                easterEgg++;
+                if (easterEgg == 2)
+                {
+                    errorMsg = easterEggMsg;
+                }
+                if (easterEgg == 3)
+                {
+                    easterMenu();
+                }
+                
             }
             std::cout << errorMsg[errorCount] << std::endl;
             errorCount++;
@@ -50,6 +62,16 @@ int Display::getInput(int min, int max)
             if (errorCount == 7)
             {
                 errorCount = 0;
+                easterEgg++;
+                if (easterEgg == 2)
+                {
+                    errorMsg = easterEggMsg;
+                }
+                if (easterEgg == 3)
+                {
+                    easterMenu();
+                }
+         
             }
             std::cout << errorMsg[errorCount] << std::endl;
             errorCount++;
@@ -65,13 +87,14 @@ int Display::getInput(int min, int max)
 
 void Display::logo()
 {
-    std::cout << R"(
-            _________ .__  __           _________                _____  __   
-            \_   ___ \|__|/  |_ ___.__. \_   ___ \____________ _/ ____\/  |_ 
-            /    \  \/|  \   __<   |  | /    \  \/\_  __ \__  \\   __\\   __\
-            \     \___|  ||  |  \___  | \     \____|  | \// __ \|  |   |  |  
-             \______  /__||__|  / ____|  \______  /|__|  (____  /__|   |__|  
-                    \/          \/              \/            \/             
+std::cout << R"(
+                                                                    _________ .__  __           _________                _____  __   
+                                                                    \_   ___ \|__|/  |_ ___.__. \_   ___ \____________ _/ ____\/  |_ 
+                                                                    /    \  \/|  \   __<   |  | /    \  \/\_  __ \__  \\   __\\   __\
+                                                                    \     \___|  ||  |  \___  | \     \____|  | \// __ \|  |   |  |  
+                                                                     \______  /__||__|  / ____|  \______  /|__|  (____  /__|   |__|  
+                                                                            \/          \/              \/            \/       
+                                                                                              By Shift Happens      
 )" << std::endl;
 }
 
@@ -276,11 +299,11 @@ void Display::wait(int seconds)
 int Display::MainMenu()
 {
     clear();
+    intro();
     logo();
 
-    displayMenu("Main Menu", {"New Game", "Load Game", "Save", "Exit"});
-    int input = getInput(1, 4);
-    return input;
+    GameMenu();
+    return 0;
 }
 
 void Display::loadscreen()
@@ -302,8 +325,8 @@ int Display::GameMenu()
     displayStats();
 
     tabulate::Table options;
-    options.add_row({"1. Build", "2. Upgrade", "3. View", "4. Destroy", "5. Government"});
-    options.add_row({"6. Citizens", "7. Transport", "8. Detailed Stats", "9. Save", "10. Exit"});
+    options.add_row({"1. Build", "2. View", "3. Destroy", "4. Government"});
+    options.add_row({"5. Citizens", "6. Transport", "7. Detailed Stats", "8. Exit"});
     options.format().width(20);
     options.format().font_align(tabulate::FontAlign::center);
     options.format().font_style({tabulate::FontStyle::bold});
@@ -323,7 +346,7 @@ int Display::GameMenu()
     }
     else if (input == 2)
     {
-        upgradeMenu();
+        // /viewMenu();
     }
     else if (input == 3)
     {
@@ -331,31 +354,23 @@ int Display::GameMenu()
     }
     else if (input == 4)
     {
-        destroyMenu();
+        governmentMenu();
     }
     else if (input == 5)
     {
-        governmentMenu();
+        CitizenMenu();
     }
     else if (input == 6)
     {
-        CitizenMenu();
+        transportMenu();
     }
     else if (input == 7)
     {
-        transportMenu();
+        // detailedStatsMenu();
     }
     else if (input == 8)
     {
-        // detailedStatsMenu();
-    }
-    else if (input == 9)
-    {
-        // saveMenu();
-    }
-    else if (input == 10)
-    {
-        // exitMenu();
+        return 0;
     }
     else
     {
@@ -522,7 +537,8 @@ void Display::displayStats()
     Stats_and_map.add_row({statistics});
     Stats_and_map.add_row({gridmap});
 
-    std::cout << Stats_and_map << std::endl;
+    std::cout << gridmap << std::endl;
+    std::cout << statistics << std::endl;
 }
 
 void Display::buildMenu()
@@ -530,8 +546,8 @@ void Display::buildMenu()
     clear();
     logo();
 
-    displayMenu("Build Menu", {"Residential", "Commercial", "Industrial", "Utility", "Landmark", "Infrastructure"});
-    int input = getInput(1, 6);
+    displayMenu("Build Menu", {"Residential", "Commercial", "Industrial", "Utility", "Landmark", "Infrastructure", "Back"});
+    int input = getInput(1, 7);
 
     if (input == 1)
     {
@@ -556,9 +572,14 @@ void Display::buildMenu()
     else if (input == 6)
     {
         infrastructureMenu();
+    }else if(input == 7){
+        GameMenu();
+    }
+    else
+    {
+        throw "Display::buildMenu: Invalid option";
     }
 
-    throw "Display::buildMenu: Invalid option";
 }
 
 void Display::residentialMenu()
@@ -566,9 +587,9 @@ void Display::residentialMenu()
     clear();
     logo();
 
-    displayMenu("Residential Menu", {"Apartment", "Town House", "House","Estate"});
+    displayMenu("Residential Menu", {"Apartment", "Town House", "House","Estate", "Back"});
 
-    int input = getInput(1, 4);
+    int input = getInput(1, 5);
 
     
 
@@ -712,6 +733,12 @@ void Display::residentialMenu()
             wait(2);
             GameMenu();
         }
+    }else if(input == 5){
+        buildMenu();
+    }
+    else
+    {
+        throw "Display::residentialMenu: Invalid option";
     }
 }
 
@@ -720,8 +747,8 @@ void Display::commercialMenu()
     clear();
     logo();
 
-    displayMenu("Commercial Menu", {"Store", "Office", "Mall"});
-    int input = getInput(1, 3);
+    displayMenu("Commercial Menu", {"Store", "Office", "Mall", "Back"});
+    int input = getInput(1, 4);
 
     int money = stats->getMoney();
     if (input == 1)
@@ -826,6 +853,13 @@ void Display::commercialMenu()
             GameMenu();
         }
     }
+    else if(input == 4){
+        buildMenu();
+    }
+    else
+    {
+        throw "Display::commercialMenu: Invalid option";
+    }
 }
 
 void Display::industrialMenu()
@@ -833,8 +867,8 @@ void Display::industrialMenu()
     clear();
     logo();
 
-    displayMenu("Industrial Menu", {"Factory", "Warehouse", "Manufacturer"});
-    int input = getInput(1, 3);
+    displayMenu("Industrial Menu", {"Factory", "Warehouse", "Manufacturer", "Back"});
+    int input = getInput(1, 4);
     int money = stats->getMoney();
     if (input == 1)
     {
@@ -937,14 +971,21 @@ void Display::industrialMenu()
             GameMenu();
         }
     }
+    else if(input == 4){
+        buildMenu();
+    }
+    else
+    {
+        throw "Display::industrialMenu: Invalid option";
+    }
 }
 
 void Display::utilityMenu()
 {
     clear();
     logo();
-    displayMenu("Utility Menu", {"Power Plant", "Water Supply", "Sewage Plant", "Landfill"});
-    int input = getInput(1, 4);
+    displayMenu("Utility Menu", {"Power Plant", "Water Supply", "Sewage Plant", "Landfill", "Back"});
+    int input = getInput(1, 5);
 
     int money = stats->getMoney();
     if (input == 1)
@@ -1087,14 +1128,21 @@ void Display::utilityMenu()
             GameMenu();
         }
     }
+    else if(input == 5){
+        buildMenu();
+    }
+    else
+    {
+        throw "Display::utilityMenu: Invalid option";
+    }
 }
 
 void Display::landmarkMenu()
 {
     clear();
     logo();
-    displayMenu("Landmark Menu", {"Park", "Monument", "Cultural Center"});
-    int input = getInput(1, 3);
+    displayMenu("Landmark Menu", {"Park", "Monument", "Cultural Center", "Back"});
+    int input = getInput(1, 4);
 
     int money = stats->getMoney();
     if (input == 1)
@@ -1201,6 +1249,13 @@ void Display::landmarkMenu()
             GameMenu();
         }
     }
+    else if(input == 4){
+        buildMenu();
+    }
+    else
+    {
+        throw "Display::landmarkMenu: Invalid option";
+    }
 }
 
 void Display::infrastructureMenu()
@@ -1208,9 +1263,9 @@ void Display::infrastructureMenu()
     clear();
     logo();
 
-    displayMenu("Infrastructure Menu", std::vector<std::string>{"Road", "Railway"});
+    displayMenu("Infrastructure Menu", std::vector<std::string>{"Road", "Railway", "Back"});
 
-    int input = getInput(1, 2);
+    int input = getInput(1, 3);
 
     int money = stats->getMoney();
     if (input == 1)
@@ -1231,7 +1286,12 @@ void Display::infrastructureMenu()
             wait(1);
             std::cout << "Construction Worker: I should have listened to my mother and become a doctor." << std::endl;
             std::cout << "Building.." << std::endl;
-
+            if(count < 25){
+                map.build("Road", "Infrastructure", 16, count);
+            }
+            else{
+                map.build("Road", "Infrastructure", 24, count);
+            }
             map.build("Road", "Infrastructure", 17, count);
             std::cout << "Construction finsihsed!!" << std::endl;
             wait(1);
@@ -1282,10 +1342,30 @@ void Display::infrastructureMenu()
             GameMenu();
         }
     }
+    else if(input == 3){
+        buildMenu();
+    }
+    else
+    {
+        throw "Display::infrastructureMenu: Invalid option";
+    }
 }
 
 string Display::check(string var, int num)
 {
+    if (var == "Road")
+    {
+        int count = map.numBuildings(var);
+        if (count >= num)
+        {
+            return var + " " + to_string(num);
+        }
+        else
+        {
+            return "";
+        }
+    }
+    
     int count = map.numBuildings(var);
     if (count >= num)
     {
@@ -1390,7 +1470,6 @@ void Display::destroyMenu()
     int input = getInput(1, buildingIds.size());
     map.destroy(buildingIds[input - 1]);
     GameMenu();
-
 }
 
 void Display::governmentMenu()
@@ -1613,11 +1692,22 @@ void Display::policiesMenu()
     }
     else
     {
-        displayMenu("Policies Menu", stats->getAvailablePolicies());
-        int input = getInput(1, stats->getAvailablePolicies().size());
-        string implementedPolicy = stats->implementPolicy(stats->getAvailablePolicies()[input - 1]);
-        std::cout << implementedPolicy << " has been implemented." << std::endl;
-        policiesMenu();
+        vector<string> policies = stats->getAvailablePolicies();
+        policies.push_back("Back");
+        displayMenu("Policies Menu", policies);
+        int input = getInput(1, policies.size());
+        if (input == policies.size())
+        {
+            governmentMenu();
+        }
+        else
+        {
+            string implementedPolicy = stats->implementPolicy(stats->getAvailablePolicies()[input - 1]);
+            std::cout << implementedPolicy << " has been implemented." << std::endl;
+            policiesMenu();
+        }
+        
+       
     }
 }
 
@@ -1832,4 +1922,218 @@ void Display::transportMenu()
     }
 }
 
+void Display::intro()
+{
+std::cout << R"(
+///\\          \  /::\\ \_\ \\_:/:\:\:/_____ //:\ \                 /\  /\  /\
+//:/\\          \//\::\\ \ \ \\/:\:\:/_____ //:::\ \               /  \/  \/+/
+/:/:/\\_________/:\/:::\`----' \\:\:/_____ //o:/\:\ \_____________/\  /\  / /
+:/:/://________//\::/\::\_______\\:/_____ ///\_\ \:\/____________/  \/  \/+/\
+/:/:///_/_/_/_/:\/::\ \:/__  __ /:/_____ ///\//\\/:/ _____  ____/\  /\  / /  \
+:/:///_/_/_/_//\::/\:\///_/ /_//:/______/_/ :~\/::/ /____/ /___/  \/  \/+/\  /)";
+wait(1);
+std::cout << R"(
+/:///_/_/_/_/:\/::\ \:/__  __ /:/____/\  / \\:\/:/ _____  ____/\  /\  / /  \/
+:///_/_/_/_//\::/\:\///_/ /_//:/____/\:\____\\::/ /____/ /___/  \/  \/+/\  /\
+///_/_/_/_/:\/::\ \:/__  __ /:/____/\:\/____/\\/____________/\  /\  / /  \/  \
+//_/_/_/_//\::/\:\///_/ /_//::::::/\:\/____/  /----/----/--/  \/  \/+/\  /\  /
+/_/_/_/_/:\/::\ \:/__  __ /\:::::/\:\/____/ \/____/____/__/\  /\  / /  \/  \/_
+_/_/_/_//\::/\:\///_/ /_//\:\::::\:\/____/ \_____________/  \/  \/+/\  /\  /     )";
+wait(1);
+std::cout << R"(
+/_/_/_/:\/::\ \:/__  __ /\:\:\::::\/____/   \ _ _ _ _ _ /\  /\  / /  \/  \/___
+_/_/_//\::/\:\///_/ /_//\:\:\:\              \_________/  \/  \/+/\  /\  /   /
+/_/_/:\/::\ \:/__  __ /\:\:\:\:\______________\       /\  /\  / /  \/  \/___/_
+_/_//\::/\:\///_/ /_//::\:\:\:\/______________/      /  \/  \/+/\  /\  /   /
+/_/:\/::\ \:/__  __ /::::\:\:\/______________/\     /\  /\  / /  \/  \/___/___)";
+wait(1);
+std::cout << R"(
+_//\::/\:\///_/ /_//:\::::\:\/______________/  \   /  \/  \/+/\  /\  /   /   /
+/:\/::\ \:/__  __ /:\:\::::\/______________/    \ /\  /\  / /  \/  \/___/___/
+/\::/\:\///_/ /_//:\:\:\                         \  \/\\\/+/\  /\  /   /   /+/
+\/::\ \:/__  __ /:\:\:\:\_________________________\ ///\\\/  \/  \/___/___/ /_
+::/\:\///_/ /_//:\:\:\:\/_________________________////::\\\  /\  /   /   /+/)";
+wait(1);
+std::cout << R"(
+                        Shift Happens Presents
+        _________ .__  __           _________                _____  __   
+        \_   ___ \|__|/  |_ ___.__. \_   ___ \____________ _/ ____\/  |_ 
+        /    \  \/|  \   __<   |  | /    \  \/\_  __ \__  \\   __\\   __\
+        \     \___|  ||  |  \___  | \     \____|  | \// __ \|  |   |  |  
+         \______  /__||__|  / ____|  \______  /|__|  (____  /__|   |__|  
+                \/          \/              \/            \/             )";
+wait(1);
 
+std::cout << R"(
+/__  __ /\::\:\:\/_________________________/_____::\:::::\/___/__/:/\:\
+/_/ /_//::\::\:\/_____________________/\/_/_/_/_/\  \           /::\ \:\
+_  __ /:\::\:8\/_____________________/\/\   /\_\\/\  \ 8       /:/\:\ \:\
+/ /_//\     \|______________________//\\/\::\/__\\/\  \|______/::\ \:\ \:\
+ __ /  \  \                        /:\/:\/\_______\/\        /:/\:\ \:\/::\
+/_//    8      -8  --  --  --  -- //\::/\\/_/_/_/_/_/ --  --/::\ \:\ \::/\:\
+_ /     |\  \   |________________/:\/::\///__/ /__//_______/:/\:\ \:\/::\ \:\
+__________\     \               //\::/\:/___  ___ /       /::\ \:\ \::/\:\ \:\
+::::::::::\\  \  \             /:\/::\///__/ /__//       /:/\:\ \:\/::\ \:\ \:)" << std::endl;
+wait(2);
+
+
+
+
+
+clear();
+}
+
+void Display::easterMenu()
+{
+    clear();
+    cout<<"You've that you are living in a simulation"<<endl;
+    wait(2);
+    cout<<"After endless wandering you stumbled into a black hole and escaped the matrix"<<endl;
+    wait(2);
+    cout<<"You've unlocked the power of the gods!"<<endl;
+    wait(3);
+    clear();
+    displayMenu("Easter Egg Menu", {"Infinite money glitch", "Bob the builder", "Death to All!", "Back"});
+    int input = getInput(1, 4);
+
+    if(input == 1){
+        stats->setMoney(999999);
+        GameMenu();
+    }
+    else if(input == 2){
+        buildAll();
+        GameMenu();
+    }
+    else if (input == 3){
+        destroyAll();
+        GameMenu();
+    }
+    
+}
+
+void Display::destroyAll()
+{
+    vector<vector<shared_ptr<MapComponent>>> tiles = map.getTiles();
+    for (int i = 0; i < tiles.size(); i++)
+    {
+        for (int j = 0; j < tiles[i].size(); j++)
+        {
+            if (tiles[i][j] != nullptr)
+            {
+                map.destroy(tiles[i][j]->getId());
+            }
+        }
+    }
+}
+void Display::buildAll()
+{
+    destroyAll();
+    
+    // Build all residential buildings
+    for (int i = 0; i < 5; i++)
+    {
+        map.build("Apartment", "Residential", 0, i);
+    }
+    for (int i = 0; i < 3; i++)
+    {
+        map.build("TownHouse", "Residential", 1, i);
+    }
+    for (int i = 0; i < 3; i++)
+    {
+        map.build("House", "Residential", 2, i);
+    }
+    map.build("Estate", "Residential", 20, 0);
+
+    // Build all commercial buildings
+    for (int i = 0; i < 7; i++)
+    {
+        map.build("Store", "Commercial", 3, i);
+    }
+    for (int i = 0; i < 3; i++)
+    {
+        map.build("Office", "Commercial", 4, i);
+    }
+    for (int i = 0; i < 2; i++)
+    {
+        map.build("Mall", "Commercial", 5, i);
+    }
+
+    // Build all industrial buildings
+    for (int i = 0; i < 4; i++)
+    {
+        map.build("Factory", "Industrial", 6, i);
+    }
+    for (int i = 0; i < 4; i++)
+    {
+        map.build("Warehouse", "Industrial", 7, i);
+    }
+    for (int i = 0; i < 2; i++)
+    {
+        map.build("Manufacturer", "Industrial", 8, i);
+    }
+
+    // Build all utility buildings
+    for (int i = 0; i < 4; i++)
+    {
+        map.build("PowerPlant", "Utility", 9, i);
+    }
+    for (int i = 0; i < 4; i++)
+    {
+        map.build("WaterSupply", "Utility", 10, i);
+    }
+    for (int i = 0; i < 4; i++)
+    {
+        map.build("SewagePlant", "Utility", 11, i);
+    }
+    for (int i = 0; i < 4; i++)
+    {
+        map.build("Landfill", "Utility", 12, i);
+    }
+
+    // Build all landmark buildings
+    for (int i = 0; i < 2; i++)
+    {
+        map.build("Park", "Landmark", 13, i);
+    }
+    for (int i = 0; i < 2; i++)
+    {
+        map.build("Monument", "Landmark", 14, i);
+    }
+    for (int i = 0; i < 2; i++)
+    {
+        map.build("CulturalCenter", "Landmark", 15, i);
+    }
+
+    // Build all infrastructure buildings
+
+    for (int i = 0; i < 25; i++)
+    {
+        map.build("Road", "Infrastructure", 17, i);
+        map.build("Road", "Infrastructure", 24, i);
+        
+    }
+    map.build("Road", "Infrastructure", 19, 23);
+        map.build("Road", "Infrastructure", 19, 22);
+        map.build("Road", "Infrastructure", 19, 21);
+    for (int i = 0; i < 15; i++)
+    {
+        map.build("Railway", "Infrastructure", 18, i);
+    }
+
+}
+
+/*
+Building Menu Description
+The building menu lets you build structures on the map
+You can choose from the following types:
+Residential - Apartment, House, TownHouse, Estate
+Commercial - Store, Office, Mall
+Industrial - Factory, Warehouse, Manufacturer
+Utility - Power Plant, Water Supply, Sewage Plant, Landfill
+Landmark - Park, Monument, Cultural Center
+Infrastructure - Road, Railway
+
+If the user does not have enough money or if the max amount of building of the selected type is reached, 
+The user will be notified and redirected to the Game menu
+
+*/
