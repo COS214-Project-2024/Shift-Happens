@@ -2,11 +2,17 @@
 
 #include <iostream>
 
+LowTax::LowTax(std::shared_ptr<Government> government) : Tax(government){
+	this->RunningRate = this->LowTHighCap/2;
+	this->RunningRateBusiness = this->LowTHighCapBusiness/2;
+}
+
 void LowTax::higher(double increase) {
 	this->RunningRate += increase;
 	if(this->RunningRate > LowTHighCap){
-		Tax* newTax = new StandardTax;
-		// make tax state change
+		std::shared_ptr<Tax> newTax = make_shared<StandardTax>(this->government);
+		newTax->setBusinessRate(this->getBusinessRate());
+		newTax->setPersonalRate(this->getRate());
 		government->setTaxState(newTax);
 	}
 
@@ -34,8 +40,10 @@ void LowTax::lowerBusiness(double decrease){
 
 void LowTax::higherBusiness(double increase){
 	this->RunningRateBusiness += increase;
-	if(this->RunningRateBusiness > LowTHighCap){
-		Tax* newTax = new StandardTax;
+	if(this->RunningRateBusiness > LowTHighCapBusiness){
+		std::shared_ptr<Tax> newTax = make_shared<StandardTax>(this->government);
+		newTax->setBusinessRate(this->getBusinessRate());
+		newTax->setPersonalRate(this->getRate());
 		government->setBusinessTaxState(newTax);
 	}
 }

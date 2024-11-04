@@ -21,7 +21,18 @@ Map::Map(int id) : MapComponent(id) {
     transportBuildingFactory = make_shared<TransportBuildingFactory>(7);
 }
 
-
+int Map::getTotalNumBuildings() {
+    
+    int count = 0;
+    for (const auto& row : tiles) {
+        for (const auto& component : row) {
+            if (component != nullptr) {
+                count++;
+            }
+        }
+    }
+    return count;
+}
 /**
  * @brief Gets a component by ID.
  * @param id The component ID.
@@ -133,6 +144,26 @@ void Map::destroy(int id) {
     }
     if (!found) {
         throw "Map::destroy(id) -> Building not found";
+    }
+}
+
+void Map::view(int id) {
+    // Check if the building exists
+    bool found = false;
+    for (size_t i = 0; i < 25; i++) {
+        for (size_t j = 0; j < 25; j++) {
+            if (tiles[i][j] != nullptr && tiles[i][j]->getId() == id) {
+                tiles[i][j]->print();
+                found = true;
+                break;
+            }
+        }
+        if (found) {
+            break;
+        }
+    }
+    if (!found) {
+        throw "Map::view(id) -> Building not found";
     }
 }
 
@@ -334,6 +365,10 @@ string Map::getVariant() {
     return "Map";
 }
 
+vector<vector<shared_ptr<MapComponent>>>& Map::getTiles() {
+    return tiles;
+}
+
 int Map::getTotalPopulationCapacity() {
     int total = 0;
     for (const auto& row : tiles) {
@@ -369,79 +404,5 @@ int Map::getIncome() {
     return total;
 }
 
-//Monica - Trasportation functions:
-/*
-Manhattan distance is particularly suitable for grid-like structures, 
-while the Euclidean distance provides a more flexible option if 
-diagonal movement is allowed. 
-*/
-bool Map::isTileTraversable(int x, int y) const {
-    // Check if the coordinates are within bounds
-    if (x < 0 || x >= 25 || y < 0 || y >= 25) {
-        return false; // Out of bounds
-    }
-    
-    // Check if the tile is empty (no building)
-    return tiles[x][y] == nullptr; // Assuming nullptr means the tile is free
-}
-
-bool Map::isValidPosition(int x, int y) const {
-    return (x >= 0 && x < tiles.size() && y >= 0 && y < tiles[x].size());
-}
-
-
-double Map::calculateManhattanDistance(int startX, int startY, int endX, int endY) const {
-    return std::abs(startX - endX) + std::abs(startY - endY);
-}
-
-double Map::roadDistanceTo(int startX, int startY, int endX, int endY) const {
-    double totalDistance = 0.0;
-
-    // Get the direction to iterate
-    int stepX = (endX > startX) ? 1 : (endX < startX) ? -1 : 0;
-    int stepY = (endY > startY) ? 1 : (endY < startY) ? -1 : 0;
-
-    int x = startX;
-    int y = startY;
-
-    // Traverse from the start point to the end point
-    while (x != endX || y != endY) {
-        if (isTileTraversable(x, y)) {
-            totalDistance += 1.0; // Each tile represents 1 km
-        } else {
-            // Optionally, you can handle non-traversable tiles, such as logging an error or stopping the pathfinding
-            std::cout << "Tile (" << x << ", " << y << ") is not traversable." << std::endl;
-        }
-
-        // Move towards the end position
-        if (x != endX) {
-            x += stepX; // Move in the x direction
-        }
-        if (y != endY) {
-            y += stepY; // Move in the y direction
-        }
-    }
-
-    return totalDistance;
-}
-
-//just the displacement for air travel
-double Map::airDistanceTo(int startX, int startY, int endX, int endY) const {
-    double deltaX = endX - startX;
-    double deltaY = endY - startY;
-    return std::sqrt(deltaX * deltaX + deltaY * deltaY);
-}
-
-double Map::trainDistanceTo(int startX, int startY, int endX, int endY) const {
-    // Check if start and end positions are valid
-    if (!isValidPosition(startX, startY) || !isValidPosition(endX, endY)) {
-        throw std::invalid_argument("Invalid start or end position.");
-    }
-
-    // Calculate Manhattan distance
-    double distance = calculateManhattanDistance(startX, startY, endX, endY);
-    
-    return distance;
-}
 
 

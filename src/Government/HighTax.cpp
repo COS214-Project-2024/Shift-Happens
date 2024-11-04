@@ -1,6 +1,13 @@
 #include "HighTax.h"
 
 #include <iostream>
+#include <memory>
+
+HighTax::HighTax(std::shared_ptr<Government> government) : Tax(government) {
+	this->RunningRate = this->HighTLowCap;
+	this->RunningRateBusiness = this->HighTLowCapBusiness;
+}
+
 void HighTax::higher(double increase) {
 	this->RunningRate += increase;
 	if(RunningRateBusiness > 100){
@@ -11,8 +18,9 @@ void HighTax::higher(double increase) {
 void HighTax::lower(double decrease) {
 	this->RunningRate -= decrease;
 	if(this->RunningRate < HighTLowCap){
-		Tax* newTax = new StandardTax;
-		// make state change
+		std::shared_ptr<Tax> newTax = std::make_shared<StandardTax>(this->government);
+		newTax->setBusinessRate(this->getBusinessRate());
+		newTax->setPersonalRate(this->getRate());
 		government->setTaxState(newTax);
 	}
 }
@@ -30,8 +38,10 @@ void HighTax::higherBusiness(double increase){
 
 void HighTax::lowerBusiness(double decrease){
 	this->RunningRateBusiness -= decrease;
-	if(this->RunningRateBusiness < HighTLowCap){
-		Tax* newTax = new StandardTax;
+	if(this->RunningRateBusiness < HighTLowCapBusiness){
+		std::shared_ptr<Tax> newTax = std::make_shared<StandardTax>(this->government);
+		newTax->setBusinessRate(this->getBusinessRate());
+		newTax->setPersonalRate(this->getRate());
 		government->setBusinessTaxState(newTax);
 	}
 }

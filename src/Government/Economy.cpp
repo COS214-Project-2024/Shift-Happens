@@ -1,13 +1,21 @@
 #include "Economy.h"
 
-void Economy::setPopulationState(Population* newState){
-  if(PopulationState != nullptr){
-    delete PopulationState;
-  }
+#include <memory>
+
+void Economy::setPopulationState(std::shared_ptr<Population> newState){
+  PopulationState.reset();
   this->PopulationState = newState;
   this->notify();
 }
 
-Population* Economy::getState(){
+std::shared_ptr<Population> Economy::getState(){
   return PopulationState;
+}
+
+void Economy::increasePop(int num){
+  PopulationState->increasePopulation(num);
+}
+
+void Economy::decreasePop(int num){
+  PopulationState->decreasePopulation(num);
 }

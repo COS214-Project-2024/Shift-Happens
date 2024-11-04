@@ -61,7 +61,11 @@ public:
 
     string getType() override;
     string getVariant() override;
-
+    /**
+     * @brief Gets the tiles of the map.
+     * @return A reference to the vector of vector of shared pointers to MapComponent.
+     */
+    vector<vector<shared_ptr<MapComponent>>>& getTiles();
     /**
      * @brief Builds a building on the map.
      * @param variant The type of building to create.
@@ -77,6 +81,13 @@ public:
      */
     void destroy(int id);
 
+    /**
+     * @brief Views a building on the map by ID.
+     * @param id The ID of the building to view.
+     */
+    void view(int id);
+
+    int getTotalNumBuildings();
     
 
     
@@ -103,7 +114,7 @@ public:
     static Map& getInstance();
 
     void upgrade(int id, const string upgradeType); // Add this line
-
+    
     // New functions
     double getAverageSatisfactionScore() override;
     int getTotalWaterSupply() override;
@@ -121,14 +132,6 @@ public:
     //counting number of buildings
     int numBuildings(string var);
     int getIncome();
-
-    // Function to calculate the distance between two points (x1, y1) and (x2, y2)
-    bool isTileTraversable(int x, int y) const;
-    bool isValidPosition(int x, int y) const;
-    double calculateManhattanDistance(int startX, int startY, int endX, int endY) const;
-    double roadDistanceTo(int x1, int y1, int x2, int y2) const;
-    double airDistanceTo(int startX, int startY, int endX, int endY) const;
-    double trainDistanceTo(int startX, int startY, int endX, int endY) const;
 
 };
 

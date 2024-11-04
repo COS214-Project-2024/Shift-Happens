@@ -2,41 +2,29 @@
 
 #include <iostream>
 
+BoyBuilder::BoyBuilder(){
+	this->boy = make_shared<Boy>();
+}
+
 void BoyBuilder::addGender() {
-	Boy->setGender("Male");
+	boy->setGender("Male");
 }
 
 void BoyBuilder::addType() {
-	Boy->setType("Boy");
+	boy->setType("Boy");
 }
 
-void BoyBuilder::addStatus() {
-	std::string answer ;
-	std::cout << "Is the boy in school? (Yes/No)" << std::endl;
-	std::cin >> answer;
+void BoyBuilder::addStatus(std::string answer) {
+
 	if(answer == "Yes" || answer == "yes"){
-		Boy->setSchool(true);
+		boy->setSchool(true);
 	} else if(answer == "No" || answer == "no"){
-		Boy->setSchool(false);
+		boy->setSchool(false);
 	} else {
-		bool done = false;
-		while (done != true)
-		{
-			std::cout << "Input did not match the expected Yes or No input. Try again." << std::endl;
-			std::cout << "Is the boy in school? (Yes/No)" << std::endl;
-			std::cin >> answer;
-			if(answer == "Yes" || answer == "yes"){
-				Boy->setSchool(true);
-				done = true;
-			} else if(answer == "No" || answer == "no"){
-				Boy->setSchool(false);
-				done = false;
-			}
-		}
-		
+		throw "BoyBuilder::addStatus() invalid input";
 	}
 }
 
-Citizen* BoyBuilder::getCitizen() {
-	return Boy;
+std::shared_ptr<Citizen> BoyBuilder::getCitizen() {
+	return this->boy;
 }

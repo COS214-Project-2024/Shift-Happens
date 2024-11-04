@@ -2,22 +2,23 @@
 
 #include <iostream>
 
+GirlBuilder::GirlBuilder(){
+	this->girl = make_shared<Girl>();
+}
+
 void GirlBuilder::addGender() {
-	Girl->setGender("Female");
+	girl->setGender("Female");
 }
 
 void GirlBuilder::addType() {
-	Girl->setType("Girl");
+	girl->setType("Girl");
 }
 
-void GirlBuilder::addStatus() {
-	std::string answer ;
-	std::cout << "Is the girl in school? (Yes/No)" << std::endl;
-	std::cin >> answer;
+void GirlBuilder::addStatus(std::string answer) {
 	if(answer == "Yes" || answer == "yes"){
-		Girl->setSchool(true);
+		girl->setSchool(true);
 	} else if(answer == "No" || answer == "no"){
-		Girl->setSchool(false);
+		girl->setSchool(false);
 	} else {
 		bool done = false;
 		while (done != true)
@@ -26,10 +27,10 @@ void GirlBuilder::addStatus() {
 			std::cout << "Is the girl in school? (Yes/No)" << std::endl;
 			std::cin >> answer;
 			if(answer == "Yes" || answer == "yes"){
-				Girl->setSchool(true);
+				girl->setSchool(true);
 				done = true;
 			} else if(answer == "No" || answer == "no"){
-				Girl->setSchool(false);
+				girl->setSchool(false);
 				done = false;
 			}
 		}
@@ -37,6 +38,6 @@ void GirlBuilder::addStatus() {
 	}
 }
 
-Citizen* GirlBuilder::getCitizen() {
-	return Girl;
+shared_ptr<Citizen> GirlBuilder::getCitizen() {
+	return this->girl;
 }
