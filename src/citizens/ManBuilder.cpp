@@ -14,8 +14,24 @@ void ManBuilder::addType() {
 
 void ManBuilder::addStatus() {
 	std::string answer ;
-	std::cout << "Is the Man employed? (Yes/No)" << std::endl;
-	std::cin >> answer;
+	
+	if(CreatorCounter == 0){
+		answer = "Yes";
+		CreatorCounter++;
+	} else if(CreatorCounter == 1){
+		answer = "No";
+		CreatorCounter++;
+	} else if(CreatorCounter == 2){
+		answer == "Yes";
+		CreatorCounter++;
+	} else if(CreatorCounter == 3){
+		answer = "Yes";
+		CreatorCounter++;
+	} else if(CreatorCounter == 4){
+		answer = "No";
+		CreatorCounter = 0;
+	}
+	
 	if(answer == "Yes" || answer == "yes"){
 		man->setEmployment(true);
 	} else if(answer == "No" || answer == "no"){
