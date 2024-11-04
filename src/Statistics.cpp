@@ -285,6 +285,7 @@ vector<vector<string>> Statistics::getImplementedPolicies(){
         temp.push_back("Cost: " + to_string(policy->getCostOfPolicy()));
         implementedPolicies.push_back(temp);
     }
+    throw "Statistics::getImplementedPolicies() something went wrong";
 
 }
 
@@ -303,3 +304,37 @@ vector<string> Statistics::getAvailablePolicies(){
     return availablePolicies;
 }
 
+//transportation functions:
+void Statistics::setStrategy(shared_ptr<TransportationStrategy> strat) {
+    strategy = move(strat);
+}
+
+// Gets the cost of traveling the specified distance using the selected strategy
+double Statistics::getCost(int distance) {
+    if (strategy) {
+        return strategy->calculateCost(distance);
+    } else {
+        cerr << "Error: No transportation strategy is set." << endl;
+        return 0.0;
+    }
+}
+
+// Gets the duration of traveling the specified distance using the selected strategy
+double Statistics::getDuration(int distance) {
+    if (strategy) {
+        return strategy->calculateDuration(distance);
+    } else {
+        cerr << "Error: No transportation strategy is set." << endl;
+        return 0.0;
+    }
+}
+
+void Statistics::displayOption(int distance) {
+    if (strategy) {
+        cout << "Transport Mode: " << strategy->getType() << endl;
+        cout << "Estimated Cost: " << getCost(distance) << " ZAR" << endl;
+        cout << "Estimated Duration: " << getDuration(distance) << " minutes" << endl;
+    } else {
+        cout << "No transportation strategy set." << endl;
+    }
+}

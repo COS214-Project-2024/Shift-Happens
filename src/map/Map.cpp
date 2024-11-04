@@ -401,7 +401,8 @@ bool Map::isTileTraversable(int x, int y) const {
 }
 
 bool Map::isValidPosition(int x, int y) const {
-    return (x >= 0 && x < tiles.size() && y >= 0 && y < tiles[x].size());
+
+    return (x >= 0 && x < static_cast<int>(tiles.size()) && y >= 0 && y < static_cast<int>(tiles[x].size()));
 }
 
 

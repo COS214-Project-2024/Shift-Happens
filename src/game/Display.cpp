@@ -60,6 +60,7 @@ int Display::getInput(int min, int max)
             return input;
         }
     }
+    throw "Display::getInput: Invalid input";
 }
 
 void Display::logo()
@@ -76,7 +77,7 @@ void Display::logo()
 
 void Display::displayMenu(string title, vector<string> options)
 {
-    for (int i = 0; i < options.size(); i++)
+    for (std::vector<std::string>::size_type i = 0; i < options.size(); i++)
     {
         options[i] = to_string(i + 1) + ". " + options[i];
     }
@@ -155,15 +156,18 @@ void Display::displayMenu(string title, string options)
 void Display::displayTable(vector<vector<string>> table)
 {
     tabulate::Table tab;
-    int rowWidth = table[0].size();
+    std::vector<std::string>::size_type rowWidth = table[0].size();
     // check if all rows are the same width
-    for (int i = 0; i < table.size(); i++)
+
+    for (std::vector<std::vector<std::string>>::size_type i = 0; i < table.size(); i++)
     {
+
         if (table[i].size() != rowWidth)
         {
             throw "Display::displayTable: Rows are not the same width";
         }
-        for (int j = 0; j < table[i].size(); j++)
+
+        for (std::vector<std::string>::size_type j = 0; j < table[i].size(); j++)
         {
             if (table[i][j].empty())
             {
@@ -178,35 +182,36 @@ void Display::displayTable(vector<vector<string>> table)
 
     if (rowWidth == 1)
     {
-        for (int i = 0; i < table.size(); i++)
+        for (std::vector<std::vector<std::string>>::size_type i = 0; i < table.size(); i++)
         {
             tab.add_row({table[i][0]});
         }
     }
     else if (rowWidth == 2)
     {
-        for (int i = 0; i < table.size(); i++)
+        for (std::vector<std::vector<std::string>>::size_type i = 0; i < table.size(); i++)
         {
             tab.add_row({table[i][0], table[i][1]});
         }
     }
     else if (rowWidth == 3)
     {
-        for (int i = 0; i < table.size(); i++)
+        for (std::vector<std::vector<std::string>>::size_type i = 0; i < table.size(); i++)
         {
             tab.add_row({table[i][0], table[i][1], table[i][2]});
         }
     }
     else if (rowWidth == 4)
     {
-        for (int i = 0; i < table.size(); i++)
+        for (std::vector<std::vector<std::string>>::size_type i = 0; i < table.size(); i++)
         {
             tab.add_row({table[i][0], table[i][1], table[i][2], table[i][3]});
         }
     }
     else if (rowWidth == 5)
     {
-        for (int i = 0; i < table.size(); i++)
+
+        for (std::vector<std::vector<std::string>>::size_type i = 0; i < table.size(); i++)
         {
             tab.add_row({table[i][0], table[i][1], table[i][2], table[i][3], table[i][4]});
         }
@@ -474,22 +479,36 @@ void Display::displayStats()
 
     string Estate = check("Estate", 1);
 
+    vector<string> road;
+    vector<string> railway;
+
+    for (int i = 0; i < 53; i++)
+    {
+        string roadstr = check("Road", i + 1);
+        road.push_back(roadstr);
+    }
+
+    for(int i = 0; i < 15; i++){
+        string railwaystr = check("Railway", i + 1);
+        railway.push_back(railwaystr);
+    }
+
     // a1 to o15
 
-    gridmap.add_row({Apartment1, Apartment1, "", House1, House1, House1, Apartment5, " ", House3, House3, TownHouse2, TownHouse2, "", Estate, Estate});
-    gridmap.add_row({TownHouse1, TownHouse1, " ", House1, House1, House1, Apartment5, " ", House3, House3, TownHouse2, TownHouse2, "", Estate, Estate});
-    gridmap.add_row({TownHouse1, TownHouse1, " ", House2, House2, House2, Apartment2, " ", House3, House3, TownHouse3, TownHouse3, "", Estate, Estate});
-    gridmap.add_row({Apartment4, Apartment4, " ", House2, House2, House2, Apartment2, " ", Apartment3, Apartment3, TownHouse3, TownHouse3, "", Estate, Estate});
-    gridmap.add_row({BusStation1, "", "", "", "", "", "", "", "", "", "", "", "", Estate, Estate});
-    gridmap.add_row({Park1, CulturalCenter1, "", Monument1, Store3, Office2, Office2, "", Store5, Office3, Office3, Monument2, Park2, Estate, Estate});
-    gridmap.add_row({Park1, CulturalCenter1, "", Monument1, Store4, Office2, Office2, "", Store6, Office3, Office3, Monument2, Park2, CulturalCenter2, CulturalCenter2});
-    gridmap.add_row({Office1, Office1, "", Mall1, Mall1, Airport1, Airport1, "", "", "", "", "", "", "", BusStation2});
-    gridmap.add_row({Office1, Office1, "", Mall1, Mall1, Airport1, Airport1, Mall2, Mall2, Mall2, Landfill1, Landfill2, "", WaterSupply1, WaterSupply2});
-    gridmap.add_row({Store1, Store2, "", Mall1, Mall1, Store7, BusStation1, Mall2, Mall2, Mall2, Landfill3, Landfill4, "", WaterSupply3, WaterSupply4});
-    gridmap.add_row({"", "", "", "", "", "", "", "", "", "", "", "", "", SewagePlant1, SewagePlant2});
+    gridmap.add_row({Apartment1, Apartment1, road[0], House1, House1, House1, Apartment5, road[1], House3, House3, TownHouse2, TownHouse2, road[2], Estate, Estate});
+    gridmap.add_row({TownHouse1, TownHouse1, road[3], House1, House1, House1, Apartment5, road[4], House3, House3, TownHouse2, TownHouse2, road[5], Estate, Estate});
+    gridmap.add_row({TownHouse1, TownHouse1, road[6], House2, House2, House2, Apartment2, road[7], House3, House3, TownHouse3, TownHouse3, road[8], Estate, Estate});
+    gridmap.add_row({Apartment4, Apartment4, road[9], House2, House2, House2, Apartment2, road[10], Apartment3, Apartment3, TownHouse3, TownHouse3, road[11], Estate, Estate});
+    gridmap.add_row({BusStation1, road[12], road[13], road[14], road[15], road[16], road[17], road[18], road[19], road[20], road[21], road[22], road[23], Estate, Estate});
+    gridmap.add_row({Park1, CulturalCenter1, road[24], Monument1, Store3, Office2, Office2, road[25], Store5, Office3, Office3, Monument2, Park2, Estate, Estate});
+    gridmap.add_row({Park1, CulturalCenter1, road[26], Monument1, Store4, Office2, Office2, road[27], Store6, Office3, Office3, Monument2, Park2, CulturalCenter2, CulturalCenter2});
+    gridmap.add_row({Office1, Office1, road[28], Mall1, Mall1, Airport1, Airport1, road[29], road[30], road[31], road[32], road[33], road[34], road[35], BusStation2});
+    gridmap.add_row({Office1, Office1, road[36], Mall1, Mall1, Airport1, Airport1, Mall2, Mall2, Mall2, Landfill1, Landfill2, road[37], WaterSupply1, WaterSupply2});
+    gridmap.add_row({Store1, Store2, road[38], Mall1, Mall1, Store7, BusStation1, Mall2, Mall2, Mall2, Landfill3, Landfill4, road[39], WaterSupply3, WaterSupply4});
+    gridmap.add_row({road[40], road[41], road[42], road[43], road[44], road[45], road[46], road[47], road[48], road[49], road[50], road[51], road[52], SewagePlant1, SewagePlant2});
     gridmap.add_row({TrainStation1, Warehouse1, Warehouse1, Factory1, Manufacturer1, Warehouse3, Warehouse3, Factory3, Manufacturer2, PowerPlant1, PowerPlant2, Airport2, Airport2, SewagePlant3, SewagePlant4});
     gridmap.add_row({TrainStation1, Warehouse2, Warehouse2, Factory2, Manufacturer1, Warehouse4, Warehouse4, Factory4, Manufacturer2, PowerPlant3, PowerPlant4, Airport2, Airport2, TrainStation2, TrainStation2});
-    gridmap.add_row({"", "", "", "", "", "", "", "", "", "", "", "", "", "", ""});
+    gridmap.add_row({railway[0], railway[1], railway[2], railway[3], railway[4], railway[5], railway[6], railway[7], railway[8], railway[9], railway[10], railway[11], railway[12], railway[13], railway[14]});
 
     gridmap.format().width(12);
     gridmap.format().height(2);
@@ -547,9 +566,7 @@ void Display::residentialMenu()
 
     int input = getInput(1, 3);
 
-    bool valid = false;
-    vector<string> errorMsg = {"Invalid option. Please try again.", "Enter an integer.", "What are you doing?", "Can you even read?", "You are clearly doing it on purpose.", "You are testing my patience.", "I am not a happy computer.", "Stop that!!"};
-    int errorCount = 0;
+    
 
     int money = stats->getMoney();
     if (input == 1)
@@ -588,6 +605,7 @@ void Display::residentialMenu()
             GameMenu();
         }
     }
+
     else if (input == 2)
     {
         if (money >= 200)
@@ -1194,14 +1212,23 @@ void Display::infrastructureMenu()
     if (input == 1)
     {
         if (money >= 100)
-        {
+        {   
+            int count = map.numBuildings("Road");
+            if (count >= 53)
+            {
+                std::cout << "Can't do that" << std::endl;
+                wait(1);
+                std::cout << "You've reached the maximum number of Roads" << std::endl;
+                wait(1);
+                GameMenu();
+            }
             stats->setMoney(money - 100);
             std::cout << "Construction Worker: Why am I always doing this backbreaking work?" << std::endl;
             wait(1);
             std::cout << "Construction Worker: I should have listened to my mother and become a doctor." << std::endl;
             std::cout << "Building.." << std::endl;
 
-            map.build("Road", "Infrastructure", 0, 0);
+            map.build("Road", "Infrastructure", 17, count);
             std::cout << "Construction finsihsed!!" << std::endl;
             wait(1);
             GameMenu();
@@ -1221,12 +1248,21 @@ void Display::infrastructureMenu()
     {
         if (money >= 200)
         {
+            int count = map.numBuildings("Railway");
+            if (count >= 15)
+            {
+                std::cout << "Can't do that" << std::endl;
+                wait(1);
+                std::cout << "You've reached the maximum number of Railways" << std::endl;
+                wait(1);
+                GameMenu();
+            }
             stats->setMoney(money - 200);
             std::cout << "Construction Worker: Why am I always doing this backbreaking work?" << std::endl;
             wait(1);
             std::cout << "Construction Worker: I should have listened to my mother and become a doctor." << std::endl;
             std::cout << "Building.." << std::endl;
-            map.build("Railway", "Infrastructure", 0, 0);
+            map.build("Railway", "Infrastructure", 18, count);
             std::cout << "Construction finsihsed!!" << std::endl;
             wait(1);
             GameMenu();
@@ -1528,7 +1564,7 @@ void Display::policiesMenu()
     {
         displayTable(stats->getImplementedPolicies());
     }
-    
+
     if (stats->getAvailablePolicies().empty())
     {
         displayRow({"No policies available to implement."});
@@ -1648,12 +1684,10 @@ void Display::statisticsMenu()
 }
 
 
-
-
 /*
-build 
+build
 - factory
--composite 
+-composite
 -singleton
 - template
 

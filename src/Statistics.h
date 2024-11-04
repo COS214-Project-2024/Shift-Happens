@@ -5,6 +5,7 @@
 #include <string>
 #include <memory>
 #include "map/Map.h"
+#include "map/Transportation/TransportationStrategy.h"
 #include "Government/Government.h"
 #include "Government/StandardTax.h"
 #include "Government/LowTax.h"
@@ -41,6 +42,8 @@ private:
 	int uncollectedPersonalTax;
 
 	std::shared_ptr<Government> government;
+
+	shared_ptr<TransportationStrategy> strategy;	//for transportation
 
 public:
 	Statistics();
@@ -95,6 +98,13 @@ public:
 
 	vector<vector<string>> getImplementedPolicies();
 	vector<string> getAvailablePolicies();
+
+	//transportation functions
+	void setStrategy(shared_ptr<TransportationStrategy> strat);
+	double getCost(int distance);
+    double getDuration(int distance);
+    void displayOption(int distance);
+
 
 };
 
