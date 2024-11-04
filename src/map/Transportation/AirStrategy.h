@@ -21,10 +21,10 @@ public:
     string getType() override { return "Aeroplane"; }
 
     //getters
-    int getCapacityMin() const { return capacityMin; }
-    int getCapacityMax() const { return capacityMax; }
-    double getSpeed() const { return speed; }
-    double getCostPerKm() const { return costPerKm; }
+    int getCapacityMin() const;
+    int getCapacityMax() const;
+    double getSpeed() const;
+    double getCostPerKm() const;
 };
 #endif
 
