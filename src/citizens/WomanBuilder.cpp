@@ -13,25 +13,7 @@ void WomanBuilder::addType() {
 	woman->setType("Woman");
 }
 
-void WomanBuilder::addStatus() {
-	std::string answer = "" ;
-	
-	if(CreatorCounter == 0){
-		answer = "Yes";
-		CreatorCounter++;
-	} else if(CreatorCounter == 1){
-		answer = "No";
-		CreatorCounter++;
-	} else if(CreatorCounter == 2){
-		answer == "Yes";
-		CreatorCounter++;
-	} else if(CreatorCounter == 3){
-		answer = "Yes";
-		CreatorCounter++;
-	} else if(CreatorCounter == 4){
-		answer = "No";
-		CreatorCounter = 0;
-	}
+void WomanBuilder::addStatus(std::string answer) {
 	
 	if(answer == "Yes" || answer == "yes"){
 		woman->setEmployment(true);

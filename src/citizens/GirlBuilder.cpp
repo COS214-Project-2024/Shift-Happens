@@ -14,26 +14,7 @@ void GirlBuilder::addType() {
 	girl->setType("Girl");
 }
 
-void GirlBuilder::addStatus() {
-	std::string answer ;
-	
-	if(CreatorCounter == 0){
-		answer = "Yes";
-		CreatorCounter++;
-	} else if(CreatorCounter == 1){
-		answer = "No";
-		CreatorCounter++;
-	} else if(CreatorCounter == 2){
-		answer == "Yes";
-		CreatorCounter++;
-	} else if(CreatorCounter == 3){
-		answer = "Yes";
-		CreatorCounter++;
-	} else if(CreatorCounter == 4){
-		answer = "No";
-		CreatorCounter = 0;
-	}
-	
+void GirlBuilder::addStatus(std::string answer) {
 	if(answer == "Yes" || answer == "yes"){
 		girl->setSchool(true);
 	} else if(answer == "No" || answer == "no"){

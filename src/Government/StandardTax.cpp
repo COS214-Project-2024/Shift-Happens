@@ -16,6 +16,7 @@ void StandardTax::higher(double increase) {
 		newTax->setBusinessRate(this->getBusinessRate());
 		newTax->setPersonalRate(this->getRate());
 		government->setTaxState(newTax);
+		//this->government->notify();
 	}
 	//std::cout << "Passed standard" << std::endl;
 }
@@ -24,9 +25,10 @@ void StandardTax::lower(double decrease) {
 	this->RunningRate -= decrease;
 	if(this->RunningRate < StandardTLowCap){
 		std::shared_ptr<Tax> newTax = std::make_shared<LowTax>(this->government);
-		newTax->setBusinessRate(this->getBusinessRate());
-		newTax->setPersonalRate(this->getRate());
+		newTax->setBusinessRate(RunningRateBusiness);
+		newTax->setPersonalRate(RunningRate);
 		government->setTaxState(newTax);
+		this->government->notify();
 	}
 }
 

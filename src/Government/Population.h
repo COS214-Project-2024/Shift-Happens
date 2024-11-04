@@ -1,7 +1,8 @@
 #ifndef POPULATION_H
 #define POPULATION_H
 
-#include "../Government/Economy.h"
+#include <memory>
+//#include "../Government/Economy.h"
 #include <iostream>	
 
 /**
@@ -14,7 +15,6 @@
  * The class maintains a population count, which determines the current state of the population and
  * can trigger state-dependent responses in associated economic models.
  */
-
 class Economy;
 class Population {
 	protected:

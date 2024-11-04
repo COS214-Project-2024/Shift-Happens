@@ -93,6 +93,8 @@ public:
      * @brief Displays tax statistics.
      */
     void displayTaxStats();
+    void displayTaxStatsBusiness();
+    void displayPoliceStats();
 
     /**
      * @brief Displays a table with rows and columns.

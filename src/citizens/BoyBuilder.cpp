@@ -14,25 +14,7 @@ void BoyBuilder::addType() {
 	boy->setType("Boy");
 }
 
-void BoyBuilder::addStatus() {
-	std::string answer  = "";
-
-	if(CreatorCounter == 0){
-		answer = "Yes";
-		CreatorCounter++;
-	} else if(CreatorCounter == 1){
-		answer = "No";
-		CreatorCounter++;
-	} else if(CreatorCounter == 2){
-		answer == "Yes";
-		CreatorCounter++;
-	} else if(CreatorCounter == 3){
-		answer = "Yes";
-		CreatorCounter++;
-	} else if(CreatorCounter == 4){
-		answer = "No";
-		CreatorCounter = 0;
-	}
+void BoyBuilder::addStatus(std::string answer) {
 
 	if(answer == "Yes" || answer == "yes"){
 		boy->setSchool(true);

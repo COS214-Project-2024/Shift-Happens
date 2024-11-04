@@ -3,6 +3,7 @@
 #include "../citizens/WomanBuilder.h"
 #include "../citizens/BoyBuilder.h"
 #include "../citizens/GirlBuilder.h"
+#include "UnderPopulated.h"
 
 #include <algorithm>
 #include <memory>
@@ -24,13 +25,18 @@ Government::Government() {
     police = std::make_shared<Police>();
     police->setPublicServiceState(make_shared<Outdated>(police));
 
+    economy = std::make_shared<Economy>();
+    economy->setPopulationState(make_shared<UnderPopulated>());
+
     // Now that the public services are initialized, create the policies
     AvailablePolicies.push_back(std::make_shared<BoostEducationPolicy>(education));
     AvailablePolicies.push_back(std::make_shared<BoostHealthCarePolicy>(healthcare));
     AvailablePolicies.push_back(std::make_shared<BoostPolicePolicy>(police));
 
-
-
+    ManCitizenDirector = std::make_shared<Director>(std::make_shared<ManBuilder>());
+    WomanCitizenDirector = std::make_shared<Director>(std::make_shared<WomanBuilder>());
+    BoyCitizenDirector = std::make_shared<Director>(std::make_shared<BoyBuilder>());
+    GirlCitizenDirector = std::make_shared<Director>(std::make_shared<GirlBuilder>());
 }
 
 double Government::getPersonalTaxRate(){
@@ -102,34 +108,40 @@ double Government::getUnemployment(){
     int Total = 0;
     int Employed = 0;
     for(shared_ptr<Citizen> temp: CitizenCollection){
-        if(temp->getDescription() != "Man" || temp->getDescription() != "Woman"){
+        //cout << "Entered" << endl;
+        if(temp->getDescription() == "Man Citizen" || temp->getDescription() == "Woman Citizen"){
             Total++;
+            //cout << "Entered" << endl;
             if(temp->getStatus()){
                 Employed++;
             }
         }
     }
+    cout << Total << endl;
+    cout << Employed << endl;
+    if (Total == 0) return 0.0;
 
-    return Employed/Total*100;
+    return (static_cast<double>(Total - Employed) / Total) * 100;
 }
 
 double Government::getSchoolStats(){
     int Total = 0;
     int inSchool = 0;
     for(shared_ptr<Citizen> temp: CitizenCollection){
-        if(temp->getDescription() != "Boy" || temp->getDescription() != "Girl"){
+        if(temp->getDescription() == "Boy Citizen" || temp->getDescription() == "Girl Citizen"){
             Total++;
             if(temp->getStatus()){
                 inSchool++;
             }
         }
     }
-
-    return inSchool/Total*100;
+    if (Total == 0) return 0.0;
+    return (static_cast<double>(Total - inSchool) / Total) * 100;
 }
 
 void Government::setTaxState(std::shared_ptr<Tax> tax){
 	this->PersonalTaxState = tax;
+    cout << "notified citizen" << endl;
 	this->notify();
 }
 
@@ -210,37 +222,78 @@ void Government::addCitizen(){
     }
 
 
-
+    std::shared_ptr<Government> self = shared_from_this();
     while (true) {
         
 
         if (Answer == "Man" || Answer == "man") {  
-            CitizenDirector.reset();
-            CitizenDirector = std::make_shared<Director>(std::make_shared<ManBuilder>());
-            CitizenDirector->construct();
-            std::shared_ptr<Citizen> newCitizen = CitizenDirector->getBuilder()->getCitizen();
+            
+            ManCitizenDirector->construct();
+            std::shared_ptr<Citizen> newCitizen = ManCitizenDirector->getBuilder()->getCitizen();
+            newCitizen->setEconomy(economy);
+            newCitizen->setPolice(police);
+            newCitizen->setEducation(education);
+            newCitizen->setHealthcare(healthcare);
+            newCitizen->setGovernment(self);
+
             CitizenCollection.push_back(newCitizen);
+            police->attach(newCitizen);
+            education->attach(newCitizen);
+            healthcare->attach(newCitizen);
+            economy->attach(newCitizen);
+            this->attach(newCitizen);
+            
             break;
         } else if (Answer == "Woman" || Answer == "woman") {
-            CitizenDirector.reset();
-            CitizenDirector = std::make_shared<Director>(std::make_shared<WomanBuilder>());
-            CitizenDirector->construct();
-            std::shared_ptr<Citizen> newCitizen = CitizenDirector->getBuilder()->getCitizen();
+            WomanCitizenDirector->construct();
+            std::shared_ptr<Citizen> newCitizen = WomanCitizenDirector->getBuilder()->getCitizen();
+            newCitizen->setEconomy(economy);
+            newCitizen->setPolice(police);
+            newCitizen->setEducation(education);
+            newCitizen->setHealthcare(healthcare);
+            newCitizen->setGovernment(self);
+
             CitizenCollection.push_back(newCitizen);
+
+            police->attach(newCitizen);
+            education->attach(newCitizen);
+            healthcare->attach(newCitizen);
+            economy->attach(newCitizen);
+            this->attach(newCitizen);
             break;
         } else if (Answer == "Boy" || Answer == "boy") {
-            CitizenDirector.reset();
-            CitizenDirector = std::make_shared<Director>(std::make_shared<BoyBuilder>());
-            CitizenDirector->construct();
-            std::shared_ptr<Citizen> newCitizen = CitizenDirector->getBuilder()->getCitizen();
+            BoyCitizenDirector->construct();
+            std::shared_ptr<Citizen> newCitizen = BoyCitizenDirector->getBuilder()->getCitizen();
+            newCitizen->setEconomy(economy);
+            newCitizen->setPolice(police);
+            newCitizen->setEducation(education);
+            newCitizen->setHealthcare(healthcare);
+            newCitizen->setGovernment(self);
+
             CitizenCollection.push_back(newCitizen);
+
+            police->attach(newCitizen);
+            education->attach(newCitizen);
+            healthcare->attach(newCitizen);
+            economy->attach(newCitizen);
+            this->attach(newCitizen);
             break;
         } else if (Answer == "Girl" || Answer == "girl") {
-            CitizenDirector.reset();
-            CitizenDirector = std::make_shared<Director>(std::make_shared<GirlBuilder>());
-            CitizenDirector->construct();
-            std::shared_ptr<Citizen> newCitizen = CitizenDirector->getBuilder()->getCitizen();
+            GirlCitizenDirector->construct();
+            std::shared_ptr<Citizen> newCitizen = GirlCitizenDirector->getBuilder()->getCitizen();
+            newCitizen->setEconomy(economy);
+            newCitizen->setPolice(police);
+            newCitizen->setEducation(education);
+            newCitizen->setHealthcare(healthcare);
+            newCitizen->setGovernment(self);
+
             CitizenCollection.push_back(newCitizen);
+
+            police->attach(newCitizen);
+            education->attach(newCitizen);
+            healthcare->attach(newCitizen);
+            economy->attach(newCitizen);
+            this->attach(newCitizen);
             break;
         } else {
             std::cout << "Invalid input. Please enter one of the following: Man, Woman, Boy, or Girl." << std::endl;
@@ -269,17 +322,20 @@ double Government::getSatisfaction() {
     int count = CitizenCollection.size();
 
     if (count == 0) {
+        //cout << "Citizen empty" << endl;
         return 0.0;
     }
 
     for (shared_ptr<Citizen> temp : CitizenCollection) {
         double score = temp->getSatisfactionScore();
+        //cout << "Returned score" << score << endl;
         if (std::isnan(score)) {
+            //cout << "Entered Nan" << endl;
             continue; 
         }
         Satisfaction += score;
-    }
-
+    }   
+    //cout << "Satisfaction" << Satisfaction << endl;
     return Satisfaction / count;
 }
 
@@ -299,9 +355,11 @@ void Government::setPeopleCount(int count, int BusinessSatisfaction) {
 
     if(static_cast<std::vector<std::shared_ptr<Citizen>>::size_type>(PopulationCount) > CitizenCollection.size()){
         // create citizens
+        //cout << "Entered add citizens" << endl;
         int Difference = PopulationCount - CitizenCollection.size();
         for(int i=0; i<Difference; i++){
             addCitizen();
+            economy->increasePop(1);
         } 
     }
 
@@ -309,8 +367,10 @@ void Government::setPeopleCount(int count, int BusinessSatisfaction) {
         int Difference = CitizenCollection.size() - PopulationCount;
         for(int i=0; i<Difference; i++){
             removeCitizen();
+            economy->decreasePop(1);
         }
     }
+
 }
 
 double Government::getCombinedSatisfaction(){

@@ -72,6 +72,10 @@ SRCS = $(SRC_DIR)/main.cpp \
        $(SRC_DIR)/../Government/BoostPolicePolicy.cpp \
        $(SRC_DIR)/../Government/BoostEducationPolicy.cpp \
        $(SRC_DIR)/../Government/Government.cpp \
+       $(SRC_DIR)/../Government/UnderPopulated.cpp \
+       $(SRC_DIR)/../Government/Population.cpp \
+       $(SRC_DIR)/../Government/OverPopulated.cpp \
+       $(SRC_DIR)/../Government/Normal.cpp \
        $(SRC_DIR)/../Government/Policy.cpp \
        $(SRC_DIR)/../Government/Tax.cpp \
        $(SRC_DIR)/../Government/StandardTax.cpp \
