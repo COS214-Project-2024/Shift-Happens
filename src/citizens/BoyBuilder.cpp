@@ -15,7 +15,7 @@ void BoyBuilder::addType() {
 }
 
 void BoyBuilder::addStatus() {
-	std::string answer ;
+	std::string answer  = "";
 
 	if(CreatorCounter == 0){
 		answer = "Yes";
@@ -39,21 +39,7 @@ void BoyBuilder::addStatus() {
 	} else if(answer == "No" || answer == "no"){
 		boy->setSchool(false);
 	} else {
-		bool done = false;
-		while (done != true)
-		{
-			std::cout << "Input did not match the expected Yes or No input. Try again." << std::endl;
-			std::cout << "Is the boy in school? (Yes/No)" << std::endl;
-			std::cin >> answer;
-			if(answer == "Yes" || answer == "yes"){
-				boy->setSchool(true);
-				done = true;
-			} else if(answer == "No" || answer == "no"){
-				boy->setSchool(false);
-				done = false;
-			}
-		}
-		
+		throw "BoyBuilder::addStatus() invalid input";
 	}
 }
 
