@@ -20,7 +20,21 @@ COMMON_SRCS = $(SRC_DIR)/../game/Game.cpp \
        $(SRC_DIR)/../game/Display.cpp \
        $(SRC_DIR)/../map/MapComponent.cpp \
        $(SRC_DIR)/../map/Map.cpp \
+       $(SRC_DIR)/../Statistics.cpp \
+       $(SRC_DIR)/../map/Transportation/AirStrategy.cpp \
+       $(SRC_DIR)/../map/Transportation/PublicStrategy.cpp \
+       $(SRC_DIR)/../map/Transportation/RoadStrategy.cpp \
+       $(SRC_DIR)/../map/Transportation/TrainStrategy.cpp \
+       $(SRC_DIR)/../Government/PublicServiceState.cpp \
+       $(SRC_DIR)/../Government/Outdated.cpp \
+       $(SRC_DIR)/../Government/Standard.cpp \
+       $(SRC_DIR)/../Government/Modern.cpp \
+       $(SRC_DIR)/../buildings/upgrades/Solar.cpp \
+       $(SRC_DIR)/../buildings/upgrades/Recycling.cpp \
+       $(SRC_DIR)/../buildings/upgrades/RainCatcher.cpp \
+       $(SRC_DIR)/../buildings/upgrades/Garden.cpp \
        $(SRC_DIR)/../buildings/Building.cpp \
+       $(SRC_DIR)/../buildings/Upgrade.cpp \
        $(SRC_DIR)/../buildings/residential/ResidentialBuilding.cpp \
        $(SRC_DIR)/../buildings/commercial/CommercialBuilding.cpp \
        $(SRC_DIR)/../buildings/industrial/IndustrialBuilding.cpp \

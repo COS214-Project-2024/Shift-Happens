@@ -44,6 +44,12 @@
 
 // Other includes
 #include "../Statistics.h"
+//Includes for Transportation strategies
+#include "../map/Transportation/TransportationStrategy.h"
+#include "../map/Transportation/RoadStrategy.h"
+#include "../map/Transportation/TrainStrategy.h"
+#include "../map/Transportation/AirStrategy.h"
+#include "../map/Transportation/PublicStrategy.h"
 
 using namespace std;
 
@@ -249,7 +255,7 @@ void Taxation(shared_ptr<Government> government){
                 government->IncreaseAvialableBudget(Income);
                 break;
             case 6:
-                double BIncome = government->CollectBusinessTax();
+                double BIncome = government->CollectBusinessTax(1);
                 government->IncreaseAvialableBudget(BIncome);
                 break;
             case 7:
@@ -287,7 +293,7 @@ void Policies(shared_ptr<Government> government){
 
         switch (choice) {
             case 1:
-                government->addExecutePolicy();
+                government->addExecutePolicy("");
                 break;
             case 2:
                 std::cout << "\nCurrently implemented policies:\n";
