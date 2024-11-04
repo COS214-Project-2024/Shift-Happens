@@ -285,6 +285,7 @@ vector<vector<string>> Statistics::getImplementedPolicies(){
         temp.push_back("Cost: " + to_string(policy->getCostOfPolicy()));
         implementedPolicies.push_back(temp);
     }
+    throw "Statistics::getImplementedPolicies() something went wrong";
 
 }
 

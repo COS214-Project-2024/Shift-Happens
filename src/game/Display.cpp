@@ -60,6 +60,7 @@ int Display::getInput(int min, int max)
             return input;
         }
     }
+    throw "Display::getInput: Invalid input";
 }
 
 void Display::logo()
@@ -76,7 +77,7 @@ void Display::logo()
 
 void Display::displayMenu(string title, vector<string> options)
 {
-    for (int i = 0; i < options.size(); i++)
+    for (std::vector<std::string>::size_type i = 0; i < options.size(); i++)
     {
         options[i] = to_string(i + 1) + ". " + options[i];
     }
@@ -155,15 +156,18 @@ void Display::displayMenu(string title, string options)
 void Display::displayTable(vector<vector<string>> table)
 {
     tabulate::Table tab;
-    int rowWidth = table[0].size();
+    std::vector<std::string>::size_type rowWidth = table[0].size();
     // check if all rows are the same width
-    for (int i = 0; i < table.size(); i++)
+
+    for (std::vector<std::vector<std::string>>::size_type i = 0; i < table.size(); i++)
     {
+
         if (table[i].size() != rowWidth)
         {
             throw "Display::displayTable: Rows are not the same width";
         }
-        for (int j = 0; j < table[i].size(); j++)
+
+        for (std::vector<std::string>::size_type j = 0; j < table[i].size(); j++)
         {
             if (table[i][j].empty())
             {
@@ -178,35 +182,36 @@ void Display::displayTable(vector<vector<string>> table)
 
     if (rowWidth == 1)
     {
-        for (int i = 0; i < table.size(); i++)
+        for (std::vector<std::vector<std::string>>::size_type i = 0; i < table.size(); i++)
         {
             tab.add_row({table[i][0]});
         }
     }
     else if (rowWidth == 2)
     {
-        for (int i = 0; i < table.size(); i++)
+        for (std::vector<std::vector<std::string>>::size_type i = 0; i < table.size(); i++)
         {
             tab.add_row({table[i][0], table[i][1]});
         }
     }
     else if (rowWidth == 3)
     {
-        for (int i = 0; i < table.size(); i++)
+        for (std::vector<std::vector<std::string>>::size_type i = 0; i < table.size(); i++)
         {
             tab.add_row({table[i][0], table[i][1], table[i][2]});
         }
     }
     else if (rowWidth == 4)
     {
-        for (int i = 0; i < table.size(); i++)
+        for (std::vector<std::vector<std::string>>::size_type i = 0; i < table.size(); i++)
         {
             tab.add_row({table[i][0], table[i][1], table[i][2], table[i][3]});
         }
     }
     else if (rowWidth == 5)
     {
-        for (int i = 0; i < table.size(); i++)
+
+        for (std::vector<std::vector<std::string>>::size_type i = 0; i < table.size(); i++)
         {
             tab.add_row({table[i][0], table[i][1], table[i][2], table[i][3], table[i][4]});
         }
@@ -326,7 +331,7 @@ int Display::GameMenu()
     }
     else if (input == 4)
     {
-        // destroyMenu();
+        destroyMenu();
     }
     else if (input == 5)
     {
@@ -367,6 +372,10 @@ void Display::CitizenMenu(){
     // satisfaction
     vector<string> temp ;
     temp.push_back("Satisfaction of citizens: "+ to_string(CitizenSatisfaction));
+    temp.push_back("Employment rate: "+ to_string(stats->getGovernment()->getUnemployment()));
+    temp.push_back("In school rate: "+ to_string(stats->getGovernment()->getSchoolStats()));
+
+    citizenInfo.push_back(temp);
 }
 
 void Display::displayStats()
@@ -557,13 +566,11 @@ void Display::residentialMenu()
     clear();
     logo();
 
-    displayMenu("Residential Menu", {"Apartment", "Town House", "House"});
+    displayMenu("Residential Menu", {"Apartment", "Town House", "House","Estate"});
 
-    int input = getInput(1, 3);
+    int input = getInput(1, 4);
 
-    bool valid = false;
-    vector<string> errorMsg = {"Invalid option. Please try again.", "Enter an integer.", "What are you doing?", "Can you even read?", "You are clearly doing it on purpose.", "You are testing my patience.", "I am not a happy computer.", "Stop that!!"};
-    int errorCount = 0;
+    
 
     int money = stats->getMoney();
     if (input == 1)
@@ -1309,6 +1316,47 @@ vector<string> Display::getUpgrades(string var, int num)
     {
         return upgrades;
     }
+}
+
+void Display::destroyMenu()
+{
+    // get all the tiles and dereference the non null tile pointers and add their building ids to a vector
+    // display the building ids to the user as well as the building type to which that id belongs
+    // ask the user to select a building to destroy
+    // get the building id from the user
+    // get the building type from the building id
+    // remove the building from the map using the destroy(int id) function
+
+    vector<int> buildingIds;
+    vector<string> buildingTypes;
+    vector<vector<shared_ptr<MapComponent>>> tiles = map.getTiles();
+    for (int i = 0; i < tiles.size(); i++)
+    {
+        for (int j = 0; j < tiles[i].size(); j++)
+        {
+            if (tiles[i][j] != nullptr)
+            {
+                buildingIds.push_back(tiles[i][j]->getId());
+                buildingTypes.push_back(tiles[i][j]->getType());
+            }
+        }
+    }
+    // display the building ids and types in a table next to each other with the building ids in the first column and the building types in the second column using a number for the index from 1 onwards
+    tabulate::Table buildingTable;
+    buildingTable.add_row({"Building ID", "Building Type"});
+    for (int i = 0; i < buildingIds.size(); i++)
+    {
+        buildingTable.add_row({to_string(i + 1), buildingTypes[i]});
+    }
+    buildingTable.format().font_align(tabulate::FontAlign::center);
+    
+    std::cout << buildingTable << std::endl;
+
+    std::cout << "Enter the number of the building you want to destroy" << std::endl;
+    int input = getInput(1, buildingIds.size());
+    map.destroy(buildingIds[input - 1]);
+    GameMenu();
+
 }
 
 void Display::governmentMenu()

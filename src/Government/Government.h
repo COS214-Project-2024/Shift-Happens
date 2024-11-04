@@ -30,6 +30,7 @@ class Director;
 class Tax;
 class Government : public CitySubject {
 	private:
+		int citizenTypeCounter = 0;
 		// 
 		std::shared_ptr<Director> CitizenDirector;
 		// Citizen counter
@@ -99,6 +100,8 @@ class Government : public CitySubject {
 		void setPeopleCount(int count, int BusinessSatisfaction);
 		int getPeopleCount();
 		double getSatisfaction();
+		double getUnemployment();
+		double getSchoolStats();
 		double getCombinedSatisfaction();
 
 		// Tax Management
