@@ -1418,6 +1418,11 @@ void Display::viewMenu()
     vector<int> buildingIds;
     vector<string> buildingTypes;
     vector<vector<shared_ptr<MapComponent>>> tiles = map.getTiles();
+    if(tiles.size() == 0){
+        cout << "No Buildings currently on the map. Redirecting to GameMenu" << endl;
+        wait(1);
+        GameMenu();
+    }
     for (int i = 0; i < tiles.size(); i++)
     {
         for (int j = 0; j < tiles[i].size(); j++)
