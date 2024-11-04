@@ -147,6 +147,26 @@ void Map::destroy(int id) {
     }
 }
 
+void Map::view(int id) {
+    // Check if the building exists
+    bool found = false;
+    for (size_t i = 0; i < 25; i++) {
+        for (size_t j = 0; j < 25; j++) {
+            if (tiles[i][j] != nullptr && tiles[i][j]->getId() == id) {
+                tiles[i][j]->print();
+                found = true;
+                break;
+            }
+        }
+        if (found) {
+            break;
+        }
+    }
+    if (!found) {
+        throw "Map::view(id) -> Building not found";
+    }
+}
+
 /**
  * @brief Prints the map grid.
  */

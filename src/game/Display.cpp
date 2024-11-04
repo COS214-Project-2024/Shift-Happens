@@ -327,7 +327,7 @@ int Display::GameMenu()
     }
     else if (input == 3)
     {
-        // viewMenu();
+        viewMenu();
     }
     else if (input == 4)
     {
@@ -1316,6 +1316,40 @@ vector<string> Display::getUpgrades(string var, int num)
     {
         return upgrades;
     }
+}
+
+void Display::viewMenu()
+{
+    //this menu needs to show the mapComponents' contents, so once a building is created we should be able to view
+    //it's citizens, income generated, etc. any relevant attributes pertaining to that particular component
+
+    vector<int> buildingIds;
+    vector<string> buildingTypes;
+    vector<vector<shared_ptr<MapComponent>>> tiles = map.getTiles();
+    for (int i = 0; i < tiles.size(); i++)
+    {
+        for (int j = 0; j < tiles[i].size(); j++)
+        {
+            if (tiles[i][j] != nullptr)
+            {
+                buildingIds.push_back(tiles[i][j]->getId());
+                buildingTypes.push_back(tiles[i][j]->getType());
+            }
+        }
+    }
+    // display the building ids and types in a table next to each other with the building ids in the first column and the building types in the second column using a number for the index from 1 onwards
+    tabulate::Table buildingTable;
+    buildingTable.add_row({"Building ID", "Building Type"});
+    for (int i = 0; i < buildingIds.size(); i++)
+    {
+        buildingTable.add_row({to_string(i + 1), buildingTypes[i]});
+    }
+    buildingTable.format().font_align(tabulate::FontAlign::center);
+    std::cout << buildingTable << std::endl;
+
+    std::cout << "Enter the number of the building you want to view" << std::endl;
+    int input = getInput(1, buildingIds.size());
+    map.view(buildingIds[input - 1]);
 }
 
 void Display::destroyMenu()

@@ -79,6 +79,9 @@ public:
     void destroyMenu();
     //transport menu
     void transportMenu();
+
+    //view the inner workings of all the buildings
+    void viewMenu();
  
 private:
 

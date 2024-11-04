@@ -81,6 +81,12 @@ public:
      */
     void destroy(int id);
 
+    /**
+     * @brief Views a building on the map by ID.
+     * @param id The ID of the building to view.
+     */
+    void view(int id);
+
     int getTotalNumBuildings();
     
 
