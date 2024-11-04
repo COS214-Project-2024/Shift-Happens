@@ -276,6 +276,13 @@ void Government::setPeopleCount(int count, int BusinessSatisfaction) {
             addCitizen();
         } 
     }
+
+    if(PopulationCount < CitizenCollection.size()){
+        int Difference = CitizenCollection.size() - PopulationCount;
+        for(int i=0; i<Difference; i++){
+            removeCitizen();
+        }
+    }
 }
 
 double Government::getCombinedSatisfaction(){
