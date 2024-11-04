@@ -8,130 +8,25 @@
 #include <stdlib.h>
 
 /// constructor for display purposes
-Display::Display() : map(Map::getInstance()){
+Display::Display() : map(Map::getInstance())
+{
     stats = make_shared<Statistics>();
 }
 
-Display::~Display(){
+Display::~Display()
+{
 }
 
-void Display::clear(){
+void Display::clear()
+{
     system("clear");
 }
 
-void Display::logo(){
-    std::cout << R"(
-            _________ .__  __           _________                _____  __   
-            \_   ___ \|__|/  |_ ___.__. \_   ___ \____________ _/ ____\/  |_ 
-            /    \  \/|  \   __<   |  | /    \  \/\_  __ \__  \\   __\\   __\
-            \     \___|  ||  |  \___  | \     \____|  | \// __ \|  |   |  |  
-             \______  /__||__|  / ____|  \______  /|__|  (____  /__|   |__|  
-                    \/          \/              \/            \/             
-)" << std::endl;
-}
-
-void Display::wait(int seconds){
-    std::this_thread::sleep_for(std::chrono::seconds(seconds));
-}
-
-int Display::MainMenu(){
-    clear();
-    logo();
-
-    tabulate::Table options;
-    options.add_row({"1. New Game", "2. Load Game", "3. Save", "4. Exit"});
-    options.format().width(20);
-    options.format().font_align(tabulate::FontAlign::center);
-    options.format().font_style({tabulate::FontStyle::bold});
-    options.format().hide_border_bottom();
-    options.format().hide_border_top();
-
-    options[0][0].format().hide_border_left();
-    options[0][3].format().hide_border_right();
-
-    tabulate::Table menu;
-    menu.add_row({"Main Menu"});
-    menu.add_row({options});
-
-    menu.format().font_align(tabulate::FontAlign::center);
-    menu[0][0].format().font_color(tabulate::Color::blue);
-    std::cout << menu << std::endl;
-    std::cout << "Please select an option." << std::endl;
-    int input;
-
-    bool valid = false;
-    vector<string> errorMsg = {"Invalid option. Please try again.", "Enter an integer.", "What are you doing?", "Can you even read?", "You are clearly doing it on purpose.", "You are testing my patience.", "I am not a happy computer.", "Stop that!!"};
-    int errorCount = 0;
-    while (!valid)
-    {
-        std::cin >> input;
-        if (std::cin.fail())
-        {
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-
-            if (errorCount == 7)
-            {
-                errorCount = 0;
-            }
-            std::cout << errorMsg[errorCount] << std::endl;
-            errorCount++;
-        }
-        else if (input > 4 || input < 1)
-        {
-            if (errorCount == 7)
-            {
-                errorCount = 0;
-            }
-            std::cout << errorMsg[errorCount] << std::endl;
-            errorCount++;
-        }
-        else
-        {
-            valid = true;
-            return input;
-        }
-    }
-
-    return input;
-}
-
-void Display::loadscreen(){
-    for (int i = 0; i < 3; i++)
-    {
-        clear();
-        logo();
-        wait(1);
-    }
-}
-
-int Display::GameMenu()
+int Display::getInput(int min, int max)
 {
-
-    clear();
-    logo();
-
-    displayStats();
-
-    tabulate::Table options;
-    options.add_row({"1. Build", "2. Upgrade", "3. View", "4. Destroy", "5. Government"});
-    options.add_row({"6. Citizens","7. Transport", "8. Detailed Stats","9. Save", "10. Exit"});
-    options.format().width(20);
-    options.format().font_align(tabulate::FontAlign::center);
-    options.format().font_style({tabulate::FontStyle::bold});
-
-
-    tabulate::Table menu;
-    menu.add_row({"Menu"});
-    menu.add_row({options});
-
-    menu.format().font_align(tabulate::FontAlign::center);
-    menu[0][0].format().font_color(tabulate::Color::blue);
-    std::cout << menu << std::endl;
-    std::cout << "Please select an option." << std::endl;
     int input;
-
     bool valid = false;
+
     vector<string> errorMsg = {"Invalid option. Please try again.", "Enter an integer.", "What are you doing?", "Can you even read?", "You are clearly doing it on purpose.", "You are testing my patience.", "I am not a happy computer.", "Stop that!!"};
     int errorCount = 0;
     while (!valid)
@@ -150,7 +45,7 @@ int Display::GameMenu()
             std::cout << errorMsg[errorCount] << std::endl;
             errorCount++;
         }
-        else if (input > 10 || input < 1)
+        else if (input > max || input < min)
         {
             if (errorCount == 7)
             {
@@ -162,54 +57,325 @@ int Display::GameMenu()
         else
         {
             valid = true;
-            if (input == 1)
-            {
-                buildMenu();
-            }
-            else if (input == 2)
-            {
-                upgradeMenu();
-            }
-            else if (input == 3)
-            {
-                //viewMenu();
-            }
-            else if (input == 4)
-            {
-                //destroyMenu();
-            }
-            else if (input == 5)
-            {
-                governmentMenu();
-            }
-            else if (input == 6)
-            {
-                //citizensMenu();
-            }
-            else if (input == 7)
-            {
-                transportMenu();
-            }
-            else if (input == 8)
-            {
-                //detailedStatsMenu();
-            }
-            else if (input == 9)
-            {
-                //saveMenu();
-            }
-            else if (input == 10)
-            {
-                //exitMenu();
-            }
-            else
-            {
-                std::cout << "Invalid option. Please try again." << std::endl;
-            }
-            
             return input;
         }
     }
+    throw "Display::getInput: Invalid input";
+}
+
+void Display::logo()
+{
+    std::cout << R"(
+            _________ .__  __           _________                _____  __   
+            \_   ___ \|__|/  |_ ___.__. \_   ___ \____________ _/ ____\/  |_ 
+            /    \  \/|  \   __<   |  | /    \  \/\_  __ \__  \\   __\\   __\
+            \     \___|  ||  |  \___  | \     \____|  | \// __ \|  |   |  |  
+             \______  /__||__|  / ____|  \______  /|__|  (____  /__|   |__|  
+                    \/          \/              \/            \/             
+)" << std::endl;
+}
+
+void Display::displayMenu(string title, vector<string> options)
+{
+    for (std::vector<std::string>::size_type i = 0; i < options.size(); i++)
+    {
+        options[i] = to_string(i + 1) + ". " + options[i];
+    }
+
+    tabulate::Table menuOptions;
+    if (options.size() == 1)
+    {
+        menuOptions.add_row({options[0]});
+    }
+    else if (options.size() == 2)
+    {
+        menuOptions.add_row({options[0], options[1]});
+    }
+    else if (options.size() == 3)
+    {
+        menuOptions.add_row({options[0], options[1], options[2]});
+    }
+    else if (options.size() == 4)
+    {
+        menuOptions.add_row({options[0], options[1], options[2], options[3]});
+    }
+    else if (options.size() == 5)
+    {
+        menuOptions.add_row({options[0], options[1], options[2], options[3], options[4]});
+    }
+    else if (options.size() == 6)
+    {
+        menuOptions.add_row({options[0], options[1], options[2], options[3], options[4], options[5]});
+    }
+    else if (options.size() == 7)
+    {
+        menuOptions.add_row({options[0], options[1], options[2], options[3], options[4], options[5], options[6]});
+    }
+    else if (options.size() == 8)
+    {
+        menuOptions.add_row({options[0], options[1], options[2], options[3], options[4], options[5], options[6], options[7]});
+    }
+    else if (options.size() == 9)
+    {
+        menuOptions.add_row({options[0], options[1], options[2], options[3], options[4], options[5], options[6], options[7], options[8]});
+    }
+    else if (options.size() == 10)
+    {
+        menuOptions.add_row({options[0], options[1], options[2], options[3], options[4], options[5], options[6], options[7], options[8], options[9]});
+    }
+    else
+    {
+        throw "Display::displayMenu: Too many options or no options";
+    }
+
+    menuOptions.format().width(20);
+    menuOptions.format().font_align(tabulate::FontAlign::center);
+    menuOptions.format().font_style({tabulate::FontStyle::bold});
+
+    tabulate::Table menu;
+    menu.add_row({title});
+    menu.add_row({menuOptions});
+
+    menu.format().font_align(tabulate::FontAlign::center);
+    menu[0][0].format().font_color(tabulate::Color::blue);
+    std::cout << menu << std::endl;
+    std::cout << "Please select an option." << std::endl;
+}
+void Display::displayMenu(string title, string options)
+{
+    tabulate::Table menu;
+    menu.add_row({title});
+    menu.add_row({options});
+
+    menu.format().font_align(tabulate::FontAlign::center);
+    menu[0][0].format().font_color(tabulate::Color::blue);
+    std::cout << menu << std::endl;
+    std::cout << "Please select an option." << std::endl;
+}
+
+void Display::displayTable(vector<vector<string>> table)
+{
+    tabulate::Table tab;
+    std::vector<std::string>::size_type rowWidth = table[0].size();
+    // check if all rows are the same width
+
+    for (std::vector<std::vector<std::string>>::size_type i = 0; i < table.size(); i++)
+    {
+
+        if (table[i].size() != rowWidth)
+        {
+            throw "Display::displayTable: Rows are not the same width";
+        }
+
+        for (std::vector<std::string>::size_type j = 0; j < table[i].size(); j++)
+        {
+            if (table[i][j].empty())
+            {
+                table[i][j] = " ";
+            }
+            else if (table[i][j] == "")
+            {
+                table[i][j] = " ";
+            }
+        }
+    }
+
+    if (rowWidth == 1)
+    {
+        for (std::vector<std::vector<std::string>>::size_type i = 0; i < table.size(); i++)
+        {
+            tab.add_row({table[i][0]});
+        }
+    }
+    else if (rowWidth == 2)
+    {
+        for (std::vector<std::vector<std::string>>::size_type i = 0; i < table.size(); i++)
+        {
+            tab.add_row({table[i][0], table[i][1]});
+        }
+    }
+    else if (rowWidth == 3)
+    {
+        for (std::vector<std::vector<std::string>>::size_type i = 0; i < table.size(); i++)
+        {
+            tab.add_row({table[i][0], table[i][1], table[i][2]});
+        }
+    }
+    else if (rowWidth == 4)
+    {
+        for (std::vector<std::vector<std::string>>::size_type i = 0; i < table.size(); i++)
+        {
+            tab.add_row({table[i][0], table[i][1], table[i][2], table[i][3]});
+        }
+    }
+    else if (rowWidth == 5)
+    {
+
+        for (std::vector<std::vector<std::string>>::size_type i = 0; i < table.size(); i++)
+        {
+            tab.add_row({table[i][0], table[i][1], table[i][2], table[i][3], table[i][4]});
+        }
+    }
+    else
+    {
+        throw "Display::displayTable: Too many columns or no columns";
+    }
+
+    tab.format().width(20);
+    tab.format().font_align(tabulate::FontAlign::center);
+    tab.format().font_style({tabulate::FontStyle::bold});
+
+    std::cout << tab << std::endl;
+}
+void Display::Display::displayRow(vector<string> row)
+{
+    tabulate::Table table;
+    if (row.size() == 0)
+    {
+        throw "Display::displayRow: No data to display";
+    }
+
+    if (row.size() == 1)
+    {
+        table.add_row({row[0]});
+        table[0][0].format().font_color(tabulate::Color::blue);
+    }
+    else if (row.size() == 2)
+    {
+        table.add_row({row[0], row[1]});
+    }
+    else if (row.size() == 3)
+    {
+        table.add_row({row[0], row[1], row[2]});
+        table[0][2].format().font_color(tabulate::Color::blue);
+    }
+    else if (row.size() == 4)
+    {
+        table.add_row({row[0], row[1], row[2], row[3]});
+    }
+    else if (row.size() == 5)
+    {
+        table.add_row({row[0], row[1], row[2], row[3], row[4]});
+    }
+    else
+    {
+        throw "Display::displayRow: Too many columns or no columns";
+    }
+
+    table.format().width(21);
+    table.format().font_align(tabulate::FontAlign::center);
+    table.format().font_style({tabulate::FontStyle::bold});
+
+    std::cout << table << std::endl;
+}
+void Display::wait(int seconds)
+{
+    std::this_thread::sleep_for(std::chrono::seconds(seconds));
+}
+
+int Display::MainMenu()
+{
+    clear();
+    logo();
+
+    displayMenu("Main Menu", {"New Game", "Load Game", "Save", "Exit"});
+    int input = getInput(1, 4);
+    return input;
+}
+
+void Display::loadscreen()
+{
+    for (int i = 0; i < 3; i++)
+    {
+        clear();
+        logo();
+        wait(1);
+    }
+}
+
+int Display::GameMenu()
+{
+
+    clear();
+    logo();
+
+    displayStats();
+
+    tabulate::Table options;
+    options.add_row({"1. Build", "2. Upgrade", "3. View", "4. Destroy", "5. Government"});
+    options.add_row({"6. Citizens", "7. Transport", "8. Detailed Stats", "9. Save", "10. Exit"});
+    options.format().width(20);
+    options.format().font_align(tabulate::FontAlign::center);
+    options.format().font_style({tabulate::FontStyle::bold});
+
+    tabulate::Table menu;
+    menu.add_row({"Menu"});
+    menu.add_row({options});
+
+    menu.format().font_align(tabulate::FontAlign::center);
+    menu[0][0].format().font_color(tabulate::Color::blue);
+    std::cout << menu << std::endl;
+    std::cout << "Please select an option." << std::endl;
+    int input = getInput(1, 10);
+    if (input == 1)
+    {
+        buildMenu();
+    }
+    else if (input == 2)
+    {
+        upgradeMenu();
+    }
+    else if (input == 3)
+    {
+        // viewMenu();
+    }
+    else if (input == 4)
+    {
+        destroyMenu();
+    }
+    else if (input == 5)
+    {
+        governmentMenu();
+    }
+    else if (input == 6)
+    {
+        CitizenMenu();
+    }
+    else if (input == 7)
+    {
+        transportMenu();
+    }
+    else if (input == 8)
+    {
+        // detailedStatsMenu();
+    }
+    else if (input == 9)
+    {
+        // saveMenu();
+    }
+    else if (input == 10)
+    {
+        // exitMenu();
+    }
+    else
+    {
+        std::cout << "Invalid option. Please try again." << std::endl;
+    }
+
+    return input;
+}
+
+void Display::CitizenMenu(){
+    vector<vector<string>> citizenInfo;
+    double CitizenSatisfaction = stats->getGovernment()->getSatisfaction();
+    
+    // satisfaction
+    vector<string> temp ;
+    temp.push_back("Satisfaction of citizens: "+ to_string(CitizenSatisfaction));
+    temp.push_back("Employment rate: "+ to_string(stats->getGovernment()->getUnemployment()));
+    temp.push_back("In school rate: "+ to_string(stats->getGovernment()->getSchoolStats()));
+
+    citizenInfo.push_back(temp);
 }
 
 void Display::displayStats()
@@ -229,7 +395,7 @@ void Display::displayStats()
     stats.add_row({"Money", "Income", "Population", "Satisfaction", "Water", "Electricity", "Waste", "Sewage"});
     stats.add_row({money, income, population, satisfaction, water, power, waste, sewage});
 
-    stats.format().width(15);
+    stats.format().width(10);
     stats.format().font_align(tabulate::FontAlign::center);
     stats.format().font_style({tabulate::FontStyle::bold});
 
@@ -317,24 +483,38 @@ void Display::displayStats()
 
     string Estate = check("Estate", 1);
 
+    vector<string> road;
+    vector<string> railway;
+
+    for (int i = 0; i < 53; i++)
+    {
+        string roadstr = check("Road", i + 1);
+        road.push_back(roadstr);
+    }
+
+    for(int i = 0; i < 15; i++){
+        string railwaystr = check("Railway", i + 1);
+        railway.push_back(railwaystr);
+    }
+
     // a1 to o15
 
-    gridmap.add_row({Apartment1, Apartment1, "", House1, House1, House1, Apartment5, " ", House3, House3, TownHouse2, TownHouse2, "", Estate, Estate});
-    gridmap.add_row({TownHouse1, TownHouse1, " ", House1, House1, House1, Apartment5, " ", House3, House3, TownHouse2, TownHouse2, "", Estate, Estate});
-    gridmap.add_row({TownHouse1, TownHouse1, " ", House2, House2, House2, Apartment2, " ", House3, House3, TownHouse3, TownHouse3, "", Estate, Estate});
-    gridmap.add_row({Apartment4, Apartment4, " ", House2, House2, House2, Apartment2, " ", Apartment3, Apartment3, TownHouse3, TownHouse3, "", Estate, Estate});
-    gridmap.add_row({BusStation1, "", "", "", "", "", "", "", "", "", "", "", "", Estate, Estate});
-    gridmap.add_row({Park1, CulturalCenter1, "", Monument1, Store3, Office2, Office2, "", Store5, Office3, Office3, Monument2, Park2, Estate, Estate});
-    gridmap.add_row({Park1, CulturalCenter1, "", Monument1, Store4, Office2, Office2, "", Store6, Office3, Office3, Monument2, Park2, CulturalCenter2, CulturalCenter2});
-    gridmap.add_row({Office1, Office1, "", Mall1, Mall1, Airport1, Airport1, "", "", "", "", "", "", "", BusStation2});
-    gridmap.add_row({Office1, Office1, "", Mall1, Mall1, Airport1, Airport1, Mall2, Mall2, Mall2, Landfill1, Landfill2, "", WaterSupply1, WaterSupply2});
-    gridmap.add_row({Store1, Store2, "", Mall1, Mall1, Store7, BusStation1, Mall2, Mall2, Mall2, Landfill3, Landfill4, "", WaterSupply3, WaterSupply4});
-    gridmap.add_row({"", "", "", "", "", "", "", "", "", "", "", "", "", SewagePlant1, SewagePlant2});
+    gridmap.add_row({Apartment1, Apartment1, road[0], House1, House1, House1, Apartment5, road[1], House3, House3, TownHouse2, TownHouse2, road[2], Estate, Estate});
+    gridmap.add_row({TownHouse1, TownHouse1, road[3], House1, House1, House1, Apartment5, road[4], House3, House3, TownHouse2, TownHouse2, road[5], Estate, Estate});
+    gridmap.add_row({TownHouse1, TownHouse1, road[6], House2, House2, House2, Apartment2, road[7], House3, House3, TownHouse3, TownHouse3, road[8], Estate, Estate});
+    gridmap.add_row({Apartment4, Apartment4, road[9], House2, House2, House2, Apartment2, road[10], Apartment3, Apartment3, TownHouse3, TownHouse3, road[11], Estate, Estate});
+    gridmap.add_row({BusStation1, road[12], road[13], road[14], road[15], road[16], road[17], road[18], road[19], road[20], road[21], road[22], road[23], Estate, Estate});
+    gridmap.add_row({Park1, CulturalCenter1, road[24], Monument1, Store3, Office2, Office2, road[25], Store5, Office3, Office3, Monument2, Park2, Estate, Estate});
+    gridmap.add_row({Park1, CulturalCenter1, road[26], Monument1, Store4, Office2, Office2, road[27], Store6, Office3, Office3, Monument2, Park2, CulturalCenter2, CulturalCenter2});
+    gridmap.add_row({Office1, Office1, road[28], Mall1, Mall1, Airport1, Airport1, road[29], road[30], road[31], road[32], road[33], road[34], road[35], BusStation2});
+    gridmap.add_row({Office1, Office1, road[36], Mall1, Mall1, Airport1, Airport1, Mall2, Mall2, Mall2, Landfill1, Landfill2, road[37], WaterSupply1, WaterSupply2});
+    gridmap.add_row({Store1, Store2, road[38], Mall1, Mall1, Store7, BusStation1, Mall2, Mall2, Mall2, Landfill3, Landfill4, road[39], WaterSupply3, WaterSupply4});
+    gridmap.add_row({road[40], road[41], road[42], road[43], road[44], road[45], road[46], road[47], road[48], road[49], road[50], road[51], road[52], SewagePlant1, SewagePlant2});
     gridmap.add_row({TrainStation1, Warehouse1, Warehouse1, Factory1, Manufacturer1, Warehouse3, Warehouse3, Factory3, Manufacturer2, PowerPlant1, PowerPlant2, Airport2, Airport2, SewagePlant3, SewagePlant4});
     gridmap.add_row({TrainStation1, Warehouse2, Warehouse2, Factory2, Manufacturer1, Warehouse4, Warehouse4, Factory4, Manufacturer2, PowerPlant3, PowerPlant4, Airport2, Airport2, TrainStation2, TrainStation2});
-    gridmap.add_row({"", "", "", "", "", "", "", "", "", "", "", "", "", "", ""});
+    gridmap.add_row({railway[0], railway[1], railway[2], railway[3], railway[4], railway[5], railway[6], railway[7], railway[8], railway[9], railway[10], railway[11], railway[12], railway[13], railway[14]});
 
-    gridmap.format().width(10);
+    gridmap.format().width(12);
     gridmap.format().height(2);
     gridmap.format().font_align(tabulate::FontAlign::center);
 
@@ -349,280 +529,188 @@ void Display::buildMenu()
 {
     clear();
     logo();
-    tabulate::Table options;
-    options.add_row({"1. Residential", "2. Commercial", "3. Industrial", "4. Utility", "5. Landmark", "6. Infrastructure"});
-    options.format().width(20);
-    options.format().font_align(tabulate::FontAlign::center);
-    options.format().font_style({tabulate::FontStyle::bold});
-    options.format().hide_border_bottom();
-    options.format().hide_border_top();
 
-    options[0][0].format().hide_border_left();
-    options[0][5].format().hide_border_right();
+    displayMenu("Build Menu", {"Residential", "Commercial", "Industrial", "Utility", "Landmark", "Infrastructure"});
+    int input = getInput(1, 6);
 
-    tabulate::Table menu;
-    menu.add_row({"Build Menu"});
-    menu.add_row({options});
-
-    menu.format().font_align(tabulate::FontAlign::center);
-    menu[0][0].format().font_color(tabulate::Color::blue);
-    std::cout << menu << std::endl;
-    std::cout << "Please select an option." << std::endl;
-    int input;
-
-    bool valid = false;
-    vector<string> errorMsg = {"Invalid option. Please try again.", "Enter an integer.", "What are you doing?", "Can you even read?", "You are clearly doing it on purpose.", "You are testing my patience.", "I am not a happy computer.", "Stop that!!"};
-    int errorCount = 0;
-    while (!valid)
+    if (input == 1)
     {
-        std::cin >> input;
-        if (std::cin.fail())
-        {
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-
-            if (errorCount == 7)
-            {
-                errorCount = 0;
-            }
-            std::cout << errorMsg[errorCount] << std::endl;
-            errorCount++;
-        }
-        else if (input > 6 || input < 1)
-        {
-            if (errorCount == 7)
-            {
-                errorCount = 0;
-            }
-            std::cout << errorMsg[errorCount] << std::endl;
-            errorCount++;
-        }
-        else
-        {
-            if (input == 1)
-            {
-                residentialMenu();
-            }
-            else if (input == 2)
-            {
-                commercialMenu();
-            }
-            else if (input == 3)
-            {
-                industrialMenu();
-            }
-            else if (input == 4)
-            {
-                utilityMenu();
-            }
-            else if (input == 5)
-            {
-                landmarkMenu();
-            }
-            else if (input == 6)
-            {
-                infrastructureMenu();
-            }
-
-            valid = true;
-        }
+        residentialMenu();
     }
+    else if (input == 2)
+    {
+        commercialMenu();
+    }
+    else if (input == 3)
+    {
+        industrialMenu();
+    }
+    else if (input == 4)
+    {
+        utilityMenu();
+    }
+    else if (input == 5)
+    {
+        landmarkMenu();
+    }
+    else if (input == 6)
+    {
+        infrastructureMenu();
+    }
+
+    throw "Display::buildMenu: Invalid option";
 }
 
 void Display::residentialMenu()
 {
     clear();
     logo();
-    tabulate::Table options;
-    options.add_row({"1. Apartment", "2. Town House", "3. House", "4. Estate"});
-    options.add_row({"$100", "$200", "$400", "$800"});
-    options.format().width(20);
-    options.format().font_align(tabulate::FontAlign::center);
-    options.format().font_style({tabulate::FontStyle::bold});
-    options.format().hide_border_bottom();
-    options.format().hide_border_top();
 
-    options[0][0].format().hide_border_left();
-    options[0][2].format().hide_border_right();
+    displayMenu("Residential Menu", {"Apartment", "Town House", "House","Estate"});
 
-    tabulate::Table menu;
-    menu.add_row({"Residential Menu"});
-    menu.add_row({options});
+    int input = getInput(1, 4);
 
-    menu.format().font_align(tabulate::FontAlign::center);
-    menu[0][0].format().font_color(tabulate::Color::blue);
-    std::cout << menu << std::endl;
-    std::cout << "Please select an option." << std::endl;
-    int input;
+    
 
-    bool valid = false;
-    vector<string> errorMsg = {"Invalid option. Please try again.", "Enter an integer.", "What are you doing?", "Can you even read?", "You are clearly doing it on purpose.", "You are testing my patience.", "I am not a happy computer.", "Stop that!!"};
-    int errorCount = 0;
-    while (!valid)
+    int money = stats->getMoney();
+    if (input == 1)
     {
-        std::cin >> input;
-        if (std::cin.fail())
+        if (money >= 100)
         {
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            int count = map.numBuildings("Apartment");
+            if (count >= 5)
+            {
+                std::cout << "Can't do that" << std::endl;
+                wait(1);
+                std::cout << "You've reached the maximum number of Apartments" << std::endl;
+                wait(1);
+                GameMenu();
+            }
 
-            if (errorCount == 7)
-            {
-                errorCount = 0;
-            }
-            std::cout << errorMsg[errorCount] << std::endl;
-            errorCount++;
-        }
-        else if (input > 5 || input < 1)
-        {
-            if (errorCount == 7)
-            {
-                errorCount = 0;
-            }
-            std::cout << errorMsg[errorCount] << std::endl;
-            errorCount++;
+            stats->setMoney(money - 100);
+            std::cout << "Construction Worker: Why am I always doing this backbreaking work?" << std::endl;
+            wait(1);
+            std::cout << "Construction Worker: I should have listened to my mother and become a doctor." << std::endl;
+            std::cout << "Building.." << std::endl;
+            map.build("Apartment", "Residential", 0, count);
+            std::cout << "Construction finsihsed!!" << std::endl;
+            wait(1);
+            stats->updateStats();
+            GameMenu();
         }
         else
         {
-            int money = stats->getMoney();
-            if (input == 1)
-            {
-                if (money >= 100)
-                {
-                    int count = map.numBuildings("Apartment");
-                    if (count >= 5)
-                    {
-                        std::cout << "Can't do that" << std::endl;
-                        wait(1);
-                        std::cout << "You've reached the maximum number of Apartments" << std::endl;
-                        wait(1);
-                        GameMenu();
-                    }
+            std::cout << "Can't do that" << std::endl;
+            wait(1);
+            std::cout << "You're too Broke." << std::endl;
+            wait(1);
+            std::cout << "Go Hustle Big Guy" << std::endl;
+            wait(2);
+            GameMenu();
+        }
+    }
 
-                    stats->setMoney(money - 100);
-                    std::cout << "Construction Worker: Why am I always doing this backbreaking work?" << std::endl;
-                    wait(1);
-                    std::cout << "Construction Worker: I should have listened to my mother and become a doctor." << std::endl;
-                    std::cout << "Building.." << std::endl;
-                    map.build("Apartment", "Residential", 0, count);
-                    std::cout << "Construction finsihsed!!" << std::endl;
-                    wait(1);
-                    GameMenu();
-                }
-                else
-                {
-                    std::cout << "Can't do that" << std::endl;
-                    wait(1);
-                    std::cout << "You're too Broke." << std::endl;
-                    wait(1);
-                    std::cout << "Go Hustle Big Guy" << std::endl;
-                    wait(2);
-                    GameMenu();
-                }
-            }
-            else if (input == 2)
+    else if (input == 2)
+    {
+        if (money >= 200)
+        {
+            int count = map.numBuildings("TownHouse");
+            if (count >= 3)
             {
-                if (money >= 200)
-                {
-                    int count = map.numBuildings("TownHouse");
-                    if (count >= 3)
-                    {
-                        std::cout << "Can't do that" << std::endl;
-                        wait(1);
-                        std::cout << "You've reached the maximum number of Town Houses" << std::endl;
-                        wait(1);
-                        GameMenu();
-                    }
-                    stats->setMoney(money - 200);
-                    std::cout << "Construction Worker: Why am I always doing this backbreaking work?" << std::endl;
-                    wait(1);
-                    std::cout << "Construction Worker: I should have listened to my mother and become a doctor." << std::endl;
-                    std::cout << "Building.." << std::endl;
-                    map.build("TownHouse", "Residential", 1, count);
-                    std::cout << "Construction finsihsed!!" << std::endl;
-                    wait(1);
-                    GameMenu();
-                }
-                else
-                {
-                    std::cout << "Can't do that" << std::endl;
-                    wait(1);
-                    std::cout << "You're too Broke." << std::endl;
-                    wait(1);
-                    std::cout << "Go Hustle Big Guy" << std::endl;
-                    wait(2);
-                    GameMenu();
-                }
+                std::cout << "Can't do that" << std::endl;
+                wait(1);
+                std::cout << "You've reached the maximum number of Town Houses" << std::endl;
+                wait(1);
+                GameMenu();
             }
-            else if (input == 3)
+            stats->setMoney(money - 200);
+            std::cout << "Construction Worker: Why am I always doing this backbreaking work?" << std::endl;
+            wait(1);
+            std::cout << "Construction Worker: I should have listened to my mother and become a doctor." << std::endl;
+            std::cout << "Building.." << std::endl;
+            map.build("TownHouse", "Residential", 1, count);
+            std::cout << "Construction finsihsed!!" << std::endl;
+            wait(1);
+            GameMenu();
+        }
+        else
+        {
+            std::cout << "Can't do that" << std::endl;
+            wait(1);
+            std::cout << "You're too Broke." << std::endl;
+            wait(1);
+            std::cout << "Go Hustle Big Guy" << std::endl;
+            wait(2);
+            GameMenu();
+        }
+    }
+    else if (input == 3)
+    {
+        if (money >= 400)
+        {
+            int count = map.numBuildings("House");
+            if (count >= 3)
             {
-                if (money >= 400)
-                {
-                    int count = map.numBuildings("House");
-                    if (count >= 3)
-                    {
-                        std::cout << "Can't do that" << std::endl;
-                        wait(1);
-                        std::cout << "You've reached the maximum number of Houses" << std::endl;
-                        wait(1);
-                        GameMenu();
-                    }
-                    stats->setMoney(money - 400);
-                    std::cout << "Construction Worker: Why am I always doing this backbreaking work?" << std::endl;
-                    wait(1);
-                    std::cout << "Construction Worker: I should have listened to my mother and become a doctor." << std::endl;
-                    std::cout << "Building.." << std::endl;
-                    map.build("House", "Residential", 2, count);
-                    std::cout << "Construction finsihsed!!" << std::endl;
-                    wait(1);
-                    GameMenu();
-                }
-                else
-                {
-                    std::cout << "Can't do that" << std::endl;
-                    wait(1);
-                    std::cout << "You're too Broke." << std::endl;
-                    wait(1);
-                    std::cout << "Go Hustle Big Guy" << std::endl;
-                    wait(2);
-                    GameMenu();
-                }
+                std::cout << "Can't do that" << std::endl;
+                wait(1);
+                std::cout << "You've reached the maximum number of Houses" << std::endl;
+                wait(1);
+                GameMenu();
             }
-            else if (input == 4)
+            stats->setMoney(money - 400);
+            std::cout << "Construction Worker: Why am I always doing this backbreaking work?" << std::endl;
+            wait(1);
+            std::cout << "Construction Worker: I should have listened to my mother and become a doctor." << std::endl;
+            std::cout << "Building.." << std::endl;
+            map.build("House", "Residential", 2, count);
+            std::cout << "Construction finsihsed!!" << std::endl;
+            wait(1);
+            GameMenu();
+        }
+        else
+        {
+            std::cout << "Can't do that" << std::endl;
+            wait(1);
+            std::cout << "You're too Broke." << std::endl;
+            wait(1);
+            std::cout << "Go Hustle Big Guy" << std::endl;
+            wait(2);
+            GameMenu();
+        }
+    }
+    else if (input == 4)
+    {
+        if (money >= 800)
+        {
+            stats->setMoney(money - 800);
+            int count = map.numBuildings("Estate");
+            if (count >= 1)
             {
-                if (money >= 800)
-                {
-                    stats->setMoney(money - 800);
-                    int count = map.numBuildings("Estate");
-                    if (count >= 1)
-                    {
-                        std::cout << "Can't do that" << std::endl;
-                        wait(1);
-                        std::cout << "You've reached the maximum number of Estates" << std::endl;
-                        wait(1);
-                        GameMenu();
-                    }
+                std::cout << "Can't do that" << std::endl;
+                wait(1);
+                std::cout << "You've reached the maximum number of Estates" << std::endl;
+                wait(1);
+                GameMenu();
+            }
 
-                    std::cout << "Construction Worker: Why am I always doing this backbreaking work?" << std::endl;
-                    wait(1);
-                    std::cout << "Construction Worker: I should have listened to my mother and become a doctor." << std::endl;
-                    std::cout << "Building.." << std::endl;
-                    map.build("Estate", "Residential", 20, 0);
-                    std::cout << "Construction finsihsed!!" << std::endl;
-                    wait(1);
-                    GameMenu();
-                }
-                else
-                {
-                    std::cout << "Can't do that" << std::endl;
-                    wait(1);
-                    std::cout << "You're too Broke." << std::endl;
-                    wait(1);
-                    std::cout << "Go Hustle Big Guy" << std::endl;
-                    wait(2);
-                    GameMenu();
-                }
-            }
+            std::cout << "Construction Worker: Why am I always doing this backbreaking work?" << std::endl;
+            wait(1);
+            std::cout << "Construction Worker: I should have listened to my mother and become a doctor." << std::endl;
+            std::cout << "Building.." << std::endl;
+            map.build("Estate", "Residential", 20, 0);
+            std::cout << "Construction finsihsed!!" << std::endl;
+            wait(1);
+            GameMenu();
+        }
+        else
+        {
+            std::cout << "Can't do that" << std::endl;
+            wait(1);
+            std::cout << "You're too Broke." << std::endl;
+            wait(1);
+            std::cout << "Go Hustle Big Guy" << std::endl;
+            wait(2);
+            GameMenu();
         }
     }
 }
@@ -631,160 +719,111 @@ void Display::commercialMenu()
 {
     clear();
     logo();
-    tabulate::Table options;
-    options.add_row({"1. Store", "2. Office", "3. Mall"});
-    options.format().width(20);
-    options.format().font_align(tabulate::FontAlign::center);
-    options.format().font_style({tabulate::FontStyle::bold});
-    options.format().hide_border_bottom();
-    options.format().hide_border_top();
 
-    options[0][0].format().hide_border_left();
-    options[0][2].format().hide_border_right();
+    displayMenu("Commercial Menu", {"Store", "Office", "Mall"});
+    int input = getInput(1, 3);
 
-    tabulate::Table menu;
-    menu.add_row({"Commercial Menu"});
-    menu.add_row({options});
-
-    menu.format().font_align(tabulate::FontAlign::center);
-    menu[0][0].format().font_color(tabulate::Color::blue);
-    std::cout << menu << std::endl;
-    std::cout << "Please select an option." << std::endl;
-    int input;
-
-    bool valid = false;
-    vector<string> errorMsg = {"Invalid option. Please try again.", "Enter an integer.", "What are you doing?", "Can you even read?", "You are clearly doing it on purpose.", "You are testing my patience.", "I am not a happy computer.", "Stop that!!"};
-    int errorCount = 0;
-    while (!valid)
+    int money = stats->getMoney();
+    if (input == 1)
     {
-        std::cin >> input;
-        if (std::cin.fail())
+        if (money >= 100)
         {
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-
-            if (errorCount == 7)
+            int count = map.numBuildings("Store");
+            if (count >= 7)
             {
-                errorCount = 0;
+                std::cout << "Can't do that" << std::endl;
+                wait(1);
+                std::cout << "You've reached the maximum number of Stores" << std::endl;
+                wait(1);
+                GameMenu();
             }
-            std::cout << errorMsg[errorCount] << std::endl;
-            errorCount++;
-        }
-        else if (input > 3 || input < 1)
-        {
-            if (errorCount == 7)
-            {
-                errorCount = 0;
-            }
-            std::cout << errorMsg[errorCount] << std::endl;
-            errorCount++;
+            stats->setMoney(money - 100);
+            std::cout << "Construction Worker: Why am I always doing this backbreaking work?" << std::endl;
+            wait(1);
+            std::cout << "Construction Worker: I should have listened to my mother and become a doctor." << std::endl;
+            std::cout << "Building.." << std::endl;
+            map.build("Store", "Commercial", 3, count);
+            std::cout << "Construction finsihsed!!" << std::endl;
+            wait(1);
+            GameMenu();
         }
         else
         {
-            int money = stats->getMoney();
-            if (input == 1)
+            std::cout << "Can't do that" << std::endl;
+            wait(1);
+            std::cout << "You're too Broke." << std::endl;
+            wait(1);
+            std::cout << "Go Hustle Big Guy" << std::endl;
+            wait(2);
+            GameMenu();
+        }
+    }
+    else if (input == 2)
+    {
+        if (money >= 200)
+        {
+            int count = map.numBuildings("Office");
+            if (count >= 3)
             {
-                if (money >= 100)
-                {
-                    int count = map.numBuildings("Store");
-                    if (count >= 7)
-                    {
-                        std::cout << "Can't do that" << std::endl;
-                        wait(1);
-                        std::cout << "You've reached the maximum number of Stores" << std::endl;
-                        wait(1);
-                        GameMenu();
-                    }
-                    stats->setMoney(money - 100);
-                    std::cout << "Construction Worker: Why am I always doing this backbreaking work?" << std::endl;
-                    wait(1);
-                    std::cout << "Construction Worker: I should have listened to my mother and become a doctor." << std::endl;
-                    std::cout << "Building.." << std::endl;
-                    map.build("Store", "Commercial", 3, count);
-                    std::cout << "Construction finsihsed!!" << std::endl;
-                    wait(1);
-                    GameMenu();
-                }
-                else
-                {
-                    std::cout << "Can't do that" << std::endl;
-                    wait(1);
-                    std::cout << "You're too Broke." << std::endl;
-                    wait(1);
-                    std::cout << "Go Hustle Big Guy" << std::endl;
-                    wait(2);
-                    GameMenu();
-                }
+                std::cout << "Can't do that" << std::endl;
+                wait(1);
+                std::cout << "You've reached the maximum number of Offices" << std::endl;
+                wait(1);
+                GameMenu();
             }
-            else if (input == 2)
+            stats->setMoney(money - 200);
+            std::cout << "Construction Worker: Why am I always doing this backbreaking work?" << std::endl;
+            wait(1);
+            std::cout << "Construction Worker: I should have listened to my mother and become a doctor." << std::endl;
+            std::cout << "Building.." << std::endl;
+            map.build("Office", "Commercial", 4, count);
+            std::cout << "Construction finsihsed!!" << std::endl;
+            wait(1);
+            GameMenu();
+        }
+        else
+        {
+            std::cout << "Can't do that" << std::endl;
+            wait(1);
+            std::cout << "You're too Broke." << std::endl;
+            wait(1);
+            std::cout << "Go Hustle Big Guy" << std::endl;
+            wait(2);
+            GameMenu();
+        }
+    }
+    else if (input == 3)
+    {
+        if (money >= 300)
+        {
+            int count = map.numBuildings("Mall");
+            if (count >= 2)
             {
-                if (money >= 200)
-                {
-                    int count = map.numBuildings("Office");
-                    if (count >= 3)
-                    {
-                        std::cout << "Can't do that" << std::endl;
-                        wait(1);
-                        std::cout << "You've reached the maximum number of Offices" << std::endl;
-                        wait(1);
-                        GameMenu();
-                    }
-                    stats->setMoney(money - 200);
-                    std::cout << "Construction Worker: Why am I always doing this backbreaking work?" << std::endl;
-                    wait(1);
-                    std::cout << "Construction Worker: I should have listened to my mother and become a doctor." << std::endl;
-                    std::cout << "Building.." << std::endl;
-                    map.build("Office", "Commercial", 4, count);
-                    std::cout << "Construction finsihsed!!" << std::endl;
-                    wait(1);
-                    GameMenu();
-                }
-                else
-                {
-                    std::cout << "Can't do that" << std::endl;
-                    wait(1);
-                    std::cout << "You're too Broke." << std::endl;
-                    wait(1);
-                    std::cout << "Go Hustle Big Guy" << std::endl;
-                    wait(2);
-                    GameMenu();
-                }
+                std::cout << "Can't do that" << std::endl;
+                wait(1);
+                std::cout << "You've reached the maximum number of Malls" << std::endl;
+                wait(1);
+                GameMenu();
             }
-            else if (input == 3)
-            {
-                if (money >= 300)
-                {
-                    int count = map.numBuildings("Mall");
-                    if (count >= 2)
-                    {
-                        std::cout << "Can't do that" << std::endl;
-                        wait(1);
-                        std::cout << "You've reached the maximum number of Malls" << std::endl;
-                        wait(1);
-                        GameMenu();
-                    }
-                    stats->setMoney(money - 300);
-                    std::cout << "Construction Worker: Why am I always doing this backbreaking work?" << std::endl;
-                    wait(1);
-                    std::cout << "Construction Worker: I should have listened to my mother and become a doctor." << std::endl;
-                    std::cout << "Building.." << std::endl;
-                    map.build("Mall", "Commercial", 5, count);
-                    std::cout << "Construction finsihsed!!" << std::endl;
-                    wait(1);
-                    GameMenu();
-                }
-                else
-                {
-                    std::cout << "Can't do that" << std::endl;
-                    wait(1);
-                    std::cout << "You're too Broke." << std::endl;
-                    wait(1);
-                    std::cout << "Go Hustle Big Guy" << std::endl;
-                    wait(2);
-                    GameMenu();
-                }
-            }
-            valid = true;
+            stats->setMoney(money - 300);
+            std::cout << "Construction Worker: Why am I always doing this backbreaking work?" << std::endl;
+            wait(1);
+            std::cout << "Construction Worker: I should have listened to my mother and become a doctor." << std::endl;
+            std::cout << "Building.." << std::endl;
+            map.build("Mall", "Commercial", 5, count);
+            std::cout << "Construction finsihsed!!" << std::endl;
+            wait(1);
+            GameMenu();
+        }
+        else
+        {
+            std::cout << "Can't do that" << std::endl;
+            wait(1);
+            std::cout << "You're too Broke." << std::endl;
+            wait(1);
+            std::cout << "Go Hustle Big Guy" << std::endl;
+            wait(2);
+            GameMenu();
         }
     }
 }
@@ -793,159 +832,109 @@ void Display::industrialMenu()
 {
     clear();
     logo();
-    tabulate::Table options;
-    options.add_row({"1. Factory", "2. Warehouse", "3. Manufacturer"});
-    options.format().width(20);
-    options.format().font_align(tabulate::FontAlign::center);
-    options.format().font_style({tabulate::FontStyle::bold});
-    options.format().hide_border_bottom();
-    options.format().hide_border_top();
 
-    options[0][0].format().hide_border_left();
-    options[0][2].format().hide_border_right();
-
-    tabulate::Table menu;
-    menu.add_row({"Industrial Menu"});
-    menu.add_row({options});
-
-    menu.format().font_align(tabulate::FontAlign::center);
-    menu[0][0].format().font_color(tabulate::Color::blue);
-    std::cout << menu << std::endl;
-    std::cout << "Please select an option." << std::endl;
-    int input;
-
-    bool valid = false;
-    vector<string> errorMsg = {"Invalid option. Please try again.", "Enter an integer.", "What are you doing?", "Can you even read?", "You are clearly doing it on purpose.", "You are testing my patience.", "I am not a happy computer.", "Stop that!!"};
-    int errorCount = 0;
-    while (!valid)
+    displayMenu("Industrial Menu", {"Factory", "Warehouse", "Manufacturer"});
+    int input = getInput(1, 3);
+    int money = stats->getMoney();
+    if (input == 1)
     {
-        std::cin >> input;
-        if (std::cin.fail())
+        if (money >= 100)
         {
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-
-            if (errorCount == 7)
+            int count = map.numBuildings("Factory");
+            if (count >= 4)
             {
-                errorCount = 0;
+                std::cout << "Can't do that" << std::endl;
+                wait(1);
+                std::cout << "You've reached the maximum number of Factories" << std::endl;
+                wait(1);
+                GameMenu();
             }
-            std::cout << errorMsg[errorCount] << std::endl;
-            errorCount++;
-        }
-        else if (input > 3 || input < 1)
-        {
-            if (errorCount == 7)
-            {
-                errorCount = 0;
-            }
-            std::cout << errorMsg[errorCount] << std::endl;
-            errorCount++;
+            stats->setMoney(money - 100);
+            std::cout << "Construction Worker: Why am I always doing this backbreaking work?" << std::endl;
+            wait(1);
+            std::cout << "Construction Worker: I should have listened to my mother and become a doctor." << std::endl;
+            std::cout << "Building.." << std::endl;
+            map.build("Factory", "Industrial", 6, count);
+            std::cout << "Construction finsihsed!!" << std::endl;
+            wait(1);
+            GameMenu();
         }
         else
         {
-            int money = stats->getMoney();
-            if (input == 1)
+            std::cout << "Can't do that" << std::endl;
+            wait(1);
+            std::cout << "You're too Broke." << std::endl;
+            wait(1);
+            std::cout << "Go Hustle Big Guy" << std::endl;
+            wait(2);
+            GameMenu();
+        }
+    }
+    else if (input == 2)
+    {
+        if (money >= 200)
+        {
+            int count = map.numBuildings("Warehouse");
+            if (count >= 4)
             {
-                if (money >= 100)
-                {
-                    int count = map.numBuildings("Factory");
-                    if (count >= 4)
-                    {
-                        std::cout << "Can't do that" << std::endl;
-                        wait(1);
-                        std::cout << "You've reached the maximum number of Factories" << std::endl;
-                        wait(1);
-                        GameMenu();
-                    }
-                    stats->setMoney(money - 100);
-                    std::cout << "Construction Worker: Why am I always doing this backbreaking work?" << std::endl;
-                    wait(1);
-                    std::cout << "Construction Worker: I should have listened to my mother and become a doctor." << std::endl;
-                    std::cout << "Building.." << std::endl;
-                    map.build("Factory", "Industrial", 6, count);
-                    std::cout << "Construction finsihsed!!" << std::endl;
-                    wait(1);
-                    GameMenu();
-                }
-                else
-                {
-                    std::cout << "Can't do that" << std::endl;
-                    wait(1);
-                    std::cout << "You're too Broke." << std::endl;
-                    wait(1);
-                    std::cout << "Go Hustle Big Guy" << std::endl;
-                    wait(2);
-                    GameMenu();
-                }
+                std::cout << "Can't do that" << std::endl;
+                wait(1);
+                std::cout << "You've reached the maximum number of Warehouses" << std::endl;
+                wait(1);
+                GameMenu();
             }
-            else if (input == 2)
+            stats->setMoney(money - 200);
+            std::cout << "Construction Worker: Why am I always doing this backbreaking work?" << std::endl;
+            wait(1);
+            std::cout << "Construction Worker: I should have listened to my mother and become a doctor." << std::endl;
+            std::cout << "Building.." << std::endl;
+            map.build("Warehouse", "Industrial", 7, count);
+            std::cout << "Construction finsihsed!!" << std::endl;
+            wait(1);
+        }
+        else
+        {
+            std::cout << "Can't do that" << std::endl;
+            wait(1);
+            std::cout << "You're too Broke." << std::endl;
+            wait(1);
+            std::cout << "Go Hustle Big Guy" << std::endl;
+            wait(2);
+            GameMenu();
+        }
+    }
+    else if (input == 3)
+    {
+        if (money >= 300)
+        {
+            stats->setMoney(money - 300);
+            int count = map.numBuildings("Manufacturer");
+            if (count >= 2)
             {
-                if (money >= 200)
-                {
-                    int count = map.numBuildings("Warehouse");
-                    if (count >= 4)
-                    {
-                        std::cout << "Can't do that" << std::endl;
-                        wait(1);
-                        std::cout << "You've reached the maximum number of Warehouses" << std::endl;
-                        wait(1);
-                        GameMenu();
-                    }
-                    stats->setMoney(money - 200);
-                    std::cout << "Construction Worker: Why am I always doing this backbreaking work?" << std::endl;
-                    wait(1);
-                    std::cout << "Construction Worker: I should have listened to my mother and become a doctor." << std::endl;
-                    std::cout << "Building.." << std::endl;
-                    map.build("Warehouse", "Industrial", 7, count);
-                    std::cout << "Construction finsihsed!!" << std::endl;
-                    wait(1);
-                }
-                else
-                {
-                    std::cout << "Can't do that" << std::endl;
-                    wait(1);
-                    std::cout << "You're too Broke." << std::endl;
-                    wait(1);
-                    std::cout << "Go Hustle Big Guy" << std::endl;
-                    wait(2);
-                    GameMenu();
-                }
+                std::cout << "Can't do that" << std::endl;
+                wait(1);
+                std::cout << "You've reached the maximum number of Manufacturers" << std::endl;
+                wait(1);
+                GameMenu();
             }
-            else if (input == 3)
-            {
-                if (money >= 300)
-                {
-                    stats->setMoney(money - 300);
-                    int count = map.numBuildings("Manufacturer");
-                    if (count >= 2)
-                    {
-                        std::cout << "Can't do that" << std::endl;
-                        wait(1);
-                        std::cout << "You've reached the maximum number of Manufacturers" << std::endl;
-                        wait(1);
-                        GameMenu();
-                    }
-                    std::cout << "Construction Worker: Why am I always doing this backbreaking work?" << std::endl;
-                    wait(1);
-                    std::cout << "Construction Worker: I should have listened to my mother and become a doctor." << std::endl;
+            std::cout << "Construction Worker: Why am I always doing this backbreaking work?" << std::endl;
+            wait(1);
+            std::cout << "Construction Worker: I should have listened to my mother and become a doctor." << std::endl;
 
-                    map.build("Manufacturer", "Industrial", 8, count);
-                    std::cout << "Construction finsihsed!!" << std::endl;
-                    wait(1);
-                    GameMenu();
-                }
-                else
-                {
-                    std::cout << "Can't do that" << std::endl;
-                    wait(1);
-                    std::cout << "You're too Broke." << std::endl;
-                    wait(1);
-                    std::cout << "Go Hustle Big Guy" << std::endl;
-                    wait(2);
-                    GameMenu();
-                }
-            }
-            valid = true;
+            map.build("Manufacturer", "Industrial", 8, count);
+            std::cout << "Construction finsihsed!!" << std::endl;
+            wait(1);
+            GameMenu();
+        }
+        else
+        {
+            std::cout << "Can't do that" << std::endl;
+            wait(1);
+            std::cout << "You're too Broke." << std::endl;
+            wait(1);
+            std::cout << "Go Hustle Big Guy" << std::endl;
+            wait(2);
+            GameMenu();
         }
     }
 }
@@ -954,199 +943,148 @@ void Display::utilityMenu()
 {
     clear();
     logo();
-    tabulate::Table options;
-    options.add_row({"1. Power Plant", "2. Water Supply", "3. Sewage Plant", "4. Landfill"});
-    options.format().width(20);
-    options.format().font_align(tabulate::FontAlign::center);
-    options.format().font_style({tabulate::FontStyle::bold});
-    options.format().hide_border_bottom();
-    options.format().hide_border_top();
+    displayMenu("Utility Menu", {"Power Plant", "Water Supply", "Sewage Plant", "Landfill"});
+    int input = getInput(1, 4);
 
-    options[0][0].format().hide_border_left();
-    options[0][3].format().hide_border_right();
-
-    tabulate::Table menu;
-    menu.add_row({"Utility Menu"});
-    menu.add_row({options});
-
-    menu.format().font_align(tabulate::FontAlign::center);
-    menu[0][0].format().font_color(tabulate::Color::blue);
-    std::cout << menu << std::endl;
-    std::cout << "Please select an option." << std::endl;
-    int input;
-
-    bool valid = false;
-    vector<string> errorMsg = {"Invalid option. Please try again.", "Enter an integer.", "What are you doing?", "Can you even read?", "You are clearly doing it on purpose.", "You are testing my patience.", "I am not a happy computer.", "Stop that!!"};
-    int errorCount = 0;
-    while (!valid)
+    int money = stats->getMoney();
+    if (input == 1)
     {
-        std::cin >> input;
-        if (std::cin.fail())
+        if (money >= 100)
         {
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-
-            if (errorCount == 7)
+            int count = map.numBuildings("PowerPlant");
+            if (count >= 4)
             {
-                errorCount = 0;
+                std::cout << "Can't do that" << std::endl;
+                wait(1);
+                std::cout << "You've reached the maximum number of Power Plants" << std::endl;
+                wait(1);
+                GameMenu();
             }
-            std::cout << errorMsg[errorCount] << std::endl;
-            errorCount++;
-        }
-        else if (input > 4 || input < 1)
-        {
-            if (errorCount == 7)
-            {
-                errorCount = 0;
-            }
-            std::cout << errorMsg[errorCount] << std::endl;
-            errorCount++;
+            stats->setMoney(money - 100);
+            std::cout << "Construction Worker: Why am I always doing this backbreaking work?" << std::endl;
+            wait(1);
+            std::cout << "Construction Worker: I should have listened to my mother and become a doctor." << std::endl;
+            std::cout << "Building.." << std::endl;
+            map.build("PowerPlant", "Utility", 9, count);
+            wait(1);
+            std::cout << "Construction finsihsed!!" << std::endl;
+            wait(1);
+            GameMenu();
         }
         else
         {
-            int money = stats->getMoney();
-            if (input == 1)
+            std::cout << "Can't do that" << std::endl;
+            wait(1);
+            std::cout << "You're too Broke." << std::endl;
+            wait(1);
+            std::cout << "Go Hustle Big Guy" << std::endl;
+            wait(2);
+            GameMenu();
+        }
+    }
+    else if (input == 2)
+    {
+        if (money >= 200)
+        {
+            int count = map.numBuildings("WaterSupply");
+            if (count >= 4)
             {
-                if (money >= 100)
-                {
-                    int count = map.numBuildings("PowerPlant");
-                    if (count >= 4)
-                    {
-                        std::cout << "Can't do that" << std::endl;
-                        wait(1);
-                        std::cout << "You've reached the maximum number of Power Plants" << std::endl;
-                        wait(1);
-                        GameMenu();
-                    }
-                    stats->setMoney(money - 100);
-                    std::cout << "Construction Worker: Why am I always doing this backbreaking work?" << std::endl;
-                    wait(1);
-                    std::cout << "Construction Worker: I should have listened to my mother and become a doctor." << std::endl;
-                    std::cout << "Building.." << std::endl;
-                    map.build("PowerPlant", "Utility", 9, count);
-                    wait(1);
-                    std::cout << "Construction finsihsed!!" << std::endl;
-                    wait(1);
-                    GameMenu();
-                }
-                else
-                {
-                    std::cout << "Can't do that" << std::endl;
-                    wait(1);
-                    std::cout << "You're too Broke." << std::endl;
-                    wait(1);
-                    std::cout << "Go Hustle Big Guy" << std::endl;
-                    wait(2);
-                    GameMenu();
-                }
+                std::cout << "Can't do that" << std::endl;
+                wait(1);
+                std::cout << "You've reached the maximum number of Water Supplies" << std::endl;
+                wait(1);
+                GameMenu();
             }
-            else if (input == 2)
+            stats->setMoney(money - 200);
+            std::cout << "Construction Worker: Why am I always doing this backbreaking work?" << std::endl;
+            wait(1);
+            std::cout << "Construction Worker: I should have listened to my mother and become a doctor." << std::endl;
+            std::cout << "Building.." << std::endl;
+
+            map.build("WaterSupply", "Utility", 10, count);
+            std::cout << "Construction finsihsed!!" << std::endl;
+            wait(1);
+            GameMenu();
+        }
+        else
+        {
+            std::cout << "Can't do that" << std::endl;
+            wait(1);
+            std::cout << "You're too Broke." << std::endl;
+            wait(1);
+            std::cout << "Go Hustle Big Guy" << std::endl;
+            wait(2);
+            GameMenu();
+        }
+    }
+    else if (input == 3)
+    {
+        if (money >= 300)
+        {
+            stats->setMoney(money - 300);
+            int count = map.numBuildings("SewagePlant");
+            if (count >= 4)
             {
-                if (money >= 200)
-                {
-                    int count = map.numBuildings("WaterSupply");
-                    if (count >= 4)
-                    {
-                        std::cout << "Can't do that" << std::endl;
-                        wait(1);
-                        std::cout << "You've reached the maximum number of Water Supplies" << std::endl;
-                        wait(1);
-                        GameMenu();
-                    }
-                    stats->setMoney(money - 200);
-                    std::cout << "Construction Worker: Why am I always doing this backbreaking work?" << std::endl;
-                    wait(1);
-                    std::cout << "Construction Worker: I should have listened to my mother and become a doctor." << std::endl;
-                    std::cout << "Building.." << std::endl;
-
-                    map.build("WaterSupply", "Utility", 10, count);
-                    std::cout << "Construction finsihsed!!" << std::endl;
-                    wait(1);
-                    GameMenu();
-                }
-                else
-                {
-                    std::cout << "Can't do that" << std::endl;
-                    wait(1);
-                    std::cout << "You're too Broke." << std::endl;
-                    wait(1);
-                    std::cout << "Go Hustle Big Guy" << std::endl;
-                    wait(2);
-                    GameMenu();
-                }
+                std::cout << "Can't do that" << std::endl;
+                wait(1);
+                std::cout << "You've reached the maximum number of Sewage Plants" << std::endl;
+                wait(1);
+                GameMenu();
             }
-            else if (input == 3)
+            std::cout << "Construction Worker: Why am I always doing this backbreaking work?" << std::endl;
+            wait(1);
+            std::cout << "Construction Worker: I should have listened to my mother and become a doctor." << std::endl;
+            std::cout << "Building.." << std::endl;
+
+            map.build("SewagePlant", "Utility", 11, count);
+            std::cout << "Construction finsihsed!!" << std::endl;
+            wait(1);
+            GameMenu();
+        }
+        else
+        {
+            std::cout << "Can't do that" << std::endl;
+            wait(1);
+            std::cout << "You're too Broke." << std::endl;
+            wait(1);
+            std::cout << "Go Hustle Big Guy" << std::endl;
+            wait(2);
+            GameMenu();
+        }
+    }
+    else if (input == 4)
+    {
+        if (money >= 400)
+        {
+            stats->setMoney(money - 400);
+            int count = map.numBuildings("Landfill");
+            if (count >= 4)
             {
-                if (money >= 300)
-                {
-                    stats->setMoney(money - 300);
-                    int count = map.numBuildings("SewagePlant");
-                    if (count >= 4)
-                    {
-                        std::cout << "Can't do that" << std::endl;
-                        wait(1);
-                        std::cout << "You've reached the maximum number of Sewage Plants" << std::endl;
-                        wait(1);
-                        GameMenu();
-                    }
-                    std::cout << "Construction Worker: Why am I always doing this backbreaking work?" << std::endl;
-                    wait(1);
-                    std::cout << "Construction Worker: I should have listened to my mother and become a doctor." << std::endl;
-                    std::cout << "Building.." << std::endl;
-
-                    map.build("SewagePlant", "Utility", 11, count);
-                    std::cout << "Construction finsihsed!!" << std::endl;
-                    wait(1);
-                    GameMenu();
-                }
-                else
-                {
-                    std::cout << "Can't do that" << std::endl;
-                    wait(1);
-                    std::cout << "You're too Broke." << std::endl;
-                    wait(1);
-                    std::cout << "Go Hustle Big Guy" << std::endl;
-                    wait(2);
-                    GameMenu();
-                }
+                std::cout << "Can't do that" << std::endl;
+                wait(1);
+                std::cout << "You've reached the maximum number of Landfills" << std::endl;
+                wait(1);
+                GameMenu();
             }
-            else if (input == 4)
-            {
-                if (money >= 400)
-                {
-                    stats->setMoney(money - 400);
-                    int count = map.numBuildings("Landfill");
-                    if (count >= 4)
-                    {
-                        std::cout << "Can't do that" << std::endl;
-                        wait(1);
-                        std::cout << "You've reached the maximum number of Landfills" << std::endl;
-                        wait(1);
-                        GameMenu();
-                    }
-                    std::cout << "Construction Worker: Why am I always doing this backbreaking work?" << std::endl;
-                    wait(1);
-                    std::cout << "Construction Worker: I should have listened to my mother and become a doctor." << std::endl;
-                    std::cout << "Building.." << std::endl;
+            std::cout << "Construction Worker: Why am I always doing this backbreaking work?" << std::endl;
+            wait(1);
+            std::cout << "Construction Worker: I should have listened to my mother and become a doctor." << std::endl;
+            std::cout << "Building.." << std::endl;
 
-                    map.build("Landfill", "Utility", 12, count);
-                    std::cout << "Construction finsihsed!!" << std::endl;
-                    wait(1);
-                    GameMenu();
-                }
-                else
-                {
-                    std::cout << "Can't do that" << std::endl;
-                    wait(1);
-                    std::cout << "You're too Broke." << std::endl;
-                    wait(1);
-                    std::cout << "Go Hustle Big Guy" << std::endl;
-                    wait(2);
-                    GameMenu();
-                }
-            }
-
-            valid = true;
+            map.build("Landfill", "Utility", 12, count);
+            std::cout << "Construction finsihsed!!" << std::endl;
+            wait(1);
+            GameMenu();
+        }
+        else
+        {
+            std::cout << "Can't do that" << std::endl;
+            wait(1);
+            std::cout << "You're too Broke." << std::endl;
+            wait(1);
+            std::cout << "Go Hustle Big Guy" << std::endl;
+            wait(2);
+            GameMenu();
         }
     }
 }
@@ -1155,162 +1093,112 @@ void Display::landmarkMenu()
 {
     clear();
     logo();
-    tabulate::Table options;
-    options.add_row({"1. Park", "2. Monument", "3. Cultural Center"});
-    options.format().width(20);
-    options.format().font_align(tabulate::FontAlign::center);
-    options.format().font_style({tabulate::FontStyle::bold});
-    options.format().hide_border_bottom();
-    options.format().hide_border_top();
+    displayMenu("Landmark Menu", {"Park", "Monument", "Cultural Center"});
+    int input = getInput(1, 3);
 
-    options[0][0].format().hide_border_left();
-    options[0][2].format().hide_border_right();
-
-    tabulate::Table menu;
-    menu.add_row({"Landmark Menu"});
-    menu.add_row({options});
-
-    menu.format().font_align(tabulate::FontAlign::center);
-    menu[0][0].format().font_color(tabulate::Color::blue);
-    std::cout << menu << std::endl;
-    std::cout << "Please select an option." << std::endl;
-    int input;
-
-    bool valid = false;
-    vector<string> errorMsg = {"Invalid option. Please try again.", "Enter an integer.", "What are you doing?", "Can you even read?", "You are clearly doing it on purpose.", "You are testing my patience.", "I am not a happy computer.", "Stop that!!"};
-    int errorCount = 0;
-    while (!valid)
+    int money = stats->getMoney();
+    if (input == 1)
     {
-        std::cin >> input;
-        if (std::cin.fail())
+        if (money >= 100)
         {
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+            int count = map.numBuildings("Park");
+            if (count >= 2)
+            {
+                std::cout << "Can't do that" << std::endl;
+                wait(1);
+                std::cout << "You've reached the maximum number of Parks" << std::endl;
+                wait(1);
+                GameMenu();
+            }
+            stats->setMoney(money - 100);
+            std::cout << "Construction Worker: Why am I always doing this backbreaking work?" << std::endl;
+            wait(1);
+            std::cout << "Construction Worker: I should have listened to my mother and become a doctor." << std::endl;
+            std::cout << "Building.." << std::endl;
 
-            if (errorCount == 7)
-            {
-                errorCount = 0;
-            }
-            std::cout << errorMsg[errorCount] << std::endl;
-            errorCount++;
-        }
-        else if (input > 3 || input < 1)
-        {
-            if (errorCount == 7)
-            {
-                errorCount = 0;
-            }
-            std::cout << errorMsg[errorCount] << std::endl;
-            errorCount++;
+            map.build("Park", "Landmark", 13, count);
+            std::cout << "Construction finsihsed!!" << std::endl;
+            wait(1);
+            GameMenu();
         }
         else
         {
-            int money = stats->getMoney();
-            if (input == 1)
+            std::cout << "Can't do that" << std::endl;
+            wait(1);
+            std::cout << "You're too Broke." << std::endl;
+            wait(1);
+            std::cout << "Go Hustle Big Guy" << std::endl;
+            wait(2);
+            GameMenu();
+        }
+    }
+    else if (input == 2)
+    {
+        if (money >= 200)
+        {
+            int count = map.numBuildings("Monument");
+            if (count >= 2)
             {
-                if (money >= 100)
-                {
-                    int count = map.numBuildings("Park");
-                    if (count >= 2)
-                    {
-                        std::cout << "Can't do that" << std::endl;
-                        wait(1);
-                        std::cout << "You've reached the maximum number of Parks" << std::endl;
-                        wait(1);
-                        GameMenu();
-                    }
-                    stats->setMoney(money - 100);
-                    std::cout << "Construction Worker: Why am I always doing this backbreaking work?" << std::endl;
-                    wait(1);
-                    std::cout << "Construction Worker: I should have listened to my mother and become a doctor." << std::endl;
-                    std::cout << "Building.." << std::endl;
+                std::cout << "Can't do that" << std::endl;
+                wait(1);
+                std::cout << "You've reached the maximum number of Monuments" << std::endl;
+                wait(1);
+                GameMenu();
+            }
+            stats->setMoney(money - 200);
+            std::cout << "Construction Worker: Why am I always doing this backbreaking work?" << std::endl;
+            wait(1);
+            std::cout << "Construction Worker: I should have listened to my mother and become a doctor." << std::endl;
+            std::cout << "Building.." << std::endl;
+            map.build("Monument", "Landmark", 14, count);
+            std::cout << "Construction finsihsed!!" << std::endl;
+            wait(1);
+            GameMenu();
+        }
+        else
+        {
+            std::cout << "Can't do that" << std::endl;
+            wait(1);
+            std::cout << "You're too Broke." << std::endl;
+            wait(1);
+            std::cout << "Go Hustle Big Guy" << std::endl;
+            wait(2);
+            GameMenu();
+        }
+    }
+    else if (input == 3)
+    {
+        if (money >= 300)
+        {
+            int count = map.numBuildings("CulturalCenter");
+            if (count >= 2)
+            {
+                std::cout << "Can't do that" << std::endl;
+                wait(1);
+                std::cout << "You've reached the maximum number of Cultural Centers" << std::endl;
+                wait(1);
+                GameMenu();
+            }
 
-                    map.build("Park", "Landmark", 13, count);
-                    std::cout << "Construction finsihsed!!" << std::endl;
-                    wait(1);
-                    GameMenu();
-                }
-                else
-                {
-                    std::cout << "Can't do that" << std::endl;
-                    wait(1);
-                    std::cout << "You're too Broke." << std::endl;
-                    wait(1);
-                    std::cout << "Go Hustle Big Guy" << std::endl;
-                    wait(2);
-                    GameMenu();
-                }
-            }
-            else if (input == 2)
-            {
-                if (money >= 200)
-                {
-                    int count = map.numBuildings("Monument");
-                    if (count >= 2)
-                    {
-                        std::cout << "Can't do that" << std::endl;
-                        wait(1);
-                        std::cout << "You've reached the maximum number of Monuments" << std::endl;
-                        wait(1);
-                        GameMenu();
-                    }
-                    stats->setMoney(money - 200);
-                    std::cout << "Construction Worker: Why am I always doing this backbreaking work?" << std::endl;
-                    wait(1);
-                    std::cout << "Construction Worker: I should have listened to my mother and become a doctor." << std::endl;
-                    std::cout << "Building.." << std::endl;
-                    map.build("Monument", "Landmark", 14, count);
-                    std::cout << "Construction finsihsed!!" << std::endl;
-                    wait(1);
-                    GameMenu();
-                }
-                else
-                {
-                    std::cout << "Can't do that" << std::endl;
-                    wait(1);
-                    std::cout << "You're too Broke." << std::endl;
-                    wait(1);
-                    std::cout << "Go Hustle Big Guy" << std::endl;
-                    wait(2);
-                    GameMenu();
-                }
-            }
-            else if (input == 3)
-            {
-                if (money >= 300)
-                {
-                    int count = map.numBuildings("CulturalCenter");
-                    if (count >= 2)
-                    {
-                        std::cout << "Can't do that" << std::endl;
-                        wait(1);
-                        std::cout << "You've reached the maximum number of Cultural Centers" << std::endl;
-                        wait(1);
-                        GameMenu();
-                    }
-
-                    stats->setMoney(money - 300);
-                    std::cout << "Construction Worker: Why am I always doing this backbreaking work?" << std::endl;
-                    wait(1);
-                    std::cout << "Construction Worker: I should have listened to my mother and become a doctor." << std::endl;
-                    std::cout << "Building.." << std::endl;
-                    map.build("CulturalCenter", "Landmark", 15, count);
-                    std::cout << "Construction finsihsed!!" << std::endl;
-                    wait(1);
-                    GameMenu();
-                }
-                else
-                {
-                    std::cout << "Can't do that" << std::endl;
-                    wait(1);
-                    std::cout << "You're too Broke." << std::endl;
-                    wait(1);
-                    std::cout << "Go Hustle Big Guy" << std::endl;
-                    wait(2);
-                    GameMenu();
-                }
-            }
-            valid = true;
+            stats->setMoney(money - 300);
+            std::cout << "Construction Worker: Why am I always doing this backbreaking work?" << std::endl;
+            wait(1);
+            std::cout << "Construction Worker: I should have listened to my mother and become a doctor." << std::endl;
+            std::cout << "Building.." << std::endl;
+            map.build("CulturalCenter", "Landmark", 15, count);
+            std::cout << "Construction finsihsed!!" << std::endl;
+            wait(1);
+            GameMenu();
+        }
+        else
+        {
+            std::cout << "Can't do that" << std::endl;
+            wait(1);
+            std::cout << "You're too Broke." << std::endl;
+            wait(1);
+            std::cout << "Go Hustle Big Guy" << std::endl;
+            wait(2);
+            GameMenu();
         }
     }
 }
@@ -1319,114 +1207,85 @@ void Display::infrastructureMenu()
 {
     clear();
     logo();
-    tabulate::Table options;
-    options.add_row({"1. Road", "2. Railway"});
-    options.format().width(20);
-    options.format().font_align(tabulate::FontAlign::center);
-    options.format().font_style({tabulate::FontStyle::bold});
-    options.format().hide_border_bottom();
-    options.format().hide_border_top();
 
-    options[0][0].format().hide_border_left();
-    options[0][1].format().hide_border_right();
+    displayMenu("Infrastructure Menu", std::vector<std::string>{"Road", "Railway"});
 
-    tabulate::Table menu;
-    menu.add_row({"Infrastructure Menu"});
-    menu.add_row({options});
+    int input = getInput(1, 2);
 
-    menu.format().font_align(tabulate::FontAlign::center);
-    menu[0][0].format().font_color(tabulate::Color::blue);
-    std::cout << menu << std::endl;
-    std::cout << "Please select an option." << std::endl;
-    int input;
-
-    bool valid = false;
-    vector<string> errorMsg = {"Invalid option. Please try again.", "Enter an integer.", "What are you doing?", "Can you even read?", "You are clearly doing it on purpose.", "You are testing my patience.", "I am not a happy computer.", "Stop that!!"};
-    int errorCount = 0;
-    while (!valid)
+    int money = stats->getMoney();
+    if (input == 1)
     {
-        std::cin >> input;
-        if (std::cin.fail())
-        {
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        if (money >= 100)
+        {   
+            int count = map.numBuildings("Road");
+            if (count >= 53)
+            {
+                std::cout << "Can't do that" << std::endl;
+                wait(1);
+                std::cout << "You've reached the maximum number of Roads" << std::endl;
+                wait(1);
+                GameMenu();
+            }
+            stats->setMoney(money - 100);
+            std::cout << "Construction Worker: Why am I always doing this backbreaking work?" << std::endl;
+            wait(1);
+            std::cout << "Construction Worker: I should have listened to my mother and become a doctor." << std::endl;
+            std::cout << "Building.." << std::endl;
 
-            if (errorCount == 7)
-            {
-                errorCount = 0;
-            }
-            std::cout << errorMsg[errorCount] << std::endl;
-            errorCount++;
-        }
-        else if (input > 2 || input < 1)
-        {
-            if (errorCount == 7)
-            {
-                errorCount = 0;
-            }
-            std::cout << errorMsg[errorCount] << std::endl;
-            errorCount++;
+            map.build("Road", "Infrastructure", 17, count);
+            std::cout << "Construction finsihsed!!" << std::endl;
+            wait(1);
+            GameMenu();
         }
         else
         {
-            int money = stats->getMoney();
-            if (input == 1)
+            std::cout << "Can't do that" << std::endl;
+            wait(1);
+            std::cout << "You're too Broke." << std::endl;
+            wait(1);
+            std::cout << "Go Hustle Big Guy" << std::endl;
+            wait(2);
+            GameMenu();
+        }
+    }
+    else if (input == 2)
+    {
+        if (money >= 200)
+        {
+            int count = map.numBuildings("Railway");
+            if (count >= 15)
             {
-                if (money >= 100)
-                {
-                    stats->setMoney(money - 100);
-                    std::cout << "Construction Worker: Why am I always doing this backbreaking work?" << std::endl;
-                    wait(1);
-                    std::cout << "Construction Worker: I should have listened to my mother and become a doctor." << std::endl;
-                    std::cout << "Building.." << std::endl;
-
-                    map.build("Road", "Infrastructure", 0, 0);
-                    std::cout << "Construction finsihsed!!" << std::endl;
-                    wait(1);
-                    GameMenu();
-                }
-                else
-                {
-                    std::cout << "Can't do that" << std::endl;
-                    wait(1);
-                    std::cout << "You're too Broke." << std::endl;
-                    wait(1);
-                    std::cout << "Go Hustle Big Guy" << std::endl;
-                    wait(2);
-                    GameMenu();
-                }
+                std::cout << "Can't do that" << std::endl;
+                wait(1);
+                std::cout << "You've reached the maximum number of Railways" << std::endl;
+                wait(1);
+                GameMenu();
             }
-            else if (input == 2)
-            {
-                if (money >= 200)
-                {
-                    stats->setMoney(money - 200);
-                    std::cout << "Construction Worker: Why am I always doing this backbreaking work?" << std::endl;
-                    wait(1);
-                    std::cout << "Construction Worker: I should have listened to my mother and become a doctor." << std::endl;
-                    std::cout << "Building.." << std::endl;
-                    map.build("Railway", "Infrastructure", 0, 0);
-                    std::cout << "Construction finsihsed!!" << std::endl;
-                    wait(1);
-                    GameMenu();
-                }
-                else
-                {
-                    std::cout << "Can't do that" << std::endl;
-                    wait(1);
-                    std::cout << "You're too Broke." << std::endl;
-                    wait(1);
-                    std::cout << "Go Hustle Big Guy" << std::endl;
-                    wait(2);
-                    GameMenu();
-                }
-            }
-            valid = true;
+            stats->setMoney(money - 200);
+            std::cout << "Construction Worker: Why am I always doing this backbreaking work?" << std::endl;
+            wait(1);
+            std::cout << "Construction Worker: I should have listened to my mother and become a doctor." << std::endl;
+            std::cout << "Building.." << std::endl;
+            map.build("Railway", "Infrastructure", 18, count);
+            std::cout << "Construction finsihsed!!" << std::endl;
+            wait(1);
+            GameMenu();
+        }
+        else
+        {
+            std::cout << "Can't do that" << std::endl;
+            wait(1);
+            std::cout << "You're too Broke." << std::endl;
+            wait(1);
+            std::cout << "Go Hustle Big Guy" << std::endl;
+            wait(2);
+            GameMenu();
         }
     }
 }
 
-string Display::check(string var, int num){
+string Display::check(string var, int num)
+{
     int count = map.numBuildings(var);
     if (count >= num)
     {
@@ -1436,446 +1295,533 @@ string Display::check(string var, int num){
     {
         return "";
     }
-}       
+}
 
-
-void Display::upgradeMenu(){
+void Display::upgradeMenu()
+{
     clear();
     logo();
 
     vector<string> apartmentUpgrades = getUpgrades("Apartment", 1);
-
 }
 
-vector<string> Display::getUpgrades(string var, int num){
+vector<string> Display::getUpgrades(string var, int num)
+{
     vector<string> upgrades;
     int count = map.numBuildings(var);
     if (count >= num)
     {
-        
     }
     else
     {
         return upgrades;
     }
+}
 
+void Display::destroyMenu()
+{
+    // get all the tiles and dereference the non null tile pointers and add their building ids to a vector
+    // display the building ids to the user as well as the building type to which that id belongs
+    // ask the user to select a building to destroy
+    // get the building id from the user
+    // get the building type from the building id
+    // remove the building from the map using the destroy(int id) function
+
+    vector<int> buildingIds;
+    vector<string> buildingTypes;
+    vector<vector<shared_ptr<MapComponent>>> tiles = map.getTiles();
+    for (int i = 0; i < tiles.size(); i++)
+    {
+        for (int j = 0; j < tiles[i].size(); j++)
+        {
+            if (tiles[i][j] != nullptr)
+            {
+                buildingIds.push_back(tiles[i][j]->getId());
+                buildingTypes.push_back(tiles[i][j]->getType());
+            }
+        }
+    }
+    // display the building ids and types in a table next to each other with the building ids in the first column and the building types in the second column using a number for the index from 1 onwards
+    tabulate::Table buildingTable;
+    buildingTable.add_row({"Building ID", "Building Type"});
+    for (int i = 0; i < buildingIds.size(); i++)
+    {
+        buildingTable.add_row({to_string(i + 1), buildingTypes[i]});
+    }
+    buildingTable.format().font_align(tabulate::FontAlign::center);
+    
+    std::cout << buildingTable << std::endl;
+
+    std::cout << "Enter the number of the building you want to destroy" << std::endl;
+    int input = getInput(1, buildingIds.size());
+    map.destroy(buildingIds[input - 1]);
+    GameMenu();
 
 }
 
-void Display::governmentMenu(){
+void Display::governmentMenu()
+{
     clear();
     logo();
-    tabulate::Table options;
-    options.add_row({"1. Tax", "2. Policies", "3. Services", "4. Budget", "5. Statistics", "6. Back"});
-    options.format().width(20);
-    options.format().font_align(tabulate::FontAlign::center);
-    options.format().font_style({tabulate::FontStyle::bold});
-    options.format().hide_border_bottom();
-    options.format().hide_border_top();
 
-    options[0][0].format().hide_border_left();
-    options[0][4].format().hide_border_right();
+    displayMenu("Government Menu", {"Tax", "Policies", "Services", "Budget", "Statistics", "Back"});
+    int input = getInput(1, 6);
 
-    tabulate::Table menu;
-    menu.add_row({"Government Menu"});
-    menu.add_row({options});
-
-    menu.format().font_align(tabulate::FontAlign::center);
-    menu[0][0].format().font_color(tabulate::Color::blue);
-    std::cout << menu << std::endl;
-    std::cout << "Please select an option." << std::endl;
-    int input;
-
-    bool valid = false;
-    vector<string> errorMsg = {"Invalid option. Please try again.", "Enter an integer.", "What are you doing?", "Can you even read?", "You are clearly doing it on purpose.", "You are testing my patience.", "I am not a happy computer.", "Stop that!!"};
-    int errorCount = 0;
-    while(!valid){
-        std::cin >> input;
-        if (std::cin.fail())
-        {
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-
-            if (errorCount == 7)
-            {
-                errorCount = 0;
-            }
-            std::cout << errorMsg[errorCount] << std::endl;
-            errorCount++;
-        }
-        else if (input > 6 || input < 1)
-        {
-            if (errorCount == 7)
-            {
-                errorCount = 0;
-            }
-            std::cout << errorMsg[errorCount] << std::endl;
-            errorCount++;
-        }
-        else{
-            valid = true;
-            if (input == 1)
-            {   
-                taxMenu();
-            }
-            else if (input == 2)
-            {
-                policiesMenu();
-            }
-            else if (input == 3)
-            {
-                servicesMenu();
-            }
-            else if (input == 4)
-            {
-                budgetMenu();
-            }
-            else if (input == 5)
-            {
-                statisticsMenu();
-            }
-            else if (input == 6)
-            {
-                GameMenu();
-            }
-        }
+    if (input == 1)
+    {
+        taxMenu();
+    }
+    else if (input == 2)
+    {
+        policiesMenu();
+    }
+    else if (input == 3)
+    {
+        servicesMenu();
+    }
+    else if (input == 4)
+    {
+        budgetMenu();
+    }
+    else if (input == 5)
+    {
+        statisticsMenu();
+    }
+    else if (input == 6)
+    {
+        GameMenu();
     }
 }
 
-void Display::transportMenu() {
+void Display::taxMenu()
+{
+    clear();
+    logo();
+
+    displayTaxStats();
+    displayMenu("Tax Menu", {"Business", "Personal", "Back"});
+
+    int input = getInput(1, 3);
+    switch (input)
+    {
+    case 1:
+        businessTaxMenu();
+        break;
+    case 2:
+        personalTaxMenu();
+        break;
+    case 3:
+        governmentMenu();
+        break;
+    }
+}
+
+void Display::displayTaxStats()
+{
+    vector<string> taxStats;
+    taxStats.push_back("Business Tax:");
+    string bTax = std::to_string(stats->getGovernment()->getBusinessTaxRate()) + "%";
+    taxStats.push_back(bTax);
+    taxStats.push_back("Personal Tax:");
+    string pTax = std::to_string(stats->getGovernment()->getPersonalTaxRate()) + "%";
+    taxStats.push_back(pTax);
+    displayRow(taxStats);
+
+    // availble for collection
+    tabulate::Table taxTable;
+    string business = std::to_string(stats->getUncollectedTax("business"));
+    string personal = std::to_string(stats->getUncollectedTax("personal"));
+    taxTable.add_row({"Business: ", business, "Personal: ", personal});
+
+    taxTable.format().font_align(tabulate::FontAlign::center);
+    taxTable[0][0].format().font_color(tabulate::Color::blue);
+
+    tabulate::Table uncollected;
+    uncollected.add_row({"Uncollected Taxes"});
+    uncollected.add_row({taxTable});
+    uncollected.format().font_align(tabulate::FontAlign::center);
+    uncollected[0][0].format().font_color(tabulate::Color::blue);
+    std::cout << uncollected << std::endl;
+}
+void Display::businessTaxMenu()
+{
+    clear();
+    logo();
+
+    displayTaxStats();
+    displayMenu("Business Tax Menu", {"Increase", "Decrease", "Collect", "Back"});
+    int input = getInput(1, 4);
+
+    if (input == 1)
+    {
+        std::cout << "What do you want to increase the current tax rate by?" << std::endl;
+        double Increase = getInput(0, 100);
+        while (Increase + stats->getGovernment()->getBusinessTaxRate() > 100)
+        {
+            std::cout << "The total tax rate cannot exceed 100%. Please enter a lower value." << std::endl;
+            Increase = getInput(0, 100);
+        }
+        stats->changeBusinessTax(Increase, "increase");
+        businessTaxMenu();
+    }
+    else if (input == 2)
+    {
+        std::cout << "What do you want to decrease the current tax rate by?" << std::endl;
+        double Decrease = getInput(0, stats->getGovernment()->getBusinessTaxRate());
+        while (Decrease + stats->getGovernment()->getBusinessTaxRate() < 0)
+        {
+            std::cout << "The total tax rate cannot be negative. Please enter a lower value." << std::endl;
+            Decrease = getInput(0, stats->getGovernment()->getBusinessTaxRate());
+        }
+        stats->changeBusinessTax(Decrease, "decrease");
+        businessTaxMenu();
+    }
+    else if (input == 3)
+    {
+        stats->collectBusinessTax();
+        businessTaxMenu();
+    }
+    else if (input == 4)
+    {
+        taxMenu();
+    }
+}
+
+void Display::personalTaxMenu()
+{
+    clear();
+    logo();
+    displayTaxStats();
+    displayMenu("Personal Tax Menu", {"Increase", "Decrease", "Collect", "Back"});
+
+    int input = getInput(1, 4);
+
+    switch (input)
+    {
+    case 1:
+    { // Increase tax
+        double Increase;
+        std::cout << "What do you want to increase the current tax rate by?" << std::endl;
+        while (true)
+        {
+            std::cin >> Increase;
+
+            if (std::cin.fail() || Increase <= 0)
+            {
+                std::cin.clear();
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                std::cout << "Please enter a positive value to increase the tax rate." << std::endl;
+            }
+            else
+            {
+                break;
+            }
+        }
+        stats->changePersonalTax(Increase, "increase");
+        personalTaxMenu();
+        break;
+    }
+    case 2:
+    { // Decrease tax
+        double Decrease;
+        std::cout << "What do you want to decrease the current tax rate by?" << std::endl;
+        while (true)
+        {
+            std::cin >> Decrease;
+
+            if (std::cin.fail() || Decrease <= 0)
+            {
+                std::cin.clear();
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                std::cout << "Please enter a positive value to decrease the tax rate." << std::endl;
+            }
+            else
+            {
+                break;
+            }
+        }
+        stats->changePersonalTax(Decrease, "decrease");
+        personalTaxMenu();
+        break;
+    }
+    case 3: // Collect tax
+        stats->collectPersonalTax();
+        personalTaxMenu();
+        break;
+    case 4: // Back to tax menu
+        taxMenu();
+        break;
+    }
+}
+
+void Display::policiesMenu()
+{
+    clear();
+    logo();
+
+    if (stats->getImplementedPolicies().empty())
+    {
+
+        displayRow({"No policies have been implemented."});
+    }
+    else
+    {
+        displayTable(stats->getImplementedPolicies());
+    }
+
+    if (stats->getAvailablePolicies().empty())
+    {
+        displayRow({"No policies available to implement."});
+        std::cout << "Press any key to go back." << std::endl;
+        std::cin.ignore();
+        std::cin.get();
+        governmentMenu();
+    }
+    else
+    {
+        displayMenu("Policies Menu", stats->getAvailablePolicies());
+        int input = getInput(1, stats->getAvailablePolicies().size());
+        string implementedPolicy = stats->implementPolicy(stats->getAvailablePolicies()[input - 1]);
+        std::cout << implementedPolicy << " has been implemented." << std::endl;
+        policiesMenu();
+    }
+}
+
+void Display::servicesMenu()
+{
+    clear();
+    logo();
+
+    displayMenu("Services Menu", {"Police", "Education", "Healthcare", "Back"});
+
+    int input = getInput(1, 4);
+
+    string answer;
+    switch (input)
+    {
+    case 1:
+        std::cout << "Would you like to add or remove funds to the Police? (Add/Remove)" << std::endl;
+        while (true)
+        {
+            std::cin >> answer;
+            transform(answer.begin(), answer.end(), answer.begin(), ::tolower);
+
+            if (answer == "add")
+            {
+                stats->changeBudget("police", "increase");
+                break;
+            }
+            else if (answer == "remove")
+            {
+                stats->changeBudget("police", "decrease");
+                break;
+            }
+            else
+            {
+                std::cout << "Invalid input. Please enter 'Add' or 'Remove'." << std::endl;
+            }
+        }
+        break;
+    case 2:
+        std::cout << "Would you like to add or remove funds to the Education? (Add/Remove)" << std::endl;
+        while (true)
+        {
+            std::cin >> answer;
+            transform(answer.begin(), answer.end(), answer.begin(), ::tolower);
+
+            if (answer == "add")
+            {
+                stats->changeBudget("education", "increase");
+                break;
+            }
+            else if (answer == "remove")
+            {
+                stats->changeBudget("education", "decrease");
+                break;
+            }
+            else
+            {
+                std::cout << "Invalid input. Please enter 'Add' or 'Remove'." << std::endl;
+            }
+        }
+        break;
+    case 3:
+        std::cout << "Would you like to add or remove funds to the Healthcare? (Add/Remove)" << std::endl;
+        while (true)
+        {
+            std::cin >> answer;
+            transform(answer.begin(), answer.end(), answer.begin(), ::tolower);
+
+            if (answer == "add")
+            {
+                stats->changeBudget("healthcare", "increase");
+                break;
+            }
+            else if (answer == "remove")
+            {
+                stats->changeBudget("healthcare", "decrease");
+                break;
+            }
+            else
+            {
+                std::cout << "Invalid input. Please enter 'Add' or 'Remove'." << std::endl;
+            }
+        }
+        break;
+    case 4:
+        cout << "Exiting menu." << endl;
+        governmentMenu();
+        break;
+    default:
+        break;
+    }
+}
+
+void Display::budgetMenu()
+{
+    throw "Budget Menu not implemented";
+}
+
+void Display::statisticsMenu()
+{
+    throw "Statistics Menu not implemented";
+}
+
+void Display::transportMenu() 
+{
     clear();
     logo();
     
-    // Step 1: Ask for starting coordinates
-    cout << "Enter the starting coordinates (in the format x,y): ";
-    int startX, startY;
-    char comma;
-    bool validInput = false;
-    while (!validInput) {
-        std::cin >> startX >> comma >> startY;
-        if (cin.fail() || comma != ',' || startX < 0 || startY < 0) {
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            cout << "Invalid input. Please enter coordinates in the format x,y: ";
-        } else {
-            validInput = true;
-        }
-    }
-
-    // Step 2: Ask for destination coordinates
-    cout << "Enter the destination coordinates (in the format x,y): ";
-    int destX, destY;
-    validInput = false;
-    while (!validInput) {
-        cin >> destX >> comma >> destY;
-        if (cin.fail() || comma != ',' || destX < 0 || destY < 0) {
-            cin.clear();
-            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            cout << "Invalid input. Please enter coordinates in the format x,y: ";
-        } else {
-            validInput = true;
-        }
-    }
-
-    // Step 3: Display travel options
-    tabulate::Table options;
-    options.add_row({"1. Car", "2. Train", "3. Taxi", "4. Airplane", "5. Cancel"});
-    options.format().width(20);
-    options.format().font_align(tabulate::FontAlign::center);
-    options.format().font_style({tabulate::FontStyle::bold});
-    options.format().hide_border_bottom();
-    options.format().hide_border_top();
-
-    options[0][0].format().hide_border_left();
-    options[0][3].format().hide_border_right();
-
-    tabulate::Table menu;
-    menu.add_row({"Transport Menu"});
-    menu.add_row({options});
-    menu.format().font_align(tabulate::FontAlign::center);
-    menu[0][0].format().font_color(tabulate::Color::blue);
+    int distance;
+    int capacity;
     
-    cout << menu << std::endl;
-    cout << "Please select a travel option." << std::endl;
+    // Step 1: Ask the user for distance in kmss
+    cout << "Enter the distance you wish to travel (in km): ";
+    while (!(cin >> distance) || distance <= 0) {
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cout << "Invalid input. Please enter a positive integer for distance: ";
+    }
 
-    // Step 4: Prompt for choice and validate input
-    int input;
-    bool valid = false;
-    vector<string> errorMsg = {"Invalid option. Please try again.", "Enter an integer."};
-    int errorCount = 0;
-    while (!valid) {
-        cin >> input;
-        if (cin.fail() || input < 1 || input > 5) {
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            cout << errorMsg[errorCount % errorMsg.size()] << endl;
-            errorCount++;
-        } else {
-            valid = true;
+    // Step 2: Ask the user for num people
+    cout << "Enter the number of people traveling (including yourself): ";
+    while (!(cin >> capacity) || capacity <= 0) {
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cout << "Invalid input. Please enter a positive integer for capacity: ";
+    }
+
+    // Step 3: Options based on what user put in distance capacity
+    clear();
+    logo();
+ 
+    cout << "Select your transport option:\n";
+    int optionCount = 1;
+
+    // Statistics obj to hold chosen strategy
+    Statistics stats;
+
+    // Checking more for the trasport optons to display
+    if (distance <= 150) {
+        // Car
+        auto carStrategy = make_shared<RoadStrategy>();
+        if (capacity >= carStrategy->getCapacityMin() && capacity <= carStrategy->getCapacityMax()) {
+            cout << optionCount << ". Car\n";
+            optionCount++;
+        }
+
+        // Taxi option
+        auto taxiStrategy = make_shared<PublicStrategy>();
+        if (capacity >= taxiStrategy->getCapacityMin() && capacity <= taxiStrategy->getCapacityMax()) {
+            cout << optionCount << ". Taxi\n";
+            optionCount++;
+        }
+
+        // Train option
+        auto trainStrategy = make_shared<TrainStrategy>();
+        if (capacity >= trainStrategy->getCapacityMin() && capacity <= trainStrategy->getCapacityMax()) {
+            cout << optionCount << ". Train\n";
+            optionCount++;
         }
     }
 
-    // Step 5: Display travel details based on choice
-    if (input != 5) {  //not "Cancel" option
-        string travelType;
-        if (input == 1) 
-        {
-            travelType = "Car";
-            cout << "You have selected: " << travelType;
-
-            int distance = map.roadDistanceTo(startX, startY, destX, destY);
-        } 
-        else if (input == 2) 
-        {
-            travelType = "Train";
-            cout << "You have selected: " << travelType;
-        } 
-        else if (input == 3) 
-        {
-            travelType = "Taxi";
-            cout << "You have selected: " << travelType;
-        } 
-        else if (input == 4) 
-        {
-            travelType = "Airplane";
-            cout << "You have selected: " << travelType;
-
+    // Include Airplane if distance is more than 150 km
+    if (distance > 150) {
+        auto airplaneStrategy = make_shared<AirStrategy>();
+        if (capacity >= airplaneStrategy->getCapacityMin() && capacity <= airplaneStrategy->getCapacityMax()) {
+            std::cout << optionCount << ". Airplane\n";
+            optionCount++;
         }
+    }
 
-        
-        
+
+    // Step 4: transport choice, getting from user
+    int transportChoice;
+    cout << "Please enter the number of your choice: ";
+    cin >> transportChoice;
+    while (cin.fail() || transportChoice < 1 || transportChoice >= optionCount) {
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cout << "Invalid choice. Please enter a valid option: ";
+        cin >> transportChoice;
+    }
+
+    // Set the chosen strategy based on user input
+    switch (transportChoice) {
+    case 1:
+        stats.setStrategy(make_shared<RoadStrategy>());
+        break;
+    case 2:
+        stats.setStrategy(make_shared<PublicStrategy>());
+        break;
+    case 3:
+        stats.setStrategy(make_shared<TrainStrategy>());
+        break;
+    case 4:
+        stats.setStrategy(make_shared<AirStrategy>());
+        break;
+    default:
+        cerr << "Invalid choice of transportation." << endl;
+        break;
+}
+
+ // Step 5: Display travel details
+    stats.displayOption(distance);      //this will display the est cost, an all from the statistcs
+    cout << "Do you want to proceed with this travel? (yes/no): ";
+    string confirm;
+    cin >> confirm;
+
+    if (confirm == "yes" || confirm == "y") {
+        cout << "Travel confirmed! Your journey has begun.\n";
     } else {
-        cout << "Transport Menu canceled." << endl;
+        cout << "Travel cancelled.\n";
     }
 }
 
-void Display::taxMenu(){
-    clear();
-    logo();
-    tabulate::Table options;
-    options.add_row({"1. Business", "2. Personal", "3. Back"});
-    options.format().width(20);
-    options.format().font_align(tabulate::FontAlign::center);
-    options.format().font_style({tabulate::FontStyle::bold});
-    tabulate::Table menu;
-    menu.add_row({"Tax Menu"});
-    menu.add_row({options});
-
-    menu.format().font_align(tabulate::FontAlign::center);
-    menu[0][0].format().font_color(tabulate::Color::blue);
-    std::cout << menu << std::endl;
-    std::cout << "Please select an option." << std::endl;
-    int input;
-
-    bool valid = false;
-    vector<string> errorMsg = {"Invalid option. Please try again.", "Enter an integer.", "What are you doing?", "Can you even read?", "You are clearly doing it on purpose.", "You are testing my patience.", "I am not a happy computer.", "Stop that!!"};
-    int errorCount = 0;
-    while(!valid){
-        std::cin >> input;
-        if (std::cin.fail())
-        {
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-
-            if (errorCount == 7)
-            {
-                errorCount = 0;
-            }
-            std::cout << errorMsg[errorCount] << std::endl;
-            errorCount++;
-        }
-        else if (input > 3 || input < 1)
-        {
-            if (errorCount == 7)
-            {
-                errorCount = 0;
-            }
-            std::cout << errorMsg[errorCount] << std::endl;
-            errorCount++;
-        }
-        else{
-            valid = true;
-            if (input == 1)
-            {
-                businessTaxMenu();
-            }
-            else if (input == 2)
-            {
-                personalTaxMenu();
-            }
-            else if (input == 3)
-            {
-                governmentMenu();
-            }
-        }
-    }
-}
-
-void Display::businessTaxMenu(){
-    clear();
-    logo();
-    tabulate::Table options;
-    options.add_row({"1. Increase", "2. Decrease", "3. Collect", "4. Back"});
-    options.format().width(20);
-    options.format().font_align(tabulate::FontAlign::center);
-    options.format().font_style({tabulate::FontStyle::bold});
-    options.format().hide_border_bottom();
-    options.format().hide_border_top();
-
-    options[0][0].format().hide_border_left();
-    options[0][3].format().hide_border_right();
-
-    tabulate::Table menu;
-    menu.add_row({"Business Tax Menu"});
-    menu.add_row({options});
-
-    menu.format().font_align(tabulate::FontAlign::center);
-    menu[0][0].format().font_color(tabulate::Color::blue);
-    std::cout << menu << std::endl;
-    std::cout << "Please select an option." << std::endl;
-    int input;
-
-    bool valid = false;
-    vector<string> errorMsg = {"Invalid option. Please try again.", "Enter an integer.", "What are you doing?", "Can you even read?", "You are clearly doing it on purpose.", "You are testing my patience.", "I am not a happy computer.", "Stop that!!"};
-    int errorCount = 0;
-    while(!valid){
-        std::cin >> input;
-        if (std::cin.fail())
-        {
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-
-            if (errorCount == 7)
-            {
-                errorCount = 0;
-            }
-            std::cout << errorMsg[errorCount] << std::endl;
-            errorCount++;
-        }
-        else if (input > 4 || input < 1)
-        {
-            if (errorCount == 7)
-            {
-                errorCount = 0;
-            }
-            std::cout << errorMsg[errorCount] << std::endl;
-            errorCount++;
-        }
-        else{
-            if (input == 1)
-            {
-                stats->increaseBusinessTax();
-                businessTaxMenu();
-            }
-            else if (input == 2)
-            {
-                stats->decreaseBusinessTax();
-                businessTaxMenu();
-            }
-            else if (input == 3)
-            {
-                stats->collectBusinessTax();
-                businessTaxMenu();
-            }
-            else if (input == 4)
-            {
-                taxMenu();
-            }
-            valid = true;
-        }
-    }
-
-}
-
-void Display::personalTaxMenu(){
-    clear();
-    logo();
-    tabulate::Table options;
-    options.add_row({"1. Increase", "2. Decrease", "3. Collect", "4. Back"});
-    options.format().width(20);
-    options.format().font_align(tabulate::FontAlign::center);
-    options.format().font_style({tabulate::FontStyle::bold});
-    options.format().hide_border_bottom();
-    options.format().hide_border_top();
-
-    options[0][0].format().hide_border_left();
-    options[0][3].format().hide_border_right();
-
-    tabulate::Table menu;
-    menu.add_row({"Personal Tax Menu"});
-    menu.add_row({options});
-
-    menu.format().font_align(tabulate::FontAlign::center);
-    menu[0][0].format().font_color(tabulate::Color::blue);
-    std::cout << menu << std::endl;
-    std::cout << "Please select an option." << std::endl;
-    int input;
-
-    bool valid = false;
-    vector<string> errorMsg = {"Invalid option. Please try again.", "Enter an integer.", "What are you doing?", "Can you even read?", "You are clearly doing it on purpose.", "You are testing my patience.", "I am not a happy computer.", "Stop that!!"};
-    int errorCount = 0;
-    while(!valid){
-        std::cin >> input;
-        if (std::cin.fail())
-        {
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-
-            if (errorCount == 7)
-            {
-                errorCount = 0;
-            }
-            std::cout << errorMsg[errorCount] << std::endl;
-            errorCount++;
-        }
-        else if (input > 4 || input < 1)
-        {
-            if (errorCount == 7)
-            {
-                errorCount = 0;
-            }
-            std::cout << errorMsg[errorCount] << std::endl;
-            errorCount++;
-        }
-        else{
-            if (input == 1)
-            {
-                stats->increasePersonalTax();
-                personalTaxMenu();
-            }
-            else if (input == 2)
-            {
-                stats->decreasePersonalTax();
-                personalTaxMenu();
-            }
-            else if (input == 3)
-            {
-                stats->collectPersonalTax();
-                personalTaxMenu();
-            }
-            else if (input == 4)
-            {
-                taxMenu();
-            }
-            valid = true;
-        }
-    }
-}
-
-void Display::policiesMenu(){
-    
-}
-
-void Display::servicesMenu(){
-
-}
-
-void Display::budgetMenu(){
-
-}
-
-void Display::statisticsMenu(){
-
-}
 
 
+/*
+build
+- factory
+-composite
+-singleton
+- template
+
+upgrades
+-decorator
+
+
+government
+-State
+-Command
+-Observer
+-builder
+-template
+
+transport
+-strategy
+
+
+Facade
+
+*/

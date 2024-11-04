@@ -7,7 +7,17 @@
 
 #include <iostream>
 #include "../map/Map.h"
+#include "../map/Transportation/TransportationStrategy.h"
+#include "../map/Transportation/RoadStrategy.h"
+#include "../map/Transportation/TrainStrategy.h"
+#include "../map/Transportation/AirStrategy.h"
+#include "../map/Transportation/PublicStrategy.h"
 #include "../Statistics.h"
+#include "../Government/Government.h"
+#include "../Government/StandardTax.h"
+#include "../Government/LowTax.h"
+#include "../Government/HighTax.h"
+
 
 using namespace std;
 
@@ -23,7 +33,13 @@ public:
     void clear();
     void wait(int seconds);
     void loadscreen();
+    int getInput(int max, int min);
+    void displayMenu(string title, vector<string> options);
+    void displayMenu(string title, string options);
+    void displayRow(vector<string> row);
+    void displayTaxStats();
 
+    void displayTable(vector<vector<string>> table);
     void displayStats();
 
     //Menus
@@ -39,32 +55,30 @@ public:
     void landmarkMenu();
     void infrastructureMenu();
 
-    //Transportation
-    void transportMenu();
 
     //Upgrade Menus
     void upgradeMenu();
 
     //Government Menus
     void governmentMenu();
-
+    void CitizenMenu();
     void taxMenu();
     void businessTaxMenu();
     void personalTaxMenu();
-
     void policiesMenu();
-
     void servicesMenu();
-
     void budgetMenu();
     
     void statisticsMenu();
-
 
     //helper functions
     string check(string var, int num); // check if building is built
     vector<string> getUpgrades(string var, int num); // get available upgrades for building
 
+    //destroy function
+    void destroyMenu();
+    //transport menu
+    void transportMenu();
  
 private:
 
