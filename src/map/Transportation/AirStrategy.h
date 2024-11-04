@@ -10,7 +10,7 @@ using namespace std;
 class AirStrategy : public TransportationStrategy {
 
 private:
-    int capacityMin = 50;
+    int capacityMin = 20;
     int capacityMax = 165;
     double speed = 500;
     double costPerKm = 250;
@@ -21,10 +21,10 @@ public:
     string getType() override { return "Aeroplane"; }
 
     //getters
-    int getCapacityMin() const { return capacityMin; }
-    int getCapacityMax() const { return capacityMax; }
-    double getSpeed() const { return speed; }
-    double getCostPerKm() const { return costPerKm; }
+    int getCapacityMin() const;
+    int getCapacityMax() const;
+    double getSpeed() const;
+    double getCostPerKm() const;
 };
 #endif
 
