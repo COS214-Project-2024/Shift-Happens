@@ -1418,11 +1418,6 @@ void Display::viewMenu()
     vector<int> buildingIds;
     vector<string> buildingTypes;
     vector<vector<shared_ptr<MapComponent>>> tiles = map.getTiles();
-    if(tiles.size() == 0){
-        cout << "No Buildings currently on the map. Redirecting to GameMenu" << endl;
-        wait(1);
-        GameMenu();
-    }
     for (int i = 0; i < tiles.size(); i++)
     {
         for (int j = 0; j < tiles[i].size(); j++)
@@ -1433,6 +1428,11 @@ void Display::viewMenu()
                 buildingTypes.push_back(tiles[i][j]->getType());
             }
         }
+    }
+    if(buildingIds.size() == 0){
+        cout << "No Buildings currently on the map. Redirecting to GameMenu" << endl;
+        wait(1);
+        GameMenu();
     }
     // display the building ids and types in a table next to each other with the building ids in the first column and the building types in the second column using a number for the index from 1 onwards
     tabulate::Table buildingTable;
@@ -1476,6 +1476,11 @@ void Display::destroyMenu()
                 buildingTypes.push_back(tiles[i][j]->getType());
             }
         }
+    }
+    if(buildingIds.size() == 0){
+        cout << "No Buildings currently on the map. Redirecting to GameMenu" << endl;
+        wait(1);
+        GameMenu();
     }
     // display the building ids and types in a table next to each other with the building ids in the first column and the building types in the second column using a number for the index from 1 onwards
     tabulate::Table buildingTable;
