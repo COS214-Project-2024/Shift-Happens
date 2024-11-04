@@ -7,6 +7,11 @@
 
 #include <iostream>
 #include "../map/Map.h"
+#include "../map/Transportation/TransportationStrategy.h"
+#include "../map/Transportation/RoadStrategy.h"
+#include "../map/Transportation/TrainStrategy.h"
+#include "../map/Transportation/AirStrategy.h"
+#include "../map/Transportation/PublicStrategy.h"
 #include "../Statistics.h"
 #include "../Government/Government.h"
 #include "../Government/StandardTax.h"
@@ -67,17 +72,12 @@ public:
     
     void statisticsMenu();
 
-
-
     //helper functions
     string check(string var, int num); // check if building is built
     vector<string> getUpgrades(string var, int num); // get available upgrades for building
 
-
-
-
-
-
+    //transport menu
+    void transportMenu();
  
 private:
 

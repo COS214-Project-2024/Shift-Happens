@@ -338,7 +338,7 @@ int Display::GameMenu()
     }
     else if (input == 7)
     {
-        // transportMenu();
+        transportMenu();
     }
     else if (input == 8)
     {
@@ -1638,6 +1638,119 @@ void Display::statisticsMenu()
 {
     throw "Statistics Menu not implemented";
 }
+
+void Display::transportMenu() 
+{
+    clear();
+    logo();
+    
+    int distance;
+    int capacity;
+    
+    // Step 1: Ask the user for distance in kmss
+    cout << "Enter the distance you wish to travel (in km): ";
+    while (!(cin >> distance) || distance <= 0) {
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cout << "Invalid input. Please enter a positive integer for distance: ";
+    }
+
+    // Step 2: Ask the user for num people
+    cout << "Enter the number of people traveling (including yourself): ";
+    while (!(cin >> capacity) || capacity <= 0) {
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cout << "Invalid input. Please enter a positive integer for capacity: ";
+    }
+
+    // Step 3: Options based on what user put in distance capacity
+    clear();
+    logo();
+ 
+    cout << "Select your transport option:\n";
+    int optionCount = 1;
+
+    // Statistics obj to hold chosen strategy
+    Statistics stats;
+
+    // Checking more for the trasport optons to display
+    if (distance <= 150) {
+        // Car
+        auto carStrategy = make_shared<RoadStrategy>();
+        if (capacity >= carStrategy->getCapacityMin() && capacity <= carStrategy->getCapacityMax()) {
+            cout << optionCount << ". Car\n";
+            optionCount++;
+        }
+
+        // Taxi option
+        auto taxiStrategy = make_shared<PublicStrategy>();
+        if (capacity >= taxiStrategy->getCapacityMin() && capacity <= taxiStrategy->getCapacityMax()) {
+            cout << optionCount << ". Taxi\n";
+            optionCount++;
+        }
+
+        // Train option
+        auto trainStrategy = make_shared<TrainStrategy>();
+        if (capacity >= trainStrategy->getCapacityMin() && capacity <= trainStrategy->getCapacityMax()) {
+            cout << optionCount << ". Train\n";
+            optionCount++;
+        }
+    }
+
+    // Include Airplane if distance is more than 150 km
+    if (distance > 150) {
+        auto airplaneStrategy = make_shared<AirStrategy>();
+        if (capacity >= airplaneStrategy->getCapacityMin() && capacity <= airplaneStrategy->getCapacityMax()) {
+            std::cout << optionCount << ". Airplane\n";
+            optionCount++;
+        }
+    }
+
+
+    // Step 4: transport choice, getting from user
+    int transportChoice;
+    cout << "Please enter the number of your choice: ";
+    cin >> transportChoice;
+    while (cin.fail() || transportChoice < 1 || transportChoice >= optionCount) {
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cout << "Invalid choice. Please enter a valid option: ";
+        cin >> transportChoice;
+    }
+
+    // Set the chosen strategy based on user input
+    switch (transportChoice) {
+    case 1:
+        stats.setStrategy(make_shared<RoadStrategy>());
+        break;
+    case 2:
+        stats.setStrategy(make_shared<PublicStrategy>());
+        break;
+    case 3:
+        stats.setStrategy(make_shared<TrainStrategy>());
+        break;
+    case 4:
+        stats.setStrategy(make_shared<AirStrategy>());
+        break;
+    default:
+        cerr << "Invalid choice of transportation." << endl;
+        break;
+}
+
+ // Step 5: Display travel details
+    stats.displayOption(distance);      //this will display the est cost, an all from the statistcs
+    cout << "Do you want to proceed with this travel? (yes/no): ";
+    string confirm;
+    cin >> confirm;
+
+    if (confirm == "yes" || confirm == "y") {
+        cout << "Travel confirmed! Your journey has begun.\n";
+    } else {
+        cout << "Travel cancelled.\n";
+    }
+}
+
+
 
 /*
 build

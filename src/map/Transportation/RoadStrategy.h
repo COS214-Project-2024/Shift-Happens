@@ -17,7 +17,13 @@ private:
 public:
     double calculateCost(int distance) override;
     double calculateDuration(int distance) override;
-    string getDescription() override { return "Car"; }
+    string getType() override { return "Car"; }
+
+    //getters
+    int getCapacityMin() const { return capacityMin; }
+    int getCapacityMax() const { return capacityMax; }
+    double getSpeed() const { return speed; }
+    double getCostPerKm() const { return costPerKm; }
 };
 
 #endif // ROADSTRATEGY_H
