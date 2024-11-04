@@ -326,7 +326,7 @@ int Display::GameMenu()
 
     tabulate::Table options;
     options.add_row({"1. Build", "2. View", "3. Destroy", "4. Government"});
-    options.add_row({"5. Citizens", "6. Transport", "7. Detailed Stats", "8. Exit"});
+    options.add_row({"5. Citizens", "6. Transport", "7. Exit"});
     options.format().width(20);
     options.format().font_align(tabulate::FontAlign::center);
     options.format().font_style({tabulate::FontStyle::bold});
@@ -339,18 +339,18 @@ int Display::GameMenu()
     menu[0][0].format().font_color(tabulate::Color::blue);
     std::cout << menu << std::endl;
     std::cout << "Please select an option." << std::endl;
-    int input = getInput(1, 10);
+    int input = getInput(1, 7);
     if (input == 1)
     {
         buildMenu();
     }
     else if (input == 2)
     {
-        // /viewMenu();
+        viewMenu();
     }
     else if (input == 3)
     {
-        viewMenu();
+        destroyMenu();
     }
     else if (input == 4)
     {
@@ -365,10 +365,6 @@ int Display::GameMenu()
         transportMenu();
     }
     else if (input == 7)
-    {
-        // detailedStatsMenu();
-    }
-    else if (input == 8)
     {
         return 0;
     }
@@ -1446,6 +1442,11 @@ void Display::viewMenu()
     std::cout << "Enter the number of the building you want to view" << std::endl;
     int input = getInput(1, buildingIds.size());
     map.view(buildingIds[input - 1]);
+
+    std::cout << "Press any key to go back." << std::endl;
+    std::cin.ignore();
+    std::cin.get();
+    GameMenu();
 }
 
 void Display::destroyMenu()
