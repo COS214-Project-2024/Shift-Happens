@@ -1,5 +1,5 @@
-#ifndef ROADSTRATEGY_H
-#define ROADSTRATEGY_H
+#ifndef PUBLICSTRATEGY_H
+#define PUBLICSTRATEGY_H
 
 #include "TransportationStrategy.h"
 #include <memory>
@@ -7,18 +7,22 @@
 
 using namespace std;
 
-class RoadStrategy : public TransportationStrategy {
+class PublicStrategy : public TransportationStrategy {
 private:
-    int capacity; // = 5;         
-    double baseFare;// = 20.0;       
-    double costPerKm; // = 8.0;
-    double aveSpeed; // = 60.0; 
+    int capacityMin = 5;
+    int capacityMax = 15;
+    double speed = 55;
+    double costPerKm = 10;
 
 public:
-    RoadStrategy();
-    double calculateCost(shared_ptr<Map> map, int startX, int startY, int endX, int endY) override;
-    double calculateDuration(shared_ptr<Map> map, int startX, int startY, int endX, int endY) override;
-    string getDescription() override { return "Car"; }
-};
+    double calculateCost(int distance) override;
+    double calculateDuration(int distance) override;
+    string getType() override { return "Taxi"; }
 
-#endif // ROADSTRATEGY_H
+    //getters
+    int getCapacityMin() const;
+    int getCapacityMax() const;
+    double getSpeed() const;
+    double getCostPerKm() const;
+};
+#endif

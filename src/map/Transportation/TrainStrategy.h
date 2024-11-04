@@ -9,16 +9,21 @@ using namespace std;
 
 class TrainStrategy : public TransportationStrategy {
 private:
-    int capacity; // 300
-    double baseFare; //30.0
-    double costPerKm;  //1.2
-    double aveSpeed; //110.0 km/h
+    int capacityMin = 15;
+    int capacityMax = 300;
+    double speed = 110;
+    double costPerKm = 15;
 
 public:
-	TrainStrategy();
-    double calculateCost(shared_ptr<Map> map, int startX, int startY, int endX, int endY) override;
-    double calculateDuration(shared_ptr<Map> map, int startX, int startY, int endX, int endY) override;
-    string getDescription() override { return "Train"; }
+    double calculateCost(int distance) override;
+    double calculateDuration(int distance) override;
+    string getType() override { return "Train"; }
+
+    //getters
+    int getCapacityMin() const;
+    int getCapacityMax() const;
+    double getSpeed() const;
+    double getCostPerKm() const;
 };
 
 #endif
