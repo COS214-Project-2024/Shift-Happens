@@ -9,64 +9,73 @@ using namespace std;
 
 /**
  * @class PublicStrategy
- * @brief Implements the public transportation strategy for city simulation.
- *
- * Provides methods to calculate transportation cost and duration for public transport, along with attributes such as capacity, speed, and cost per kilometer.
+ * @brief Represents the public transportation strategy (e.g., taxi) within the transportation system.
+ * 
+ * @author Reneiloe Brancn (u22556771)
+ * @date 03-11-2024
+ * 
+ * This strategy class provides specific values for speed, cost per kilometer, 
+ * and capacity limits for a public transport option like a taxi.
  */
-class PublicStrategy : public TransportationStrategy
-{
+class PublicStrategy : public TransportationStrategy {
 private:
-    int capacityMin = 5;   /**< Minimum capacity for public transportation. */
-    int capacityMax = 15;  /**< Maximum capacity for public transportation. */
-    double speed = 55;     /**< Speed of the public transportation in km/h. */
-    double costPerKm = 10; /**< Cost per kilometer for public transportation. */
+    int capacityMin = 2;      ///< Minimum passenger capacity for public transport.
+    int capacityMax = 15;     ///< Maximum passenger capacity for public transport.
+    double speed = 55;        ///< Average speed of public transport in km/h.
+    double costPerKm = 10;    ///< Cost per kilometer for public transport.
 
 public:
     /**
-     * @brief Calculates the cost of public transportation based on the distance.
-     * @param distance The distance to be traveled in kilometers.
-     * @return The cost of the trip.
+     * @brief Calculates the travel cost based on distance for public transport.
+     * 
+     * @param distance The distance to be traveled, in kilometers.
+     * @return The calculated cost in currency units.
      */
     double calculateCost(int distance) override;
 
     /**
-     * @brief Calculates the duration of the trip based on the distance.
-     * @param distance The distance to be traveled in kilometers.
-     * @return The duration of the trip in hours.
+     * @brief Calculates the duration of travel based on distance for public transport.
+     * 
+     * @param distance The distance to be traveled, in kilometers.
+     * @return The estimated travel time in hours.
      */
     double calculateDuration(int distance) override;
 
     /**
-     * @brief Returns the type of transportation.
-     * @return The type of transportation as a string.
+     * @brief Gets the type of transportation strategy.
+     * 
+     * @return The type of transportation as a string ("Taxi").
      */
     string getType() override { return "Taxi"; }
 
-    // Getters
-
     /**
-     * @brief Gets the minimum capacity for public transportation.
-     * @return The minimum capacity.
+     * @brief Gets the minimum passenger capacity for public transport.
+     * 
+     * @return The minimum number of passengers public transport can accommodate.
      */
     int getCapacityMin() const;
 
     /**
-     * @brief Gets the maximum capacity for public transportation.
-     * @return The maximum capacity.
+     * @brief Gets the maximum passenger capacity for public transport.
+     * 
+     * @return The maximum number of passengers public transport can accommodate.
      */
     int getCapacityMax() const;
 
     /**
-     * @brief Gets the speed of public transportation.
-     * @return The speed in km/h.
+     * @brief Gets the average speed of public transport.
+     * 
+     * @return The speed of public transport in kilometers per hour.
      */
     double getSpeed() const;
 
     /**
-     * @brief Gets the cost per kilometer for public transportation.
-     * @return The cost per kilometer.
+     * @brief Gets the cost per kilometer for public transport.
+     * 
+     * @return The cost per kilometer for public transport in currency units.
      */
     double getCostPerKm() const;
 };
 
 #endif // PUBLICSTRATEGY_H
+

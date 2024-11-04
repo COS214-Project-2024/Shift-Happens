@@ -8,63 +8,77 @@
 using namespace std;
 
 /**
- * @class RoadStrategy
- * @brief Implements the road transportation strategy for city simulation.
- *
- * Provides methods to calculate transportation cost and duration for road travel, along with attributes such as capacity, speed, and cost per kilometer.
+ * @brief A concrete strategy class for car-based transportation.
+ * 
+ * This class implements the TransportationStrategy interface for cars,
+ * providing specific calculations for cost and duration based on distance,
+ * as well as capacity and speed information.
+ * 
+ * @author Reneiloe Brancn (u22556771)
+ * @date 02-11-2024
  */
-class RoadStrategy : public TransportationStrategy
-{
+class RoadStrategy : public TransportationStrategy {
 private:
-    int capacityMin = 1;   /**< Minimum capacity for road transportation. */
-    int capacityMax = 5;   /**< Maximum capacity for road transportation. */
-    double speed = 60;     /**< Speed of the road transportation in km/h. */
-    double costPerKm = 20; /**< Cost per kilometer for road transportation. */
+    int capacityMin = 1;       /**< Minimum passenger capacity for the car. */
+    int capacityMax = 5;       /**< Maximum passenger capacity for the car. */
+    double speed = 60;         /**< Average speed of the car in km/h. */
+    double costPerKm = 20;     /**< Cost per kilometer for car travel. */
 
 public:
     /**
-     * @brief Calculates the cost of road transportation based on the distance.
-     * @param distance The distance to be traveled in kilometers.
-     * @return The cost of the trip.
+     * @brief Calculates the cost of travel for the car based on distance.
+     * 
+     * Multiplies the distance by the cost per kilometer.
+     * 
+     * @param distance The distance to be traveled, in kilometers.
+     * @return The calculated travel cost in currency units.
      */
     double calculateCost(int distance) override;
 
     /**
-     * @brief Calculates the duration of the trip based on the distance.
-     * @param distance The distance to be traveled in kilometers.
-     * @return The duration of the trip in hours.
+     * @brief Calculates the duration of travel for the car based on distance.
+     * 
+     * Divides the distance by the car's speed to estimate the duration.
+     * 
+     * @param distance The distance to be traveled, in kilometers.
+     * @return The estimated travel time in hours.
      */
     double calculateDuration(int distance) override;
 
     /**
      * @brief Returns the type of transportation.
-     * @return The type of transportation as a string.
+     * 
+     * @return A string representing the transportation type ("Car").
      */
     string getType() override { return "Car"; }
 
     // Getters
 
     /**
-     * @brief Gets the minimum capacity for road transportation.
-     * @return The minimum capacity.
+     * @brief Gets the minimum passenger capacity for the car.
+     * 
+     * @return The minimum number of passengers the car can accommodate.
      */
     int getCapacityMin() const;
 
     /**
-     * @brief Gets the maximum capacity for road transportation.
-     * @return The maximum capacity.
+     * @brief Gets the maximum passenger capacity for the car.
+     * 
+     * @return The maximum number of passengers the car can accommodate.
      */
     int getCapacityMax() const;
 
     /**
-     * @brief Gets the speed of road transportation.
-     * @return The speed in km/h.
+     * @brief Gets the average speed of the car.
+     * 
+     * @return The speed of the car in kilometers per hour.
      */
     double getSpeed() const;
 
     /**
-     * @brief Gets the cost per kilometer for road transportation.
-     * @return The cost per kilometer.
+     * @brief Gets the cost per kilometer for the car.
+     * 
+     * @return The cost per kilometer for car travel in currency units.
      */
     double getCostPerKm() const;
 };

@@ -12,6 +12,9 @@ CityCraft is a city builder simulation where the user acts as the government of 
       - [Residential Menu](#residential-menu)
       - [Commertial Menu](#commertial-menu)
       - [Industrial Menu](#industrial-menu)
+      - [Utility Menu](#utility-menu)
+      - [Landmark Menu](#landmark-menu)
+      - [Infrastructure Menu](#infrastructure-menu)
     - [Government Menu](#government-menu)
       - [Taxation Menu](#taxation-menu)
       - [Polcies Menu](#policies-menu)
@@ -35,8 +38,28 @@ The Main Menu is the core menu. This menu is where the actual gameplay starts. T
 This is the centered place for building to populate and grow the map.
 
 ## Residential Menu
+
+Residential Menu is where concrete residential types can be selected. These types include: Apartment, House, TownHouse, Estate.
+
 ## Commertial Menu
+
+Commertial Menu is where concrete commertial types can be selected. These types include: Store, Office, Mall.
+
 ## Industrial Menu
+
+Industrial Menu is where concrete industrial types can be selected. These types include: Factory, Warehouse, Manufacturer.
+
+## Utility Menu
+
+Industiral Menu is where concrete utility types can be selected. These types include: Power Plant, Water Supply, Sewage Plant, Landfill.
+
+## Landmark Menu
+
+Landmark Menu is where concrete landmark types can be selected. These types include: Park, Monument, Cultural Center.
+
+## Infrastructure Menu
+
+Infrastructure Menu is where concrete infrastructure types can be selected. These types include: Road, Railway.
 
 ## Government Menu
 
@@ -44,7 +67,7 @@ This menu is used for taxation, implementing policies and managing public servic
 
 ## Taxation Menu
 
-In this menu the user can increase or decrease the personal and business tax rate. Depending on their choice of what they feel is the best tax system to use.
+In this menu the user can increase or decrease the personal and business tax rate. Depending on their choice of what they feel is the best tax system to use. Personal and business tax can also be collected here.
 
 ## Policies Menu
 
@@ -55,5 +78,21 @@ The Polcies menu is where the user can implement different policies if they have
 This is the menu the user uses to manage the funds delegated to public services. The user can increase or decrease the funds of the public services.
 
 ## Transportation Menu
+This function presents a menu to help the user select a transportation method based on their desired travel distance and group size. It guides the user through a sequence of steps.
+
+Enter Travel Distance: Prompts for a positive integer distance in kilometers.
+
+Enter Group Size: Prompts for the number of people traveling. Input is validated as a positive integer.
+
+Display Transport Options: Based on the distance and capacity, the function lists available transport methods:
+
+For distances 0-150 km: options include car, taxi, and train.
+For distances over 150 km: airplane is also available.
+Options are shown only if the capacity fits within the limits for each transport type.
+Choose Transport Option: The user selects a transport method, which is then applied to the Statistics object to calculate the estimated cost and duration.
+
+Show Travel Details: Displays the estimated cost and duration of the trip. Asks the user to confirm whether to proceed.
+
+Confirm Travel: If the user confirms, it displays a message that the journey has begun; otherwise, it notifies that the travel was canceled.
 
 
