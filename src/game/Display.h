@@ -32,7 +32,6 @@ public:
     void displayMenu(string title, vector<string> options);
     void displayMenu(string title, string options);
     void displayRow(vector<string> row);
-
     void displayTaxStats();
 
     void displayTable(vector<vector<string>> table);
@@ -74,7 +73,8 @@ public:
     vector<string> getUpgrades(string var, int num); // get available upgrades for building
 
 
-
+    //destroy function
+    void destroyMenu();
 
 
 

@@ -345,6 +345,10 @@ string Map::getVariant() {
     return "Map";
 }
 
+vector<vector<shared_ptr<MapComponent>>>& Map::getTiles() {
+    return tiles;
+}
+
 int Map::getTotalPopulationCapacity() {
     int total = 0;
     for (const auto& row : tiles) {

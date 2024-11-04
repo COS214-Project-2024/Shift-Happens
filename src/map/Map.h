@@ -61,7 +61,11 @@ public:
 
     string getType() override;
     string getVariant() override;
-
+    /**
+     * @brief Gets the tiles of the map.
+     * @return A reference to the vector of vector of shared pointers to MapComponent.
+     */
+    vector<vector<shared_ptr<MapComponent>>>& getTiles();
     /**
      * @brief Builds a building on the map.
      * @param variant The type of building to create.
@@ -104,7 +108,7 @@ public:
     static Map& getInstance();
 
     void upgrade(int id, const string upgradeType); // Add this line
-
+    
     // New functions
     double getAverageSatisfactionScore() override;
     int getTotalWaterSupply() override;

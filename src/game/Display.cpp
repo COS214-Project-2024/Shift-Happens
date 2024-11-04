@@ -331,7 +331,7 @@ int Display::GameMenu()
     }
     else if (input == 4)
     {
-        // destroyMenu();
+        destroyMenu();
     }
     else if (input == 5)
     {
@@ -1307,10 +1307,56 @@ void Display::upgradeMenu()
 
 vector<string> Display::getUpgrades(string var, int num)
 {
-    //just to stop warnings
-    num--;
-    var = "";
-    throw "Display::getUpgrades: Not implemented";
+    vector<string> upgrades;
+    int count = map.numBuildings(var);
+    if (count >= num)
+    {
+    }
+    else
+    {
+        return upgrades;
+    }
+}
+
+void Display::destroyMenu()
+{
+    // get all the tiles and dereference the non null tile pointers and add their building ids to a vector
+    // display the building ids to the user as well as the building type to which that id belongs
+    // ask the user to select a building to destroy
+    // get the building id from the user
+    // get the building type from the building id
+    // remove the building from the map using the destroy(int id) function
+
+    vector<int> buildingIds;
+    vector<string> buildingTypes;
+    vector<vector<shared_ptr<MapComponent>>> tiles = map.getTiles();
+    for (int i = 0; i < tiles.size(); i++)
+    {
+        for (int j = 0; j < tiles[i].size(); j++)
+        {
+            if (tiles[i][j] != nullptr)
+            {
+                buildingIds.push_back(tiles[i][j]->getId());
+                buildingTypes.push_back(tiles[i][j]->getType());
+            }
+        }
+    }
+    // display the building ids and types in a table next to each other with the building ids in the first column and the building types in the second column using a number for the index from 1 onwards
+    tabulate::Table buildingTable;
+    buildingTable.add_row({"Building ID", "Building Type"});
+    for (int i = 0; i < buildingIds.size(); i++)
+    {
+        buildingTable.add_row({to_string(i + 1), buildingTypes[i]});
+    }
+    buildingTable.format().font_align(tabulate::FontAlign::center);
+    
+    std::cout << buildingTable << std::endl;
+
+    std::cout << "Enter the number of the building you want to destroy" << std::endl;
+    int input = getInput(1, buildingIds.size());
+    map.destroy(buildingIds[input - 1]);
+    GameMenu();
+
 }
 
 void Display::governmentMenu()
@@ -1640,6 +1686,7 @@ void Display::statisticsMenu()
 {
     throw "Statistics Menu not implemented";
 }
+
 
 /*
 build
