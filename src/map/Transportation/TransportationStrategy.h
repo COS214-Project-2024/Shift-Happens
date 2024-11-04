@@ -3,7 +3,7 @@
 
 #include <string>
 #include <memory>
-#include "Map.h"
+#include "../Map.h"
 
 using namespace std;
 
