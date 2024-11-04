@@ -60,6 +60,7 @@ int Display::getInput(int min, int max)
             return input;
         }
     }
+    throw "Display::getInput: Invalid input";
 }
 
 void Display::logo()
@@ -76,7 +77,7 @@ void Display::logo()
 
 void Display::displayMenu(string title, vector<string> options)
 {
-    for (int i = 0; i < options.size(); i++)
+    for (std::vector<std::string>::size_type i = 0; i < options.size(); i++)
     {
         options[i] = to_string(i + 1) + ". " + options[i];
     }
@@ -155,15 +156,18 @@ void Display::displayMenu(string title, string options)
 void Display::displayTable(vector<vector<string>> table)
 {
     tabulate::Table tab;
-    int rowWidth = table[0].size();
+    std::vector<std::string>::size_type rowWidth = table[0].size();
     // check if all rows are the same width
-    for (int i = 0; i < table.size(); i++)
+
+    for (std::vector<std::vector<std::string>>::size_type i = 0; i < table.size(); i++)
     {
+
         if (table[i].size() != rowWidth)
         {
             throw "Display::displayTable: Rows are not the same width";
         }
-        for (int j = 0; j < table[i].size(); j++)
+
+        for (std::vector<std::string>::size_type j = 0; j < table[i].size(); j++)
         {
             if (table[i][j].empty())
             {
@@ -178,35 +182,36 @@ void Display::displayTable(vector<vector<string>> table)
 
     if (rowWidth == 1)
     {
-        for (int i = 0; i < table.size(); i++)
+        for (std::vector<std::vector<std::string>>::size_type i = 0; i < table.size(); i++)
         {
             tab.add_row({table[i][0]});
         }
     }
     else if (rowWidth == 2)
     {
-        for (int i = 0; i < table.size(); i++)
+        for (std::vector<std::vector<std::string>>::size_type i = 0; i < table.size(); i++)
         {
             tab.add_row({table[i][0], table[i][1]});
         }
     }
     else if (rowWidth == 3)
     {
-        for (int i = 0; i < table.size(); i++)
+        for (std::vector<std::vector<std::string>>::size_type i = 0; i < table.size(); i++)
         {
             tab.add_row({table[i][0], table[i][1], table[i][2]});
         }
     }
     else if (rowWidth == 4)
     {
-        for (int i = 0; i < table.size(); i++)
+        for (std::vector<std::vector<std::string>>::size_type i = 0; i < table.size(); i++)
         {
             tab.add_row({table[i][0], table[i][1], table[i][2], table[i][3]});
         }
     }
     else if (rowWidth == 5)
     {
-        for (int i = 0; i < table.size(); i++)
+
+        for (std::vector<std::vector<std::string>>::size_type i = 0; i < table.size(); i++)
         {
             tab.add_row({table[i][0], table[i][1], table[i][2], table[i][3], table[i][4]});
         }
@@ -561,9 +566,7 @@ void Display::residentialMenu()
 
     int input = getInput(1, 3);
 
-    bool valid = false;
-    vector<string> errorMsg = {"Invalid option. Please try again.", "Enter an integer.", "What are you doing?", "Can you even read?", "You are clearly doing it on purpose.", "You are testing my patience.", "I am not a happy computer.", "Stop that!!"};
-    int errorCount = 0;
+    
 
     int money = stats->getMoney();
     if (input == 1)
@@ -1300,15 +1303,10 @@ void Display::upgradeMenu()
 
 vector<string> Display::getUpgrades(string var, int num)
 {
-    vector<string> upgrades;
-    int count = map.numBuildings(var);
-    if (count >= num)
-    {
-    }
-    else
-    {
-        return upgrades;
-    }
+    //just to stop warnings
+    num--;
+    var = "";
+    throw "Display::getUpgrades: Not implemented";
 }
 
 void Display::governmentMenu()
