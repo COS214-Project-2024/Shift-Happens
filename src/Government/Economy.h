@@ -16,7 +16,7 @@
  * As a subject in the observer pattern, it notifies registered observers 
  * about changes in the economic state.
  */
-//class Population;
+class Population;
 class Economy : public CitySubject {
 private:
     std::shared_ptr<Population> PopulationState; ///< Shared pointer to the current population state.

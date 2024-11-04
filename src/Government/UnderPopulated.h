@@ -1,7 +1,6 @@
 #ifndef UNDERPOPULATED_H
 #define UNDERPOPULATED_H
 
-#include "Population.h"
 #include "Normal.h"
 
 /**
