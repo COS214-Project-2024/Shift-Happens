@@ -479,7 +479,7 @@ void Display::displayStats()
 
     for (int i = 0; i < 53; i++)
     {
-        string roadstr = check("Road", i);
+        string roadstr = check("Road", i + 1);
         road.push_back(roadstr);
     }
 
