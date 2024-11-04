@@ -541,7 +541,7 @@ void Display::displayStats()
     gridmap.add_row({TrainStation1, Warehouse2, Warehouse2, Factory2, Manufacturer1, Warehouse4, Warehouse4, Factory4, Manufacturer2, PowerPlant3, PowerPlant4, Airport2, Airport2, TrainStation2, TrainStation2});
     gridmap.add_row({railway[0], railway[1], railway[2], railway[3], railway[4], railway[5], railway[6], railway[7], railway[8], railway[9], railway[10], railway[11], railway[12], railway[13], railway[14]});
 
-    gridmap.format().width(12);
+    gridmap.format().width(10);
     gridmap.format().height(2);
     gridmap.format().font_align(tabulate::FontAlign::center);
 
