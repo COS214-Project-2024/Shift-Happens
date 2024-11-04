@@ -391,13 +391,13 @@ void Display::displayStats()
     string waste = to_string(stats->getWasteProduction()) + " / " + to_string(stats->getWasteCapacity());
     string sewage = to_string(stats->getSewageProduction()) + " / " + to_string(stats->getSewageCapacity());
 
-    tabulate::Table stats;
-    stats.add_row({"Money", "Income", "Population", "Satisfaction", "Water", "Electricity", "Waste", "Sewage"});
-    stats.add_row({money, income, population, satisfaction, water, power, waste, sewage});
+    tabulate::Table statistics;
+    statistics.add_row({"Money", "Income", "Population", "Satisfaction", "Water", "Electricity", "Waste", "Sewage"});
+    statistics.add_row({money, income, population, satisfaction, water, power, waste, sewage});
 
-    stats.format().width(10);
-    stats.format().font_align(tabulate::FontAlign::center);
-    stats.format().font_style({tabulate::FontStyle::bold});
+    statistics.format().width(10);
+    statistics.format().font_align(tabulate::FontAlign::center);
+    statistics.format().font_style({tabulate::FontStyle::bold});
 
     tabulate::Table gridmap;
 
@@ -519,7 +519,7 @@ void Display::displayStats()
     gridmap.format().font_align(tabulate::FontAlign::center);
 
     tabulate::Table Stats_and_map;
-    Stats_and_map.add_row({stats});
+    Stats_and_map.add_row({statistics});
     Stats_and_map.add_row({gridmap});
 
     std::cout << Stats_and_map << std::endl;

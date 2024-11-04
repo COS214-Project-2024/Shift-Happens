@@ -14,7 +14,7 @@ void WomanBuilder::addType() {
 }
 
 void WomanBuilder::addStatus() {
-	std::string answer ;
+	std::string answer = "" ;
 	
 	if(CreatorCounter == 0){
 		answer = "Yes";
@@ -38,20 +38,7 @@ void WomanBuilder::addStatus() {
 	} else if(answer == "No" || answer == "no"){
 		woman->setEmployment(false);
 	} else {
-		bool done = false;
-		while (done != true)
-		{
-			std::cout << "Input did not match the expected Yes or No input. Try again." << std::endl;
-			std::cout << "Is the Woman employed? (Yes/No)" << std::endl;
-			std::cin >> answer;
-			if(answer == "Yes" || answer == "yes"){
-				woman->setEmployment(true);
-				done = true;
-			} else if(answer == "No" || answer == "no"){
-				woman->setEmployment(false);
-				done = false;
-			}
-		}
+		throw "womanBuilder::addStatus() invalid input";
 		
 	}
 }
