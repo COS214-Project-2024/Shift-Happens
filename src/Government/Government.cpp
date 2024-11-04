@@ -177,6 +177,11 @@ std::shared_ptr<Police> Government::getPolice() const{
 }
 
 void Government::removeCitizen(){
+    if (CitizenCollection.size() == 0)
+    {
+        return;
+    }
+    
     CitizenCollection.pop_back();
 }
 

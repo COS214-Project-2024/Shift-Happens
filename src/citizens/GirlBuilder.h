@@ -15,7 +15,7 @@
 class GirlBuilder : public CitizenBuilder {
 private:
     std::shared_ptr<Girl> girl; ///< Shared pointer to the `Girl` object being constructed.
-
+    int CreatorCounter =0;
 public:
     GirlBuilder();
     /**

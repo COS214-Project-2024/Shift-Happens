@@ -48,4 +48,4 @@ public:
     virtual string getType() = 0;
 };
 
-#endif
+#endif // TRANSPORTATIONSTRATEGY_H

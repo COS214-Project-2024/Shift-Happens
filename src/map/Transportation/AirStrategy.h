@@ -79,3 +79,4 @@ public:
 };
 
 #endif // AIRSTRATEGY_H
+

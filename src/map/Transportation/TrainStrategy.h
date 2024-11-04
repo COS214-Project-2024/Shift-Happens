@@ -78,4 +78,4 @@ public:
     double getCostPerKm() const;
 };
 
-#endif
+#endif // TRAINSTRATEGY_H

@@ -78,3 +78,4 @@ public:
 };
 
 #endif // PUBLICSTRATEGY_H
+

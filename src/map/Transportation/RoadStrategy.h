@@ -15,7 +15,7 @@ using namespace std;
  * as well as capacity and speed information.
  * 
  * @author Reneiloe Brancn (u22556771)
- * @date 03-11-2024
+ * @date 02-11-2024
  */
 class RoadStrategy : public TransportationStrategy {
 private:
