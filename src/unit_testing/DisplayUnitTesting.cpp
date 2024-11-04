@@ -104,3 +104,8 @@ TEST(DisplayTest, GetInputInvalidNonIntegerTest) {
     int result = display.getInput(1, 10);
     EXPECT_NE(result,"abc") << "Expected getInput to skip invalid input and accept 2.";
 }
+
+int main(int argc, char **argv) {
+    ::testing::InitGoogleTest(&argc, argv);
+    return RUN_ALL_TESTS();
+}
